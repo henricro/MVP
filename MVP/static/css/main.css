@@ -1,0 +1,42 @@
+.note {
+  position: absolute;
+  z-index: 9;
+  padding : 3px;
+  border: 1px solid #d3d3d3;
+  border-radius : 5px;
+  text-align: center;
+}
+
+.noteLink {
+  position: absolute;
+  z-index: 9;
+  padding : 3px;
+  border: 1px solid #d3d3d3;
+  border-radius : 5px;
+  text-align: center;
+  background-color : #9FCDDA;
+}
+
+.pageLink {
+  position: absolute;
+  z-index: 9;
+  padding : 3px;
+  border: 1px solid #d3d3d3;
+  border-radius : 5px;
+  text-align: center;
+  background-color : #90D8A4;
+}
+
+.input{
+  display:none;
+  border:0;
+  text-align:center;
+  vertical-align:middle;
+}
+
+.title{
+    font-size : 30px;
+    color : #6E1055;
+    text-decoration: underline;
+    font-weight: 800;
+}

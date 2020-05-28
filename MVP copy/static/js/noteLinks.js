@@ -1,13 +1,12 @@
 ////////////////////////////////////////////////
-/////////// BUILD THE PAGE LINKS //////////////
+/////////// CREATE THE NOTE LINKS //////////////
 ////////////////////////////////////////////////
 
-
-$('.pageLink').each(function(){
-    createPageLink($(this));
+$('.noteLink').each(function(){
+    createNoteLink($(this));
 });
 
-function createPageLink(note) {
+function createNoteLink(note) {
 
     id = note.attr("id");
 
@@ -18,94 +17,39 @@ function createPageLink(note) {
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-    var title = XMLnote.getElementsByTagName("title")[0].childNodes[0].nodeValue;
-    var pageID = XMLnote.getElementsByTagName("pageID")[0].childNodes[0].nodeValue;
+    var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
+
+    console.log(content, x, y);
 
     //console.log("print elmnt");
     //console.log(elmnt);
-    note.attr("class", "pageLink")
+    note.attr("class", "noteLink");
     note.css("position","absolute");
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
-    note.attr("pageID", pageID);
-    note.attr("title", "go to page ".concat(title));
+    note.attr("link", link);
     note.html(content);
 
 }
 
 
-///////////////////////////////////////////////
-/////////   CREATE A NEW PAGE  ///////////////
-/////////////////////////////////////////////
-
-$(function() {
-      "use strict";
-      $.contextMenu({
-        selector: '*:not("div")',
-        callback: function(key, options) {
-
-          if (key === 'newPage') {
-
-            console.log(event.pageX, event.pageY);
-
-            var new_x = event.pageX;
-            var new_y = event.pageY;
-
-            // CREATE A NEW XML FILE WITH A TITLE ENTERED IN PROMPT
-            // ALSO CREATE A PAGE LINK ON THE RUNNING XML
-
-            var title = prompt("Nom", "");
-
-            $.ajax({
-                url: '/new_page/'+pageID,
-                type: "POST",
-                data: JSON.stringify({
-                    new_x : new_x,
-                    new_y : new_y,
-                    title : title
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                    window.location.href='/open_page/'+pageID;
-                },
-                error: function (error) {
-                    console.log("problem");
-                    window.location.href='/open_page/'+pageID;
-                }
-            });
-
-          }
-        },
-        items: {
-          'newPage': {
-            name: "New Page",
-            icon: "fa-plus-circle"
-          }
-        }
-      });
-    });
-
-
-
-
 ///////////////////////////////////////////////////////
-/////////////    SELECT PAGELINK   ////////////////////
+/////////////    SELECT NOTELINK   ////////////////////
 ///////////////////////////////////////////////////////
 
-$('.pageLink').each(function(){
+$('.noteLink').each(function(){
     $(this).bind('click.select', function(){
-        selectPageLink($(this));
+        selectNoteLink($(this));
     });
 });
 
-function selectPageLink(note){
+function selectNoteLink(note){
 
-    console.log("select page link");
+    console.log("ouaehoeaubhoueabh");
 
     note.css({"border-color":"green"});
 
-    pageLinkID= note.attr("pageID");
+    link = note.attr("link");
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -140,16 +84,15 @@ function selectPageLink(note){
     note.unbind('click.select');
 
     // SECOND CLICK
-    note.bind('click.gotopage', function(){
+    note.bind('click.gotolink', function(){
 
         $(document).unbind('keyup.delete');
 
-        window.open('/open_page/'+pageLinkID , '_blank');
+        window.open(link, '_blank');
 
     });
 
     $(document).click(function(){
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             note.css({"border-color":""});
@@ -158,17 +101,17 @@ function selectPageLink(note){
 
             $(document).unbind('keyup.delete');
 
-            note.unbind('click.gotopage');
+            note.unbind('click.gotolink');
 
             note.bind('click.select', function(){
-                selectPageLink($(this));
+                selectNoteLink($(this));
             });
 
         }
-
     });
 
 }
+
 
 
 
@@ -176,31 +119,28 @@ function selectPageLink(note){
 ///////////////// RIGHT CLICK ///////////////
 /////////////////////////////////////////////
 
+
 $(function() {
-
       "use strict";
-
       $.contextMenu({
-        selector: '.pageLink',
+        selector: '.noteLink',
         callback: function(key, options) {
 
-          if (key === 'edit') {
-
-            console.log("clicked edit");
+          if (key === 'link') {
             console.log($(this));
             var id = $(this).attr("id");
             console.log(id);
-            var content = $(this).html();
-            console.log(content);
+            var link = $(this).attr("link");
+            console.log(link);
 
-            var value = prompt("Texte", content);
+            var value = prompt("Lien", link);
 
             if (value != null) {
                 $.ajax({
-                    url: '/update_content/'+pageID,
+                    url: '/change_link/'+pageID,
                     type: "POST",
                     data: JSON.stringify({
-                        content : value,
+                        link : value,
                         id : id
                     }),
                     contentType: "application/json",
@@ -215,12 +155,18 @@ $(function() {
                 });
             }
 
+          } else if (key === 'edit') {
+            writeNoteLink($(this));
           } else if (key === 'copy') {
             console.log("money");
           }
         },
 
         items: {
+          'link': {
+            name: "Change link",
+            icon: "fa-link"
+          },
           'edit': {
             name: "Edit",
             icon: "fa-edit"
@@ -230,17 +176,15 @@ $(function() {
             icon: "copy"
           }
         }
-
       });
-
-});
+    });
 
 
 /////////////////////////////////////////////////////////
-/////////////    WRITE IN PAGELINK   ////////////////////
+/////////////    WRITE IN NOTELINK   ////////////////////
 /////////////////////////////////////////////////////////
 
-/*
+
 
 function writeNoteLink(note){
 
@@ -272,7 +216,7 @@ function writeNoteLink(note){
                     id = note.attr('id')
 
                     $.ajax({
-                        url: '/update_content',
+                        url: '/update_content/'+pageID,
                         type: "POST",
                         data: JSON.stringify({
                             id: id,
@@ -318,5 +262,3 @@ function writeNoteLink(note){
     });
 
 }
-
-*/

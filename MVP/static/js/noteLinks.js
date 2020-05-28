@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////
-/////////// CREATE THE NOTE LINKS //////////////
+/////////// BUILD THE NOTE LINKS //////////////
 ////////////////////////////////////////////////
 
 $('.noteLink').each(function(){
@@ -28,6 +28,7 @@ function createNoteLink(note) {
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
     note.attr("link", link);
+    note.attr("title", "link to ".concat(link))
     note.html(content);
 
 }
@@ -45,7 +46,7 @@ $('.noteLink').each(function(){
 
 function selectNoteLink(note){
 
-    console.log("ouaehoeaubhoueabh");
+    console.log("select note link");
 
     note.css({"border-color":"green"});
 
@@ -119,11 +120,13 @@ function selectNoteLink(note){
 ///////////////// RIGHT CLICK ///////////////
 /////////////////////////////////////////////
 
-
 $(function() {
+
       "use strict";
+
       $.contextMenu({
         selector: '.noteLink',
+
         callback: function(key, options) {
 
           if (key === 'link') {
@@ -176,8 +179,10 @@ $(function() {
             icon: "copy"
           }
         }
+
       });
-    });
+
+});
 
 
 /////////////////////////////////////////////////////////

@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////
-/////////// BUILD THE PAGE LINKS //////////////
+/////////// CREATE THE PAGE LINKS //////////////
 ////////////////////////////////////////////////
 
 
@@ -28,7 +28,7 @@ function createPageLink(note) {
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
     note.attr("pageID", pageID);
-    note.attr("title", "go to page ".concat(title));
+    note.attr("title", "title");
     note.html(content);
 
 }
@@ -149,7 +149,6 @@ function selectPageLink(note){
     });
 
     $(document).click(function(){
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             note.css({"border-color":""});
@@ -158,69 +157,71 @@ function selectPageLink(note){
 
             $(document).unbind('keyup.delete');
 
-            note.unbind('click.gotopage');
+            note.unbind('click.gotolink');
 
             note.bind('click.select', function(){
                 selectPageLink($(this));
             });
 
         }
-
     });
 
 }
 
 
-
+/*
 /////////////////////////////////////////////
 ///////////////// RIGHT CLICK ///////////////
 /////////////////////////////////////////////
 
+
 $(function() {
-
       "use strict";
-
       $.contextMenu({
-        selector: '.pageLink',
+        selector: '.noteLink',
         callback: function(key, options) {
 
-          if (key === 'edit') {
-
-            console.log("clicked edit");
+          if (key === 'link') {
             console.log($(this));
             var id = $(this).attr("id");
             console.log(id);
-            var content = $(this).html();
-            console.log(content);
+            var link = $(this).attr("link");
+            console.log(link);
 
-            var value = prompt("Texte", content);
+            var value = prompt("Lien", link);
 
             if (value != null) {
                 $.ajax({
-                    url: '/update_content/'+pageID,
+                    url: '/change_link',
                     type: "POST",
                     data: JSON.stringify({
-                        content : value,
+                        link : value,
                         id : id
                     }),
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/home';
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/home';
                     }
                 });
             }
 
+          } else if (key === 'edit') {
+            writeNoteLink($(this));
           } else if (key === 'copy') {
             console.log("money");
           }
         },
 
         items: {
+          'link': {
+            name: "Change link",
+            icon: "fa-link"
+          },
           'edit': {
             name: "Edit",
             icon: "fa-edit"
@@ -230,17 +231,15 @@ $(function() {
             icon: "copy"
           }
         }
-
       });
-
-});
+    });
 
 
 /////////////////////////////////////////////////////////
 /////////////    WRITE IN PAGELINK   ////////////////////
 /////////////////////////////////////////////////////////
 
-/*
+
 
 function writeNoteLink(note){
 

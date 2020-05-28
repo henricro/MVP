@@ -5,8 +5,6 @@
 
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-
     <script src="https://kit.fontawesome.com/2cb897d3bd.js" crossorigin="anonymous"></script>
 
     <!-- jQuery -->
@@ -17,28 +15,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 
 
-    <!-- Tooltipster
-    <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
-
-    <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>-->
-
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+    <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
-    <!-- jQuery contextMenu -->
+    <!-- jQuery contextMenu
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.6.4/jquery.contextMenu.min.js"></script> -->
 
-    <script>
-        $( function() {
-            $( document ).tooltip();
-          } );
-    </script>
+    <style>
+
+    .note {
+      position: absolute;
+      z-index: 9;
+      padding : 3px;
+      border: 1px solid #d3d3d3;
+      border-radius : 5px;
+      text-align: center;
+    }
+
+    .noteLink {
+      position: absolute;
+      z-index: 9;
+      padding : 3px;
+      border: 1px solid #d3d3d3;
+      border-radius : 5px;
+      text-align: center;
+      background-color : #9FCDDA;
+    }
+
+    .pageLink {
+      position: absolute;
+      z-index: 9;
+      padding : 3px;
+      border: 1px solid #d3d3d3;
+      border-radius : 5px;
+      text-align: center;
+      background-color : #90D8A4;
+    }
+
+    .input{
+      display:none;
+      border:0;
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    .title{
+        font-size : 30px;
+        color : #6E1055;
+        text-decoration: underline;
+        font-weight: 800;
+    }
+
+
+    </style>
 
 </head>
 
 <body>
+
+<img src="/static/uploads/bruit_blanc.png" />
 
 </body>
 

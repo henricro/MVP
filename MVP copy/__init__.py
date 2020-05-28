@@ -232,9 +232,6 @@ def delete_note(pageID):
 
 @application.route("/update_content/<pageID>", methods=['POST'])
 def update_content(pageID):
-
-    print("update content")
-
     request_data = request.get_json()
     _id = str(request_data.get('id'))
     content = str(request_data.get('content'))
