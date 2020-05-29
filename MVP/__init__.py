@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_dropzone import Dropzone
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 import os
+import json
 
 def create_application():
 
@@ -100,6 +101,10 @@ def results():
 @application.route("/home", methods=['GET', 'POST'])
 def home():
 
+    pages = engine.execute("select id, title from Pages").fetchall()
+    pages = dict(pages)
+    print(pages)
+
     pageID = "1"
 
     pageName = 'Page_' + pageID
@@ -111,10 +116,14 @@ def home():
 
     xml_string = xml_string.replace("\n", "")
 
-    return render_template('/page.html', xml_string=xml_string, pageID = pageID)
+    return render_template('/page.html', xml_string=xml_string, pageID = pageID, pages=pages)
 
 @application.route("/open_page/<pageID>", methods=['GET', 'POST'])
 def open_page(pageID):
+
+    pages = engine.execute("select id, title from Pages").fetchall()
+    pages = dict(pages)
+    print(pages)
 
     print("open page")
 
@@ -134,7 +143,8 @@ def open_page(pageID):
 
     xml_string = xml_string.replace("\n", "")
 
-    return render_template('/page.html', xml_string=xml_string, pageID=pageID)
+
+    return render_template('/page.html', xml_string=xml_string, pageID=pageID, pages=pages)
 
 
 @application.route("/update_position/<pageID>", methods=['POST'])
@@ -239,6 +249,8 @@ def update_content(pageID):
     _id = str(request_data.get('id'))
     content = str(request_data.get('content'))
 
+    print(_id)
+
     print(_id, content)
 
     pageID = str(pageID)
@@ -252,6 +264,12 @@ def update_content(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
+
+    # change title in DB if the note changed is the title.
+    if _id == '0':
+        print("helloooooooooo")
+        engine.execute("Update Pages set title = %(content)s where id= %(pageID)s ", {'content':content, 'pageID':pageID})
+
     pass
 
 @application.route("/add_link/<pageID>", methods=['POST'])
@@ -449,11 +467,10 @@ def new_page(pageID):
     # set the note's x, y and content = "title" (for now)
     new_note.set("id", id)
     new_note.set("class", "pageLink")
+    new_note.set("pageID", str(newPageID))
     etree.SubElement(new_note, "x").text = new_x
     etree.SubElement(new_note, "y").text = new_y
     etree.SubElement(new_note, "content").text = title
-    etree.SubElement(new_note, "title").text = title
-    etree.SubElement(new_note, "pageID").text = str(newPageID)
 
     print(etree.tostring(root, pretty_print=True))
 

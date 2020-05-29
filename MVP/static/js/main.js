@@ -24,7 +24,9 @@ function createNotes() {
             $('body').append(elem);
         }
         else if (clasis === "pageLink"){
-            elem = '<div class="pageLink" id="' + id + '" contenteditable="false"></div>';
+            var pageID = note.getAttribute("pageID");
+            var title = pages[pageID];
+            elem = '<div class="pageLink" id="' + id + '" pageID='+ pageID + ' pageTitle='+ title + '" contenteditable="false"></div>';
             $('body').append(elem);
         }
         else if (clasis === "file"){

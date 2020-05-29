@@ -9,7 +9,9 @@ $('.pageLink').each(function(){
 
 function createPageLink(note) {
 
-    id = note.attr("id");
+    var id = note.attr("id");
+
+    var pageTitle = note.attr("pageTitle");
 
     console.log(id);
 
@@ -18,8 +20,6 @@ function createPageLink(note) {
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-    var title = XMLnote.getElementsByTagName("title")[0].childNodes[0].nodeValue;
-    var pageID = XMLnote.getElementsByTagName("pageID")[0].childNodes[0].nodeValue;
 
     //console.log("print elmnt");
     //console.log(elmnt);
@@ -27,8 +27,7 @@ function createPageLink(note) {
     note.css("position","absolute");
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
-    note.attr("pageID", pageID);
-    note.attr("title", "go to page ".concat(title));
+    note.attr("title", "go to page ".concat(pageTitle));
     note.html(content);
 
 }
@@ -107,6 +106,8 @@ function selectPageLink(note){
 
     pageLinkID= note.attr("pageID");
 
+    console.log(pageID);
+
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
 
@@ -184,50 +185,15 @@ $(function() {
         selector: '.pageLink',
         callback: function(key, options) {
 
-          if (key === 'edit') {
-
-            console.log("clicked edit");
-            console.log($(this));
-            var id = $(this).attr("id");
-            console.log(id);
-            var content = $(this).html();
-            console.log(content);
-
-            var value = prompt("Texte", content);
-
-            if (value != null) {
-                $.ajax({
-                    url: '/update_content/'+pageID,
-                    type: "POST",
-                    data: JSON.stringify({
-                        content : value,
-                        id : id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+pageID;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+pageID;
-                    }
-                });
-            }
-
-          } else if (key === 'copy') {
-            console.log("money");
-          }
+           if (key === 'edit') {
+             writePageLink($(this));
+           }
         },
 
         items: {
           'edit': {
             name: "Edit",
             icon: "fa-edit"
-          },
-          'copy': {
-            name: "Copy",
-            icon: "copy"
           }
         }
 
@@ -240,9 +206,8 @@ $(function() {
 /////////////    WRITE IN PAGELINK   ////////////////////
 /////////////////////////////////////////////////////////
 
-/*
 
-function writeNoteLink(note){
+function writePageLink(note){
 
     console.log("bdbd");
 
@@ -290,7 +255,7 @@ function writeNoteLink(note){
                     note.attr("contenteditable", "false");
 
                     note.bind('click.select', function() {
-                        selectNoteLink($(this));
+                        selectPageLink($(this));
                     });
 
                     note.bind('mousedown.drag', function(){
@@ -319,4 +284,3 @@ function writeNoteLink(note){
 
 }
 
-*/
