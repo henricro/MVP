@@ -125,6 +125,7 @@ $(function() {
       "use strict";
 
       $.contextMenu({
+
         selector: '.noteLink',
 
         callback: function(key, options) {

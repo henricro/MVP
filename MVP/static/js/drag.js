@@ -2,7 +2,7 @@
 /////////////    DRAG ELEMENTS   //////////////////
 ///////////////////////////////////////////////////
 
-$(".note,  .noteLink, .pageLink, .file").each(function(){
+$(".note, .noteLink, .pageLink, .title, .file").each(function(){
     $(this).bind('mousedown.drag', function(){
 
         mouseX = event.pageX;
@@ -31,12 +31,13 @@ function dragFunc(note) {
 
     function mouseMove(note) {
 
-        console.log(noteX);
-        console.log(noteY);
+        //console.log(noteX, noteY);
+
+        //console.log("moving mouse");
 
         new_top = noteY + event.pageY - mouseY ;
         new_left = noteX + event.pageX - mouseX ;
-        console.log(new_top, new_left);
+        //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });
 
     }
@@ -54,7 +55,11 @@ function dragFunc(note) {
 
         //console.log(id, x, y);
 
+        //console.log(mouseX, event.pageX)
+
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
+
+            console.log("object moved");
 
             // ajax call with id x and y postion if element has moved
             $.ajax({
@@ -73,7 +78,10 @@ function dragFunc(note) {
                     console.log("problem");
                 }
             });
+        } else {
+            console.log("object did not move");
         }
+
 
     }
 

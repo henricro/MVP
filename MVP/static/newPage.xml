@@ -2,10 +2,9 @@
 
 <notes>
 
-    <note class="note" id="0">
+    <note class="title" id="0">
         <x>680</x>
-        <y>22</y>
-        <content></content>
+        <y>300</y>
     </note>
 
 </notes>

@@ -24,7 +24,14 @@
   border: 1px solid #d3d3d3;
   border-radius : 5px;
   text-align: center;
-  background-color : #90D8A4;
+}
+
+.child{
+    background-color : #7DE98A;
+}
+
+.parent{
+    background-color : #40AE4D;
 }
 
 .input{
@@ -35,8 +42,29 @@
 }
 
 .title{
+    border: 1px solid transparent;
+    border-radius : 5px;
     font-size : 30px;
     color : #6E1055;
     text-decoration: underline;
     font-weight: 800;
 }
+
+.file{
+    border: 1px solid transparent;
+    border-radius : 5px;
+}
+
+.resizable {
+  display: inline-block;
+  background: red;
+  resize: both;
+  overflow: hidden;
+  line-height: 0;
+  }
+
+.resizable img {
+  width: 100%;
+  height: 100%;
+}
+

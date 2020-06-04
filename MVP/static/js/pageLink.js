@@ -13,17 +13,19 @@ function createPageLink(note) {
 
     var pageTitle = note.attr("pageTitle");
 
-    console.log(id);
+    console.log("pagetitle");
+    console.log(id,pageTitle);
 
     var XMLnote = xmlDoc.getElementById(id);
     console.log(XMLnote);
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
+    var type = XMLnote.getAttribute("type");
 
     //console.log("print elmnt");
     //console.log(elmnt);
-    note.attr("class", "pageLink")
+    note.addClass(type)
     note.css("position","absolute");
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));

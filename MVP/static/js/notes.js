@@ -25,7 +25,6 @@ function createNote(note) {
 
     //console.log("print elmnt");
     //console.log(elmnt);
-    note.attr("class", "note")
     note.css("position","absolute");
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
@@ -100,6 +99,8 @@ $('.note').each(function(){
 });
 
 function selectNote(note){
+
+    console.log("select note");
 
     note.css({"border-color":"green"});
 
