@@ -7,6 +7,8 @@
   text-align: center;
 }
 
+/**********   Note Link   ***********/
+
 .noteLink {
   position: absolute;
   z-index: 9;
@@ -14,8 +16,37 @@
   border: 1px solid #d3d3d3;
   border-radius : 5px;
   text-align: center;
-  background-color : #9FCDDA;
+  background-color : rgb(186, 222, 219, 0.5 );
 }
+
+.noteLink_link {
+  position: absolute;
+  top:0;
+  right: 0;
+  width:100%;
+  height:100%;
+  display:flex;
+  width:100%;
+  color: rgb(136, 114, 217, 0.8);
+  opacity: 0;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  text-decoration: underline;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s; font-size .2s; color .2s;
+}
+
+.noteLink_content{
+    opacity :1;
+    width:100%;
+    height:100%;
+}
+
+
+
+/***********************************/
 
 .pageLink {
   position: absolute;
@@ -27,11 +58,11 @@
 }
 
 .child{
-    background-color : #7DE98A;
+    background-color : rgb(175, 235, 173, 0.5);
 }
 
 .parent{
-    background-color : #40AE4D;
+    background-color : rgb(81, 185, 111, 0.5);
 }
 
 .input{
@@ -50,14 +81,20 @@
     font-weight: 800;
 }
 
-.file{
+.image{
+    position: absolute;
     border: 1px solid transparent;
     border-radius : 5px;
 }
 
+.pdf {
+  position: absolute;
+  border: 1px solid grey;
+  border-radius : 5px;
+}
+
 .resizable {
   display: inline-block;
-  background: red;
   resize: both;
   overflow: hidden;
   line-height: 0;
@@ -66,5 +103,10 @@
 .resizable img {
   width: 100%;
   height: 100%;
+}
+
+
+.selected {
+    background-color: red;
 }
 

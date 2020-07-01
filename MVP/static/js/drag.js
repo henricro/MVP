@@ -2,7 +2,7 @@
 /////////////    DRAG ELEMENTS   //////////////////
 ///////////////////////////////////////////////////
 
-$(".note, .noteLink, .pageLink, .title, .file").each(function(){
+$(".note, .noteLink, .pageLink, .title, .image, .pdf, .imagePageLink").each(function(){
     $(this).bind('mousedown.drag', function(){
 
         mouseX = event.pageX;

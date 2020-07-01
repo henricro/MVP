@@ -7,11 +7,12 @@
         <y>287</y>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>Home Page</content></note>
-    <note id="3" class="file"><width>438</width><height>253</height><x>500</x><y>336</y><name>peter_jackson.png</name><file_id>39</file_id></note></notes>
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>222</y><content>Home Page</content></note>
+    <note id="4" class="pageLink" pageID="50" type="child"><x>1189</x><y>329</y><content>lord of the rings</content></note></notes>
 
 <meta>
-    <biggest_id>3</biggest_id>
+    <biggest_id>4</biggest_id>
+    <type/>
 </meta>
 
 </canvas>

@@ -1,0 +1,16 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="57" type="parent"><x>680</x><y>220</y><content>book library</content></note><note/></notes>
+
+<meta>
+    <biggest_id>1</biggest_id>
+<type>book</type></meta>
+
+</canvas>

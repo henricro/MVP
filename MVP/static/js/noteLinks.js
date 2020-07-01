@@ -19,6 +19,10 @@ function createNoteLink(note) {
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
 
+    var content_div = "<div class='noteLink_content' contenteditable='false'>" + content + "</div>"
+
+    var link_div = "<div class='noteLink_link'><div>" + link + "</div></div>"
+
     console.log(content, x, y);
 
     //console.log("print elmnt");
@@ -29,7 +33,8 @@ function createNoteLink(note) {
     note.css("left",x.concat("px"));
     note.attr("link", link);
     note.attr("title", "link to ".concat(link))
-    note.html(content);
+    note.append(content_div);
+    note.append(link_div);
 
 }
 
@@ -51,6 +56,15 @@ function selectNoteLink(note){
     note.css({"border-color":"green"});
 
     link = note.attr("link");
+
+    var noteLink_link = note.find('.noteLink_link');
+
+    noteLink_link.css("opacity", 1);
+    noteLink_link.css("font-size", "20px");
+
+    var content = note.find('.noteLink_content');
+
+    content.css("opacity", 0.3);
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -96,6 +110,11 @@ function selectNoteLink(note){
     $(document).click(function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
+            noteLink_link.css("opacity", 0);
+            noteLink_link.css("font-size", "15px");
+
+            content.css("opacity", 1);
+
             note.css({"border-color":""});
 
             note.css({"cursor":""});
@@ -136,6 +155,8 @@ $(function() {
             console.log(id);
             var link = $(this).attr("link");
             console.log(link);
+            var content = $(this).find('.content_div').text();
+            console.log(content);
 
             var value = prompt("Lien", link);
 
@@ -159,10 +180,11 @@ $(function() {
                 });
             }
 
-          } else if (key === 'edit') {
+          }
+          else if (key === 'edit') {
             writeNoteLink($(this));
           } else if (key === 'copy') {
-            console.log("money");
+            
           }
         },
 
@@ -201,7 +223,11 @@ function writeNoteLink(note){
     note.unbind('click.select');
     note.unbind('mousedown.drag');
 
-    note.attr("contenteditable", "true");
+    note.find('.noteLink_link').hide();
+
+    note.find('.noteLink_content').attr("contenteditable", "true");
+
+    note.find('.noteLink_content').css("opacity", 1);
 
     $(document).bind('click.clickout', function() {
 
@@ -237,7 +263,9 @@ function writeNoteLink(note){
                         }
                     });
 
-                    note.attr("contenteditable", "false");
+                    note.find('.noteLink_link').show();
+
+                    note.find('.noteLink_content').attr("contenteditable", "false");
 
                     note.bind('click.select', function() {
                         selectNoteLink($(this));

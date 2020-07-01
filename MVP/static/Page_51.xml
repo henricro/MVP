@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>731</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>762</x><y>183</y><content>Home Page</content></note><note id="2" class="note"><x>617</x><y>439</y><content>new c utgf iuhontent</content></note><note id="3" class="note"><x>894</x><y>488</y><content>ne utf tent</content></note><note id="4" class="file"><width>380</width><height>198.547</height><x>468</x><y>521</y><name>le-c-collectif-creatif-climat.png</name><file_id>40</file_id></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

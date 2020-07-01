@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>Home Page</content></note><note id="2" class="note"><x>722</x><y>510</y><content>new content</content></note><note id="3" class="pageLink" pageID="54" type="child"><x>1035</x><y>479</y><content>zouz</content></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

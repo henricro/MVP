@@ -38,7 +38,7 @@ function createPageLink(note) {
 ///////////////////////////////////////////////
 /////////   CREATE A NEW PAGE  ///////////////
 /////////////////////////////////////////////
-
+/*
 $(function() {
       "use strict";
       $.contextMenu({
@@ -88,7 +88,7 @@ $(function() {
     });
 
 
-
+*/
 
 ///////////////////////////////////////////////////////
 /////////////    SELECT PAGELINK   ////////////////////
@@ -190,12 +190,30 @@ $(function() {
            if (key === 'edit') {
              writePageLink($(this));
            }
+           else if (key === "image"){
+
+              id = $(this).attr("id")  ;
+              console.log(id);
+              //console.log(id);
+              modal.show();
+              modal.find('#drop-area').attr("pageLink_id", id);
+              //console.log(modal);
+
+           }
         },
 
         items: {
           'edit': {
             name: "Edit",
             icon: "fa-edit"
+          },
+          'copy': {
+            name: "Copy",
+            icon: "fa-copy"
+          },
+          'image': {
+            name: "Add Image",
+            icon: "fa-images"
           }
         }
 

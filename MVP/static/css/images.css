@@ -1,0 +1,49 @@
+.imagePageLink {
+  position: absolute;
+  border: 1px solid transparent;
+  border-radius : 5px;
+}
+
+.img_description {
+  position: absolute;
+  top:0;
+  right: 0;
+  width:100%;
+  height:100%;
+  display:flex;
+  width:100%;
+  color: #fff;
+  opacity: 0.5;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s; font-size .2s; color .2s;
+}
+
+.img_img{
+    opacity :1;
+    width:100%;
+    height:100%;
+}
+
+.imagePageLink:hover .img_description {
+  opacity: 1;
+  font-size:20px;
+  color : rgb(64, 80, 64, 0.9);
+}
+
+.imagePageLink:hover .img_img {
+  opacity: 0.3;
+}
+
+.pdf:hover .img_description {
+  opacity: 1;
+  font-size:20px;
+  color : black;
+}
+
+.pdf:hover .img_img {
+  opacity: 0.3;
+}
