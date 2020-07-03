@@ -87,10 +87,8 @@ def upload_pdf(pageID):
     etree.SubElement(new_note, "name").text = str(file.filename)
     etree.SubElement(new_note, "image").text = str(file.filename + ".first_page.jpg")
     etree.SubElement(new_note, "pdf_id").text = str(pdf_id)
-    width = etree.Element('width')
-    height = etree.Element('height')
-    new_note.insert(0, height)
-    new_note.insert(0, width)
+    etree.SubElement(new_note, "width").text = "100"
+    etree.SubElement(new_note, "height").text = "150"
 
     print(etree.tostring(root, pretty_print=True))
 

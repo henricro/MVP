@@ -110,11 +110,11 @@ $('*:not("div")').on(
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            //window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+pageID;
                         },
                         error: function (error) {
                             console.log("problem");
-                            //window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+pageID;
                         }
                     });
 
