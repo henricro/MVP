@@ -1,25 +1,64 @@
 
-<!DOCTYPE html>
+<!-- The Modal -->
+<div class="modal forPageLink">
 
-<meta charset="utf-8">
+  <!-- Modal content -->
+  <div class="modal-content">
 
-<title>Dropzone simple example</title>
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop images here</div>
 
+    <span class="close">&times;</span>
+    <!--{{ dropzone.create(action='/add_image_to_pageLink/'+pageID) }}
+    <form action="" method="post" class="dropzone">
 
-<!--
-  DO NOT SIMPLY COPY THOSE LINES. Download the JS and CSS files from the
-  latest release (https://github.com/enyo/dropzone/releases/latest), and
-  host them yourself!
--->
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+            <input name="file" type="file" multiple />
 
+        <input type="text" id="pageLink_id" name="pageLink_id" value="hello">
+        <input type="submit" value="Submit">
+    </form>-->
+      <!--{{ dropzone.create(action='/upload_iodzuhimage/'+pageID) }}-->
+  </div>
 
-<p>
-  This is the most minimal example of Dropzone. The upload in this example
-  doesn't work, because there is no actual server to handle the file upload.
-</p>
+</div>
 
-<!-- Change /upload-target to your upload address -->
-<form action="/upload-target" class="dropzone"></form>
+<div class="modal forImagePageLink">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop images here</div>
+
+    <span class="close">&times;</span>
+    <!--{{ dropzone.create(action='/add_image_to_pageLink/'+pageID) }}
+    <form action="" method="post" class="dropzone">
+
+            <input name="file" type="file" multiple />
+
+        <input type="text" id="pageLink_id" name="pageLink_id" value="hello">
+        <input type="submit" value="Submit">
+    </form>-->
+      <!--{{ dropzone.create(action='/upload_iodzuhimage/'+pageID) }}-->
+  </div>
+
+</div>
+
+<div class="modal forImageLink">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop images here</div>
+
+    <span class="close">&times;</span>
+    <!--{{ dropzone.create(action='/add_image_to_pageLink/'+pageID) }}
+    <form action="" method="post" class="dropzone">
+
+            <input name="file" type="file" multiple />
+
+        <input type="text" id="pageLink_id" name="pageLink_id" value="hello">
+        <input type="submit" value="Submit">
+    </form>-->
+      <!--{{ dropzone.create(action='/upload_iodzuhimage/'+pageID) }}-->
+  </div>
+
+</div>

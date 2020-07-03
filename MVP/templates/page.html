@@ -7,8 +7,6 @@
 
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/images.css">
-
     <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
 
     <script src="https://kit.fontawesome.com/2cb897d3bd.js" crossorigin="anonymous"></script>
@@ -31,10 +29,6 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
-    <!-- dropzone -->
-    {{ dropzone.load_css() }}
-
     <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
@@ -48,14 +42,56 @@
 
 <body>
 
+
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div class="modal forPageLink">
 
   <!-- Modal content -->
   <div class="modal-content">
 
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop image here</div>
 
-    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" id="drop-area">drop images here</div>
+    <span class="close">&times;</span>
+    <!--{{ dropzone.create(action='/add_image_to_pageLink/'+pageID) }}
+    <form action="" method="post" class="dropzone">
+
+            <input name="file" type="file" multiple />
+
+        <input type="text" id="pageLink_id" name="pageLink_id" value="hello">
+        <input type="submit" value="Submit">
+    </form>-->
+      <!--{{ dropzone.create(action='/upload_iodzuhimage/'+pageID) }}-->
+  </div>
+
+</div>
+
+<div class="modal forImagePageLink">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop image here</div>
+
+    <span class="close">&times;</span>
+    <!--{{ dropzone.create(action='/add_image_to_pageLink/'+pageID) }}
+    <form action="" method="post" class="dropzone">
+
+            <input name="file" type="file" multiple />
+
+        <input type="text" id="pageLink_id" name="pageLink_id" value="hello">
+        <input type="submit" value="Submit">
+    </form>-->
+      <!--{{ dropzone.create(action='/upload_iodzuhimage/'+pageID) }}-->
+  </div>
+
+</div>
+
+<div class="modal forImageLink">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop image here</div>
 
     <span class="close">&times;</span>
     <!--{{ dropzone.create(action='/add_image_to_pageLink/'+pageID) }}
@@ -72,7 +108,7 @@
 </div>
 
 
-{{ dropzone.load_js() }}
+
 </body>
 
 
@@ -94,28 +130,6 @@ console.log(biggest);
 var pageID = '{{pageID|safe}}';
 
 
-// DROPZONE
-
-// Get the modal
-var modal = $("#myModal");
-
-// Get the <span> element that closes the modal
-var span = $(".close");
-
-// When the user clicks on <span> (x), close the modal
-
-span.bind('click', function() {
-  modal.hide();
-});
-
-/*
-// When the user clicks anywhere outside of the modal, close it
-window.bind('click' , function() {
-  if (event.target==modal) {
-    modal.hide();
-  }
-});
-*/
 
 </script>
 
@@ -139,11 +153,13 @@ window.bind('click' , function() {
 
     <script type="text/javascript" src="/static/js/selectables.js" ></script>
 
-    <script type="text/javascript" src="/static/js/books.js" ></script>
-
     <script type="text/javascript" src="/static/js/imagePageLink.js" ></script>
 
+    <script type="text/javascript" src="/static/js/imageLink.js" ></script>
+
     <script type="text/javascript" src="/static/js/unload.js" ></script>
+
+    <script type="text/javascript" src="/static/js/youtube.js" ></script>
 
 </html>
 

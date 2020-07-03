@@ -6,7 +6,6 @@ from lxml import etree
 
 
 
-
 @application.route("/unload/<pageID>", methods=['GET', 'POST'])
 def unload(pageID):
 
@@ -24,6 +23,7 @@ def unload(pageID):
     print(data)
 
     for i in range(len(data)):
+
         id = str(data[i]["id"])
         width = str(data[i]["width"])
         height = str(data[i]["height"])

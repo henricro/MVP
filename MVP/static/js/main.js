@@ -24,7 +24,7 @@ function createNotes() {
             elem = '<div class="title" id="' + id + '" contenteditable="false"></div>';
             $('body').append(elem);
         }
-        if (clasis === "noteLink"){
+        else if (clasis === "noteLink"){
             elem = '<div class="noteLink" id="' + id + '" ></div>';
             $('body').append(elem);
         }
@@ -41,6 +41,10 @@ function createNotes() {
         }
         else if (clasis === "image"){
             elem = "<div class='image' id='" + id + "'></div>"
+            $('body').append(elem);
+        }
+        else if (clasis === "imageLink"){
+            elem = '<div class="imageLink" id="' + id + '" ></div>';
             $('body').append(elem);
         }
         else if (clasis === "pdf"){

@@ -7,8 +7,7 @@
         <y>287</y>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>222</y><content>Home Page</content></note>
-    <note id="4" class="pageLink" pageID="50" type="child"><x>1189</x><y>329</y><content>lord of the rings</content></note></notes>
+<note id="4" class="pageLink" pageID="50" type="child"><x>1189</x><y>329</y><content>lord of the rings</content></note></notes>
 
 <meta>
     <biggest_id>4</biggest_id>

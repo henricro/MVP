@@ -27,14 +27,17 @@ def upload_image(pageID):
 
     print(file.content_length)
 
+    filename = file.filename
+    filename = filename.replace(' ', '_')
+
     type = file.filename[-4:]
 
-    file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename)
+    file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + filename)
 
     ### keep the information that this file is in this page in the 'tags' many to many SQL table
 
     engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-                   {'name': file.filename, 'type': type})
+                   {'name': filename, 'type': type})
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
     print("image_id")
@@ -64,12 +67,11 @@ def upload_image(pageID):
     new_note.set("class", "image")
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(file.filename)
+    etree.SubElement(new_note, "width").text = "300"
+    etree.SubElement(new_note, "height").text = "200"
+    etree.SubElement(new_note, "name").text = str(filename)
     etree.SubElement(new_note, "image_id").text = str(image_id)
-    width = etree.Element('width')
-    height = etree.Element('height')
-    new_note.insert(0, height)
-    new_note.insert(0, width)
+
 
     print(etree.tostring(root, pretty_print=True))
 

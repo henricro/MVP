@@ -29,10 +29,10 @@ function createPDF(note) {
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
     var img_src = "/static/uploads/" + image
-    var img = "<img class='img_img' draggable='false' src=" + img_src + " />";
+    var img = "<img class='pdf_img' draggable='false' src=" + img_src + " />";
     var pdf_id = XMLnote.getElementsByTagName("pdf_id")[0].childNodes[0].nodeValue;
 
-    var name_div = "<div class='img_description'><div>" + name + "</div></div>"
+    var name_div = "<div class='pdf_name'><div>" + name + "</div></div>"
 
     console.log(img, x, y);
 
@@ -102,11 +102,19 @@ function selectPDF(note){
     });
 
     // SECOND CLICK
-    note.bind('click.gotopdf', function(){
 
-        console.log(pdf);
+    note.bind('mousedown.gotopdf', function(){
 
-        window.open(pdf , '_blank');
+        var left  = event.pageX;
+        var top   = event.pageY;
+        console.log(left, top);
+
+        $(this).bind('mouseup.gotopdf', function(){
+            console.log(event.pageX, event.pageY);
+            if (!(left != event.pageX || top != event.pageY)) {
+                window.open(pdf, '_blank');
+            }
+        });
 
     });
 
@@ -121,7 +129,9 @@ function selectPDF(note){
 
             note.css({"cursor":""});
 
-            note.unbind('click.gotopdf');
+            note.unbind('mousedown.gotopdf');
+
+            note.unbind('mouseup.gotopdf');
 
             note.css({"border-color":""});
 
@@ -155,56 +165,6 @@ function selectPDF(note){
 
 }
 
-
-
-/////////////////////////////////////////////////////
-//////////// SAVE WIDTH AND LENGTH ON CLOSE /////////
-/////////////////////////////////////////////////////
-
-
-$(window).on( "unload", function(){
-    save_sizes();
-});
-
-$(window).on('beforeunload', function(){
-    save_sizes();
-});
-
-function save_sizes(){
-
-    var sizes = []
-
-    $(".pdf").each(function(){
-        console.log($(this));
-        var id = $(this).attr("id");
-        console.log(id);
-        var width = $(this).width()
-        console.log(width);
-        var height = $(this).height()
-        console.log(height);
-        var info = {id:id, width:width, height:height};
-        sizes.push(info);
-    })
-
-
-    $.ajax({
-        url: '/unload/'+pageID,
-        type: "POST",
-        data: JSON.stringify({
-            data: sizes
-        }),
-        contentType: "application/json",
-        success: function (data) {
-            console.log(data);
-            //window.location.href='/open_page/'+pageID;
-        },
-        error: function (error) {
-            console.log("problem");
-            //window.location.href='/open_page/'+pageID;
-        }
-    });
-
-}
 
 
 /////////////////////////////////////////////////

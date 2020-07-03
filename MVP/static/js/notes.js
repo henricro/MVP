@@ -145,6 +145,7 @@ function selectNote(note){
     });
 
     $(document).click(function(){
+
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             note.css({"border-color":""});
@@ -261,7 +262,7 @@ $(function() {
 
             if (value != null) {
             $.ajax({
-                url: '/add_link/'+pageID,
+                url: '/add_link_note/'+pageID,
                 type: "POST",
                 data: JSON.stringify({
                     link : value,

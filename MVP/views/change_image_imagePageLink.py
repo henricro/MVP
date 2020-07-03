@@ -5,22 +5,23 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 
-@application.route("/add_image_to_pageLink/<pageID>", methods=['POST'])
-def add_image_to_pageLink(pageID):
+@application.route("/change_image_imagePageLink/<pageID>", methods=['POST'])
+def change_image_imagePageLink(pageID):
+
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("add image to pageLink")
+    print("change image in imagePageLink")
 
     ### add the image to uploads
 
     Request = request.form
     print(Request)
 
-    pageLink_id = Request.get('pageLink_id')
+    imagePageLink_id = Request.get('imagePageLink_id')
     file = request.files.get('file')
     print("printing the file")
-    print(pageLink_id, file)
+    print(imagePageLink_id, file)
     # print(type(file))
     # print(dict(file))
 
@@ -51,14 +52,16 @@ def add_image_to_pageLink(pageID):
     root = tree.getroot()
 
     #find the note
-    note = root.find("notes").find("note[@id='" + pageLink_id + "']")
+    note = root.find("notes").find("note[@id='" + imagePageLink_id + "']")
 
     # set the note's x, y and content = "title" (for now)
-    note.set("class", "imagePageLink")
-    etree.SubElement(note, "image").text = str(filename)
+    image = note.find('image')
+    print(image)
+    image.text = str(filename)
+    print(image)
     etree.SubElement(note, "image_id").text = str(image_id)
-    etree.SubElement(note, "width").text = "100"
-    etree.SubElement(note, "height").text = "50"
+    etree.SubElement(note, "width").text = "300"
+    etree.SubElement(note, "height").text = "200"
 
     print(etree.tostring(root, pretty_print=True))
 

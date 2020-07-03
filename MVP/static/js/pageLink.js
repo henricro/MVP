@@ -38,7 +38,7 @@ function createPageLink(note) {
 ///////////////////////////////////////////////
 /////////   CREATE A NEW PAGE  ///////////////
 /////////////////////////////////////////////
-/*
+
 $(function() {
       "use strict";
       $.contextMenu({
@@ -88,7 +88,7 @@ $(function() {
     });
 
 
-*/
+
 
 ///////////////////////////////////////////////////////
 /////////////    SELECT PAGELINK   ////////////////////
@@ -195,9 +195,25 @@ $(function() {
               id = $(this).attr("id")  ;
               console.log(id);
               //console.log(id);
-              modal.show();
-              modal.find('#drop-area').attr("pageLink_id", id);
+              modalPageLink.show();
+              modalPageLink.find('.drop-area').attr("pageLink_id", id);
               //console.log(modal);
+
+              // When the user clicks anywhere outside of the modal, close it
+              $(document).bind('click.first' , function() {
+                $(document).bind('click.second' , function() {
+
+                    if (event.target.classList.contains('drop-area')) {
+                      console.log('clicked the drop area');
+                    }
+                    else {
+                        modalPageLink.hide();
+                        $(document).unbind('click.first');
+                        $(document).unbind('click.second');
+                    }
+
+                });
+              });
 
            }
         },
@@ -229,14 +245,12 @@ $(function() {
 
 function writePageLink(note){
 
-    console.log("bdbd");
-
     console.log(note);
+
+    console.log(note.html());
 
     note.unbind('click.select');
     note.unbind('mousedown.drag');
-
-    note.attr("contenteditable", "true");
 
     $(document).bind('click.clickout', function() {
 
@@ -257,7 +271,7 @@ function writePageLink(note){
                     id = note.attr('id')
 
                     $.ajax({
-                        url: '/update_content',
+                        url: '/update_content/' + pageID,
                         type: "POST",
                         data: JSON.stringify({
                             id: id,

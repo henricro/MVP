@@ -2,7 +2,9 @@
 /////////////    DRAG ELEMENTS   //////////////////
 ///////////////////////////////////////////////////
 
-$(".note, .noteLink, .pageLink, .title, .image, .pdf, .imagePageLink").each(function(){
+
+$(".note, .pageLink, .noteLink, .title, .image, .pdf, .imagePageLink, .imageLink").each(function(){
+
     $(this).bind('mousedown.drag', function(){
 
         mouseX = event.pageX;
@@ -16,8 +18,11 @@ $(".note, .noteLink, .pageLink, .title, .image, .pdf, .imagePageLink").each(func
         noteY = parseInt(noteY);
 
         dragFunc($(this));
+
     });
+
 });
+
 
 function dragFunc(note) {
 

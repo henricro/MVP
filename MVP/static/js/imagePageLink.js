@@ -25,21 +25,16 @@ function createImagePageLink(note) {
 
     note.addClass(type)
 
-    if (XMLnote.getElementsByTagName("width")[0].childNodes[0]){
-        var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
-        note.css("width", width);
-    }
-    if (XMLnote.getElementsByTagName("height")[0].childNodes[0]){
-        var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
-        note.css("height", height);
-    }
+    var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
+    var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
+
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
     var src = "/static/uploads/" + image
-    var img = "<img class='img_img' draggable='false' src=" + src + " />";
+    var img = "<img class='imagePageLink_img' draggable='false' src=" + src + " />";
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
 
-    var content_div = "<div class='img_description'><div>" + content + "</div></div>"
+    var content_div = "<div class='imagePageLink_name'><div>" + content + "</div></div>"
 
     console.log(img, x, y);
 
@@ -47,8 +42,10 @@ function createImagePageLink(note) {
     //console.log(elmnt);
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
-    note.append(img)
-    note.append(content_div)
+    note.append(img);
+    note.append(content_div);
+    note.css("width", width);
+    note.css("height", height);
 
 }
 
@@ -102,10 +99,20 @@ function selectImagePageLink(note){
         }
     });
 
-        // SECOND CLICK
-    note.bind('click.gotopage', function(){
+    // SECOND CLICK
 
-        window.open('/open_page/'+pageLinkID , '_blank');
+    note.bind('mousedown.gotopage', function(){
+
+        var left  = event.pageX;
+        var top   = event.pageY;
+        console.log(left, top);
+
+        $(this).bind('mouseup.gotopage', function(){
+            console.log(event.pageX, event.pageY);
+            if (!(left != event.pageX || top != event.pageY)) {
+                window.open('/open_page/'+ pageLinkID, '_blank');
+            }
+        });
 
     });
 
@@ -119,11 +126,13 @@ function selectImagePageLink(note){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.unbind('click.gotopage');
-
             note.css("cursor","");
 
             note.css({"border-color":""});
+
+            note.unbind('mousedown.gotopage');
+
+            note.unbind('mouseup.gotopage');
 
             note.removeClass("resizable");
 
@@ -158,54 +167,151 @@ function selectImagePageLink(note){
 
 
 
+/////////////////////////////////////////////////////////////
+///////////////// RIGHT CLICK IMAGE-PAGE-LINK ///////////////
+/////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////
-//////////// SAVE WIDTH AND LENGTH ON CLOSE /////////
-/////////////////////////////////////////////////////
+$(function() {
 
+      "use strict";
 
-$(window).on( "unload", function(){
-    save_sizes();
-});
+      $.contextMenu({
 
-$(window).on('beforeunload', function(){
-    save_sizes();
-});
+        selector: '.imagePageLink',
+        callback: function(key, options) {
 
-function save_sizes(){
+           if (key === "change"){
 
-    var sizes = []
+              id = $(this).attr("id")  ;
+              console.log(id);
+              //console.log(id);
+              modalImagePageLink.show();
+              modalImagePageLink.find('.drop-area').attr("imagePageLink_id", id);
 
-    $(".image").each(function(){
-        console.log($(this));
-        var id = $(this).attr("id");
-        console.log(id);
-        var width = $(this).width()
-        console.log(width);
-        var height = $(this).height()
-        console.log(height);
-        var info = {id:id, width:width, height:height};
-        sizes.push(info);
-    })
+              // When the user clicks anywhere outside of the modal, close it
+              $(document).bind('click.first' , function() {
+                $(document).bind('click.second' , function() {
 
+                    if (event.target.classList.contains('drop-area')) {
+                      console.log('clicked the drop area');
+                    }
+                    else {
+                        modalImagePageLink.hide();
+                        $(document).unbind('click.first');
+                        $(document).unbind('click.second');
+                    }
 
-    $.ajax({
-        url: '/unload/'+pageID,
-        type: "POST",
-        data: JSON.stringify({
-            data: sizes
-        }),
-        contentType: "application/json",
-        success: function (data) {
-            console.log(data);
-            //window.location.href='/open_page/'+pageID;
+                });
+              });
+
+           }
+           if (key === "edit"){
+
+              writeImagePageLink($(this));
+
+           }
         },
-        error: function (error) {
-            console.log("problem");
-            //window.location.href='/open_page/'+pageID;
+
+        items: {
+          'change': {
+            name: "Change Image",
+            icon: "fa-images"
+          },
+          'edit': {
+            name: "Change Text",
+            icon: "fa-edit"
+          }
         }
+
+      });
+
+});
+
+
+
+/////////////////////////////////////////////////////////
+/////////////    WRITE IN IMAGE-PAGE-LINK   ////////////////////
+/////////////////////////////////////////////////////////
+
+
+function writeImagePageLink(note){
+
+    console.log("bdbd");
+
+    console.log(note);
+
+    note.unbind('click.select');
+    note.unbind('mousedown.drag');
+
+    note.attr("contenteditable", "true");
+
+    $(document).bind('click.clickout', function() {
+
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            $(document).unbind('click.clickout');
+
+            $(document).bind('click.update_content', function() {
+
+                if (!note.is(event.target) && note.has(event.target).length === 0){
+
+                    content = note.html();
+
+                    console.log(content);
+
+                    $(document).unbind('click.update_content');
+
+                    id = note.attr('id')
+
+                    $.ajax({
+                        url: '/update_content/' + pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            id: id,
+                            content: content
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                        }
+                    });
+
+                    note.attr("contenteditable", "false");
+
+                    note.bind('click.select', function() {
+                        selectPageLink($(this));
+                    });
+
+                    note.bind('mousedown.drag', function(){
+
+                        mouseX = event.pageX;
+                        mouseY = event.pageY;
+
+                        noteX = $(this).css("left");
+                        noteY = $(this).css("top");
+                        noteX = noteX.substr(0, noteX.length - 2);
+                        noteY = noteY.substr(0, noteY.length - 2);
+                        noteX = parseInt(noteX);
+                        noteY = parseInt(noteY);
+
+                        dragFunc(note);
+
+                    });
+
+                }
+
+            });
+
+        }
+
     });
 
 }
+
+
+
 
 

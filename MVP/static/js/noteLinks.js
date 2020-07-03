@@ -21,14 +21,13 @@ function createNoteLink(note) {
 
     var content_div = "<div class='noteLink_content' contenteditable='false'>" + content + "</div>"
 
-    var link_div = "<div class='noteLink_link'><div>" + link + "</div></div>"
+    var link_div = "<div class='noteLink_link' ><div>" + link + "</div></div>"
 
     console.log(content, x, y);
 
     //console.log("print elmnt");
     //console.log(elmnt);
-    note.attr("class", "noteLink");
-    note.css("position","absolute");
+
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
     note.attr("link", link);
@@ -59,6 +58,7 @@ function selectNoteLink(note){
 
     var noteLink_link = note.find('.noteLink_link');
 
+    noteLink_link.show();
     noteLink_link.css("opacity", 1);
     noteLink_link.css("font-size", "20px");
 
@@ -92,6 +92,7 @@ function selectNoteLink(note){
                 }
             });
         }
+
     });
 
     note.css({"cursor":"pointer"});
@@ -216,7 +217,6 @@ $(function() {
 
 function writeNoteLink(note){
 
-    console.log("bdbd");
 
     console.log(note);
 

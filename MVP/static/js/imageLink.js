@@ -1,15 +1,16 @@
-
 ////////////////////////////////////////////////
-/////////////// BUILD IMAGE ///////////////////
+/////////// BUILD THE IMAGE-LINKS //////////////
 ////////////////////////////////////////////////
 
-$('.image').each(function(){
-    createImage($(this));
+$('.imageLink').each(function(){
+    createImageLink($(this));
 });
 
-function createImage(note) {
+function createImageLink(note) {
 
     id = note.attr("id");
+
+    console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
     console.log(XMLnote);
@@ -19,54 +20,48 @@ function createImage(note) {
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
 
-    console.log("build image", "width : ", width, "height : ", height);
-    console.log(note);
-    console.log("get the width and height after build : ", " width : ", note.css("width"), " height : ", note.css("height"));
-
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
-    var img_src = "/static/uploads/" + name
-    var img = "<img class='image_img' draggable='false' src=" + img_src + " />";
+    var src = "/static/uploads/" + name
+    var img = "<img class='imageLink_img' draggable='false' src=" + src + " />";
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
 
-    var name_div = "<div class='image_name'><div>" + name + "</div></div>"
+    var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
 
-    console.log(img, x, y);
+    var link_div = "<div class='imageLink_link'><div>" + link + "</div></div>"
 
-    note.css("top", y.concat("px"));
-    note.css("left", x.concat("px"));
+
+    //console.log("print elmnt");
+    //console.log(elmnt);
+    note.css("top",y.concat("px"));
+    note.css("left",x.concat("px"));
+    note.attr("link", link);
+    note.attr("title", "link to ".concat(link));
     note.append(img);
-    note.append(name_div);
+    note.append(link_div);
     note.css("width", width);
     note.css("height", height);
+
 
 }
 
 
+/////////////////////////////////////////////////////////
+/////////////    SELECT IMAGE-LINK   ////////////////////
+/////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////
-////////////////    SELECT IMAGE   /////////////////////
-///////////////////////////////////////////////////////
-
-$('.image').each(function(){
+$('.imageLink').each(function(){
     $(this).bind('click.select', function(){
-        console.log("hebe");
-        selectImage($(this));
+        selectImageLink($(this));
     });
 });
 
-function selectImage(note){
+function selectImageLink(note){
 
-    console.log("selected an image");
+    console.log("select image link");
 
     note.css({"border-color":"green"});
 
-    var image_name = note.find('.image_name');
-
-    image_name.css("opacity", 1);
-
-    var image_img = note.find('.image_img');
-
-    image_img.css("opacity", 0.3);
+    link = note.attr("link");
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -100,7 +95,27 @@ function selectImage(note){
 
     note.unbind('mousedown.drag');
 
+    note.css({"cursor":"pointer"});
+
     note.unbind('click.select');
+
+    // SECOND CLICK
+
+    note.bind('mousedown.gotolink', function(){
+
+        var left  = event.pageX;
+        var top   = event.pageY;
+        console.log(left, top);
+
+        $(this).bind('mouseup.gotolink', function(){
+            console.log(event.pageX, event.pageY);
+            if (!(left != event.pageX || top != event.pageY)) {
+                window.open(link, '_blank');
+            }
+        });
+
+    });
+
 
     $(document).click(function(){
 
@@ -108,18 +123,19 @@ function selectImage(note){
 
             note.css({"border-color":""});
 
-            image_name.css("opacity", 0);
-
-            image_img.css("opacity", 1);
+            note.css({"cursor":""});
 
             note.removeClass("resizable");
 
             $(document).unbind('keyup.delete');
 
-            note.bind('click.select', function(){
-                selectImage($(this));
-            });
+            note.unbind('mousedown.gotolink');
 
+            note.unbind('mouseup.gotolink');
+
+            note.bind('click.select', function(){
+                selectImageLink($(this));
+            });
             note.bind('mousedown.drag', function(){
 
                 mouseX = event.pageX;
@@ -136,16 +152,16 @@ function selectImage(note){
 
             });
 
+
         }
     });
 
 }
 
 
-
-//////////////////////////////////////////////////
-///////////////// RIGHT CLICK IMAGE ///////////////
-//////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+///////////////// RIGHT CLICK IMAGE-LINK ///////////////
+////////////////////////////////////////////////////////
 
 
 $(function() {
@@ -154,20 +170,26 @@ $(function() {
 
       $.contextMenu({
 
-        selector: '.image',
+        selector: '.imageLink',
         callback: function(key, options) {
 
           if (key === 'link') {
 
+            console.log("right click imageLink");
+
             console.log($(this));
             console.log($(this).attr("id"));
             id = $(this).attr("id");
+            console.log(id);
 
-            var value = prompt("Lien", "");
+            var link = $(this).attr("link");
+
+            var value = prompt("Lien", link);
 
             if (value != null) {
+
                 $.ajax({
-                    url: '/add_link_image/'+pageID,
+                    url: '/change_link/'+pageID,
                     type: "POST",
                     data: JSON.stringify({
                         link : value,
@@ -187,24 +209,48 @@ $(function() {
             }
 
           }
+          if (key === "image"){
+
+              id = $(this).attr("id");
+              console.log(id);
+              //console.log(id);
+              console.log(modalImageLink);
+              modalImageLink.show();
+              modalImageLink.find('.drop-area').attr("imageLink_id", id);
+
+              // When the user clicks anywhere outside of the modal, close it
+              $(document).bind('click.first' , function() {
+                $(document).bind('click.second' , function() {
+
+                    if (event.target.classList.contains('drop-area')) {
+                      console.log('clicked the drop area');
+                    }
+                    else {
+                        modalImageLink.hide();
+                        $(document).unbind('click.first');
+                        $(document).unbind('click.second');
+                    }
+
+                });
+              });
+
+           }
 
         },
+
         items: {
           'link': {
-            name: "Add Link",
+            name: "Change Link",
             icon: "fa-link"
           },
-          'download': {
-            name: "Download",
-            icon: "fa-download"
+          'image': {
+            name: "Change Image",
+            icon: "fa-images"
           }
         }
 
       });
+
     });
-
-
-
-
 
 

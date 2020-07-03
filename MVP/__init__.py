@@ -8,8 +8,6 @@ import os
 import json
 
 
-
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 #print(basedir)
@@ -25,9 +23,8 @@ application = create_application()
 
 dropzone = Dropzone(application)
 
-application.config['UPLOADED_PATH'] = os.path.join(basedir, 'MVP/static/uploads/')
+application.config['UPLOADED_PATH'] = os.path.join(basedir, 'static/uploads/')
 
-print(application.config['UPLOADED_PATH'])
 
 application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:8889/MVP'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -74,7 +71,8 @@ def index():
 '''
 
 
-from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload_pdf, add_image_to_pageLink
+from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload_pdf, \
+    add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube
 
 if __name__ == '__main__':
     application.run(debug=True)
