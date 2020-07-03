@@ -97,6 +97,8 @@ function selectNoteLink(note){
 
     note.css({"cursor":"pointer"});
 
+    note.unbind('mousedown.drag');
+
     note.unbind('click.select');
 
     // SECOND CLICK
@@ -109,6 +111,7 @@ function selectNoteLink(note){
     });
 
     $(document).click(function(){
+
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             noteLink_link.css("opacity", 0);
@@ -126,6 +129,22 @@ function selectNoteLink(note){
 
             note.bind('click.select', function(){
                 selectNoteLink($(this));
+            });
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = $(this).css("left");
+                noteY = $(this).css("top");
+                noteX = noteX.substr(0, noteX.length - 2);
+                noteY = noteY.substr(0, noteY.length - 2);
+                noteX = parseInt(noteX);
+                noteY = parseInt(noteY);
+
+                dragFunc($(this));
+
             });
 
         }
@@ -183,7 +202,15 @@ $(function() {
 
           }
           else if (key === 'edit') {
-            writeNoteLink($(this));
+
+            note = $(this);
+
+            $(document).bind('click.writeNoteLink', function() {
+
+                writeNoteLink(note);
+
+            });
+
           } else if (key === 'copy') {
             
           }
@@ -214,14 +241,17 @@ $(function() {
 /////////////////////////////////////////////////////////
 
 
-
 function writeNoteLink(note){
-
 
     console.log(note);
 
-    note.unbind('click.select');
+    console.log("write in note link");
+
     note.unbind('mousedown.drag');
+
+    note.unbind('click.select');
+
+    $(document).unbind('click.writeNoteLink');
 
     note.find('.noteLink_link').hide();
 
@@ -233,61 +263,53 @@ function writeNoteLink(note){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
+            console.log("click out of noteLink");
+
+            note.bind('click.select', function(){
+                selectNoteLink($(this));
+            });
+
             $(document).unbind('click.clickout');
 
-            $(document).bind('click.update_content', function() {
+            content = note.html();
 
-                if (!note.is(event.target) && note.has(event.target).length === 0){
+            console.log(content);
 
-                    content = note.html();
+            id = note.attr('id')
 
-                    console.log(content);
-
-                    $(document).unbind('click.update_content');
-
-                    id = note.attr('id')
-
-                    $.ajax({
-                        url: '/update_content/'+pageID,
-                        type: "POST",
-                        data: JSON.stringify({
-                            id: id,
-                            content: content
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            console.log(data);
-                        },
-                        error: function (error) {
-                            console.log("problem");
-                        }
-                    });
-
-                    note.find('.noteLink_link').show();
-
-                    note.find('.noteLink_content').attr("contenteditable", "false");
-
-                    note.bind('click.select', function() {
-                        selectNoteLink($(this));
-                    });
-
-                    note.bind('mousedown.drag', function(){
-
-                        mouseX = event.pageX;
-                        mouseY = event.pageY;
-
-                        noteX = $(this).css("left");
-                        noteY = $(this).css("top");
-                        noteX = noteX.substr(0, noteX.length - 2);
-                        noteY = noteY.substr(0, noteY.length - 2);
-                        noteX = parseInt(noteX);
-                        noteY = parseInt(noteY);
-
-                        dragFunc(note);
-
-                    });
-
+            $.ajax({
+                url: '/update_content/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    id: id,
+                    content: content
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log("problem");
                 }
+            });
+
+            note.find('.noteLink_link').show();
+
+            note.find('.noteLink_content').attr("contenteditable", "false");
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = $(this).css("left");
+                noteY = $(this).css("top");
+                noteX = noteX.substr(0, noteX.length - 2);
+                noteY = noteY.substr(0, noteY.length - 2);
+                noteX = parseInt(noteX);
+                noteY = parseInt(noteY);
+
+                dragFunc(note);
 
             });
 
