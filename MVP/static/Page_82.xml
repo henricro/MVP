@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="3" class="imageLink"><x>839</x><y>437</y><width>300</width><height>200</height><name>youtube--qsBYqAhcJ4.jpg</name><image_id>141</image_id><link>https://www.youtube.com/watch?v=-qsBYqAhcJ4</link></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

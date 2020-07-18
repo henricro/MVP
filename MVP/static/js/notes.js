@@ -42,6 +42,8 @@ $(document).dblclick(function(){
 
     console.log(event.target.nodeName);
 
+    console.log("double clicked on page");
+
     id = biggest + 1;
     console.log(id);
 
@@ -165,6 +167,7 @@ function selectNote(note){
 
 
 
+
 /////////////////////////////////////////////////////
 /////////////    WRITE IN NOTE   ////////////////////
 /////////////////////////////////////////////////////
@@ -249,6 +252,7 @@ function writeNote(note){
 
 $(function() {
       "use strict";
+
       $.contextMenu({
         selector: '.note',
         callback: function(key, options) {
@@ -290,6 +294,7 @@ $(function() {
         }
 
       });
+
     });
 
 
