@@ -45,6 +45,8 @@ function dragFunc(note) {
         //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });
 
+
+
     }
 
     function mouseUp(note) {
@@ -64,25 +66,63 @@ function dragFunc(note) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            console.log("object moved");
+            if (event.target.classList.contains('pageLink')){
 
-            // ajax call with id x and y postion if element has moved
-            $.ajax({
-                url: '/update_position/'+pageID,
-                type: "POST",
-                data: JSON.stringify({
-                    id: id,
-                    x: x,
-                    y: y
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (error) {
-                    console.log("problem");
-                }
-            });
+                console.log("yolo");
+
+                note_id = note.attr("id");
+
+                page_id = $(event.target).attr("pageid");
+
+                console.log(note_id, page_id);
+
+                $.ajax({
+
+                    url: '/move_note/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        note_id: note_id,
+                        page_id: page_id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+
+                });
+
+            } else {
+
+                console.log("object moved");
+
+                // ajax call with id x and y postion if element has moved
+                $.ajax({
+
+                    url: '/update_position/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        id: id,
+                        x: x,
+                        y: y
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                    }
+
+                });
+
+            }
+
+
         } else {
             console.log("object did not move");
         }

@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="101" type="parent"><x>680</x><y>220</y><content>fccf</content></note><note id="2" class="image"><x>360</x><y>499</y><width>300</width><height>200</height><name>cuisine-libanaise.jpg</name><image_id>170</image_id></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

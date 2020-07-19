@@ -1,0 +1,18 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="2" class="noteLink"><x>492</x><y>319</y><content>go fuck yourself</content><link>https://www.lemonde.fr/</link></note><note id="3" class="noteLink"><x>356</x><y>626</y><content>father was a rolling stone</content><link>https://www.lemonde.fr/</link></note><note id="4" class="imageLink"><x>896</x><y>170</y><width>232</width><height>157</height><name>masque.jpeg</name><image_id>159</image_id><link>https://www.franceinter.fr/emissions/le-masque-et-la-plume</link></note><note id="5" class="imageLink"><x>885</x><y>351</y><width>300</width><height>200</height><name>youtube-f04cHhThr-I.jpg</name><image_id>162</image_id><link>https://www.youtube.com/watch?v=f04cHhThr-I</link></note><note id="6" class="imagePageLink" pageID="98" type="child"><x>579</x><y>416</y><content>foot</content><image>maxresdefault.jpg</image><image_id>163</image_id><width>100</width><height>50</height></note>
+    <note id="9" class="image"><x>317</x><y>565</y><width>79</width><height>271</height><name>masque.jpeg</name><image_id>168</image_id></note><note id="10" class="image"><x>988</x><y>229</y><width>300</width><height>200</height><name>cuisine-libanaise.jpg</name><image_id>169</image_id></note></notes>
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

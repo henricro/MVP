@@ -103,6 +103,14 @@ $('.note').each(function(){
 
 function selectNote(note){
 
+    $(document).bind('copy', function() {
+        console.log("copied a note");
+        console.log(note.html());
+        note.html();
+        document.execCommand("copy");
+        alert("Copied the text: " + note.html());
+    });
+
     console.log("select note");
 
     note.css({"border-color":"green"});
@@ -159,6 +167,8 @@ function selectNote(note){
             note.bind('click.select', function(){
                 selectNote($(this));
             });
+
+            $(document).unbind('copy');
 
         }
     });

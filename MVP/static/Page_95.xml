@@ -1,0 +1,21 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>679</x>
+        <y>287</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>221</y><content>GYST</content></note>
+    <note id="5" class="imagePageLink" pageID="96" type="child"><x>750</x><y>400</y><content>recettes</content><image>cuisine-libanaise.jpg</image><image_id>161</image_id><width>158</width><height>76</height></note>
+    <note id="16" class="pageLink" pageID="99" type="child"><x>388</x><y>257</y><content>emissions</content></note>
+    <note id="18" class="note"><x>470</x><y>317</y><content>hello mother</content></note>
+    <note id="32" class="pageLink" pageID="95" type="child"><x>164</x><y>131</y><content>anne</content></note></notes>
+
+<meta>
+    <biggest_id>32</biggest_id>
+    <type/>
+</meta>
+
+</canvas>
