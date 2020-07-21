@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="note"><x>868</x><y>234</y><content>everyone says i love you</content></note><note id="3" class="note"><x>456</x><y>432</y><content>mother was a rolling stone&lt;div&gt;but do you know who i am ?&lt;/div&gt;&lt;div&gt;hello&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

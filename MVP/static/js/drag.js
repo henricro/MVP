@@ -45,8 +45,6 @@ function dragFunc(note) {
         //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });
 
-
-
     }
 
     function mouseUp(note) {
@@ -66,9 +64,13 @@ function dragFunc(note) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            if (event.target.classList.contains('pageLink')){
+            if (event.target.classList.contains('pageLink') && !(note.attr("id")==$(event.target).attr("id"))){
 
                 console.log("yolo");
+
+                console.log(note, $(event.target));
+
+                console.log(note.attr("id"), $(event.target).attr("id"));
 
                 note_id = note.attr("id");
 

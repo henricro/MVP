@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>652</x>
+        <y>283</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="note"><x>507</x><y>419</y><content>hzheazhezheazheah</content></note><note id="3" class="noteLink"><x>550</x><y>495</y><content>news isg sus content</content><link>https://www.mediapart.fr/journal/france/050720/municipales-la-representation-des-femmes-et-des-minorites-progresse-lentement</link></note><note id="4" class="pageLink" pageID="107" type="child"><x>288</x><y>248</y><content>movies</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

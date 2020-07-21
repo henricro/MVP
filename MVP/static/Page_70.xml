@@ -7,10 +7,13 @@
         <y>300</y>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="pageLink" pageID="80" type="child"><x>890</x><y>522</y><content>hgjkh</content></note></notes>
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="pageLink" pageID="80" type="child"><x>890</x><y>522</y><content>hgjkh</content></note><note id="3" class="pageLink" pageID="70" type="child"><x>433</x><y>312</y><content>None</content></note>
+
+
+</notes>
 
 <meta>
-    <biggest_id>2</biggest_id>
+    <biggest_id>3</biggest_id>
     <type/>
 </meta>
 
