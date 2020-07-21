@@ -7,24 +7,22 @@ $(".note, .pageLink, .noteLink, .title, .image, .pdf, .imagePageLink, .imageLink
 
     $(this).bind('mousedown.drag', function(){
 
+        note = $(this);
+
         mouseX = event.pageX;
         mouseY = event.pageY;
 
-        noteX = $(this).css("left");
-        noteY = $(this).css("top");
-        noteX = noteX.substr(0, noteX.length - 2);
-        noteY = noteY.substr(0, noteY.length - 2);
-        noteX = parseInt(noteX);
-        noteY = parseInt(noteY);
+        noteX = parseInt(note.css("left").slice(0, -2));
+        noteY = parseInt(note.css("top").slice(0, -2));
 
-        dragFunc($(this));
+        dragFunc(note, noteX, noteY);
 
     });
 
 });
 
 
-function dragFunc(note) {
+function dragFunc(note, noteX, noteY) {
 
     $(document).bind('mousemove.drag', function(){
         mouseMove(note);
@@ -133,3 +131,146 @@ function dragFunc(note) {
     }
 
 }
+
+
+
+//////////////////////////////////////////////
+//////////  SELECT MULTIPLE //////////////////
+/////////////////////////////////////////////
+
+$(document).bind('mousedown.multipleSelect', function(){
+
+    startX = event.pageX;
+    startY = event.pageY;
+
+    console.log(startX, startY)
+
+    selectBox = "<div id='selectBox' style='position:absolute; background-color:blue; opacity:0.1;'></div>"
+
+    $('body').append(selectBox);
+
+    var selectBox = $('#selectBox');
+
+    if (event.target.nodeName === 'HTML'){
+        dragSelect();
+    }
+
+});
+
+
+
+function dragSelect() {
+
+    $(document).bind('mousemove.multipleSelect', function(){
+        moveSelect();
+    });
+
+    $(document).bind('mouseup.multipleSelect', function(){
+        stopSelect();
+    });
+
+    function moveSelect() {
+
+        height = Math.abs(event.pageY - startY) ;
+        width = Math.abs(event.pageX - startX) ;
+
+        //console.log(height, width)
+
+        $('#selectBox').css('width', width);
+        $('#selectBox').css('height', height);
+
+        if (event.pageX > startX && event.pageY > startY){
+            $('#selectBox').css('top', startY);
+            $('#selectBox').css('left', startX);
+        }
+
+        else if (event.pageX > startX && event.pageY < startY){
+            $('#selectBox').css('top', startY-(startY-event.pageY));
+            $('#selectBox').css('left', startX);
+        }
+
+        else if (event.pageX < startX && event.pageY < startY){
+            $('#selectBox').css('top', startY-(startY-event.pageY));
+            $('#selectBox').css('left', startX-(startX-event.pageX));
+        }
+
+        else if (event.pageX < startX && event.pageY > startY){
+            $('#selectBox').css('top', startY);
+            $('#selectBox').css('left', startX-(startX-event.pageX));
+        }
+
+    }
+
+    function stopSelect() {
+
+        $(document).unbind('mousemove.multipleSelect');
+
+        endX = event.pageX;
+        endY = event.pageY;
+
+        console.log(endX, endY);
+
+        var selection = [];
+
+        $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink").each(function(){
+
+            note = $(this);
+
+            id = note.attr("id");
+
+            noteX = parseInt(note.css("left").slice(0, -2));
+            noteY = parseInt(note.css("top").slice(0, -2));
+
+            if (startX < noteX && noteX < endX && startY < noteY && noteY < endY){
+                selection.push(id);
+            }
+
+        });
+
+        console.log(selection.length);
+        console.log(selection);
+
+        if (selection.length == 0){
+
+            $('#selectBox').remove();
+
+        } else {
+
+            $('#selectBox').bind('mousedown.drag', function(){
+
+                $('#selectBox').remove();
+
+                console.log("mousedown on selectBox");
+                console.log(selection);
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                for (i in selection){
+
+                    id = selection[i];
+
+                    console.log(id);
+
+                    note = $('#' + id);
+
+                    console.log("print thge note");
+                    console.log(note);
+
+                    noteX = parseInt(note.css("left").slice(0, -2));
+                    noteY = parseInt(note.css("top").slice(0, -2));
+
+                    dragFunc(note, noteX, noteY);
+
+                }
+
+            });
+
+        }
+
+    }
+
+}
+
+
+

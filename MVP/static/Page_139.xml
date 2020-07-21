@@ -1,0 +1,17 @@
+<canvas>
+
+<notes>
+
+    <note class="title" id="0">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+<note id="1" class="pageLink" pageID="121" type="parent"><x>680</x><y>220</y><content>videos youtube</content></note><note id="2" class="noteLink"><x>327</x><y>277</y><content>new content</content><link>https://stackoverflow.com/questions/5891840/how-to-use-javascript-variables-in-jquery-selectors</link></note><note id="3" class="noteLink"><x>257</x><y>144</y><content>new content</content><link>www.google.com</link></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -17,19 +17,19 @@ function createNotes() {
         //var link = note.getElementsByTagName("link");
         if (clasis === "noteLink"){
             elem = '<div class="noteLink" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
+            $('').append(elem);
         }
         else if (clasis === "note") {
             elem = '<div class="note" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
+            $('').append(elem);
         }
         else if (clasis === "pageLink"){
             elem = '<div class="pageLink" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
+            $('').append(elem);
         }
         else if (clasis === "file"){
             elem = '<div class="file" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
+            $('').append(elem);
         }
     }
 

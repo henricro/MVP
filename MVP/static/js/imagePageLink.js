@@ -147,14 +147,10 @@ function selectImagePageLink(note){
                 mouseX = event.pageX;
                 mouseY = event.pageY;
 
-                noteX = $(this).css("left");
-                noteY = $(this).css("top");
-                noteX = noteX.substr(0, noteX.length - 2);
-                noteY = noteY.substr(0, noteY.length - 2);
-                noteX = parseInt(noteX);
-                noteY = parseInt(noteY);
+                noteX = parseInt(note.css("left").slice(0, -2));
+                noteY = parseInt(note.css("top").slice(0, -2));
 
-                dragFunc($(this));
+                dragFunc(note, noteX, noteY);
 
             });
 
@@ -290,14 +286,10 @@ function writeImagePageLink(note){
                         mouseX = event.pageX;
                         mouseY = event.pageY;
 
-                        noteX = $(this).css("left");
-                        noteY = $(this).css("top");
-                        noteX = noteX.substr(0, noteX.length - 2);
-                        noteY = noteY.substr(0, noteY.length - 2);
-                        noteX = parseInt(noteX);
-                        noteY = parseInt(noteY);
+                        noteX = parseInt(note.css("left").slice(0, -2));
+                        noteY = parseInt(note.css("top").slice(0, -2));
 
-                        dragFunc(note);
+                        dragFunc(note, noteX, noteY);
 
                     });
 

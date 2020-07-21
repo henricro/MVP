@@ -27,6 +27,9 @@ def youtube(pageID):
     request_data = request.get_json()
     youtube_link = str(request_data.get('data'))
 
+    if "&list" in youtube_link :
+        youtube_link = youtube_link.split("&list",1)[0]
+
     print("youtube link : ", youtube_link)
 
     pageID = str(pageID)

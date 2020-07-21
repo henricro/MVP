@@ -104,11 +104,23 @@ $('.note').each(function(){
 function selectNote(note){
 
     $(document).bind('copy', function() {
-        console.log("copied a note");
-        console.log(note.html());
-        note.html();
+
+        console.log("event : copy");
+
+        console.log(pageID);
+        id = note.attr("id");
+        console.log(id);
+
+        info = "{" + pageID + ", "  + id + " }";
+
+        console.log(info);
+
+        $('body').append('<input type="text" value="' + info + '" id="myClipboard">')
+
+        $('#myClipboard').select();
+
         document.execCommand("copy");
-        alert("Copied the text: " + note.html());
+
     });
 
     console.log("select note");
@@ -238,14 +250,10 @@ function writeNote(note){
                 mouseX = event.pageX;
                 mouseY = event.pageY;
 
-                noteX = $(this).css("left");
-                noteY = $(this).css("top");
-                noteX = noteX.substr(0, noteX.length - 2);
-                noteY = noteY.substr(0, noteY.length - 2);
-                noteX = parseInt(noteX);
-                noteY = parseInt(noteY);
+                noteX = parseInt(note.css("left").slice(0, -2));
+                noteY = parseInt(note.css("top").slice(0, -2));
 
-                dragFunc(note);
+                dragFunc(note, noteX, noteY);
             });
 
         }
