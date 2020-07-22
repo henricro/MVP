@@ -7,10 +7,13 @@
         <y>300</y>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="note"><x>868</x><y>234</y><content>everyone says i love you</content></note><note id="3" class="note"><x>456</x><y>432</y><content>mother was a rolling stone&lt;div&gt;but do you know who i am ?&lt;/div&gt;&lt;div&gt;hello&lt;/div&gt;</content></note></notes>
+<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="note"><x>868</x><y>234</y><content>everyone says i love you</content></note><note id="3" class="note"><x>456</x><y>432</y><content>mother was a rolling stone&lt;div&gt;but do you know who i am ?&lt;/div&gt;&lt;div&gt;hello&lt;/div&gt;</content></note><note id="4" class="note"><x>988</x><y>203</y><content>new content</content></note><note id="5" class="note"><x>871</x><y>200</y><content>new content</content></note><note id="6" class="imageLink"><x>879</x><y>338</y><width>188</width><height>118</height><name>imdb.jpeg</name><image_id>384</image_id><link>https://tecadmin.net/remove-last-character-from-string-in-javascript/#:~:text=Method%201%20%E2%80%93%20substring%20function,the%20end%20of%20the%20string.</link></note>
+
+    <note id="7" class="imagePageLink" pageID="79" type="child"><x>715</x><y>556</y><content>ugtvy</content><image>books.jpeg</image><image_id>129</image_id><width>100</width><height>50</height></note>
+    <note id="8" class="note"><x>183</x><y>298</y><content>mama is madonne</content></note><note id="9" class="note"><x>183</x><y>298</y><content>mama is madonne</content></note></notes>
 
 <meta>
-    <biggest_id>3</biggest_id>
+    <biggest_id>9</biggest_id>
     <type/>
 </meta>
 

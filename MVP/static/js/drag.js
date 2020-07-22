@@ -64,17 +64,11 @@ function dragFunc(note, noteX, noteY) {
 
             if (event.target.classList.contains('pageLink') && !(note.attr("id")==$(event.target).attr("id"))){
 
-                console.log("yolo");
-
-                console.log(note, $(event.target));
-
-                console.log(note.attr("id"), $(event.target).attr("id"));
+                console.log("moved an object into another page");
 
                 note_id = note.attr("id");
 
                 page_id = $(event.target).attr("pageid");
-
-                console.log(note_id, page_id);
 
                 $.ajax({
 
@@ -98,7 +92,7 @@ function dragFunc(note, noteX, noteY) {
 
             } else {
 
-                console.log("object moved");
+                console.log("moved an object");
 
                 // ajax call with id x and y postion if element has moved
                 $.ajax({
@@ -210,6 +204,8 @@ function dragSelect() {
 
         console.log(endX, endY);
 
+
+        // collect all the elements in the selection
         var selection = [];
 
         $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink").each(function(){
@@ -236,7 +232,37 @@ function dragSelect() {
 
         } else {
 
+            $(document).bind('keyup.delete', function(){
+
+                if (event.keyCode == 8){
+
+                    selectionString = selection.toString();
+
+                    $.ajax({
+                        url: '/delete_notes/'+pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            selection: selectionString
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+
+                            console.log(data);
+                            window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+pageID;
+                        }
+                    });
+
+                }
+
+            });
+
             $('#selectBox').bind('mousedown.drag', function(){
+
+                $(document).unbind('keyup.delete');
 
                 $('#selectBox').remove();
 
@@ -254,7 +280,7 @@ function dragSelect() {
 
                     note = $('#' + id);
 
-                    console.log("print thge note");
+                    console.log("print the note");
                     console.log(note);
 
                     noteX = parseInt(note.css("left").slice(0, -2));

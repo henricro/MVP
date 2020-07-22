@@ -7,21 +7,20 @@
         <y>69</y>
     </note>
 
-    <note id="234" class="pdf"><width>161</width><height>221</height><x>423</x><y>87</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id></note>
-    <note id="338" class="pdf"><x>796</x><y>243</y><name>une_passion.pdf</name><image>une_passion.pdf.first_page.jpg</image><pdf_id>11</pdf_id><width>114</width><height>170</height></note>
-    <note id="348" class="imagePageLink" pageID="79" type="child"><x>673</x><y>181</y><content>ugtvy</content><image>books.jpeg</image><image_id>129</image_id><width>100</width><height>50</height></note>
-    <note id="355" class="imagePageLink" pageID="84" type="child"><x>911</x><y>243</y><content>rzzfgf</content><image>books.jpeg</image><image_id>139</image_id><width>100</width><height>50</height></note>
-    <note id="383" class="pageLink" pageID="109" type="child"><x>674</x><y>286</y><content>movies</content></note>
-    <note id="392" class="pageLink" pageID="117" type="child"><x>965</x><y>136</y><content>fefe</content></note>
-    <note id="393" class="pageLink" pageID="118" type="child"><x>841</x><y>171</y><content>gogo</content></note>
-    <note id="394" class="pageLink" pageID="121" type="child"><x>1052</x><y>314</y><content>videos youtube</content></note>
-    <note id="398" class="pageLink" pageID="138" type="child"><x>604</x><y>340</y><content>drag testing</content></note>
-    <note id="399" class="imageLink"><x>1109</x><y>113</y><width>188</width><height>118</height><name>imdb.jpeg</name><image_id>384</image_id><link>https://tecadmin.net/remove-last-character-from-string-in-javascript/#:~:text=Method%201%20%E2%80%93%20substring%20function,the%20end%20of%20the%20string.</link></note>
+    <note id="234" class="pdf"><width>161</width><height>221</height><x>345</x><y>134</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id></note>
+    <note id="348" class="imagePageLink" pageID="79" type="child"><x>655</x><y>213</y><content>ugtvy</content><image>books.jpeg</image><image_id>129</image_id><width>100</width><height>50</height></note>
+    <note id="355" class="imagePageLink" pageID="84" type="child"><x>906</x><y>232</y><content>rzzfgf</content><image>books.jpeg</image><image_id>139</image_id><width>100</width><height>50</height></note>
+    <note id="383" class="pageLink" pageID="109" type="child"><x>615</x><y>301</y><content>movies</content></note>
+    <note id="393" class="pageLink" pageID="118" type="child"><x>868</x><y>141</y><content>gogo</content></note>
+    <note id="394" class="pageLink" pageID="121" type="child"><x>1045</x><y>184</y><content>videos youtube</content></note>
+    <note id="398" class="pageLink" pageID="138" type="child"><x>545</x><y>355</y><content>drag testing</content></note>
+    <note id="399" class="imageLink"><x>879</x><y>338</y><width>188</width><height>118</height><name>imdb.jpeg</name><image_id>384</image_id><link>https://tecadmin.net/remove-last-character-from-string-in-javascript/#:~:text=Method%201%20%E2%80%93%20substring%20function,the%20end%20of%20the%20string.</link></note>
 
-    <note id="402" class="noteLink"><x>640</x><y>148</y><content>new content</content><link>https://www.lemonde.fr/</link></note><note id="403" class="note"><x>553</x><y>620</y><content>new content</content></note><note id="404" class="note"><x>798</x><y>492</y><content>new content</content></note></notes>
+    <note id="402" class="noteLink"><x>581</x><y>163</y><content>new content</content><link>https://www.lemonde.fr/</link></note><note id="405" class="image"><x>1107</x><y>294</y><width>300</width><height>200</height><name>Gege-Koh-Lanta-condamne-pour-agressions-sexuelles-sur-mineures.jpg</name><image_id>386</image_id></note><note id="406" class="pdf"><x>678</x><y>343</y><name>une_passion.pdf</name><image>une_passion.pdf.first_page.jpg</image><pdf_id>11</pdf_id><width>114</width><height>170</height></note>
+    <note id="410" class="note"><x>477</x><y>588</y><content>new&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;content&lt;/div&gt;</content></note><note id="415" class="note"><x>815</x><y>188</y><content>new content</content></note><note id="416" class="note"><x>319</x><y>402</y><content>new content</content></note><note id="419" class="note"><x>181</x><y>278</y><content>hony donkey</content></note><note id="420" class="note"><x>133</x><y>382</y><content>funny how funny unfunny actually is</content></note></notes>
 
 <meta>
-    <biggest_id>404</biggest_id>
+    <biggest_id>420</biggest_id>
     <type/>
 </meta>
 

@@ -65,6 +65,11 @@ $('.pdf').each(function(){
 
 function selectPDF(note){
 
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
     console.log("selected a pdf");
 
     note.css({"border-color":"green"});
@@ -132,6 +137,8 @@ function selectPDF(note){
             note.unbind('mousedown.gotopdf');
 
             note.unbind('mouseup.gotopdf');
+
+            note.unbind('copy');
 
             note.css({"border-color":""});
 

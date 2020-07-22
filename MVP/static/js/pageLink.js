@@ -102,6 +102,11 @@ $('.pageLink').each(function(){
 
 function selectPageLink(note){
 
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
     console.log("select page link");
 
     note.css({"border-color":"green"});
@@ -158,6 +163,8 @@ function selectPageLink(note){
             note.css({"border-color":""});
 
             note.css({"cursor":""});
+
+            note.unbind('copy');
 
             $(document).unbind('keyup.delete');
 

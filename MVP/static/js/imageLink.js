@@ -57,6 +57,11 @@ $('.imageLink').each(function(){
 
 function selectImageLink(note){
 
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
     console.log("select image link");
 
     note.css({"border-color":"green"});
@@ -128,6 +133,8 @@ function selectImageLink(note){
             note.removeClass("resizable");
 
             $(document).unbind('keyup.delete');
+
+            note.unbind('copy');
 
             note.unbind('mousedown.gotolink');
 

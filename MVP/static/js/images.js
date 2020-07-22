@@ -56,6 +56,11 @@ $('.image').each(function(){
 
 function selectImage(note){
 
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
     console.log("selected an image");
 
     note.css({"border-color":"green"});
@@ -111,6 +116,8 @@ function selectImage(note){
             image_name.css("opacity", 0);
 
             image_img.css("opacity", 1);
+
+            note.unbind('copy');
 
             note.removeClass("resizable");
 

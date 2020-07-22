@@ -60,3 +60,25 @@ function createNotes() {
     }
 
 }
+
+
+///////////////////////////////////////////////////////
+//////  KEEP INFO OF LAST PLACE USER CLICKED //////////
+///////////////////////////////////////////////////////
+
+$(document).click(function(){
+
+
+    if (event.target.nodeName === 'HTML'){
+
+        console.log("clicked on page");
+
+        x = event.pageX.toString();
+        y = event.pageY.toString();
+
+        $('#mouse_position').find('#x_pos').html(x);
+        $('#mouse_position').find('#y_pos').html(y);
+
+    }
+
+});

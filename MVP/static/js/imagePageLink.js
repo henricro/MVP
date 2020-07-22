@@ -63,6 +63,11 @@ $('.imagePageLink').each(function(){
 
 function selectImagePageLink(note){
 
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
     console.log("selected an imageeeePageLink");
 
     pageLinkID= note.attr("pageID");
@@ -133,6 +138,8 @@ function selectImagePageLink(note){
             note.unbind('mousedown.gotopage');
 
             note.unbind('mouseup.gotopage');
+
+            note.unbind('copy');
 
             note.removeClass("resizable");
 

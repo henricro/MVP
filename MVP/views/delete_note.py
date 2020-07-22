@@ -34,3 +34,37 @@ def delete_note(pageID):
 
 
 
+@application.route("/delete_notes/<pageID>", methods=['POST'])
+def delete_notes(pageID):
+
+    print("route : delete notes")
+
+    # get the data for new note
+    request_data = request.get_json()
+    selection = request_data.get('selection')
+    selection = selection.split(",")
+
+    print(selection)
+
+    pageID = str(pageID)
+    print(pageID)
+    pageName = 'Page_' + pageID
+
+    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    root = tree.getroot()
+
+    for id in selection :
+
+        note = root.find("notes").find("note[@id='" + id + "']")
+
+        note.getparent().remove(note)
+
+        # save the changes in the xml
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+    pass
+
+
+

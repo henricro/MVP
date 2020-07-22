@@ -101,26 +101,37 @@ $('.note').each(function(){
     });
 });
 
+function myCopyFunction() {
+  /* Get the text field */
+  var copyText = $("#yolo").val(text());
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+
+$(document).ready(function(){
+    $(".click .copy").click(function(event){
+    var $tempElement = $("<input>");
+        $("body").append($tempElement);
+        $tempElement.val($(this).closest(".click").find("span").text()).select();
+        document.execCommand("Copy");
+        $tempElement.remove();
+    });
+});
+
+
 function selectNote(note){
 
-    $(document).bind('copy', function() {
-
-        console.log("event : copy");
-
-        console.log(pageID);
-        id = note.attr("id");
-        console.log(id);
-
-        info = "{" + pageID + ", "  + id + " }";
-
-        console.log(info);
-
-        $('body').append('<input type="text" value="' + info + '" id="myClipboard">')
-
-        $('#myClipboard').select();
-
-        document.execCommand("copy");
-
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
     });
 
     console.log("select note");
@@ -175,6 +186,8 @@ function selectNote(note){
             $(document).unbind('keyup.delete');
 
             note.unbind('click.write');
+
+            note.unbind('copy');
 
             note.bind('click.select', function(){
                 selectNote($(this));

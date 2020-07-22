@@ -54,10 +54,9 @@ $(document).bind('paste', function(e) {
     var data = e.originalEvent.clipboardData.getData('Text');
     //IE9 Equivalent ==> window.clipboardData.getData("Text");
 
-    console.log(data);
-
     if (data.includes("youtube.com/")) {
 
+        console.log(data);
 
         $.ajax({
             url: '/youtube/'+pageID,

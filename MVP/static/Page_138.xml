@@ -3,14 +3,14 @@
 <notes>
 
     <note class="title" id="0">
-        <x>680</x>
-        <y>300</y>
+        <x>394</x>
+        <y>298</y>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>680</x><y>220</y><content>GYST</content></note><note id="2" class="note"><x>783</x><y>477</y><content>hello there</content></note></notes>
+<note id="1" class="pageLink" pageID="1" type="parent"><x>510</x><y>191</y><content>GYST</content></note></notes>
 
 <meta>
-    <biggest_id>2</biggest_id>
+    <biggest_id>35</biggest_id>
     <type/>
 </meta>
 

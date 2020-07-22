@@ -50,6 +50,11 @@ $('.noteLink').each(function(){
 
 function selectNoteLink(note){
 
+    // COPY THE NOTE
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
     console.log("select note link");
 
     note.css({"border-color":"green"});
@@ -122,6 +127,8 @@ function selectNoteLink(note){
             note.css({"border-color":""});
 
             note.css({"cursor":""});
+
+            note.unbind('copy');
 
             $(document).unbind('keyup.delete');
 
