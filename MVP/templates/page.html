@@ -115,13 +115,32 @@
     <div id="y_pos"></div>
 </div>
 
+<!--
+<div class="note" contenteditable="true" style="position:relative; top:300px; left: 300px; border: 1px solid blue; display: inline-block; ">my title
+    <div style="position:absolute; border: 1px solid green; width: 100px; height: 50ps; bottom: 30px; left: 30px;">parent space</div>
+</div>-->
+
+
+<div id="title">
+    <div id="title_title"></div>
+    <div id="title_parents">
+        <div id="parents">
+
+        </div>
+    </div>
+</div>
+
+
 
 </body>
 
 
 <script>
 
+$('.test').wrapAll('<div class="wrapper">');
+
 var title = '{{title}}';
+console.log("print title");
 console.log(title);
 
 var pages = {{pages|safe}};

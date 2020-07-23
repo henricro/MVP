@@ -3,11 +3,14 @@
 ////////////////////////////////////////////////
 
 
-$('.pageLink').each(function(){
-    createPageLink($(this));
+////////////////  CHILDREN ////////////////////
+//////////////////////////////////////////////
+
+$('.pageLink.child').each(function(){
+    createPageLinkChild($(this));
 });
 
-function createPageLink(note) {
+function createPageLinkChild(note) {
 
     var id = note.attr("id");
 
@@ -33,6 +36,39 @@ function createPageLink(note) {
     note.html(content);
 
 }
+
+
+////////////////  PARENTS ////////////////////
+//////////////////////////////////////////////
+
+$('.pageLink.parent').each(function(){
+    createPageLinkParent($(this));
+});
+
+function createPageLinkParent(note) {
+
+    var id = note.attr("id");
+
+    var pageTitle = note.attr("pageTitle");
+
+    console.log("pagetitle");
+    console.log(id,pageTitle);
+
+    var XMLnote = xmlDoc.getElementById(id);
+    console.log(XMLnote);
+    var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
+    var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
+    var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
+
+    //console.log("print elmnt");
+    //console.log(elmnt);
+    note.css("top",y.concat("px"));
+    note.css("left",x.concat("px"));
+    note.attr("title", "go to page ".concat(pageTitle));
+    note.html(content);
+
+}
+
 
 
 ///////////////////////////////////////////////

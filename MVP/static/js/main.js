@@ -2,6 +2,7 @@
 /////////////   CREATE THE NOTES   ////////////////////
 ///////////////////////////////////////////////////////
 
+
 createNotes();
 
 function createNotes() {
@@ -20,11 +21,7 @@ function createNotes() {
         console.log(id, clasis);
 
         //var link = note.getElementsByTagName("link");
-        if (clasis === "title"){
-            elem = '<div class="title" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
-        }
-        else if (clasis === "noteLink"){
+        if (clasis === "noteLink"){
             elem = '<div class="noteLink" id="' + id + '" ></div>';
             $('body').append(elem);
         }
@@ -33,11 +30,19 @@ function createNotes() {
             $('body').append(elem);
         }
         else if (clasis === "pageLink"){
+            var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
             console.log(id, pageID,title);
-            elem = '<div class="pageLink ' + '" id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
-            $('body').append(elem);
+            if (type === "child"){
+                elem = '<div class="pageLink child" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                $('body').append(elem);
+            } else if (type ==="parent"){
+                console.log("we have a parent !!");
+                elem = '<div class="pageLink parent" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                $('#parents').append(elem);
+            }
+
         }
         else if (clasis === "image"){
             elem = "<div class='image' id='" + id + "'></div>"

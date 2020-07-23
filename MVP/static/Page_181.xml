@@ -14,10 +14,10 @@
         <height>200</height>
     </note>
 
-</notes>
+<note id="1" class="pageLink" pageID="179" type="parent"><x>47</x><y>145</y><content>dfgh</content></note></notes>
 
 <meta>
-    <biggest_id>0</biggest_id>
+    <biggest_id>1</biggest_id>
     <type/>
 </meta>
 

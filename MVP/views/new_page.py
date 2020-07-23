@@ -8,6 +8,9 @@ from lxml import etree
 
 @application.route("/new_page/<pageID>", methods=['POST'])
 def new_page(pageID):
+
+    print("route : new page")
+
     page_title = Page.query.filter_by(id=pageID).first().title
 
     request_data = request.get_json()
@@ -43,8 +46,8 @@ def new_page(pageID):
     root = tree.getroot()
 
     # get x and y of title
-    title_x = root.find("notes").find("note[@id='0']").find("x").text
-    title_y = root.find("notes").find("note[@id='0']").find("y").text
+    title_x = root.find("notes").find("note[@id='title']").find("x").text
+    title_y = root.find("notes").find("note[@id='title']").find("y").text
 
     print(title_x, title_y)
 
@@ -61,8 +64,8 @@ def new_page(pageID):
     new_note.set("class", "pageLink")
     new_note.set("pageID", str(pageID))
     new_note.set("type", "parent")
-    etree.SubElement(new_note, "x").text = title_x
-    etree.SubElement(new_note, "y").text = str(int(title_y) - 80)
+    etree.SubElement(new_note, "x").text = "0"
+    etree.SubElement(new_note, "y").text = "0"
     etree.SubElement(new_note, "content").text = page_title
 
     # biggest id=1

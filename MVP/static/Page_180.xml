@@ -8,16 +8,16 @@
     </note>
 
     <note id="parents">
-        <x>-150</x>
-        <y>-100</y>
+        <x>-50</x>
+        <y>-50</y>
         <width>300</width>
         <height>200</height>
     </note>
 
-</notes>
+<note id="1" class="pageLink" pageID="179" type="parent"><x>0</x><y>0</y><content>dfgh</content></note></notes>
 
 <meta>
-    <biggest_id>0</biggest_id>
+    <biggest_id>1</biggest_id>
     <type/>
 </meta>
 

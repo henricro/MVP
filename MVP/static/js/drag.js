@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////
 
 
-$(".note, .pageLink, .noteLink, .title, .image, .pdf, .imagePageLink, .imageLink").each(function(){
+$(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink").each(function(){
 
     $(this).bind('mousedown.drag', function(){
 
@@ -217,7 +217,7 @@ function dragSelect() {
             noteX = parseInt(note.css("left").slice(0, -2));
             noteY = parseInt(note.css("top").slice(0, -2));
 
-            if (startX < noteX && noteX < endX && startY < noteY && noteY < endY){
+            if ( (startX < noteX && noteX < endX && startY < noteY && noteY < endY) || (startX > noteX && noteX > endX && startY > noteY && noteY > endY) ){
                 selection.push(id);
             }
 

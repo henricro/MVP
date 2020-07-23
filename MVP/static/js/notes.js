@@ -101,30 +101,6 @@ $('.note').each(function(){
     });
 });
 
-function myCopyFunction() {
-  /* Get the text field */
-  var copyText = $("#yolo").val(text());
-
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-}
-
-$(document).ready(function(){
-    $(".click .copy").click(function(event){
-    var $tempElement = $("<input>");
-        $("body").append($tempElement);
-        $tempElement.val($(this).closest(".click").find("span").text()).select();
-        document.execCommand("Copy");
-        $tempElement.remove();
-    });
-});
 
 
 function selectNote(note){
