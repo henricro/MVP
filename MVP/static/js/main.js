@@ -41,6 +41,10 @@ function createNotes() {
                 console.log("we have a parent !!");
                 elem = '<div class="pageLink parent" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
                 $('#parents').append(elem);
+            } else if (type ==="visitor"){
+                console.log("we have a parent !!");
+                elem = '<div class="pageLink visitor" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                $('body').append(elem);
             }
 
         }

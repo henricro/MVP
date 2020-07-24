@@ -1,8 +1,10 @@
-function copyNote(){
+function copyNote(note){
 
     console.log("copied a note");
+    console.log(note);
     id = note.attr("id");
-    info = "paste_note, " + pageID + ", "  + id;
+    noteClass = note.attr("class");
+    info = "paste_note, " + pageID + ", "  + id + ", "  + noteClass;
     console.log(info);
     $('#myClipboard').show().attr("value", info);
     $('#myClipboard').select();
@@ -23,44 +25,135 @@ $(document).bind('paste', function(e) {
 
         console.log("pasted a note");
 
-        console.log(data);
-
         originPageID = data[1];
         note_id = data[2];
+        noteClass = data[3];
 
-        console.log(originPageID, note_id);
+        console.log(originPageID, note_id, noteClass);
 
         if( $('#mouse_position').find('#x_pos').html() ){
             x = $('#mouse_position').find('#x_pos').html();
             y = $('#mouse_position').find('#y_pos').html();
         } else {
-            x = null;
-            y = null;
+            x = "300";
+            y = "300";
         }
 
         console.log("last x and y");
-        console.log(x, y);
+        console.log(x, y, noteClass);
+        console.log(typeof noteClass);
 
-        $.ajax({
-            url: '/paste_note/' + pageID,
-            type: "POST",
+        if (noteClass.includes("pageLink")){
 
-            data: JSON.stringify({
-                originPageID : originPageID,
-                note_id : note_id,
-                x : x,
-                y : y
-            }),
-            contentType: "application/json",
-            success: function (data) {
-                console.log(data);
-                window.location.href='/open_page/'+pageID;
-            },
-            error: function (error) {
-                console.log("problem");
-                window.location.href='/open_page/'+pageID;
-            }
-        });
+            $("#boxBox").css("left", x.concat("px"));
+            $("#boxBox").css("top", y.concat("px"));
+            $("#boxBox").show();
+
+            $(document).bind('click', function(){
+                if (!$("#boxBox").is(event.target) && $("#boxBox").has(event.target).length === 0){
+                    $("#boxBox").hide();
+                }
+            });
+
+            $('#choiceChild').bind('click', function(){
+                console.log("clicked child");
+                $.ajax({
+                    url: '/paste_pageLink/' + pageID,
+                    type: "POST",
+
+                    data: JSON.stringify({
+                        originPageID : originPageID,
+                        note_id : note_id,
+                        x : x,
+                        y : y,
+                        type : "child"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
+            $('#choiceParent').bind('click', function(){
+                console.log("clicked parent");
+                $.ajax({
+                    url: '/paste_pageLink/' + pageID,
+                    type: "POST",
+
+                    data: JSON.stringify({
+                        originPageID : originPageID,
+                        note_id : note_id,
+                        type : "parent"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
+            $('#choiceVisitor').bind('click', function(){
+                console.log("clicked visitor");
+                $.ajax({
+                    url: '/paste_pageLink/' + pageID,
+                    type: "POST",
+
+                    data: JSON.stringify({
+                        originPageID : originPageID,
+                        note_id : note_id,
+                        x : x,
+                        y : y,
+                        type : "visitor"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
+        } else {
+
+            console.log("pasting a note that is note a pageLink");
+
+            $.ajax({
+                url: '/paste_note/' + pageID,
+                type: "POST",
+
+                data: JSON.stringify({
+                    originPageID : originPageID,
+                    note_id : note_id,
+                    x : x,
+                    y : y
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
 
     } else {
         console.log("is not array");

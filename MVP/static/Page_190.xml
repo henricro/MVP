@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="4" class="pageLink" pageID="193" type="child"><x>626</x><y>408</y><content>politique</content></note><note id="5" class="pageLink" pageID="194" type="child"><x>888</x><y>429</y><content>france</content></note><note id="6" class="pageLink" pageID="195" type="child"><x>743</x><y>532</y><content>politique fran&#231;aise</content></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -40,6 +40,11 @@ parents = db.Table('parents',
     db.Column('child_page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True)
 )
 
+visitors = db.Table('visitors',
+    db.Column('visitor_page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True),
+    db.Column('visited_page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True)
+)
+
 pdfs_images = db.Table('pdfs_images',
     db.Column('pdf_id', db.Integer, db.ForeignKey('Pdfs.id'), primary_key=True),
     db.Column('image_id', db.Integer, db.ForeignKey('Images.id'), primary_key=True)

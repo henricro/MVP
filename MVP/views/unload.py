@@ -14,11 +14,12 @@ def unload(pageID):
     request_data = request.get_json()
     data = request_data.get('data')
 
-    parents_x = request_data.get('parents_x')
-    parents_y = request_data.get('parents_y')
-    parents_width = request_data.get('parents_width')
-    parents_height = request_data.get('parents_height')
+    parents_x = str(request_data.get('parents_x'))
+    parents_y = str(request_data.get('parents_y'))
+    parents_width = str(request_data.get('parents_width'))
+    parents_height = str(request_data.get('parents_height'))
 
+    print(parents_x, parents_y, parents_width, parents_height)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -26,12 +27,12 @@ def unload(pageID):
     tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
     root = tree.getroot()
 
-    '''
+
     tree.xpath("/canvas/notes/note[@id='parents']/x")[0].text = parents_x
     tree.xpath("/canvas/notes/note[@id='parents']/y")[0].text = parents_y
     tree.xpath("/canvas/notes/note[@id='parents']/width")[0].text = parents_width
     tree.xpath("/canvas/notes/note[@id='parents']/height")[0].text = parents_height
-    '''
+
 
 
     for i in range(len(data)):

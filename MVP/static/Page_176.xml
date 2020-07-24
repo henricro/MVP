@@ -3,8 +3,8 @@
 <notes>
 
     <note id="title">
-        <x>795</x>
-        <y>235</y>
+        <x>758</x>
+        <y>182</y>
     </note>
 
     <note id="parents">
@@ -14,10 +14,13 @@
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>21</x><y>31</y><content>GYST</content></note><note id="2" class="image"><x>133</x><y>168</y><width>469</width><height>251</height><name>cooking.png</name><image_id>396</image_id></note><note id="3" class="image"><x>1099</x><y>289</y><width>557</width><height>110</height><name>root_find.png</name><image_id>399</image_id></note></notes>
+<note id="1" class="pageLink" pageID="1" type="parent"><x>33</x><y>40</y><content>GYST</content></note><note id="2" class="image"><x>133</x><y>168</y><width>469</width><height>251</height><name>cooking.png</name><image_id>396</image_id></note><note id="3" class="image"><x>1099</x><y>289</y><width>557</width><height>110</height><name>root_find.png</name><image_id>399</image_id></note><note id="5" class="noteLink"><x>716</x><y>487</y><content>new content</content><link>qoihs</link></note><note id="6" class="image"><x>937</x><y>467</y><width>270</width><height>181</height><name>Gege-Koh-Lanta-condamne-pour-agressions-sexuelles-sur-mineures.jpg</name><image_id>386</image_id></note><note id="8" class="note"><x>378</x><y>460</y><content>new&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;content&lt;/div&gt;</content></note><note id="9" class="pdf"><x>1082</x><y>125</y><name>une_passion.pdf</name><image>une_passion.pdf.first_page.jpg</image><pdf_id>11</pdf_id><width>114</width><height>170</height></note>
+    <note id="10" class="noteLink"><x>683</x><y>349</y><content>new content</content><link>qoihs</link></note>
+    <note id="14" class="pageLink" pageID="184" type="visitor"><x>920</x><y>336</y><content>uhf</content></note><note id="19" class="pageLink" pageID="184" type="parent"><x>300</x><y>300</y><content>uhf</content></note>
+    </notes>
 
 <meta>
-    <biggest_id>4</biggest_id>
+    <biggest_id>19</biggest_id>
     <type/>
 </meta>
 

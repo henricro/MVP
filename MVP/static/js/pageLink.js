@@ -6,7 +6,7 @@
 ////////////////  CHILDREN ////////////////////
 //////////////////////////////////////////////
 
-$('.pageLink.child').each(function(){
+$('.pageLink').each(function(){
     createPageLinkChild($(this));
 });
 
@@ -24,41 +24,6 @@ function createPageLinkChild(note) {
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-    var type = XMLnote.getAttribute("type");
-
-    //console.log("print elmnt");
-    //console.log(elmnt);
-    note.addClass(type)
-    note.css("position","absolute");
-    note.css("top",y.concat("px"));
-    note.css("left",x.concat("px"));
-    note.attr("title", "go to page ".concat(pageTitle));
-    note.html(content);
-
-}
-
-
-////////////////  PARENTS ////////////////////
-//////////////////////////////////////////////
-
-$('.pageLink.parent').each(function(){
-    createPageLinkParent($(this));
-});
-
-function createPageLinkParent(note) {
-
-    var id = note.attr("id");
-
-    var pageTitle = note.attr("pageTitle");
-
-    console.log("pagetitle");
-    console.log(id,pageTitle);
-
-    var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
-    var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
-    var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
-    var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
     //console.log("print elmnt");
     //console.log(elmnt);
@@ -68,7 +33,6 @@ function createPageLinkParent(note) {
     note.html(content);
 
 }
-
 
 
 ///////////////////////////////////////////////
@@ -259,6 +223,7 @@ $(function() {
               });
 
            }
+
         },
 
         items: {

@@ -42,10 +42,10 @@ function save_sizes(){
         type: "POST",
         data: JSON.stringify({
             data: sizes,
-            //parents_x : parents_x,
-            //parents_y : parents_y,
-            //parents_width : parents_width,
-            //parents_height : parents_height
+            parents_x : parents_x,
+            parents_y : parents_y,
+            parents_width : parents_width,
+            parents_height : parents_height
         }),
         contentType: "application/json",
         success: function (data) {

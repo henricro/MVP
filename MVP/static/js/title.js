@@ -36,8 +36,6 @@ noteParents.css("left",x.concat("px"));
 noteParents.css("width",width.concat("px"));
 noteParents.css("height",height.concat("px"));
 
-
-
 $('#title_title').bind('click.select', function(){
     selectNote($(this));
 });

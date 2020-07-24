@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-98</x>
+        <y>-153</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="168" type="parent"><x>44</x><y>29</y><content>Claire</content></note><note id="2" class="imageLink"><x>575</x><y>412</y><width>300</width><height>200</height><name>youtube-o05k7gA95Gw.jpg</name><image_id>395</image_id><link>https://www.youtube.com/watch?v=o05k7gA95Gw</link></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>
