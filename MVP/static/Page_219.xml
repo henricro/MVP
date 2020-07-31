@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-43</x>
+        <y>-112</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>142</x><y>24</y><content>GYST</content></note><note id="3" class="pageLink" pageID="220" type="child"><x>543</x><y>447</y><content>quiches</content></note><note id="4" class="pageLink" pageID="221" type="child"><x>641</x><y>477</y><content>pizzas</content></note><note id="5" class="imagePageLink" pageID="222" type="child"><x>1372</x><y>357</y><content>espagnol</content><image>spain.png</image><image_id>417</image_id><width>84</width><height>74</height></note><note id="6" class="imagePageLink" pageID="223" type="child"><x>1236</x><y>479</y><content>japonais</content><image>japon.png</image><image_id>424</image_id><width>102</width><height>71</height></note><note id="7" class="imagePageLink" pageID="224" type="child"><x>1126</x><y>547</y><content>fran&#231;ais</content><image>france.jpg</image><image_id>423</image_id><width>85</width><height>63</height></note><note id="8" class="imagePageLink" pageID="225" type="child"><x>1111</x><y>460</y><content>italien</content><image>italie.png</image><image_id>420</image_id><width>93</width><height>64</height></note><note id="9" class="imagePageLink" pageID="226" type="child"><x>1242</x><y>393</y><content>vietnamien</content><image>vietnam.png</image><image_id>419</image_id><width>91</width><height>65</height></note><note id="10" class="imagePageLink" pageID="227" type="child"><x>1389</x><y>477</y><content>chinois</content><image>china.png</image><image_id>418</image_id><width>87</width><height>59</height></note><note id="11" class="note"><x>1197</x><y>234</y><content>Pays</content></note><note id="12" class="pageLink" pageID="228" type="child"><x>774</x><y>510</y><content>plat principal</content></note><note id="13" class="pageLink" pageID="229" type="child"><x>788</x><y>550</y><content>dessert</content></note><note id="14" class="pageLink" pageID="230" type="child"><x>815</x><y>674</y><content>sucr&#233;</content></note><note id="15" class="pageLink" pageID="231" type="child"><x>829</x><y>739</y><content>sal&#233;</content></note><note id="16" class="pageLink" pageID="232" type="child"><x>737</x><y>714</y><content>sucr&#233;-sal&#233;</content></note><note id="17" class="pageLink" pageID="233" type="child"><x>578</x><y>484</y><content>tartes</content></note><note id="18" class="pageLink" pageID="234" type="child"><x>351</x><y>469</y><content>vegetarien</content></note><note id="19" class="pageLink" pageID="235" type="child"><x>423</x><y>595</y><content>legumes</content></note><note id="20" class="pageLink" pageID="236" type="child"><x>790</x><y>468</y><content>entrees</content></note><note id="21" class="pageLink" pageID="237" type="child"><x>621</x><y>436</y><content>salades</content></note><note id="22" class="pageLink" pageID="238" type="child"><x>314</x><y>510</y><content>vegan</content></note><note id="23" class="pageLink" pageID="239" type="child"><x>615</x><y>528</y><content>pates</content></note><note id="24" class="pageLink" pageID="240" type="child"><x>575</x><y>527</y><content>riz</content></note><note id="25" class="imagePageLink" pageID="241" type="child"><x>1255</x><y>582</y><content>indien</content><image>inde.png</image><image_id>422</image_id><width>87</width><height>66</height></note><note id="26" class="imagePageLink" pageID="242" type="child"><x>1385</x><y>591</y><content>maghreb</content><image>maroc.jpg</image><image_id>421</image_id><width>90</width><height>73</height></note><note id="28" class="pageLink" pageID="243" type="child"><x>280</x><y>708</y><content>courgettes</content></note><note id="29" class="pageLink" pageID="244" type="child"><x>211</x><y>678</y><content>tomates</content></note><note id="30" class="pageLink" pageID="245" type="child"><x>301</x><y>675</y><content>aubergines</content></note><note id="31" class="pageLink" pageID="246" type="child"><x>363</x><y>715</y><content>carottes</content></note><note id="32" class="pageLink" pageID="247" type="child"><x>248</x><y>752</y><content>patates</content></note></notes>
+
+<meta>
+    <biggest_id>32</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

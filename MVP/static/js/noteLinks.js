@@ -55,7 +55,7 @@ function selectNoteLink(note){
         copyNote(note);
     });
 
-    console.log("select note link");
+    console.log("selected a note link");
 
     note.css({"border-color":"green"});
 

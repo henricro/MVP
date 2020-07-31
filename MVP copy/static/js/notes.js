@@ -213,7 +213,7 @@ function writeNote(note){
                 selectNote($(this));
             });
 
-            note.bind('dblclick.write', function(){
+            note.bind('click.write', function(){
                 writeNote($(this));
             });
 

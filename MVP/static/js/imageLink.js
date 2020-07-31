@@ -98,6 +98,8 @@ function selectImageLink(note){
 
     note.addClass("resizable");
 
+    note.css("overflow", "auto")
+
     note.unbind('mousedown.drag');
 
     note.css({"cursor":"pointer"});
@@ -131,6 +133,8 @@ function selectImageLink(note){
             note.css({"cursor":""});
 
             note.removeClass("resizable");
+
+            note.css("overflow", "hidden")
 
             $(document).unbind('keyup.delete');
 

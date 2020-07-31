@@ -24,28 +24,46 @@ def delete_note(pageID):
 
     noteClass = note.get("class")
 
-    if noteClass == "pageLink" :
-        type = note.get("type")
-        destPageID = note.get("pageID")
-        if type =="child" :
-            engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
-                           {'pageID': pageID, 'destPageID': destPageID})
-        if type =="parent" :
-            engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
-                           {'pageID': pageID, 'destPageID': destPageID})
-        if type =="visitor" :
-            engine.execute("delete from visitors where visitor_page_id = %(destPageID)s and visited_page_id = %(pageID)s ",
-                           {'pageID': pageID, 'destPageID': destPageID})
-
     print(etree.tostring(note, pretty_print=True))
 
     note.getparent().remove(note)
-
-    # save the changes in the xml
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+
+    if noteClass == "pageLink" :
+
+        type = note.get("type")
+        destPageID = note.get("pageID")
+        destPageName = 'Page_' + destPageID
+
+        if type =="child" :
+
+            destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+            destRoot = destTree.getroot()
+            note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
+            note.getparent().remove(note)
+            f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+            f.write(etree.tostring(destRoot, pretty_print=True))
+            f.close()
+            # engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
+             #              {'pageID': pageID, 'destPageID': destPageID})
+        if type =="parent" :
+
+            destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+            destRoot = destTree.getroot()
+            note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
+            note.getparent().remove(note)
+            f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+            f.write(etree.tostring(destRoot, pretty_print=True))
+            f.close()
+            # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
+             #              {'pageID': pageID, 'destPageID': destPageID})
+        if type =="visitor" :
+            pass
+            # engine.execute("delete from visitors where visitor_page_id = %(destPageID)s and visited_page_id = %(pageID)s ",
+             #              {'pageID': pageID, 'destPageID': destPageID})
+
 
 
 

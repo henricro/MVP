@@ -162,25 +162,43 @@ def paste_pageLink(pageID):
         f.close()
 
         #### put pageLink parent in child page
+        print('### put parent-pageLink in childPage')
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
-        root = tree.getroot()
+        destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        destRoot = destTree.getroot()
+
+        print(destRoot)
+        print(destPageID)
+        print(destPageName)
 
         # get the biggest id in the xml and increment the value
-        id = tree.xpath("/canvas/meta/biggest_id")[0].text
+        id = destTree.xpath("/canvas/meta/biggest_id")[0].text
         id = int(id) + 1
         id = str(id)
-        tree.xpath("/canvas/meta/biggest_id")[0].text = id
+        destTree.xpath("/canvas/meta/biggest_id")[0].text = id
+
+        print(id)
 
         # add a note
-        notes = root.find("notes")
+        notes = destRoot.find("notes")
+        print(notes)
         notes.append(etree.Element("note"))
-        note = notes[-1]
+        new_note = notes[-1]
 
-        # change the note's id
-        note.set("id", id)
+        # set the note's id, class
+        new_note.set("id", id)
+        new_note.set("class", "pageLink")
+        new_note.set("type", "parent")
+        new_note.set("pageID", pageID)
 
-        note.set("type", "parent")
+        parentName = Page.query.filter_by(id=pageID).first().title
+
+        print(parentName)
+
+        etree.SubElement(new_note, "content").text = parentName
+
+        print(etree.tostring(destRoot, pretty_print=True))
+
         # ajouter relation visitor-visited dans la DB
         # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
         #              {'destPageID': destPageID, 'pageID': pageID})
@@ -188,12 +206,12 @@ def paste_pageLink(pageID):
         par_x = str(random.randint(0, 100))
         par_y = str(random.randint(0, 100))
 
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = par_x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = par_y
+        etree.SubElement(new_note, "x").text = par_x
+        etree.SubElement(new_note, "y").text = par_y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f.write(etree.tostring(destRoot, pretty_print=True))
         f.close()
 
     elif type == "parent" :
@@ -260,17 +278,12 @@ def paste_pageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
     #print("added the note to current page's xml :")
     #print(etree.tostring(root, pretty_print=True))
-
-    # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
 
 
     pass

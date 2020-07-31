@@ -51,7 +51,7 @@ def update_content(pageID):
     pageID = str(pageID)
 
     # change title in DB if the note changed is the title.
-    if _id == '0':
+    if _id == 'title':
         print("change title")
         engine.execute("Update Pages set title = %(content)s where id= %(pageID)s ",
                        {'content': content, 'pageID': pageID})

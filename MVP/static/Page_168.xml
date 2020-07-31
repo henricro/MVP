@@ -8,16 +8,16 @@
     </note>
 
     <note id="parents">
-        <x>-88</x>
-        <y>-174</y>
+        <x>-97</x>
+        <y>-146</y>
         <width>345</width>
         <height>307</height>
     </note>
 
-    <note id="1" class="pageLink" pageID="1" type="parent"><x>58</x><y>119</y><content>GYST</content></note>
+    <note id="1" class="pageLink" pageID="1" type="parent"><x>49</x><y>147</y><content>GYST</content></note>
     <note id="4" class="imageLink"><x>950</x><y>446</y><width>300</width><height>200</height><name>Screen_Shot_2020-07-20_at_14.47.22.png</name><image_id>389</image_id><link>https://www.google.com/search?safe=active&amp;client=safari&amp;rls=en&amp;sxsrf=ALeKk02lHzWmyBWdzF8SBwHUq74qHRV7DQ%3A1595415089838&amp;ei=MRoYX97aMuKNr7wPudWniAY&amp;q=famous+synonym&amp;oq=famous+synonym&amp;gs_lcp=CgZwc3ktYWIQAzIFCAAQkQIyBggAEAcQHjIICAAQBxAKEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHlCQgjNY94YzYLyIM2gAcAB4AIABiwGIAdwEkgEDMy4zmAEAoAEBqgEHZ3dzLXdpesABAQ&amp;sclient=psy-ab&amp;ved=0ahUKEwiet8ut2ODqAhXixosBHbnqCWEQ4dUDCAs&amp;uact=5</link></note>
     <note id="5" class="image"><x>1271</x><y>290</y><width>300</width><height>200</height><name>Screen_Shot_2020-07-20_at_14.47.22.png</name><image_id>390</image_id></note>
-    <note id="6" class="image"><x>378</x><y>491</y><width>285</width><height>242</height><name>Screen_Shot_2020-07-20_at_12.51.33.png</name><image_id>391</image_id></note>
+    <note id="6" class="image"><x>520</x><y>480</y><width>252</width><height>181</height><name>Screen_Shot_2020-07-20_at_12.51.33.png</name><image_id>391</image_id></note>
     <note id="8" class="image"><x>1052</x><y>60</y><width>767</width><height>171</height><name>unnamed-4.jpg</name><image_id>393</image_id></note>
     <note id="13" class="note"><x>2006</x><y>162</y><content>funny how funny unfunny actually is</content></note>
     <note id="17" class="note"><x>476</x><y>423</y><content>new content</content></note>
@@ -31,10 +31,10 @@
 
     <note id="43" class="pageLink" pageID="185" type="child"><x>542</x><y>301</y><content>cugh</content></note>
 
-    </notes>
+    <note id="45" class="pageLink" pageID="176" type="visitor"><x>300</x><y>300</y><content>keep</content></note><note id="46" class="pageLink" pageID="176" type="child"><x>679</x><y>359</y><content>keep</content></note></notes>
 
 <meta>
-    <biggest_id>44</biggest_id>
+    <biggest_id>46</biggest_id>
     <type/>
 </meta>
 

@@ -127,10 +127,10 @@
 
 <div id="boxBox">
     <div id="choiceBox">
-        <div>Paste as :</div>
-        <button id="choiceParent">Parent</button>
-        <button id="choiceChild">Child</button>
-        <button id="choiceVisitor">Visitor</button>
+        <div id="pasteAs">Paste as :</div>
+        <div class="choiceButton" id="choiceParent">Parent</div>
+        <div class="choiceButton" id="choiceChild">Child</div>
+        <div class="choiceButton" id="choiceVisitor">Visitor</div>
     </div>
 </div>
 
@@ -147,8 +147,8 @@ console.log(title);
 var pages = {{pages|safe}};
 
 var xml='{{xml_string|safe}}';
-//console.log("print xml");
-//console.log(xml);
+console.log("print xml");
+console.log(xml);
 
 var xmlDoc = $.parseXML(xml);
 var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;

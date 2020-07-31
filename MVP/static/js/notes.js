@@ -38,7 +38,7 @@ function createNote(note) {
 /////////////    CREATE NEW NOTE   ////////////////////
 ///////////////////////////////////////////////////////
 
-$(document).dblclick(function(){
+$('*:not("div")').dblclick(function(){
 
     console.log(event.target.nodeName);
 
@@ -186,6 +186,7 @@ function selectNote(note){
 
 $('.note').each(function(){
     $(this).bind('dblclick.write', function(){
+        console.log("double clicked on note");
         writeNote($(this));
     });
 });

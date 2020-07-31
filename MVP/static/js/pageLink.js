@@ -107,7 +107,7 @@ function selectPageLink(note){
         copyNote(note);
     });
 
-    console.log("select page link");
+    console.log("selected page link");
 
     note.css({"border-color":"green"});
 
