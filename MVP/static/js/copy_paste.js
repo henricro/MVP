@@ -45,17 +45,17 @@ $(document).bind('paste', function(e) {
 
         if (noteClass.includes("pageLink")){
 
-            $("#boxBox").css("left", x.concat("px"));
-            $("#boxBox").css("top", y.concat("px"));
-            $("#boxBox").show();
+            $("#pasteBox")t", x.concat("px"));
+            $("#pasteBox").css("top", y.concat("px"));
+            $("#pasteBox").show();
 
             $(document).bind('click', function(){
-                if (!$("#boxBox").is(event.target) && $("#boxBox").has(event.target).length === 0){
-                    $("#boxBox").hide();
+                if (!$("#pasteBox").is(event.target) && $("#pasteBox").has(event.target).length === 0){
+                    $("#pasteBox").hide();
                 }
             });
 
-            $('#choiceChild').bind('click', function(){
+            $('.choiceLGreen').bind('click', function(){
                 console.log("clicked child");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID,
@@ -80,7 +80,7 @@ $(document).bind('paste', function(e) {
                 });
             });
 
-            $('#choiceParent').bind('click', function(){
+            $('.choiceDGreen').bind('click', function(){
                 console.log("clicked parent");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID,
@@ -103,7 +103,7 @@ $(document).bind('paste', function(e) {
                 });
             });
 
-            $('#choiceVisitor').bind('click', function(){
+            $('.choiceYellow').bind('click', function(){
                 console.log("clicked visitor");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID,
@@ -128,9 +128,94 @@ $(document).bind('paste', function(e) {
                 });
             });
 
+        } else if (noteClass.includes("imagePageLink")){
+
+            $("#pasteBox")t", x.concat("px"));
+            $("#pasteBox").css("top", y.concat("px"));
+            $("#pasteBox").show();
+
+            $(document).bind('click', function(){
+                if (!$("#pasteBox").is(event.target) && $("#pasteBox").has(event.target).length === 0){
+                    $("#pasteBox").hide();
+                }
+            });
+
+            $('.choiceLGreen').bind('click', function(){
+                console.log("clicked child");
+                $.ajax({
+                    url: '/paste_imagePageLink/' + pageID,
+                    type: "POST",
+
+                    data: JSON.stringify({
+                        originPageID : originPageID,
+                        note_id : note_id,
+                        x : x,
+                        y : y,
+                        type : "child"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
+            $('.choiceDGreen').bind('click', function(){
+                console.log("clicked parent");
+                $.ajax({
+                    url: '/paste_imagePageLink/' + pageID,
+                    type: "POST",
+
+                    data: JSON.stringify({
+                        originPageID : originPageID,
+                        note_id : note_id,
+                        type : "parent"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
+            $('.choiceYellow').bind('click', function(){
+                console.log("clicked visitor");
+                $.ajax({
+                    url: '/paste_imagePageLink/' + pageID,
+                    type: "POST",
+
+                    data: JSON.stringify({
+                        originPageID : originPageID,
+                        note_id : note_id,
+                        x : x,
+                        y : y,
+                        type : "visitor"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
         } else {
 
-            console.log("pasting a note that is note a pageLink");
+            console.log("pasting a note that is not a pageLink");
 
             $.ajax({
                 url: '/paste_note/' + pageID,
@@ -160,3 +245,4 @@ $(document).bind('paste', function(e) {
     }
 
 });
+

@@ -35,6 +35,23 @@ function createNoteLink(note) {
     note.append(content_div);
     note.append(link_div);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
+
 }
 
 
@@ -172,10 +189,10 @@ $(function() {
 
         callback: function(key, options) {
 
+          var id = $(this).attr("id");
+
           if (key === 'link') {
-            console.log($(this));
-            var id = $(this).attr("id");
-            console.log(id);
+
             var link = $(this).attr("link");
             console.log(link);
             var content = $(this).find('.content_div').text();
@@ -214,9 +231,40 @@ $(function() {
 
             });
 
-          } else if (key === 'copy') {
-            
+          } else if (key === 'style') {
+
+            if ($(this).attr('added_css')){
+                var value = prompt("CSS", $(this).attr('added_css'));
+            } else {
+                var value = prompt("CSS", "");
+            }
+
+            if (value != null) {
+
+                console.log("sending css");
+
+                $.ajax({
+                    url: '/add_css/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        css : value,
+                        id : id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+
+            }
+
           }
+
         },
 
         items: {
@@ -228,9 +276,9 @@ $(function() {
             name: "Edit",
             icon: "fa-edit"
           },
-          'copy': {
-            name: "Copy",
-            icon: "copy"
+          'style': {
+            name: "Style",
+            icon: "fa-paint-brush"
           }
         }
 
@@ -266,13 +314,13 @@ function writeNoteLink(note){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
+            $(document).unbind('click.clickout');
+
             console.log("click out of noteLink");
 
             note.bind('click.select', function(){
                 selectNoteLink($(this));
             });
-
-            $(document).unbind('click.clickout');
 
             content = note.html();
 

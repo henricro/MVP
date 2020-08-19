@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="4" class="pageLink" pageID="313" type="child"><x>822</x><y>404</y><content>freelance</content></note><note id="5" class="imagePageLink" pageID="307" type="child"><x>596</x><y>395</y><content>M&#246;kki</content><image>Screenshot_2020-08-17_at_15.17.02.png</image><image_id>473</image_id><width>81</width><height>34</height></note><note id="6" class="imagePageLink" pageID="312" type="child"><x>709</x><y>457</y><content>le C !</content><image>Screenshot_2020-08-17_at_15.17.59.png</image><image_id>474</image_id><width>70</width><height>39</height></note><note id="7" class="noteLink"><x>1091</x><y>226</y><content>jdhv</content><link>!(note.attr("id")==$(event.target).attr("id"))</link></note><note id="8" class="noteLink"><x>1165</x><y>215</y><content>new content</content><link>!(note.attr("id")==$(event.target).attr("id"))</link></note><note id="9" class="noteLink"><x>1104</x><y>239</y><content>new content</content><link>!(note.attr("id")==$(event.target).attr("id"))</link></note><note id="10" class="note"><x>1377</x><y>325</y><content>new content</content></note></notes>
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

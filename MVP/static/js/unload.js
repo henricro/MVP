@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////
 
 
-$(window).on( "unload", function(){
+$(window).on("unload", function(){
     save_sizes();
 });
 

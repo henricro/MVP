@@ -14,7 +14,6 @@
         <height>307</height>
     </note>
 
-    <note id="1" class="pageLink" pageID="1" type="parent"><x>49</x><y>147</y><content>GYST</content></note>
     <note id="4" class="imageLink"><x>950</x><y>446</y><width>300</width><height>200</height><name>Screen_Shot_2020-07-20_at_14.47.22.png</name><image_id>389</image_id><link>https://www.google.com/search?safe=active&amp;client=safari&amp;rls=en&amp;sxsrf=ALeKk02lHzWmyBWdzF8SBwHUq74qHRV7DQ%3A1595415089838&amp;ei=MRoYX97aMuKNr7wPudWniAY&amp;q=famous+synonym&amp;oq=famous+synonym&amp;gs_lcp=CgZwc3ktYWIQAzIFCAAQkQIyBggAEAcQHjIICAAQBxAKEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHlCQgjNY94YzYLyIM2gAcAB4AIABiwGIAdwEkgEDMy4zmAEAoAEBqgEHZ3dzLXdpesABAQ&amp;sclient=psy-ab&amp;ved=0ahUKEwiet8ut2ODqAhXixosBHbnqCWEQ4dUDCAs&amp;uact=5</link></note>
     <note id="5" class="image"><x>1271</x><y>290</y><width>300</width><height>200</height><name>Screen_Shot_2020-07-20_at_14.47.22.png</name><image_id>390</image_id></note>
     <note id="6" class="image"><x>520</x><y>480</y><width>252</width><height>181</height><name>Screen_Shot_2020-07-20_at_12.51.33.png</name><image_id>391</image_id></note>
@@ -31,10 +30,10 @@
 
     <note id="43" class="pageLink" pageID="185" type="child"><x>542</x><y>301</y><content>cugh</content></note>
 
-    <note id="45" class="pageLink" pageID="176" type="visitor"><x>300</x><y>300</y><content>keep</content></note><note id="46" class="pageLink" pageID="176" type="child"><x>679</x><y>359</y><content>keep</content></note></notes>
+    <note id="45" class="pageLink" pageID="176" type="visitor"><x>300</x><y>300</y><content>keep</content></note><note id="46" class="pageLink" pageID="176" type="child"><x>679</x><y>359</y><content>keep</content></note><note id="47" class="pageLink" type="parent" pageID="190"><content>testing</content><x>9</x><y>30</y></note></notes>
 
 <meta>
-    <biggest_id>46</biggest_id>
+    <biggest_id>47</biggest_id>
     <type/>
 </meta>
 

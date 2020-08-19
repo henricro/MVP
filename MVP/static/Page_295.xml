@@ -1,0 +1,28 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>681</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-77</x>
+        <y>-129</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+    <note id="2" class="note"><x>629</x><y>493</y><content>rapporter et mettre de l ordre&amp;nbsp;&lt;div&gt;dans la parole politique&lt;/div&gt;</content></note>
+    <note id="4" class="note"><x>383</x><y>401</y><content>usages personnels</content></note>
+    <note id="5" class="note"><x>702</x><y>415</y><content>usages collectifs</content></note>
+
+</notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

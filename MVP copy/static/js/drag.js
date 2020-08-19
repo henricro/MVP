@@ -8,7 +8,7 @@ $(".note,  .noteLink, .pageLink, .file").each(function(){
         mouseX = event.pageX;
         mouseY = event.pageY;
 
-        noteX = $(this).css("left");
+        noteX = $(this)t");
         noteY = $(this).css("top");
         noteX = noteX.substr(0, noteX.length - 2);
         noteY = noteY.substr(0, noteY.length - 2);
@@ -49,7 +49,7 @@ function dragFunc(note) {
         $(document).unbind('mouseup.stopDrag');
 
         id = note.attr("id");
-        x = note.css("left");
+        x = notet");
         y= note.css("top");
 
         //console.log(id, x, y);

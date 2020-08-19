@@ -1,0 +1,25 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>754</x>
+        <y>199</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="4" class="note"><x>827</x><y>390</y><content>a faire &#224; paris : ateliers pour ecriture de scenarios</content></note>
+    <note id="5" class="pageLink" type="parent" pageID="1"><content>GYST</content><x>100</x><y>20</y></note><note id="6" class="note"><x>296</x><y>388</y><content>Jordan et Benjamin</content></note><note id="7" class="note"><x>228</x><y>426</y><content>team pr&#233;pa : une fois par mois</content></note><note id="9" class="note"><x>708</x><y>329</y><content>rentrer &#224; Paris : foot</content></note><note id="10" class="note"><x>715</x><y>523</y><content>rentrer &#224; paris : clubs de musique/danse</content></note><note id="11" class="note"><x>725</x><y>543</y><content>rentrer &#224; paris : psy !</content></note></notes>
+
+<meta>
+    <biggest_id>12</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

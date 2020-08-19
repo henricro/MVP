@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="4" class="pageLink" pageID="318" type="child"><x>692</x><y>479</y><content>TO DOs administratifs</content></note><note id="6" class="pageLink" pageID="321" type="child"><x>584</x><y>415</y><content>banques</content></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="4" class="imageLink"><x>935</x><y>355</y><width>111</width><height>45</height><name>Screenshot_2020-08-16_at_13.29.34.png</name><image_id>458</image_id><link>https://app.slack.com/client/TQ95C6BF0</link></note><note id="5" class="note"><x>529</x><y>442</y><content>&lt;p class="p1" style="margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Helvetica; color: rgb(0, 0, 0); text-align: start;"&gt;&lt;span class="s1" style="text-decoration-line: underline;"&gt;&lt;a href="https://git.hocquart.fr/binou/le_c"&gt;https://git.hocquart.fr/binou/le_c&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;</content></note><note id="6" class="note"><x>556</x><y>410</y><content>code du site</content></note><note id="7" class="note"><x>1100</x><y>346</y><content>henri.crozel@gmail.com</content></note><note id="8" class="note"><x>1101</x><y>374</y><content>Idrawcl1mat</content></note><note id="11" class="imageLink"><x>901</x><y>465</y><width>116</width><height>46</height><name>Screenshot_2020-08-16_at_13.32.39.png</name><image_id>460</image_id><link>https://drive.google.com/drive/u/0/folders/1PQ2GTeoObYz-fcJ9v7foJFhTJiLNX7pl</link></note><note id="12" class="note"><x>380</x><y>425</y><content>henri.crozel@gmail.com</content><css>font-size:11px;</css></note><note id="13" class="note"><x>634</x><y>489</y><content>groscaca</content><css>font-size:11px;</css></note><note id="15" class="pageLink" pageID="323" type="visitor"><x>461</x><y>310</y><content>learn to code</content></note><note id="16" class="pageLink" type="parent" pageID="306"><content>Work</content><x>61</x><y>58</y></note></notes>
+
+<meta>
+    <biggest_id>16</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

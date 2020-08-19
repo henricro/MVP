@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="pageLink" type="parent" pageID="1"><content>GYST</content><x>82</x><y>84</y></note><note id="3" class="pageLink" pageID="323" type="visitor"><x>448</x><y>361</y><content>learn to code</content></note><note id="4" class="note"><x>732</x><y>390</y><content>Il0vemokkimuch</content></note><note id="7" class="note"><x>746</x><y>433</y><content>Il0vemokkimucho</content></note><note id="8" class="pageLink" type="parent" pageID="306"><content>Work</content><x>73</x><y>96</y></note></notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

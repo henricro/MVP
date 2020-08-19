@@ -1,0 +1,29 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-34</x>
+        <y>-129</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>113</x><y>18</y><content>GYST</content></note><note id="5" class="note"><x>970</x><y>307</y><content>this is a very long process, very long term&lt;div&gt;i am only starting it, for me, little by little&lt;/div&gt;&lt;div&gt;No expectations&lt;/div&gt;</content><css>color : #A62BA4; border: 0px;</css></note>
+
+
+<note id="6" class="note"><x>927</x><y>271</y><content>organize what i know</content><css>color : #A62BA4; border: 0px;</css></note>
+    <note id="8" class="note"><x>602</x><y>363</y><content>goal : have a better unerstanding of how the world works</content><css>color : #A62BA4; border: 0px;</css></note><note id="9" class="pageLink" pageID="284" type="child"><x>691</x><y>580</y><content>spiritualit&#233;</content></note>
+    <note id="10" class="pageLink" pageID="327" type="child"><x>546</x><y>647</y><content>covid-19</content></note><note id="11" class="imagePageLink" pageID="334" type="child"><x>909</x><y>512</y><content>France</content><image>france.jpg</image><image_id>482</image_id><width>77</width><height>49</height></note><note id="13" class="imagePageLink" pageID="255" type="child"><x>315</x><y>535</y><content>football</content><image>football.jpg</image><image_id>425</image_id><width>100</width><height>50</height></note><note id="18" class="imagePageLink" pageID="356" type="child"><x>1005</x><y>529</y><content>US</content><image>us-flag.jpg</image><image_id>502</image_id><width>72</width><height>45</height></note><note id="19" class="pageLink" pageID="371" type="child"><x>738</x><y>488</y><content>politique</content></note></notes>
+
+<meta>
+    <biggest_id>19</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

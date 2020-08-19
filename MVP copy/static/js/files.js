@@ -89,7 +89,7 @@ function createFile(note) {
     note.attr("class", "file");
     note.css("position","absolute");
     note.css("top",y.concat("px"));
-    note.css("left",x.concat("px"));
+    notet",x.concat("px"));
     note.append(img);
 
 }

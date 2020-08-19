@@ -1,0 +1,25 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="266" type="parent"><x>0</x><y>0</y><content>libraries</content></note><note id="2" class="pdf"><x>824</x><y>396</y><name>une_passion.pdf</name><image>une_passion.pdf.first_page.jpg</image><pdf_id>11</pdf_id><width>221</width><height>321</height></note>
+    </notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -39,6 +39,23 @@ function createImage(note) {
     note.css("width", width);
     note.css("height", height);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
+
 }
 
 
@@ -189,6 +206,38 @@ $(function() {
 
             }
 
+          } else if (key === 'style') {
+
+            if ($(this).attr('added_css')){
+                var value = prompt("CSS", $(this).attr('added_css'));
+            } else {
+                var value = prompt("CSS", "");
+            }
+
+            if (value != null) {
+
+                console.log("sending css");
+
+                $.ajax({
+                    url: '/add_css/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        css : value,
+                        id : id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+
+            }
+
           }
 
         },
@@ -200,6 +249,10 @@ $(function() {
           'download': {
             name: "Download",
             icon: "fa-download"
+          },
+          'style': {
+            name: "Style",
+            icon: "fa-paint-brush"
           }
         }
 

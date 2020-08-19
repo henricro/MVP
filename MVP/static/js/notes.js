@@ -1,8 +1,9 @@
 
 
-     ////////////////////////////////////////////////////////////////////////////////////////////
-////////////////    PUT THE SIMPLE NOTES IN THEIR X,Y POSITIONS and add content   /////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+////////////////    BUILD THE NOTES   /////////////////
+///////////////////////////////////////////////////////
+
 
 $('.note').each(function(){
     createNote($(this));
@@ -25,11 +26,27 @@ function createNote(note) {
 
     //console.log("print elmnt");
     //console.log(elmnt);
-    note.css("position","absolute");
+
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
     note.html(content);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
 }
 
 
@@ -265,39 +282,88 @@ $(function() {
         selector: '.note',
         callback: function(key, options) {
 
+          id = $(this).attr("id");
+
           if (key === 'link') {
+
             console.log($(this));
-            id = $(this).attr("id");
+
             console.log(id);
 
             var value = prompt("Lien", "");
 
             if (value != null) {
-            $.ajax({
-                url: '/add_link_note/'+pageID,
-                type: "POST",
-                data: JSON.stringify({
-                    link : value,
-                    id : id
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                    window.location.href='/open_page/'+pageID;
-                },
-                error: function (error) {
-                    console.log("problem");
-                    window.location.href='/open_page/'+pageID;
-                }
-            });
-          }
+
+                $.ajax({
+                    url: '/add_link_note/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        link : value,
+                        id : id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+
+            }
+
+          } else if (key === 'copy') {
+            copyNote($(this));
+          } else if (key === 'style') {
+
+            if ($(this).attr('added_css')){
+                var value = prompt("CSS", $(this).attr('added_css'));
+            } else {
+                var value = prompt("CSS", "");
+            }
+
+            if (value != null) {
+
+                console.log("sending css");
+
+                $.ajax({
+                    url: '/add_css/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        css : value,
+                        id : id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+
+            }
 
           }
+
         },
+
         items: {
           'link': {
-            name: "Create Link",
+            name: "Add Link",
             icon: "fa-link"
+          },
+          'copy': {
+            name : "Copy",
+            icon : "fa-copy"
+          },
+          'style': {
+            name: "Style",
+            icon: "fa-paint-brush"
           }
         }
 

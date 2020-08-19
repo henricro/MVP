@@ -26,7 +26,7 @@ function createNoteLink(note) {
     note.attr("class", "noteLink");
     note.css("position","absolute");
     note.css("top",y.concat("px"));
-    note.css("left",x.concat("px"));
+    notet",x.concat("px"));
     note.attr("link", link);
     note.html(content);
 
@@ -242,7 +242,7 @@ function writeNoteLink(note){
                         mouseX = event.pageX;
                         mouseY = event.pageY;
 
-                        noteX = $(this).css("left");
+                        noteX = $(this)t");
                         noteY = $(this).css("top");
                         noteX = noteX.substr(0, noteX.length - 2);
                         noteY = noteY.substr(0, noteY.length - 2);

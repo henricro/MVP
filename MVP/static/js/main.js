@@ -61,10 +61,21 @@ function createNotes() {
             $('body').append(elem);
         }
         else if (clasis === "imagePageLink"){
+            var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
-            elem = '<div class="imagePageLink ' + '" id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" ></div>';
-            $('body').append(elem);
+            if (type === "child"){
+                elem = '<div class="imagePageLink child" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                $('body').append(elem);
+            } else if (type ==="parent"){
+                console.log("we have a parent !!");
+                elem = '<div class="imagePageLink parent" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                $('#parents').append(elem);
+            } else if (type ==="visitor"){
+                console.log("we have a parent !!");
+                elem = '<div class="imagePageLink visitor" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                $('body').append(elem);
+            }
         }
     }
 

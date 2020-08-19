@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="296" type="parent"><x>0</x><y>0</y><content>idees</content></note><note id="4" class="imagePageLink" pageID="330" type="child"><x>817</x><y>431</y><content>Pocket</content><image>Screenshot_2020-08-17_at_21.25.43.png</image><image_id>479</image_id><width>93</width><height>37</height></note><note id="5" class="imagePageLink" pageID="331" type="child"><x>596</x><y>437</y><content>Lucid Chart</content><image>Screenshot_2020-08-17_at_21.26.58.png</image><image_id>480</image_id><width>160</width><height>43</height></note><note id="6" class="imagePageLink" pageID="332" type="child"><x>596</x><y>505</y><content>Evernote</content><image>Screenshot_2020-08-17_at_21.27.26.png</image><image_id>481</image_id><width>118</width><height>37</height></note><note id="7" class="imageLink"><x>751</x><y>526</y><width>114</width><height>46</height><name>Screenshot_2020-08-18_at_13.58.24.png</name><image_id>497</image_id><link>https://www.google.com/drive/</link></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

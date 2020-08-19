@@ -43,12 +43,19 @@ function dragFunc(note, noteX, noteY) {
         //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });
 
+        note.css("z-index", "-1");
+
+        event.preventDefault();
+
     }
 
     function mouseUp(note) {
 
+        note.css("z-index", "0");
+
         $(document).unbind('mousemove.drag');
         //console.log("stoping");
+
         //console.log(event.pageX, event.pageY);
         $(document).unbind('mouseup.stopDrag');
 
@@ -56,39 +63,65 @@ function dragFunc(note, noteX, noteY) {
         x = note.css("left");
         y= note.css("top");
 
-        //console.log(id, x, y);
-
-        //console.log(mouseX, event.pageX)
-
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            if (event.target.classList.contains('pageLink') && !(note.attr("id")==$(event.target).attr("id"))){
+            console.log("event target"); console.log(event.target);
 
-                console.log("moved an object into another page");
+            console.log(id, $(event.target).attr("id"));
 
-                note_id = note.attr("id");
+            if ( !($(event.target).attr("id") == id) ){
 
-                page_id = $(event.target).attr("pageid");
+                if ( event.target.classList.contains('pageLink') ){
 
-                $.ajax({
+                    console.log("moved an object into another page");
 
-                    url: '/move_note/'+pageID,
-                    type: "POST",
-                    data: JSON.stringify({
-                        note_id: note_id,
-                        page_id: page_id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+pageID;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+pageID;
-                    }
+                    note_id = note.attr("id");
 
-                });
+                    page_id = $(event.target).attr("pageid");
+
+                    $.ajax({
+
+                        url: '/move_note/'+pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            note_id: note_id,
+                            page_id: page_id
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                            //window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            //window.location.href='/open_page/'+pageID;
+                        }
+
+                    });
+
+                } else if ( event.target.classList.contains('note') ){
+
+                    $.ajax({
+
+                        url: '/link_notes/'+pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            id_1 : $(event.target).attr("id"),
+                            id_2 : note.attr("id")
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                            window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+pageID;
+                        }
+
+                    });
+
+                }
 
             } else {
 
@@ -115,7 +148,6 @@ function dragFunc(note, noteX, noteY) {
                 });
 
             }
-
 
         } else {
             console.log("object did not move");
@@ -165,6 +197,8 @@ function dragSelect() {
 
     function moveSelect() {
 
+        event.preventDefault();
+
         height = Math.abs(event.pageY - startY) ;
         width = Math.abs(event.pageX - startX) ;
 
@@ -203,7 +237,6 @@ function dragSelect() {
         endY = event.pageY;
 
         console.log(endX, endY);
-
 
         // collect all the elements in the selection
         var selection = [];

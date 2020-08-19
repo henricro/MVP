@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-75</x>
+        <y>-131</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="297" type="parent"><x>73</x><y>24</y><content>connaissances</content></note><note id="2" class="imageLink"><x>625</x><y>422</y><width>237</width><height>114</height><name>Screenshot_2020-08-17_at_15.28.21.png</name><image_id>472</image_id><link>https://www.lemonde.fr/les-decodeurs/article/2020/03/27/coronavirus-visualisez-les-pays-qui-ont-aplati-la-courbe-de-l-infection-et-ceux-qui-n-y-sont-pas-encore-parvenus_6034627_4355770.html</link><image_id>475</image_id><width>300</width><height>200</height></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

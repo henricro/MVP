@@ -14,10 +14,10 @@
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>55</x><y>61</y><content>GYST</content></note><note id="2" class="imageLink"><x>672</x><y>415</y><width>300</width><height>200</height><name>youtube-zZnxlx5gQtY.jpg</name><image_id>403</image_id><link>https://www.youtube.com/watch?v=zZnxlx5gQtY</link></note><note id="3" class="note"><x>1236</x><y>79</y><content>zbzuhyfz ifughfz&amp;nbsp;</content></note><note id="4" class="noteLink"><x>1178</x><y>194</y><content>new content</content><link>https://www.eurosport.fr/</link></note></notes>
+<note id="5" class="note"><x>485</x><y>494</y><content>la plus belle</content></note><note id="7" class="image"><x>617</x><y>363</y><width>227</width><height>299</height><name>ju.png</name><image_id>444</image_id></note><note id="8" class="pageLink" type="parent" pageID="190"><content>testing</content><x>33</x><y>87</y></note></notes>
 
 <meta>
-    <biggest_id>4</biggest_id>
+    <biggest_id>8</biggest_id>
     <type/>
 </meta>
 

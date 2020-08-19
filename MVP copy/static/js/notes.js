@@ -28,7 +28,7 @@ function createNote(note) {
     note.attr("class", "note")
     note.css("position","absolute");
     note.css("top",y.concat("px"));
-    note.css("left",x.concat("px"));
+    notet",x.concat("px"));
     note.html(content);
 
 }
@@ -62,7 +62,7 @@ $(document).dblclick(function(){
         //console.log(elmnt);
         //elmnt.css("position","absolute");
         //elmnt.css("top",y.concat("px"));
-        //elmnt.css("left",x.concat("px"));
+        //elmntt",x.concat("px"));
         //elmnt.attr("id",id);
         //elmnt.find('.content').text("new content");
 
@@ -222,7 +222,7 @@ function writeNote(note){
                 mouseX = event.pageX;
                 mouseY = event.pageY;
 
-                noteX = $(this).css("left");
+                noteX = $(this)t");
                 noteY = $(this).css("top");
                 noteX = noteX.substr(0, noteX.length - 2);
                 noteY = noteY.substr(0, noteY.length - 2);

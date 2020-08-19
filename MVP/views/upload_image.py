@@ -32,6 +32,11 @@ def upload_image(pageID):
 
     type = file.filename[-4:]
 
+    if type ==".png" or type ==".jpg" or type =="jpeg" :
+        pass
+    else :
+        filename = filename + '.png'
+
     file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + filename)
 
     ### keep the information that this file is in this page in the 'tags' many to many SQL table

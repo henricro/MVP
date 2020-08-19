@@ -31,7 +31,7 @@ def delete_note(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    if noteClass == "pageLink" :
+    if noteClass == "pageLink" or noteClass  =="imagePageLink" :
 
         type = note.get("type")
         destPageID = note.get("pageID")

@@ -1,10 +1,10 @@
 .note {
-  position: relative;
-  z-index: 9;
+  position: absolute;
   padding : 3px;
-  border: 1px solid #d3d3d3;
+  border : 1px solid rgb(0, 0, 0, 0);
   border-radius : 5px;
   text-align: center;
+  background: inherit;
 }
 
 /**********  Image   ***********/
@@ -99,7 +99,7 @@
   display:flex;
   width:100%;
   color: rgb(136, 114, 217);
-  opacity: 0.35;
+  opacity: 0.1;
   align-items:center;
   justify-content:center;
   font-size:15px;
@@ -190,7 +190,7 @@
   display:flex;
   width:100%;
   color: #fff;
-  opacity: 0.8;
+  opacity: 0.1;
   align-items:center;
   justify-content:center;
   font-size:20px;
@@ -206,8 +206,16 @@
     height:100%;
 }
 
-.imagePageLink:hover{
-  background-color : rgb(175, 235, 173, 0.5);
+.child.imagePageLink:hover{
+    background-color : rgb(200, 240, 149, 0.5);
+}
+
+.parent.imagePageLink:hover{
+    background-color : rgb(52, 190, 121, 0.5);
+}
+
+.visitor.imagePageLink:hover{
+    background-color : rgb(233, 227, 97, 0.5);
 }
 
 .imagePageLink:hover .imagePageLink_name {
@@ -219,7 +227,6 @@
 .imagePageLink:hover .imagePageLink_img {
   opacity: 0.3;
 }
-
 
 
 
@@ -306,7 +313,7 @@
     border:1px solid orange;
 }
 
-#boxBox{
+#pasteBox{
     z-index: 15;
     display : none;
     position: absolute;
@@ -314,13 +321,14 @@
     left: 300px;
 }
 
-#choiceBox{
+.pasteChoiceBox{
     border : 1px solid rgb(173, 209, 220);
     border-radius : 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color:#EDF9FC;
+    padding-top:5px;
 }
 
 .choiceButton{
@@ -347,28 +355,55 @@
     border-radius : 2px;
 }
 
-#choiceParent{
+.choiceDGreen{
     background-color : rgb(52, 190, 121, 0.5);
 }
 
-#choiceChild{
+.choiceLGreen{
     background-color : rgb(200, 240, 149, 0.5);
 }
 
-#choiceVisitor{
+.choiceYellow{
     background-color : rgb(233, 227, 97, 0.5);
 }
 
-#choiceParent:hover{
+.choiceDGreen:hover{
     background-color : rgb(52, 190, 121, 0.9);
 }
 
-#choiceChild:hover{
+.choiceLGreen:hover{
     background-color : rgb(200, 240, 149, 0.9);
 }
 
-#choiceVisitor:hover{
+.choiceYellow:hover{
     background-color : rgb(233, 227, 97, 0.9);
 }
 
+.choiceLOrange{
+    background-color : rgb(249, 190, 79, 0.5);
+}
 
+.choiceLOrange:hover{
+    background-color : rgb(249, 190, 79, 0.9);
+}
+
+
+#pageRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+
+/*   LINES  */
+
+.line{
+    border: dashed 1px black;
+    position: absolute;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    z-index:-2;
+}

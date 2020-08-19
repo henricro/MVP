@@ -97,6 +97,29 @@ $('*:not("div")').on(
 
                 }
 
+                if (file['name'].includes('Screenshot')) {
+
+                    console.log("upload image ajax")
+
+                    $.ajax({
+                        type: 'POST',
+                        url:  '/upload_image/'+pageID,
+                        data: form_data,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function (data) {
+                            console.log("success");
+                            window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+pageID;
+                        }
+                    });
+
+                }
+
                 if (type ==".pdf") {
 
                     console.log("upload pdf ajax")

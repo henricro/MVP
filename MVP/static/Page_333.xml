@@ -1,0 +1,26 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="296" type="parent"><x>0</x><y>0</y><content>idees</content></note><note id="2" class="pageLink" pageID="274" type="child"><x>1088</x><y>275</y><content>Id&#233;es Rodo</content></note>
+    <note id="3" class="note"><x>121</x><y>100</y><content>utilit&#233; que je vois :</content></note><note id="4" class="pageLink" pageID="328" type="child"><x>756</x><y>388</y><content>competitors</content></note><note id="5" class="note"><x>159</x><y>141</y><content>mettre de l ordre et donner de la visibilit&#233; (afin de responsabiliser) la parole poltique</content></note><note id="6" class="note"><x>162</x><y>177</y><content>proposer outil qui permette &#224; journaliste/intellectuel de pr&#233;senter clairement ses arguments sur un sujet&amp;nbsp;</content></note><note id="7" class="note"><x>164</x><y>196</y><content>du global au pr&#233;cis</content></note><note id="8" class="pageLink" pageID="271" type="child"><x>522</x><y>316</y><content>GYST MVP</content></note>
+    <note id="9" class="note"><x>873</x><y>394</y><content>plateformes collectives</content></note><note id="10" class="note"><x>1071</x><y>395</y><content>plateformes individuelles</content></note><note id="11" class="note"><x>532</x><y>484</y><content>app for organizing stuff</content></note><note id="12" class="note"><x>536</x><y>592</y><content>organizing thoughts</content></note><note id="13" class="note"><x>523</x><y>627</y><content>brainstorming</content></note><note id="14" class="note"><x>382</x><y>597</y><content>internet review</content></note><note id="15" class="note"><x>390</x><y>686</y><content>organize content for a course</content></note><note id="16" class="note"><x>683</x><y>666</y><content>Drive for a team</content></note><note id="17" class="note"><x>607</x><y>706</y><content>benchmarking</content></note><note id="18" class="note"><x>803</x><y>721</y><content>organize research</content></note><note id="19" class="note"><x>83</x><y>537</y><content>create your own universe/platform&lt;div&gt;where you centralize knowledge&lt;/div&gt;&lt;div&gt;on a given subject&lt;/div&gt;</content></note><note id="20" class="note"><x>222</x><y>400</y><content>what we re building :&amp;nbsp;</content></note><note id="21" class="note"><x>301</x><y>422</y><content>TOOLS</content><css>font-size:18px;</css></note><note id="22" class="note"><x>485</x><y>387</y><content>save and sort&amp;nbsp;&lt;div&gt;information from the web&lt;/div&gt;</content></note><note id="23" class="note"><x>792</x><y>464</y><content>just a basic chalkboard app&lt;div&gt;(like a chalkboard but with more stuff because it s digital)&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>23</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

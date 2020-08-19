@@ -3,14 +3,11 @@
 ////////////////////////////////////////////////
 
 
-////////////////  CHILDREN ////////////////////
-//////////////////////////////////////////////
-
 $('.pageLink').each(function(){
-    createPageLinkChild($(this));
+    createPageLink($(this));
 });
 
-function createPageLinkChild(note) {
+function createPageLink(note) {
 
     var id = note.attr("id");
 
@@ -32,12 +29,99 @@ function createPageLinkChild(note) {
     note.attr("title", "go to page ".concat(pageTitle));
     note.html(content);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
+
 }
 
 
 ///////////////////////////////////////////////
 /////////   CREATE A NEW PAGE  ///////////////
 /////////////////////////////////////////////
+
+$(document).bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    console.log("happy go lucky");
+
+    new_x = event.pageX
+    new_y = event.pageY
+
+    console.log(x, y);
+
+    $("#pageRCBox").css("left", new_x);
+    $("#pageRCBox").css("top", new_y);
+    $("#pageRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#pageRCBox").is(event.target) && $("#pageRCBox").has(event.target).length === 0){
+
+            $("#pageRCBox").hide();
+
+        }
+
+    });
+
+    $('.choiceLOrange').bind('click', function() {
+        var title = prompt("Name", "");
+
+        $.ajax({
+            url: '/new_page/'+pageID,
+            type: "POST",
+            data: JSON.stringify({
+                new_x : new_x,
+                new_y : new_y,
+                title : title
+            }),
+            contentType: "application/json",
+            success: function (data) {
+                console.log(data);
+                window.location.href='/open_page/'+pageID;
+            },
+            error: function (error) {
+                console.log("problem");
+                window.location.href='/open_page/'+pageID;
+            }
+        });
+    });
+
+
+});
+
+
+/*
+$(document).bind('contextmenu', function(event) {
+
+    console.log("go fuck yourselves");
+
+    x= event.pageX
+    y=event.pageY
+
+    console.log(x, y);
+
+    //$("#pageRCBox").css("left", x.concat("px"));
+    //$("#pageRCBox").css("left", x.concat("px"));
+    $("#pageRCBox").show();//Right click!<
+
+
+});
+
 
 $(function() {
       "use strict";
@@ -88,7 +172,7 @@ $(function() {
     });
 
 
-
+*/
 
 ///////////////////////////////////////////////////////
 /////////////    SELECT PAGELINK   ////////////////////
@@ -194,8 +278,19 @@ $(function() {
         selector: '.pageLink',
         callback: function(key, options) {
 
-           if (key === 'edit') {
-             writePageLink($(this));
+           if (key === 'copy') {
+             copyNote($(this));
+           }
+           else if (key === 'edit') {
+
+                note = $(this);
+
+                $(document).bind('click.writePageLink', function() {
+
+                    writePageLink(note);
+
+                });
+
            }
            else if (key === "image"){
 
@@ -222,7 +317,40 @@ $(function() {
                 });
               });
 
+           } else if (key === 'style') {
+
+                if ($(this).attr('added_css')){
+                    var value = prompt("CSS", $(this).attr('added_css'));
+                } else {
+                    var value = prompt("CSS", "");
+                }
+
+                if (value != null) {
+
+                    console.log("sending css");
+
+                    $.ajax({
+                        url: '/add_css/'+pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            css : value,
+                            id : id
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                            window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+pageID;
+                        }
+                    });
+
+                }
+
            }
+
 
         },
 
@@ -238,6 +366,10 @@ $(function() {
           'image': {
             name: "Add Image",
             icon: "fa-images"
+          },
+          'style': {
+            name : "Style",
+            icon : "fa-paint-brush"
           }
         }
 
@@ -255,10 +387,15 @@ function writePageLink(note){
 
     console.log(note);
 
-    console.log(note.html());
+    console.log("write in page link");
+
+    note.unbind('mousedown.drag');
 
     note.unbind('click.select');
-    note.unbind('mousedown.drag');
+
+    $(document).unbind('click.writePageLink');
+
+    note.attr("contenteditable", "true");
 
     $(document).bind('click.clickout', function() {
 
@@ -266,53 +403,49 @@ function writePageLink(note){
 
             $(document).unbind('click.clickout');
 
-            $(document).bind('click.update_content', function() {
+            console.log("click out of pageLink");
 
-                if (!note.is(event.target) && note.has(event.target).length === 0){
+            note.bind('click.select', function(){
+                selectPageLink($(this));
+            });
 
-                    content = note.html();
+            content = note.html();
 
-                    console.log(content);
+            console.log(content);
 
-                    $(document).unbind('click.update_content');
+            id = note.attr('id');
 
-                    id = note.attr('id')
-
-                    $.ajax({
-                        url: '/update_content/' + pageID,
-                        type: "POST",
-                        data: JSON.stringify({
-                            id: id,
-                            content: content
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            console.log(data);
-                        },
-                        error: function (error) {
-                            console.log("problem");
-                        }
-                    });
-
-                    note.attr("contenteditable", "false");
-
-                    note.bind('click.select', function() {
-                        selectPageLink($(this));
-                    });
-
-                    note.bind('mousedown.drag', function(){
-
-                        mouseX = event.pageX;
-                        mouseY = event.pageY;
-
-                        noteX = parseInt(note.css("left").slice(0, -2));
-                        noteY = parseInt(note.css("top").slice(0, -2));
-
-                        dragFunc(note, noteX, noteY);
-
-                    });
-
+            $.ajax({
+                url: '/update_content/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    id: id,
+                    content: content
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log("problem");
                 }
+            });
+
+            note.attr("contenteditable", "false");
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = $(this).css("left");
+                noteY = $(this).css("top");
+                noteX = noteX.substr(0, noteX.length - 2);
+                noteY = noteY.substr(0, noteY.length - 2);
+                noteX = parseInt(noteX);
+                noteY = parseInt(noteY);
+
+                dragFunc(note);
 
             });
 

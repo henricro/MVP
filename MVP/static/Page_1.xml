@@ -3,8 +3,8 @@
 <notes>
     
     <note id="title">
-        <x>757</x>
-        <y>68</y>
+        <x>807</x>
+        <y>114</y>
     </note>
 
     <note id="parents">
@@ -14,28 +14,13 @@
         <height>193</height>
     </note>
 
-    <note id="234" class="pdf"><width>161</width><height>221</height><x>177</x><y>158</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id></note>
-    <note id="394" class="pageLink" pageID="121" type="child"><x>750</x><y>189</y><content>videos youtube</content></note>
-    <note id="419" class="noteLink"><x>640</x><y>538</y><content>hony donkey</content><link>https://www.eurosport.fr</link></note>
-    <note id="423" class="note"><x>1173</x><y>356</y><content>new content</content></note>
-    <note id="424" class="pageLink" pageID="168" type="child"><x>588</x><y>102</y><content>Claire</content></note>
-    <note id="425" class="imagePageLink" pageID="176" type="child"><x>461</x><y>292</y><content>keep</content><image>books.jpeg</image><image_id>407</image_id><width>84</width><height>60</height></note>
-    <note id="428" class="imageLink"><x>218</x><y>526</y><width>300</width><height>200</height><name>youtube-o05k7gA95Gw.jpg</name><image_id>398</image_id><link>https://www.youtube.com/watch?v=o05k7gA95Gw</link></note>
-    <note id="430" class="pageLink" pageID="183" type="child"><x>591</x><y>471</y><content>samuel</content></note>
-    <note id="437" class="note"><x>451</x><y>140</y><content>new content</content></note>
-    <note id="442" class="pageLink" pageID="183" type="child"><x>847</x><y>583</y><content>samuel</content></note>
-    <note id="443" class="pageLink" pageID="190" type="child"><x>692</x><y>246</y><content>testing</content></note>
-    <note id="445" class="pdf"><x>1332</x><y>171</y><name>une_passion.pdf</name><image>une_passion.pdf.first_page.jpg</image><pdf_id>11</pdf_id><width>221</width><height>321</height></note>
-    <note id="446" class="pageLink" pageID="197" type="child"><x>752</x><y>230</y><content>judith</content></note>
-    <note id="447" class="pageLink" pageID="198" type="child"><x>667</x><y>206</y><content>cacahuete</content></note>
-    <note id="449" class="pdf"><x>587</x><y>610</y><name>une_passion.pdf</name><image>une_passion.pdf.first_page.jpg</image><pdf_id>13</pdf_id><width>100</width><height>150</height></note>
-    <note id="450" class="imageLink"><x>829</x><y>338</y><width>300</width><height>200</height><name>youtube-f48acE_3qnE.jpg</name><image_id>406</image_id><link>https://www.youtube.com/watch?v=f48acE_3qnE</link></note>
-<note id="451" class="pageLink" pageID="198" type="visitor"><x>613</x><y>171</y><content>cacahuete</content></note>
-    <note id="452" class="pageLink" pageID="198" type="parent"><x>9</x><y>24</y><content>cacahuete</content></note>
-    <note id="455" class="pageLink" pageID="212" type="child"><x>365</x><y>445</y><content>lorraine</content></note><note id="457" class="imagePageLink" pageID="219" type="child"><x>971</x><y>104</y><content>recettes de cuisine</content><image>cuisine-libanaise.jpg</image><image_id>416</image_id><width>274</width><height>153</height></note><note id="458" class="pageLink" pageID="176" type="child"><x>458</x><y>198</y><content>keep</content></note></notes>
+    <note id="460" class="imagePageLink" pageID="266" type="child"><x>550</x><y>408</y><content>libraries</content><image>library.png</image><image_id>429</image_id><width>95</width><height>55</height></note>
+    <note id="463" class="pageLink" pageID="271" type="child"><x>1063</x><y>441</y><content>GYST MVP</content></note>
+    <note id="478" class="pageLink" pageID="285" type="child"><x>999</x><y>390</y><content>movies</content></note>
+    <note id="509" class="imagePageLink" pageID="296" type="child"><x>716</x><y>474</y><content>idees</content><image>lightbulbs.jpeg</image><image_id>446</image_id><width>100</width><height>49</height></note><note id="510" class="imagePageLink" pageID="297" type="child"><x>842</x><y>485</y><content>connaissances</content><image>world-works.jpeg</image><image_id>461</image_id><width>73</width><height>68</height></note><note id="512" class="imagePageLink" pageID="299" type="child"><x>525</x><y>296</y><content>vacances</content><image>bretagne.jpg</image><image_id>448</image_id><width>47</width><height>31</height></note><note id="514" class="note"><x>977</x><y>342</y><content>projets</content><css>color : #7E1D7D; font-size: 18px; border: 0px; text-decoration: underline;</css></note><note id="519" class="imagePageLink" pageID="303" type="child"><x>772</x><y>530</y><content>thoughts</content><image>diderot.jpg</image><image_id>462</image_id><width>60</width><height>76</height></note><note id="522" class="pageLink" pageID="305" type="child"><x>783</x><y>197</y><content>days</content></note><note id="523" class="pageLink" pageID="306" type="child"><x>1151</x><y>309</y><content>Work</content></note><note id="524" class="imagePageLink" pageID="308" type="child"><x>936</x><y>210</y><content>media</content><image>presse.jpg</image><image_id>449</image_id><width>90</width><height>55</height></note><note id="527" class="pageLink" pageID="310" type="child"><x>563</x><y>337</y><content>administratif</content></note><note id="528" class="pageLink" pageID="311" type="child"><x>605</x><y>296</y><content>Etudes</content></note><note id="529" class="imagePageLink" pageID="307" type="child"><x>1060</x><y>314</y><content>M&#246;kki</content><image>Screenshot_2020-08-17_at_15.17.02.png</image><image_id>473</image_id><width>71</width><height>30</height></note><note id="530" class="imagePageLink" pageID="312" type="child"><x>1073</x><y>352</y><content>le C !</content><image>Screenshot_2020-08-17_at_15.17.59.png</image><image_id>474</image_id><width>60</width><height>33</height></note><note id="535" class="pageLink" pageID="323" type="child"><x>1143</x><y>350</y><content>learn to code</content></note><note id="537" class="note"><x>776</x><y>325</y><content>rentrer &#224; paris : EPAULE</content></note><note id="541" class="pageLink" pageID="302" type="child"><x>669</x><y>220</y><content>lifestyle</content></note><note id="542" class="pageLink" pageID="300" type="child"><x>708</x><y>184</y><content>social</content></note><note id="545" class="note"><x>733</x><y>271</y><content>jeudi 17h call Louis</content></note><note id="546" class="note"><x>773</x><y>423</y><content>appeler Cl&#233;ment !</content></note><note id="547" class="note"><x>671</x><y>372</y><content>prendre un verre un jour avec la pote de Claire&amp;nbsp;&lt;div&gt;pour lui poser des questions sur Poutine&lt;/div&gt;</content></note><note id="552" class="noteLink"><x>1216</x><y>225</y><content>new content</content><link>!(note.attr("id")==$(event.target).attr("id"))</link></note></notes>
 
 <meta>
-    <biggest_id>458</biggest_id>
+    <biggest_id>555</biggest_id>
     <type/>
 </meta>
 
