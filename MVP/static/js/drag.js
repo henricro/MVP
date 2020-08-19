@@ -67,9 +67,11 @@ function dragFunc(note, noteX, noteY) {
 
             console.log("event target"); console.log(event.target);
 
-            console.log(id, $(event.target).attr("id"));
+            console.log(id);
 
             if ( !($(event.target).attr("id") == id) ){
+
+                console.log("not same id");
 
                 if ( event.target.classList.contains('pageLink') ){
 
@@ -90,11 +92,11 @@ function dragFunc(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            //window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+pageID;
                         },
                         error: function (error) {
                             console.log("problem");
-                            //window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+pageID;
                         }
 
                     });
@@ -117,6 +119,32 @@ function dragFunc(note, noteX, noteY) {
                         error: function (error) {
                             console.log("problem");
                             window.location.href='/open_page/'+pageID;
+                        }
+
+                    });
+
+                }
+
+                else {
+
+                    console.log("moved an object");
+
+                    // ajax call with id x and y postion if element has moved
+                    $.ajax({
+
+                        url: '/update_position/'+pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            id: id,
+                            x: x,
+                            y: y
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log("problem");
                         }
 
                     });

@@ -53,14 +53,14 @@ function createPageLink(note) {
 /////////   CREATE A NEW PAGE  ///////////////
 /////////////////////////////////////////////
 
-$(document).bind('contextmenu', function(event) {
+$('*:not("div")').bind('contextmenu', function(event) {
 
     event.preventDefault();
 
     console.log("happy go lucky");
 
-    new_x = event.pageX
-    new_y = event.pageY
+    new_x = event.pageX;
+    new_y = event.pageY;
 
     console.log(x, y);
 
@@ -78,7 +78,7 @@ $(document).bind('contextmenu', function(event) {
 
     });
 
-    $('.choiceLOrange').bind('click', function() {
+    $('#pageRC_1').bind('click', function() {
         var title = prompt("Name", "");
 
         $.ajax({
@@ -270,6 +270,107 @@ function selectPageLink(note){
 ///////////////// RIGHT CLICK ///////////////
 /////////////////////////////////////////////
 
+
+$(".pageLink").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    note = $(this);
+    id = note.attr("id");
+    link = note.attr("link");
+    css = note.attr("added_css");
+
+    $("#pageLinkRCBox").css("left", new_x);
+    $("#pageLinkRCBox").css("top", new_y);
+    $("#pageLinkRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#pageLinkRCBox").is(event.target) && $("#pageLinkRCBox").has(event.target).length === 0){
+
+            $("#pageLinkRCBox").hide();
+
+        }
+
+    });
+
+    // Edit
+    $('#pageLinkRC_1').bind('click', function() {
+
+        $(document).bind('click.writePageLink', function() {
+
+            writePageLink(note);
+
+        });
+
+    });
+
+    // Edit Image
+    $('#pageLinkRC_2').bind('click', function() {
+
+        modalPageLink.show();
+
+        modalPageLink.find('.drop-area').attr("pageLink_id", id);
+        //console.log(modal);
+
+        // When the user clicks anywhere outside of the modal, close it
+        $(document).bind('click.first' , function() {
+           $(document).bind('click.second' , function() {
+
+               if (event.target.classList.contains('drop-area')) {
+                  console.log('clicked the drop area');
+               }
+               else {
+                   modalPageLink.hide();
+                   $(document).unbind('click.first');
+                   $(document).unbind('click.second');
+               }
+
+           });
+        });
+
+    });
+
+    // Style
+    $('#pageLinkRC_3').bind('click', function() {
+        if (css){
+            var value = prompt("CSS", css);
+        } else {
+            var value = prompt("CSS", "");
+        }
+
+        if (value != null) {
+
+            console.log("sending css");
+
+            $.ajax({
+                url: '/add_css/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    css : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+    });
+
+});
+
+
+/*
 $(function() {
 
       "use strict";
@@ -376,7 +477,7 @@ $(function() {
       });
 
 });
-
+*/
 
 /////////////////////////////////////////////////////////
 /////////////    WRITE IN PAGELINK   ////////////////////

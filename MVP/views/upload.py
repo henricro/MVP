@@ -119,3 +119,15 @@ def upload_pdf(pageID):
         pix = None
 
     '''
+
+
+
+@application.route("/upload_xlsx/<pageID>", methods=['POST'])
+def upload_xlsx(pageID):
+
+    pageID = str(pageID)
+    pageName = 'Page_' + pageID
+
+    print("upload xlsx route")
+
+    pass

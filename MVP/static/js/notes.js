@@ -274,6 +274,100 @@ function writeNote(note){
 ///////////////// RIGHT CLICK NOTE ///////////////
 //////////////////////////////////////////////////
 
+$(".note").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    id = $(this).attr("id");
+    css = $(this).attr('added_css');
+
+    $("#noteRCBox").css("left", new_x);
+    $("#noteRCBox").css("top", new_y);
+    $("#noteRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#noteRCBox").is(event.target) && $("#noteRCBox").has(event.target).length === 0){
+
+            $("#noteRCBox").hide();
+
+        }
+
+    });
+
+    // Add Link
+    $('#noteRC_1').bind('click', function() {
+
+        var value = prompt("Lien", "");
+
+        if (value != null) {
+
+            $.ajax({
+                url: '/add_link_note/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    link : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+
+    });
+
+    // Copy Note
+    $('#noteRC_2').bind('click', function() {
+        copyNote($(this));
+    });
+
+    // Style
+    $('#noteRC_3').bind('click', function() {
+        if (css){
+            var value = prompt("CSS", css);
+        } else {
+            var value = prompt("CSS", "");
+        }
+
+        if (value != null) {
+
+            console.log("sending css");
+
+            $.ajax({
+                url: '/add_css/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    css : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+    });
+
+});
+
+/*
 
 $(function() {
       "use strict";
@@ -371,6 +465,6 @@ $(function() {
 
     });
 
-
+*/
 
 

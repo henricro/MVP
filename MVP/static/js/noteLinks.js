@@ -173,12 +173,108 @@ function selectNoteLink(note){
 }
 
 
-
-
 /////////////////////////////////////////////
 ///////////////// RIGHT CLICK ///////////////
 /////////////////////////////////////////////
 
+$(".noteLink").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    id = $(this).attr("id");
+    link = $(this).attr("link");
+
+    $("#noteLinkRCBox").css("left", new_x);
+    $("#noteLinkRCBox").css("top", new_y);
+    $("#noteLinkRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#noteLinkRCBox").is(event.target) && $("#noteLinkRCBox").has(event.target).length === 0){
+
+            $("#noteLinkRCBox").hide();
+
+        }
+
+    });
+
+    // Change Link
+    $('#noteLinkRC_1').bind('click', function() {
+
+        var value = prompt("Link", link);
+
+        if (value != null) {
+            $.ajax({
+                url: '/change_link/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    link : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+        }
+
+    });
+
+    // Edit
+    $('#noteLinkRC_2').bind('click', function() {
+
+        note = $(this);
+
+        $(document).bind('click.writeNoteLink', function() {
+            writeNoteLink(note);
+        });
+
+    });
+
+    //Style
+    $('#noteLinkRC_3').bind('click', function() {
+        if ($(this).attr('added_css')){
+            var value = prompt("CSS", $(this).attr('added_css'));
+        } else {
+            var value = prompt("CSS", "");
+        }
+
+        if (value != null) {
+
+            console.log("sending css");
+
+            $.ajax({
+                url: '/add_css/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    css : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+    });
+
+});
+
+/*
 $(function() {
 
       "use strict";
@@ -285,7 +381,7 @@ $(function() {
       });
 
 });
-
+*/
 
 /////////////////////////////////////////////////////////
 /////////////    WRITE IN NOTELINK   ////////////////////

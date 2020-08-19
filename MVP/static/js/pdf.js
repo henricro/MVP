@@ -47,6 +47,26 @@ function createPDF(note) {
     note.append(img);
     note.append(name_div);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+
+            note.find(".pdf_img").attr('style', css);
+
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
+
 }
 
 
@@ -175,6 +195,67 @@ function selectPDF(note){
 /////////////////////////////////////////////////
 
 
+$(".pdf").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    id = $(this).attr("id");
+    css = $(this).attr("added_css");
+
+    $("#pdfRCBox").css("left", new_x);
+    $("#pdfRCBox").css("top", new_y);
+    $("#pdfRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#pdfRCBox").is(event.target) && $("#pdfRCBox").has(event.target).length === 0){
+
+            $("#pdfRCBox").hide();
+
+        }
+
+    });
+
+    //Style
+    $('#pdfRC_1').bind('click', function() {
+        if (css){
+            var value = prompt("CSS", css);
+        } else {
+            var value = prompt("CSS", "");
+        }
+
+        if (value != null) {
+
+            console.log("sending css");
+
+            $.ajax({
+                url: '/add_css/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    css : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+    });
+
+});
+
+
+/*
 $(function() {
 
       "use strict";
@@ -203,4 +284,4 @@ $(function() {
 
 });
 
-
+*/

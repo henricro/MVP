@@ -234,7 +234,6 @@
 
 .pageLink {
   position: absolute;
-  z-index: 9;
   padding : 3px;
   border: 1px solid #d3d3d3;
   border-radius : 5px;
@@ -321,7 +320,7 @@
     left: 300px;
 }
 
-.pasteChoiceBox{
+.choiceBox{
     border : 1px solid rgb(173, 209, 220);
     border-radius : 2px;
     display: flex;
@@ -331,8 +330,9 @@
     padding-top:5px;
 }
 
+
 .choiceButton{
-    width:110px;
+    width:130px;
     background-color: green;
     margin-bottom: 5px;
     margin-left:15px;
@@ -340,6 +340,7 @@
     height : 20px;
     text-align: center;
     cursor: pointer;
+    border-radius : 2px;
 }
 
 
@@ -351,9 +352,6 @@
     font-weight : bold;
 }
 
-.choiceButton{
-    border-radius : 2px;
-}
 
 .choiceDGreen{
     background-color : rgb(52, 190, 121, 0.5);
@@ -389,6 +387,62 @@
 
 
 #pageRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#noteRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#noteLinkRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#imageRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#imageLinkRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#pdfRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#pageLinkRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#imagePageLinkRCBox{
     z-index: 15;
     display : none;
     position: absolute;

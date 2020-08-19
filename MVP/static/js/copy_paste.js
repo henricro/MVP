@@ -45,7 +45,7 @@ $(document).bind('paste', function(e) {
 
         if (noteClass.includes("pageLink")){
 
-            $("#pasteBox")t", x.concat("px"));
+            $("#pasteBox").css("left", x.concat("px"));
             $("#pasteBox").css("top", y.concat("px"));
             $("#pasteBox").show();
 
@@ -55,7 +55,7 @@ $(document).bind('paste', function(e) {
                 }
             });
 
-            $('.choiceLGreen').bind('click', function(){
+            $('#paste_1').bind('click', function(){
                 console.log("clicked child");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID,
@@ -80,7 +80,7 @@ $(document).bind('paste', function(e) {
                 });
             });
 
-            $('.choiceDGreen').bind('click', function(){
+            $('#paste_2').bind('click', function(){
                 console.log("clicked parent");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID,
@@ -103,7 +103,7 @@ $(document).bind('paste', function(e) {
                 });
             });
 
-            $('.choiceYellow').bind('click', function(){
+            $('#paste_3').bind('click', function(){
                 console.log("clicked visitor");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID,
@@ -130,7 +130,7 @@ $(document).bind('paste', function(e) {
 
         } else if (noteClass.includes("imagePageLink")){
 
-            $("#pasteBox")t", x.concat("px"));
+            $("#pasteBox").css("left", x.concat("px"));
             $("#pasteBox").css("top", y.concat("px"));
             $("#pasteBox").show();
 
@@ -140,7 +140,7 @@ $(document).bind('paste', function(e) {
                 }
             });
 
-            $('.choiceLGreen').bind('click', function(){
+            $('#paste_1').bind('click', function(){
                 console.log("clicked child");
                 $.ajax({
                     url: '/paste_imagePageLink/' + pageID,
@@ -165,7 +165,7 @@ $(document).bind('paste', function(e) {
                 });
             });
 
-            $('.choiceDGreen').bind('click', function(){
+            $('#paste_2').bind('click', function(){
                 console.log("clicked parent");
                 $.ajax({
                     url: '/paste_imagePageLink/' + pageID,
@@ -188,7 +188,7 @@ $(document).bind('paste', function(e) {
                 });
             });
 
-            $('.choiceYellow').bind('click', function(){
+            $('#paste_3').bind('click', function(){
                 console.log("clicked visitor");
                 $.ajax({
                     url: '/paste_imagePageLink/' + pageID,

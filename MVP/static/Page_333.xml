@@ -4,23 +4,72 @@
 
     <note id="title">
         <x>680</x>
-        <y>300</y>
+        <y>301</y>
     </note>
 
     <note id="parents">
-        <x>-150</x>
-        <y>-100</y>
+        <x>-67</x>
+        <y>-116</y>
         <width>300</width>
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="296" type="parent"><x>0</x><y>0</y><content>idees</content></note><note id="2" class="pageLink" pageID="274" type="child"><x>1088</x><y>275</y><content>Id&#233;es Rodo</content></note>
-    <note id="3" class="note"><x>121</x><y>100</y><content>utilit&#233; que je vois :</content></note><note id="4" class="pageLink" pageID="328" type="child"><x>756</x><y>388</y><content>competitors</content></note><note id="5" class="note"><x>159</x><y>141</y><content>mettre de l ordre et donner de la visibilit&#233; (afin de responsabiliser) la parole poltique</content></note><note id="6" class="note"><x>162</x><y>177</y><content>proposer outil qui permette &#224; journaliste/intellectuel de pr&#233;senter clairement ses arguments sur un sujet&amp;nbsp;</content></note><note id="7" class="note"><x>164</x><y>196</y><content>du global au pr&#233;cis</content></note><note id="8" class="pageLink" pageID="271" type="child"><x>522</x><y>316</y><content>GYST MVP</content></note>
-    <note id="9" class="note"><x>873</x><y>394</y><content>plateformes collectives</content></note><note id="10" class="note"><x>1071</x><y>395</y><content>plateformes individuelles</content></note><note id="11" class="note"><x>532</x><y>484</y><content>app for organizing stuff</content></note><note id="12" class="note"><x>536</x><y>592</y><content>organizing thoughts</content></note><note id="13" class="note"><x>523</x><y>627</y><content>brainstorming</content></note><note id="14" class="note"><x>382</x><y>597</y><content>internet review</content></note><note id="15" class="note"><x>390</x><y>686</y><content>organize content for a course</content></note><note id="16" class="note"><x>683</x><y>666</y><content>Drive for a team</content></note><note id="17" class="note"><x>607</x><y>706</y><content>benchmarking</content></note><note id="18" class="note"><x>803</x><y>721</y><content>organize research</content></note><note id="19" class="note"><x>83</x><y>537</y><content>create your own universe/platform&lt;div&gt;where you centralize knowledge&lt;/div&gt;&lt;div&gt;on a given subject&lt;/div&gt;</content></note><note id="20" class="note"><x>222</x><y>400</y><content>what we re building :&amp;nbsp;</content></note><note id="21" class="note"><x>301</x><y>422</y><content>TOOLS</content><css>font-size:18px;</css></note><note id="22" class="note"><x>485</x><y>387</y><content>save and sort&amp;nbsp;&lt;div&gt;information from the web&lt;/div&gt;</content></note><note id="23" class="note"><x>792</x><y>464</y><content>just a basic chalkboard app&lt;div&gt;(like a chalkboard but with more stuff because it s digital)&lt;/div&gt;</content></note></notes>
+<note id="1" class="pageLink" pageID="296" type="parent"><x>119</x><y>15</y><content>idees</content></note>
+    <note id="2" class="pageLink" pageID="274" type="child"><x>1128</x><y>264</y><content>Id&#233;es Rodo</content></note>
+    <note id="8" class="pageLink" pageID="271" type="child"><x>1027</x><y>289</y><content>GYST MVP</content></note>
+    <note id="11" class="note"><x>653</x><y>352</y><content>an app for organizing stuff</content><css>color : #8C1248; font-size: 20px;</css></note>
+    <note id="24" class="pageLink" pageID="375" type="child"><x>1098</x><y>209</y><content>pitch deck</content></note>
+    <note id="25" class="note"><x>1287</x><y>398</y><content>what you can do with GYST :</content><css>font-weight: bold; text-decoration: underline;</css></note>
+    <note id="26" class="note"><x>1333</x><y>479</y><content>organize documents and information&amp;nbsp;&lt;div&gt;in a visually intuitive space&lt;/div&gt;</content><css>text-align: left;</css></note>
+    <note id="27" class="note"><x>1334</x><y>528</y><content>create a cool looking/ flexible library&amp;nbsp;&lt;div&gt;for your movies/music/books ...&lt;/div&gt;</content><css>text-align:left;</css></note>
+    <note id="29" class="note"><x>834</x><y>511</y><content>SAVE</content></note>
+    <note id="30" class="note"><x>1085</x><y>509</y><content>ORGANIZE/&lt;div&gt;STRUCTURE&lt;/div&gt;</content></note>
+    <note id="31" class="note"><x>943</x><y>677</y><content>EXPLORE/&lt;div&gt;NAVIGATE&lt;/div&gt;</content></note>
+    <note id="35" class="note"><x>922</x><y>559</y><content>S / O / E</content><css>font-weight:bold; font-size: 30px; text-decoration:underline;</css></note>
+    <note id="38" class="note"><x>525</x><y>933</y><content>S / O / E</content><css>font-weight : bold; font-size: 15px;</css></note>
+    <note id="39" class="note"><x>379</x><y>970</y><content>thoughts</content></note>
+    <note id="40" class="note"><x>540</x><y>1027</y><content>team documents</content></note>
+    <note id="41" class="note"><x>422</x><y>1012</y><content>course content</content></note>
+    <note id="42" class="note"><x>648</x><y>988</y><content>your music/ movies</content></note>
+    <note id="43" class="note"><x>274</x><y>907</y><content>information on a subject&amp;nbsp;&lt;div&gt;you re investigating&lt;/div&gt;</content></note>
+    <note id="44" class="note"><x>151</x><y>476</y><content>&lt;div&gt;a set of tools that helps you&amp;nbsp;&lt;/div&gt;&lt;div&gt;get your shit together&lt;/div&gt;&lt;div&gt;easily, visually, intuitively&lt;/div&gt;</content></note>
+    <note id="45" class="note"><x>183</x><y>435</y><content>what is GYST ?</content><css>font-weight: bold; font-size: 15px; text-decoration: underline;</css></note>
+    <note id="46" class="note"><x>155</x><y>566</y><content>it s a drive,&lt;div&gt;&amp;nbsp;its a mind mapping tool,&amp;nbsp;&lt;/div&gt;&lt;div&gt;all in one&lt;/div&gt;</content></note>
+    <note id="47" class="note"><x>752</x><y>948</y><content>ideas</content></note>
+    <note id="48" class="note"><x>1140</x><y>943</y><content>who would use it ?</content><css>font-weight:bold; font-size:15px;</css></note>
+    <note id="49" class="image"><x>460</x><y>519</y><width>2</width><height>2</height><name>1-brain.jpg</name><image_id>506</image_id></note>
+    <note id="50" class="note"><x>983</x><y>930</y><content>anybody</content></note>
+    <note id="51" class="note"><x>1034</x><y>997</y><content>a team</content></note>
+    <note id="52" class="note"><x>1123</x><y>1042</y><content>a researcher</content></note>
+    <note id="53" class="note"><x>1259</x><y>1031</y><content>a journalist</content></note>
+    <note id="54" class="note"><x>1362</x><y>983</y><content>a student</content></note>
+    <note id="56" class="pageLink" pageID="328" type="child"><x>976</x><y>234</y><content>competitors</content></note>
+    <note id="57" class="note"><x>1360</x><y>925</y><content>a creative</content></note>
+    <note id="63" class="pageLink" pageID="389" type="child"><x>993</x><y>176</y><content>social utility</content></note>
+
+<note id="65" class="image"><x>470</x><y>534</y><width>300</width><height>200</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="66" class="image"><x>790</x><y>1416</y><width>49</width><height>35</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="67" class="image"><x>1287</x><y>491</y><width>24</width><height>24</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="68" class="image"><x>1287</x><y>539</y><width>300</width><height>200</height><name>1-brain.jpg</name><image_id>531</image_id></note></notes>
 
 <meta>
-    <biggest_id>23</biggest_id>
+    <biggest_id>68</biggest_id>
     <type/>
 </meta>
+
+<connexions>
+    <connexion>31,29</connexion>
+    <connexion>30,29</connexion>
+    <connexion>31,30</connexion>
+    <connexion>39,38</connexion>
+    <connexion>40,38</connexion>
+    <connexion>41,38</connexion>
+    <connexion>42,38</connexion>
+    <connexion>38,43</connexion>
+    <connexion>38,47</connexion>
+    <connexion>48,50</connexion>
+    <connexion>48,51</connexion>
+    <connexion>48,52</connexion>
+    <connexion>48,53</connexion>
+    <connexion>48,54</connexion>
+    <connexion>48,57</connexion>
+</connexions>
 
 </canvas>

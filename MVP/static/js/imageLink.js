@@ -41,6 +41,26 @@ function createImageLink(note) {
     note.css("width", width);
     note.css("height", height);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+
+            note.find(".imageLink_img").attr('style', css);
+
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
+
 
 }
 
@@ -174,6 +194,119 @@ function selectImageLink(note){
 ////////////////////////////////////////////////////////
 
 
+$(".imageLink").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    id = $(this).attr("id");
+    link = $(this).attr("link");
+    css = $(this).attr("added_css");
+
+    $("#imageLinkRCBox").css("left", new_x);
+    $("#imageLinkRCBox").css("top", new_y);
+    $("#imageLinkRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#imageLinkRCBox").is(event.target) && $("#imageLinkRCBox").has(event.target).length === 0){
+
+            $("#imageLinkRCBox").hide();
+
+        }
+
+    });
+
+    // Add Link
+    $('#imageLinkRC_1').bind('click', function() {
+
+        var value = prompt("Link", link);
+
+        if (value != null) {
+            $.ajax({
+                url: '/change_link/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    link : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+        }
+
+    });
+
+
+    //Change Image
+    $('#imageLinkRC_2').bind('click', function() {
+        modalImageLink.show();
+        modalImageLink.find('.drop-area').attr("imageLink_id", id);
+
+        // When the user clicks anywhere outside of the modal, close it
+        $(document).bind('click.first' , function() {
+           $(document).bind('click.second' , function() {
+
+               if (event.target.classList.contains('drop-area')) {
+                  console.log('clicked the drop area');
+               }
+               else {
+                    modalImageLink.hide();
+                    $(document).unbind('click.first');
+                    $(document).unbind('click.second');
+               }
+
+           });
+        });
+    });
+
+    // Style
+    $('#imageLinkRC_3').bind('click', function() {
+        console.log($(this));
+        if (css){
+            var value = prompt("CSS", css);
+        } else {
+            var value = prompt("CSS", "");
+        }
+
+        if (value != null) {
+
+            console.log("sending css");
+
+            $.ajax({
+                url: '/add_css/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    css : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+    });
+
+});
+
+/*
+
 $(function() {
 
       "use strict";
@@ -263,4 +396,4 @@ $(function() {
 
     });
 
-
+*/

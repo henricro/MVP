@@ -142,6 +142,29 @@ $('*:not("div")').on(
                     });
 
                 }
+
+                if (type =="xlsx") {
+
+                    console.log("upload xlsx ajax")
+
+                    $.ajax({
+                        type: 'POST',
+                        url:  '/upload_xlsx/'+pageID,
+                        data: form_data,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function (data) {
+                            console.log("success");
+                            window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+pageID;
+                        }
+                    });
+
+                }
             }
         }
     }

@@ -8,20 +8,30 @@
     </note>
 
     <note id="parents">
-        <x>-95</x>
-        <y>-157</y>
+        <x>-57</x>
+        <y>-165</y>
         <width>300</width>
         <height>200</height>
     </note>
 
-    <note id="18" class="pageLink" pageID="272" type="child"><x>760</x><y>469</y><content>alain</content></note>
-    <note id="20" class="pageLink" pageID="197" type="child"><x>621</x><y>286</y><content>judith</content></note>
-    <note id="21" class="imagePageLink" pageID="168" type="child"><x>863</x><y>408</y><content>Claire</content><image>six-feet.png</image><image_id>435</image_id><width>100</width><height>50</height></note>
-    <note id="22" class="pdf"><width>99</width><height>145</height><x>591</x><y>399</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id></note>
-    <note id="25" class="pageLink" type="parent" pageID="271"><content>GYST MVP</content><x>11</x><y>78</y></note><note id="26" class="pageLink" pageID="325" type="child"><x>790</x><y>289</y><content>Lucille</content></note><note id="28" class="note"><x>474</x><y>631</y><content>homerun rgr erre</content></note><note id="29" class="note"><x>834</x><y>768</y><content>marshmallow&amp;nbsp;</content></note><note id="35" class="note"><x>943</x><y>593</y><content>guantanamo&amp;nbsp;&lt;div&gt;motherfucking&lt;/div&gt;&lt;div&gt;bay&lt;/div&gt;</content></note><note id="36" class="note"><x>1268</x><y>190</y><content>iaeyg&amp;lt;&amp;lt;&#13;d dz&lt;div&gt;cc&lt;/div&gt;</content></note></notes>
+    <note id="18" class="pageLink" pageID="272" type="child"><x>884</x><y>476</y><content>alain</content></note>
+    <note id="20" class="pageLink" pageID="197" type="child"><x>745</x><y>293</y><content>judith</content></note>
+    <note id="21" class="imagePageLink" pageID="168" type="child"><x>816</x><y>385</y><content>Claire</content><image>six-feet.png</image><image_id>435</image_id><width>100</width><height>50</height></note>
+    <note id="22" class="pdf"><width>99</width><height>145</height><x>599</x><y>332</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id><css/></note>
+    <note id="25" class="pageLink" type="parent" pageID="271"><content>GYST MVP</content><x>90</x><y>69</y></note>
+    <note id="26" class="pageLink" pageID="325" type="child"><x>914</x><y>296</y><content>Lucille</content></note>
+    <note id="28" class="note"><x>451</x><y>579</y><content>homerun rgr erre</content></note>
+    <note id="29" class="note"><x>265</x><y>564</y><content>marshmallow&amp;nbsp;</content></note>
+    <note id="35" class="note"><x>407</x><y>443</y><content>guantanamo&amp;nbsp;&lt;div&gt;motherfucking&lt;/div&gt;&lt;div&gt;bay&lt;/div&gt;</content></note>
+    <note id="37" class="noteLink"><x>1124</x><y>275</y><content>geeggegege</content><link>gdgdzdz</link></note>
+    <note id="39" class="noteLink"><x>1098</x><y>433</y><content>czczczczczcz</content><link>gondor</link></note>
+
+<note id="43" class="noteLink"><x>1214</x><y>357</y><content>new content</content><link>cjshcs dzhh d</link></note>
+    <note id="45" class="imageLink"><x>300</x><y>97</y><width>300</width><height>200</height><name>grandevuesurlestoitsdeParis89x59.jpg</name><image_id>524</image_id><link>cdz</link><css>opacity:0.9;</css></note>
+    <note id="46" class="image"><x>1085</x><y>64</y><width>300</width><height>200</height><name>grandevuesurlestoitsdeParis89x59.jpg</name><image_id>525</image_id><css/></note></notes>
 
 <meta>
-    <biggest_id>36</biggest_id>
+    <biggest_id>46</biggest_id>
     <type/>
 </meta>
 

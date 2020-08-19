@@ -47,6 +47,26 @@ function createImagePageLink(note) {
     note.css("width", width);
     note.css("height", height);
 
+    if ( XMLnote.getElementsByTagName("css")[0] ){
+
+        if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
+
+            var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
+
+            var style = note.attr('style'); //it will return string
+
+            style += css;
+
+            note.find(".imagePageLink_img").attr('style', css);
+
+            note.attr('style', style);
+
+            note.attr('added_css', css);
+
+        }
+
+    }
+
 }
 
 
@@ -174,6 +194,102 @@ function selectImagePageLink(note){
 ///////////////// RIGHT CLICK IMAGE-PAGE-LINK ///////////////
 /////////////////////////////////////////////////////////////
 
+
+$(".imagePageLink").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    id = $(this).attr("id");
+    link = $(this).attr("link");
+    css = $(this).attr("added_css");
+
+    $("#imagePageLinkRCBox").css("left", new_x);
+    $("#imagePageLinkRCBox").css("top", new_y);
+    $("#imagePageLinkRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#imagePageLinkRCBox").is(event.target) && $("#imagePageLinkRCBox").has(event.target).length === 0){
+
+            $("#imagePageLinkRCBox").hide();
+
+        }
+
+    });
+
+    // Change Text
+    $('#imagePageLinkRC_1').bind('click', function() {
+
+        $(document).bind('click.writeImagePageLink', function() {
+            writeImagePageLink(note);
+        });
+
+    });
+
+
+    //Change Image
+    $('#imagePageLinkRC_2').bind('click', function() {
+        modalImagePageLink.show();
+        modalImagePageLink.find('.drop-area').attr("imagePageLink_id", id);
+
+        // When the user clicks anywhere outside of the modal, close it
+        $(document).bind('click.first' , function() {
+           $(document).bind('click.second' , function() {
+
+               if (event.target.classList.contains('drop-area')) {
+                  console.log('clicked the drop area');
+               }
+               else {
+                    modalImagePageLink.hide();
+                    $(document).unbind('click.first');
+                    $(document).unbind('click.second');
+               }
+
+           });
+        });
+    });
+
+    // Style
+    $('#imagePageLinkRC_3').bind('click', function() {
+        console.log($(this));
+        if (css){
+            var value = prompt("CSS", css);
+        } else {
+            var value = prompt("CSS", "");
+        }
+
+        if (value != null) {
+
+            console.log("sending css");
+
+            $.ajax({
+                url: '/add_css/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    css : value,
+                    id : id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+
+        }
+    });
+
+});
+
+
+/*
 $(function() {
 
       "use strict";
@@ -229,7 +345,7 @@ $(function() {
       });
 
 });
-
+*/
 
 
 /////////////////////////////////////////////////////////

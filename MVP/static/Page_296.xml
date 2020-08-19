@@ -8,13 +8,13 @@
     </note>
 
     <note id="parents">
-        <x>-85</x>
-        <y>-100</y>
+        <x>-108</x>
+        <y>-135</y>
         <width>300</width>
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>65</x><y>14</y><content>GYST</content></note><note id="7" class="note"><x>494</x><y>200</y><content>le lieu pour les id&#233;es de choses &#224; faire, de choses &#224; cr&#233;er, de projets&lt;div&gt;(plut&#244;t business, startUp, Tech, etc.)&lt;/div&gt;</content><css>color : #C70039;</css></note><note id="42" class="note"><x>1133</x><y>290</y><content>etat de la france</content></note><note id="45" class="pageLink" pageID="333" type="child"><x>662</x><y>307</y><content>GYST - idea</content></note><note id="54" class="note"><x>490</x><y>457</y><content>plateformes collectives</content></note><note id="55" class="note"><x>843</x><y>464</y><content>plateformes individuelles</content></note></notes>
+<note id="1" class="pageLink" pageID="1" type="parent"><x>121</x><y>21</y><content>GYST</content></note><note id="7" class="note"><x>494</x><y>200</y><content>le lieu pour les id&#233;es de choses &#224; faire, de choses &#224; cr&#233;er, de projets&lt;div&gt;(plut&#244;t business, startUp, Tech, etc.)&lt;/div&gt;</content><css>color : #C70039;</css></note><note id="42" class="note"><x>1133</x><y>290</y><content>etat de la france</content></note><note id="45" class="pageLink" pageID="333" type="child"><x>662</x><y>307</y><content>GYST - idea</content></note><note id="54" class="note"><x>490</x><y>457</y><content>plateformes collectives</content></note><note id="55" class="note"><x>843</x><y>464</y><content>plateformes individuelles</content></note></notes>
 
 <meta>
     <biggest_id>55</biggest_id>

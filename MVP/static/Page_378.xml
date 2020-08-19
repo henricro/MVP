@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="328" type="parent"><x>0</x><y>0</y><content>competitors</content></note><note id="2" class="imageLink"><x>683</x><y>351</y><width>87</width><height>41</height><name>Screenshot_2020-08-19_at_17.58.45.png</name><image_id>515</image_id><link>https://www.notion.so/</link></note><note id="3" class="image"><x>567</x><y>423</y><width>398</width><height>258</height><name>Screenshot_2020-08-19_at_17.59.20.png</name><image_id>516</image_id></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>
