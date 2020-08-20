@@ -14,8 +14,7 @@
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="296" type="parent"><x>119</x><y>15</y><content>idees</content></note>
-    <note id="2" class="pageLink" pageID="274" type="child"><x>1128</x><y>264</y><content>Id&#233;es Rodo</content></note>
+<note id="2" class="pageLink" pageID="274" type="child"><x>1128</x><y>264</y><content>Id&#233;es Rodo</content></note>
     <note id="8" class="pageLink" pageID="271" type="child"><x>1027</x><y>289</y><content>GYST MVP</content></note>
     <note id="11" class="note"><x>653</x><y>352</y><content>an app for organizing stuff</content><css>color : #8C1248; font-size: 20px;</css></note>
     <note id="24" class="pageLink" pageID="375" type="child"><x>1098</x><y>209</y><content>pitch deck</content></note>
@@ -33,7 +32,7 @@
     <note id="42" class="note"><x>648</x><y>988</y><content>your music/ movies</content></note>
     <note id="43" class="note"><x>274</x><y>907</y><content>information on a subject&amp;nbsp;&lt;div&gt;you re investigating&lt;/div&gt;</content></note>
     <note id="44" class="note"><x>151</x><y>476</y><content>&lt;div&gt;a set of tools that helps you&amp;nbsp;&lt;/div&gt;&lt;div&gt;get your shit together&lt;/div&gt;&lt;div&gt;easily, visually, intuitively&lt;/div&gt;</content></note>
-    <note id="45" class="note"><x>183</x><y>435</y><content>what is GYST ?</content><css>font-weight: bold; font-size: 15px; text-decoration: underline;</css></note>
+    <note id="45" class="note"><x>183</x><y>436</y><content>what is GYST ?</content><css>font-weight: bold; font-size: 15px; text-decoration: underline;</css></note>
     <note id="46" class="note"><x>155</x><y>566</y><content>it s a drive,&lt;div&gt;&amp;nbsp;its a mind mapping tool,&amp;nbsp;&lt;/div&gt;&lt;div&gt;all in one&lt;/div&gt;</content></note>
     <note id="47" class="note"><x>752</x><y>948</y><content>ideas</content></note>
     <note id="48" class="note"><x>1140</x><y>943</y><content>who would use it ?</content><css>font-weight:bold; font-size:15px;</css></note>
@@ -47,10 +46,10 @@
     <note id="57" class="note"><x>1360</x><y>925</y><content>a creative</content></note>
     <note id="63" class="pageLink" pageID="389" type="child"><x>993</x><y>176</y><content>social utility</content></note>
 
-<note id="65" class="image"><x>470</x><y>534</y><width>300</width><height>200</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="66" class="image"><x>790</x><y>1416</y><width>49</width><height>35</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="67" class="image"><x>1287</x><y>491</y><width>24</width><height>24</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="68" class="image"><x>1287</x><y>539</y><width>300</width><height>200</height><name>1-brain.jpg</name><image_id>531</image_id></note></notes>
+<note id="65" class="image"><x>470</x><y>534</y><width>300</width><height>200</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="66" class="image"><x>790</x><y>1416</y><width>41</width><height>25</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="67" class="image"><x>1287</x><y>491</y><width>24</width><height>24</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="68" class="image"><x>1287</x><y>539</y><width>24</width><height>24</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="70" class="pageLink" type="parent" pageID="296"><content>idees</content><x>20</x><y>35</y></note><note id="71" class="pageLink" type="parent" pageID="296"><content>idees</content><x>52</x><y>28</y></note><note id="72" class="note"><x>413</x><y>104</y><content>GYST can become</content><css>font-weight: bold; font-size: 15px; text-decoration: underline;</css></note></notes>
 
 <meta>
-    <biggest_id>68</biggest_id>
+    <biggest_id>72</biggest_id>
     <type/>
 </meta>
 

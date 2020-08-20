@@ -14,10 +14,10 @@
         <height>200</height>
     </note>
 
-</notes>
+<note id="1" class="pageLink" pageID="190" type="parent"><x>0</x><y>0</y><content>testing</content></note><note id="2" class="pageLink" pageID="398" type="parent"><x>91</x><y>63</y><content>sex</content></note></notes>
 
 <meta>
-    <biggest_id>1</biggest_id>
+    <biggest_id>2</biggest_id>
     <type/>
 </meta>
 

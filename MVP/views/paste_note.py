@@ -254,6 +254,8 @@ def paste_pageLink(pageID):
 
         tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
         root = tree.getroot()
+        print("destPageName")
+        print(destPageName)
 
         # get the biggest id in the xml and increment the value
         id = tree.xpath("/canvas/meta/biggest_id")[0].text
@@ -266,16 +268,31 @@ def paste_pageLink(pageID):
         notes.append(etree.Element("note"))
         note = notes[-1]
 
-        # change the note's id
-        note.set("id", id)
 
+        # set the note's id, class, type
+        note.set("id", id)
+        note.set("class", "pageLink")
+        note.set("pageID", pageID)
         note.set("type", "child")
+
+        childName = Page.query.filter_by(id=pageID).first().title
+        print(childName)
+        etree.SubElement(note, "content").text = childName
+
         # ajouter relation visitor-visited dans la DB
         # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
         #              {'destPageID': destPageID, 'pageID': pageID})
 
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
+        title_x = int(tree.xpath("/canvas/notes/note[@id='title']/x")[0].text)
+        title_y = int(tree.xpath("/canvas/notes/note[@id='title']/y")[0].text)
+
+        new_x = str(title_x - 50 + random.randint(0, 100))
+        new_y = str(title_y + 100)
+
+        print(new_x, new_y)
+
+        etree.SubElement(note, "x").text = new_x
+        etree.SubElement(note, "y").text = new_y
 
         # save the changes in the xml
         f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
@@ -474,6 +491,8 @@ def paste_imagePageLink(pageID):
 
         tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
         root = tree.getroot()
+        print("destPageName")
+        print(destPageName)
 
         # get the biggest id in the xml and increment the value
         id = tree.xpath("/canvas/meta/biggest_id")[0].text
@@ -494,8 +513,8 @@ def paste_imagePageLink(pageID):
         # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
         #              {'destPageID': destPageID, 'pageID': pageID})
 
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
+        etree.SubElement(note, "x").text = x
+        etree.SubElement(note, "y").text = y
 
         # save the changes in the xml
         f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')

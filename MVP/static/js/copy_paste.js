@@ -64,9 +64,7 @@ $(document).bind('paste', function(e) {
                     data: JSON.stringify({
                         originPageID : originPageID,
                         note_id : note_id,
-                        x : x,
-                        y : y,
-                        type : "child"
+                        type : "parent"
                     }),
                     contentType: "application/json",
                     success: function (data) {
@@ -89,7 +87,9 @@ $(document).bind('paste', function(e) {
                     data: JSON.stringify({
                         originPageID : originPageID,
                         note_id : note_id,
-                        type : "parent"
+                        x : x,
+                        y : y,
+                        type : "child"
                     }),
                     contentType: "application/json",
                     success: function (data) {
@@ -149,9 +149,7 @@ $(document).bind('paste', function(e) {
                     data: JSON.stringify({
                         originPageID : originPageID,
                         note_id : note_id,
-                        x : x,
-                        y : y,
-                        type : "child"
+                        type : "parent"
                     }),
                     contentType: "application/json",
                     success: function (data) {
@@ -174,7 +172,9 @@ $(document).bind('paste', function(e) {
                     data: JSON.stringify({
                         originPageID : originPageID,
                         note_id : note_id,
-                        type : "parent"
+                        x : x,
+                        y : y,
+                        type : "child"
                     }),
                     contentType: "application/json",
                     success: function (data) {
