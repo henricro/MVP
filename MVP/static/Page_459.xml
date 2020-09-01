@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-75</x>
+        <y>-129</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>103</x><y>30</y><content>testing</content></note><note id="2" class="note"><x>470</x><y>363</y><content>d nizdyb d&lt;div&gt;dz dzdz&lt;/div&gt;</content></note><note id="3" class="noteLink"><x>412</x><y>520</y><content>new content</content><link>https://www.mediapart.fr/journal/france/240820/une-enquete-embarrassante-pour-jean-castex-ete-stoppee-juste-apres-sa-nomination-matignon</link></note><note id="4" class="imageLink"><x>965</x><y>378</y><width>356</width><height>104</height><name>Screenshot_2020-08-24_at_19.38.49.png</name><image_id>709</image_id><link>https://www.mediapart.fr/journal/france/240820/une-enquete-embarrassante-pour-jean-castex-ete-stoppee-juste-apres-sa-nomination-matignon</link></note><note id="5" class="noteLink"><x>134</x><y>206</y><width>300</width><height>200</height><name>food-truck.png</name><image_id>710</image_id><link>https://www.mediapart.fr/journal/france/240820/une-enquete-embarrassante-pour-jean-castex-ete-stoppee-juste-apres-sa-nomination-matignon</link><link/><link>https://www.mediapart.fr/journal/france/240820/une-enquete-embarrassante-pour-jean-castex-ete-stoppee-juste-apres-sa-nomination-matignon</link></note><note id="6" class="imageLink"><x>682</x><y>576</y><width>300</width><height>200</height><name>youtube-iB10frp4EvY.jpg</name><image_id>711</image_id><link>https://www.youtube.com/watch?v=iB10frp4EvY</link></note><note id="7" class="pageLink" pageID="414" type="parent"><x>203</x><y>39</y><content>gorgeous</content></note><note id="8" class="pageLink" pageID="414" type="child"><x>758</x><y>506</y><content>gorgeous</content></note></notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

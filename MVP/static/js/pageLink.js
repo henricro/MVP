@@ -53,54 +53,122 @@ function createPageLink(note) {
 /////////   CREATE A NEW PAGE  ///////////////
 /////////////////////////////////////////////
 
-$('*:not("div")').bind('contextmenu', function(event) {
+$(document).bind('contextmenu', function(event) {
 
     event.preventDefault();
 
-    console.log("happy go lucky");
+    console.log("event target");
+    console.log(event.target);
 
-    new_x = event.pageX;
-    new_y = event.pageY;
+    if ($(event.target).is("html")) {
 
-    console.log(x, y);
+        console.log("happy go lucky");
 
-    $("#pageRCBox").css("left", new_x);
-    $("#pageRCBox").css("top", new_y);
-    $("#pageRCBox").show();
+        new_x = event.pageX;
+        new_y = event.pageY;
 
-    $(document).click(function(){
+        console.log(x, y);
 
-        if (!$("#pageRCBox").is(event.target) && $("#pageRCBox").has(event.target).length === 0){
+        $("#pageRCBox").css("left", new_x);
+        $("#pageRCBox").css("top", new_y);
+        $("#pageRCBox").show();
 
+        $(document).bind('click.pageRCBox', function(event){
+
+            if (!$("#pageRCBox").is(event.target) && $("#pageRCBox").has(event.target).length === 0){
+
+                $("#pageRCBox").hide();
+                $(document).unbind('click.pageRCBox');
+
+            }
+
+        });
+
+        $('#pageRC_1').bind('click', function() {
+
+            $('#pageRC_1').unbind('click');
+            var title = prompt("Name", "");
+
+            $.ajax({
+                url: '/new_page/'+pageID,
+                type: "POST",
+                data: JSON.stringify({
+                    new_x : new_x,
+                    new_y : new_y,
+                    title : title
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href='/open_page/'+pageID;
+                },
+                error: function (error) {
+                    console.log("problem");
+                    window.location.href='/open_page/'+pageID;
+                }
+            });
+        });
+
+        $('#pageRC_2').bind('click', function(event) {
+
+            $('#pageRC_2').unbind('click');
+            console.log("show second box");
+
+            event.preventDefault();
             $("#pageRCBox").hide();
 
-        }
+            new_x = event.pageX;
+            new_y = event.pageY;
 
-    });
+            console.log(x, y);
 
-    $('#pageRC_1').bind('click', function() {
-        var title = prompt("Name", "");
+            $("#pageRCPlusBox").css("left", new_x);
+            $("#pageRCPlusBox").css("top", new_y);
+            $("#pageRCPlusBox").show();
 
-        $.ajax({
-            url: '/new_page/'+pageID,
-            type: "POST",
-            data: JSON.stringify({
-                new_x : new_x,
-                new_y : new_y,
-                title : title
-            }),
-            contentType: "application/json",
-            success: function (data) {
-                console.log(data);
-                window.location.href='/open_page/'+pageID;
-            },
-            error: function (error) {
-                console.log("problem");
-                window.location.href='/open_page/'+pageID;
-            }
+            $(document).bind('click.pageRCPlusBox', function(){
+                $(document).bind('click.pageRCPlusBox2', function(event){
+
+                    console.log("hohohohohohoho");
+                    if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
+
+                        $("#pageRCPlusBox").hide();
+                        $(document).unbind('click.pageRCPlusBox');
+                        $(document).unbind('click.pageRCPlusBox2');
+
+                    }
+
+                });
+            });
+
+            $('#pageRCPlus_1').bind('click', function() {
+                $('#pageRCPlus_1').unbind('click');
+                var criteria = prompt("Category", "");
+
+                $.ajax({
+                    url: '/new_criteria/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        new_x : new_x,
+                        new_y : new_y,
+                        criteria : criteria
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+                });
+            });
+
+
         });
-    });
 
+    }
 
 });
 

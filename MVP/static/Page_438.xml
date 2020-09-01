@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>681</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-68</x>
+        <y>-104</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>116</x><y>18</y><content>M&#246;kki</content></note><note id="7" class="note"><x>293</x><y>446</y><content>&lt;div&gt;Wordpress&lt;/div&gt;id : User&lt;div&gt;pwd :&amp;nbsp;&lt;span style="color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; text-align: start; background-color: inherit;"&gt;Dv8NbefuSXb0&lt;/span&gt;&lt;/div&gt;</content></note><note id="8" class="note"><x>616</x><y>689</y><content>admin@mokkispace.com&lt;div&gt;pwd :&amp;nbsp;&lt;span style="color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; text-align: start; background-color: inherit;"&gt;l-cA7!wgW_d5&lt;/span&gt;&lt;/div&gt;</content></note><note id="9" class="note"><x>1295</x><y>412</y><content>Welcome To The Jungle&lt;div&gt;id : tamara@mokkispace.com&lt;/div&gt;&lt;div&gt;pwd : Vivelerecrutement!&lt;/div&gt;</content></note><note id="10" class="note"><x>1043</x><y>630</y><content>&lt;div&gt;Google&lt;/div&gt;henri@mokkispace.com&lt;div&gt;il0vemokki&lt;/div&gt;</content></note><note id="11" class="note"><x>269</x><y>618</y><content>AWS&lt;div&gt;henri@mokkispace.com&lt;/div&gt;&lt;div&gt;Il0vemokkimuch&lt;/div&gt;</content></note><note id="12" class="note"><x>611</x><y>484</y><content>NameCheap&lt;div&gt;id : OneStopCloset&lt;/div&gt;&lt;div&gt;pwd : Il0vemokkimucho&lt;/div&gt;</content></note><note id="14" class="note"><x>918</x><y>447</y><content>cPanel&lt;div&gt;https://server121.web-hosting.com/cpanel&lt;/div&gt;&lt;div&gt;id : mokkxgjj&lt;/div&gt;&lt;div&gt;pwd : npZAQPNMcTCB&lt;/div&gt;</content></note><note id="16" class="note"><x>1320</x><y>592</y><content>Asana&lt;div&gt;henri@mokkispace.com&lt;/div&gt;&lt;div&gt;Il0vemokki&lt;/div&gt;</content></note><note id="17" class="note"><x>0</x><y>435</y><content>hubSpot&lt;div&gt;id : henri@mokkispace.com&lt;/div&gt;&lt;div&gt;pwd : Il0vemokki&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>17</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion><id_1>4</id_1><id_2>10</id_2></connexion></connexions></canvas>

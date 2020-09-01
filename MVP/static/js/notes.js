@@ -31,6 +31,7 @@ function createNote(note) {
     note.css("left",x.concat("px"));
     note.html(content);
 
+    // added CSS if there is some
     if ( XMLnote.getElementsByTagName("css")[0] ){
 
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
@@ -47,6 +48,8 @@ function createNote(note) {
         }
 
     }
+
+
 }
 
 

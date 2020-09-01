@@ -259,8 +259,11 @@
   vertical-align:middle;
 }
 
+/********  Title  ********/
+
 #title{
     position: absolute;
+    z-index: 10;
 }
 
 #title_title{
@@ -337,7 +340,6 @@
     margin-bottom: 5px;
     margin-left:15px;
     margin-right: 15px;
-    height : 20px;
     text-align: center;
     cursor: pointer;
     border-radius : 2px;
@@ -387,6 +389,14 @@
 
 
 #pageRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#pageRCPlusBox{
     z-index: 15;
     display : none;
     position: absolute;
@@ -450,6 +460,22 @@
     left: 300px;
 }
 
+#criteriaRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+#titleRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
 
 /*   LINES  */
 
@@ -461,3 +487,38 @@
     border-radius: 10px;
     z-index:-2;
 }
+
+
+/********  Criteria  ********/
+
+.criteria{
+    position: absolute;
+}
+
+.criteria_name{
+    padding: 3px;
+    display: inline-block;
+    border: 1px solid transparent;
+    background-color: orange;
+    border-radius : 5px;
+    font-size : 20px;
+    color : green;
+    text-decoration: underline;
+    font-weight: 800;
+    z-index:9;
+}
+
+.criteria_categories{
+    position: relative;
+    border: 1px dashed green;
+    border-radius : 5px;
+    padding : 20px;
+    background-color: rgb(224, 250, 190, 0.15);
+    z-index: 9;
+}
+
+.category{
+    position: absolute;
+}
+
+

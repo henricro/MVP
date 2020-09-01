@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>0</x><y>0</y><content>M&#246;kki</content></note><note id="2" class="note"><x>379</x><y>473</y><content>Le Closet</content></note><note id="3" class="note"><x>515</x><y>460</y><content>Percentil</content></note><note id="4" class="imagePageLink" pageID="451" type="child"><x>744</x><y>467</y><content>Geosophy</content><image>Screenshot_2020-08-24_at_14.37.29.png</image><image_id>699</image_id><width>100</width><height>50</height></note><note id="5" class="imagePageLink" pageID="456" type="child"><x>988</x><y>463</y><content>Carbo</content><image>Screenshot_2020-08-24_at_14.50.11.png</image><image_id>700</image_id><width>100</width><height>50</height></note></notes>
+
+<meta>
+    <biggest_id>5</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

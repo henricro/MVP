@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="2" class="imageLink"><x>486</x><y>431</y><width>392</width><height>87</height><name>Screenshot_2020-08-31_at_19.46.58.png</name><image_id>865</image_id><link>https://www.donaldjtrump.com/media/trump-campaign-announces-president-trumps-2nd-term-agenda-fighting-for-you/</link></note><note id="3" class="imageLink"><x>542</x><y>564</y><width>300</width><height>200</height><name>youtube-H5bE8jJgeb8.jpg</name><image_id>866</image_id><link>https://www.youtube.com/watch?v=H5bE8jJgeb8</link></note><note id="4" class="imageLink"><x>863</x><y>664</y><width>300</width><height>200</height><name>youtube-G62oPzl-FTs.jpg</name><image_id>867</image_id><link>https://www.youtube.com/watch?v=G62oPzl-FTs</link></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -102,6 +102,35 @@ function selectTitle(note){
 ///////////////// RIGHT CLICK TITLE ///////////////
 ///////////////////////////////////////////////////
 
+$("#title").bind('contextmenu', function(event) {
+
+    event.preventDefault();
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    note = $(this);
+
+    $("#titleRCBox").css("left", new_x);
+    $("#titleRCBox").css("top", new_y);
+    $("#titleRCBox").show();
+
+    $(document).click(function(){
+
+        if (!$("#titleRCBox").is(event.target) && $("#titleRCBox").has(event.target).length === 0){
+
+            $("#titleRCBox").hide();
+
+        }
+
+    });
+
+    writeTitle($(this));
+
+});
+
+
+/*
 $(function() {
       "use strict";
 
@@ -127,6 +156,7 @@ $(function() {
       });
 
     });
+*/
 
 //////////////////////////////////////////////////////
 /////////////    WRITE IN TITLE   ////////////////////

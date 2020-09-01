@@ -11,11 +11,10 @@ function createLines() {
     for (i = 0; i < lines.length; i++) {
 
         var line = lines[i];
-        var ids = line.childNodes[0].nodeValue;
-        var ids = ids.split(",");
+        var id_1 = line.getAttribute("id_1");
+        var id_2 = line.getAttribute("id_2");
 
-        var id_1 = ids[0];
-        var id_2 = ids[1];
+        console.log(line);
 
         var line_id = id_1 + "_" +id_2
 

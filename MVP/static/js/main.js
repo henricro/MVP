@@ -77,6 +77,14 @@ function createNotes() {
                 $('body').append(elem);
             }
         }
+        else if (clasis === "criteria") {
+            elem = '<div class="criteria" id="' + id + '" contenteditable="false"></div>';
+            $('body').append(elem);
+        }
+        else if (clasis === "category") {
+            elem = '<div class="category" id="' + id + '" contenteditable="false"></div>';
+            $('body').append(elem);
+        }
     }
 
 }

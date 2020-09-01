@@ -3,8 +3,8 @@
 <notes>
 
     <note id="title">
-        <x>744</x>
-        <y>178</y>
+        <x>745</x>
+        <y>177</y>
     </note>
 
     <note id="parents">
@@ -14,20 +14,29 @@
         <height>200</height>
     </note>
 
-    <note id="18" class="pageLink" pageID="272" type="child"><x>884</x><y>476</y><content>alain</content></note>
-    <note id="20" class="pageLink" pageID="197" type="child"><x>745</x><y>293</y><content>judith</content></note>
-    <note id="21" class="imagePageLink" pageID="168" type="child"><x>816</x><y>385</y><content>Claire</content><image>six-feet.png</image><image_id>435</image_id><width>100</width><height>50</height></note>
-    <note id="22" class="pdf"><width>99</width><height>145</height><x>599</x><y>332</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id><css/></note>
+    <note id="18" class="pageLink" pageID="272" type="child"><x>888</x><y>474</y><content>alain</content></note>
+    <note id="20" class="pageLink" pageID="197" type="child"><x>714</x><y>283</y><content>judith</content></note>
+    <note id="21" class="imagePageLink" pageID="168" type="child"><x>785</x><y>376</y><content>Claire</content><image>six-feet.png</image><image_id>435</image_id><width>100</width><height>50</height></note>
+    <note id="22" class="pdf"><width>99</width><height>145</height><x>603</x><y>330</y><name>CROZEL_Henri_2A17.pdf</name><image>CROZEL_Henri_2A17.pdf.first_page.jpg</image><pdf_id>4</pdf_id><css/></note>
     <note id="25" class="pageLink" type="parent" pageID="271"><content>GYST MVP</content><x>90</x><y>69</y></note>
-    <note id="26" class="pageLink" pageID="325" type="child"><x>914</x><y>296</y><content>Lucille</content></note>
-    <note id="28" class="note"><x>451</x><y>579</y><content>homerun rgr erre</content></note>
-    <note id="29" class="note"><x>265</x><y>564</y><content>marshmallow&amp;nbsp;</content></note>
-    <note id="35" class="note"><x>407</x><y>443</y><content>guantanamo&amp;nbsp;&lt;div&gt;motherfucking&lt;/div&gt;&lt;div&gt;bay&lt;/div&gt;</content></note>
-    <note id="45" class="imageLink"><x>300</x><y>97</y><width>300</width><height>200</height><name>grandevuesurlestoitsdeParis89x59.jpg</name><image_id>524</image_id><link>cdz</link><css>opacity:0.9;</css></note>
-    <note id="46" class="image"><x>1085</x><y>64</y><width>300</width><height>200</height><name>grandevuesurlestoitsdeParis89x59.jpg</name><image_id>525</image_id><css/></note><note id="64" class="pageLink" pageID="413" type="child"><x>726</x><y>589</y><content>crappi</content></note><note id="65" class="pageLink" pageID="414" type="child"><x>913</x><y>644</y><content>gorgeous</content></note><note id="66" class="pageLink" pageID="415" type="child"><x>942</x><y>580</y><content>sumptuous</content></note></notes>
+    <note id="26" class="pageLink" pageID="325" type="child"><x>1037</x><y>240</y><content>Lucille</content></note>
+    <note id="28" class="note"><x>368</x><y>595</y><content>homerun rgr erre</content></note>
+    <note id="29" class="note"><x>160</x><y>577</y><content>marshmallow&amp;nbsp;</content></note>
+    <note id="35" class="note"><x>324</x><y>459</y><content>guantanamo&amp;nbsp;&lt;div&gt;motherfucking&lt;/div&gt;&lt;div&gt;bay&lt;/div&gt;</content></note>
+    <note id="64" class="pageLink" pageID="413" type="child"><x>730</x><y>587</y><content>crappi</content></note>
+    <note id="65" class="pageLink" pageID="414" type="child"><x>917</x><y>642</y><content>gorgeous</content></note>
+    <note id="66" class="pageLink" pageID="415" type="child"><x>946</x><y>578</y><content>sumptuous</content></note>
+    <note id="67" class="pageLink" pageID="416" type="child"><x>1000</x><y>457</y><content>categories</content></note>
+    <note id="68" class="image"><x>174</x><y>121</y><width>300</width><height>200</height><name>bretagne.jpg</name><image_id>534</image_id></note>
+    <note id="69" class="pageLink" pageID="426" type="child"><x>628</x><y>554</y><content>louis</content></note>
+    <note id="75" class="pageLink" pageID="437" type="child"><x>1119</x><y>345</y><content>testing links</content></note>
+    <note id="78" class="pageLink" pageID="459" type="child"><x>1434</x><y>254</y><content>marine</content></note>
+    <note id="79" class="pageLink" pageID="471" type="child"><x>940</x><y>343</y><content>anais</content></note>
+
+<note id="84" class="pageLink" pageID="487" type="child"><x>1298</x><y>325</y><content>oivohdvbfv</content></note><note id="85" class="pageLink" pageID="488" type="child"><x>1184</x><y>511</y><content>marion</content></note></notes>
 
 <meta>
-    <biggest_id>66</biggest_id>
+    <biggest_id>85</biggest_id>
     <type/>
 </meta>
 

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>0</x><y>0</y><content>M&#246;kki</content></note><note id="2" class="note"><x>575</x><y>498</y><content>TO DO : am&#233;liorer le syst&#232;me des colis</content></note><note id="3" class="note"><x>662</x><y>536</y><content>voir facilement les colis qui doivent etre trait&#233;s</content></note><note id="4" class="note"><x>662</x><y>562</y><content>voir si le message a &#233;t&#233; envoy&#233; sans cliquer sur le colis</content></note><note id="5" class="note"><x>663</x><y>590</y><content>pouvoir envoyer le message sans ouvrir le colis</content></note><note id="6" class="image"><x>944</x><y>211</y><width>294</width><height>232</height><name>Screenshot_2020-08-28_at_10.47.40.png</name><image_id>814</image_id></note><note id="7" class="image"><x>345</x><y>195</y><width>248</width><height>253</height><name>Screenshot_2020-08-28_at_10.47.59.png</name><image_id>816</image_id></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////
 
 
-$(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink").each(function(){
+$(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .criteria").each(function(){
 
     $(this).bind('mousedown.drag', function(){
 

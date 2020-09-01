@@ -5,6 +5,26 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 
+def common_data(list1, list2):
+    result = False
+
+    # traverse in the 1st list
+    for x in list1:
+
+        # traverse in the 2nd list
+        for y in list2:
+
+            # if one common
+            if x == y:
+                result = True
+                return x
+
+    return result
+
+l1 = ["iuh", 4, "iyhbb"]
+l2 = [3, 55, "heheh", "iuh"]
+
+print(common_data(l1, l2))
 
 @application.route("/link_notes/<pageID>", methods=['POST'])
 def link_notes(pageID):
@@ -13,7 +33,8 @@ def link_notes(pageID):
 
     # get the data for new note
     request_data = request.get_json()
-    id_1 = str(request_data.get('id_1'))
+    id_1 = str(request_data.get(
+        'id_1'))
     id_2 = str(request_data.get('id_2'))
 
     print(id_1, id_2)
@@ -28,22 +49,66 @@ def link_notes(pageID):
 
     if connexions is not None:
 
-        etree.SubElement(connexions, "connexion").text = id_1 + "," + id_2
+        test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_1 + "' and @id_2='" + id_2 + "' ] ")
+        test2 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_2 + "' and @id_2='" + id_1 + "' ] ")
+
+        print("test1, test2")
+        print(test1, test2)
+
+        if test1:
+
+            line = test1[0]
+
+            print(line)
+
+            line.getparent().remove(line)
+
+            # save the changes in the xml
+            f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+            f.write(etree.tostring(root, pretty_print=True))
+            f.close()
+
+
+        elif test2:
+            line = test2[0]
+
+            print(line)
+
+            line.getparent().remove(line)
+
+            # save the changes in the xml
+            f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+            f.write(etree.tostring(root, pretty_print=True))
+            f.close()
+
+        else :
+
+                print("tests unsuccessfull")
+                connexions.append(etree.Element("connexion"))
+                new_connexion = connexions[-1]
+                new_connexion.set("id_1", id_1)
+                new_connexion.set("id_2", id_2)
+
+                # save the changes in the xml
+                f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+                f.write(etree.tostring(root, pretty_print=True))
+                f.close()
 
     else:
 
-        print("add connexions tag")
         root.append(etree.Element("connexions"))
-        print("add a connexion")
         connexions = root.find("connexions")
-        print("put the ids in that new connexion")
-        etree.SubElement(connexions, "connexion").text = id_1 + "," + id_2
+        connexions.append(etree.Element("connexion"))
+        new_connexion = connexions[-1]
+        new_connexion.set("id_1", id_1)
+        new_connexion.set("id_2", id_2)
 
-    # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-    pass
+        # save the changes in the xml
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        pass
 
 
 

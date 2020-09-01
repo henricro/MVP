@@ -72,7 +72,7 @@ def index():
 
 
 from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload, \
-    add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines
+    add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories
 
 if __name__ == '__main__':
     application.run(debug=True)

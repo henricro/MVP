@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>169</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="493" type="parent"><x>0</x><y>0</y><content>Evenements</content></note><note id="3" class="note"><x>384</x><y>470</y><content>partenariat avec Fitness Corporate</content></note><note id="5" class="image"><x>305</x><y>523</y><width>467</width><height>96</height><name>Screenshot_2020-08-31_at_13.24.58.png</name><image_id>861</image_id></note><note id="6" class="image"><x>714</x><y>906</y><width>85</width><height>35</height><name>Screenshot_2020-08-24_at_12.46.43.png</name><image_id>660</image_id></note><note id="7" class="noteLink"><x>442</x><y>405</y><content>echange de mails</content><link>https://mail.google.com/mail/u/2/?pli=1#inbox/FMfcgxwJXfnhDFssnCGwhNRNTHxbtpTp</link><link/></note><note id="8" class="imageLink"><x>1091</x><y>236</y><width>172</width><height>99</height><name>Screenshot_2020-08-31_at_13.27.38.png</name><image_id>863</image_id><link>https://drive.google.com/drive/folders/1bBGQN4F8MWtzRLZHOROzOcWlh2iKWp1W</link></note></notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

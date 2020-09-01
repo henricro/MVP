@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>301</y>
+    </note>
+
+    <note id="parents">
+        <x>-5</x>
+        <y>-124</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="333" type="parent"><x>102</x><y>19</y><content>GYST - idea</content></note><note id="2" class="imageLink"><x>674</x><y>487</y><width>300</width><height>200</height><name>Screenshot_2020-08-28_at_15.08.36.png</name><image_id>818</image_id><link>https://nouvellesecoutes.fr/podcast/splash/</link><link/></note><note id="3" class="note"><x>688</x><y>456</y><content>le site a chang&#233; &#224; la rentr&#233;e septembre 2020</content></note><note id="6" class="imageLink"><x>248</x><y>487</y><width>300</width><height>200</height><name>Screenshot_2020-08-28_at_15.12.51.png</name><image_id>820</image_id><link>https://www.google.com/search?q=films+emma+stone&amp;rlz=1C5CHFA_enFR886FR886&amp;oq=films+emma+stone&amp;aqs=chrome..69i57j0l7.3098j0j4&amp;sourceid=chrome&amp;ie=UTF-8</link></note><note id="7" class="note"><x>270</x><y>457</y><content>c'est nouveau depuis 1 ou 2 ans</content></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

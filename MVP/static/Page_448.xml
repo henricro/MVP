@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>682</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-36</x>
+        <y>-133</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>118</x><y>29</y><content>M&#246;kki</content></note><note id="4" class="note"><x>759</x><y>437</y><content>an idea</content></note><note id="5" class="note"><x>669</x><y>511</y><content>we don t pay rent,&lt;div&gt;we expose Le Closet, we do our thing&lt;/div&gt;</content></note><note id="6" class="note"><x>692</x><y>599</y><content>first attempt : we want a POC</content></note><note id="7" class="note"><x>657</x><y>633</y><content>we want to prove that we can "placemake" !</content></note><note id="8" class="note"><x>497</x><y>516</y><content>business model :</content></note><note id="9" class="image"><x>72</x><y>214</y><width>381</width><height>242</height><name>creer-un-cafe-ou-coffee-shop.jpg</name><image_id>682</image_id></note><note id="10" class="image"><x>1155</x><y>237</y><width>385</width><height>201</height><name>coffee.6.jpg</name><image_id>683</image_id></note></notes>
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

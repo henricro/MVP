@@ -35,7 +35,7 @@
 
     <!-- jQuery Rotate  -->
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/libraries/jQueryUI.js"></script>
     <script type="text/javascript" src="/static/libraries/jQueryRotate.js" ></script>
 
     <!-- Tooltipster
@@ -54,7 +54,7 @@
         <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
         <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">   -->
 
-        <!--  OFFLINE  -->
+        <!--  OFFLINE   -->
 
         <link rel="stylesheet" type="text/css" href="/static/libraries/bootstrap.min.css">
         <script type="text/javascript" src="/static/libraries/bootstrap.min.js" ></script>
@@ -122,7 +122,16 @@
 <div id="pageRCBox">
     <div class="choiceBox">
            <div id="pageRC_1" class="choiceButton choiceLOrange"><i class="fa fa-copy"></i> New Page</div>
+           <div id="pageRC_2" class="choiceButton choiceLGreen"><i class="fa fa-plus"></i> </div>
     </div>
+</div>
+
+<div id="pageRCPlusBox">
+    <div class="choiceBox">
+           <div id="pageRCPlus_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> New Criteria</div>
+           <div id="pageRCPlus_2" class="choiceButton choiceLGreen"><i class="fa fa-print"></i> Export page as PDF</div>
+    </div>
+
 </div>
 
 <div id="noteRCBox">
@@ -176,6 +185,18 @@
         <div id="imagePageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Change Text</div>
         <div id="imagePageLinkRC_2" class="choiceButton choiceLGreen"><i class="fa fa-copy"></i> Change Image</div>
         <div id="imagePageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Style</div>
+    </div>
+</div>
+
+<div id="criteriaRCBox">
+    <div class="choiceBox">
+        <div id="criteriaRC_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> Add a Category</div>
+    </div>
+</div>
+
+<div id="titleRCBox">
+    <div class="choiceBox">
+        <div id="titleRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit</div>
     </div>
 </div>
 
@@ -237,6 +258,10 @@ var pageID = '{{pageID|safe}}';
     <script type="text/javascript" src="/static/js/copy_paste.js" ></script>
 
     <script type="text/javascript" src="/static/js/lines.js" ></script>
+
+    <script type="text/javascript" src="/static/js/criteria.js" ></script>
+
+    <script type="text/javascript" src="/static/js/categories.js" ></script>
 
 </html>
 

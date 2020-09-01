@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="328" type="parent"><x>0</x><y>0</y><content>competitors</content></note><note id="2" class="imageLink"><x>779</x><y>490</y><width>122</width><height>86</height><name>Screenshot_2020-08-21_at_14.23.50.png</name><image_id>610</image_id><link>https://www.dropbox.com/home</link></note><note id="3" class="image"><x>843</x><y>325</y><width>171</width><height>49</height><name>Screenshot_2020-08-21_at_14.25.04.png</name><image_id>612</image_id></note><note id="4" class="imageLink"><x>395</x><y>531</y><content>Homepage :</content><css>font-size: 30px; color : blue;</css><link>https://www.dropbox.com/?landing=dbv2</link></note><note id="5" class="note"><x>392</x><y>532</y><content>Homepage :</content><css>font-size: 30px; color : blue;</css></note></notes>
+
+<meta>
+    <biggest_id>5</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

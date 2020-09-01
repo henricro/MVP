@@ -64,7 +64,7 @@ $(document).dblclick(function(){
         //elmnt.css("top",y.concat("px"));
         //elmntt",x.concat("px"));
         //elmnt.attr("id",id);
-        //elmnt.find('.content').text("new content");
+        //elmnt.find('.content')("new content");
 
 
         $.ajax({

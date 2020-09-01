@@ -22,10 +22,10 @@
     <note id="11" class="imagePageLink" pageID="269" type="child"><x>842</x><y>474</y><content>books</content><image>books.jpg</image><image_id>432</image_id><width>100</width><height>50</height></note>
     <note id="12" class="imagePageLink" pageID="298" type="child"><x>783</x><y>570</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>100</width><height>50</height></note>
 
-</notes>
+<note id="13" class="pageLink" pageID="464" type="child"><x>1043</x><y>461</y><content>Podcasts</content></note></notes>
 
 <meta>
-    <biggest_id>12</biggest_id>
+    <biggest_id>15</biggest_id>
     <type/>
 </meta>
 
