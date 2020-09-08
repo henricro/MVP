@@ -50,7 +50,7 @@ def new_criteria(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 
 @application.route("/add_category/<pageID>", methods=['POST'])
@@ -98,5 +98,5 @@ def add_category(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 

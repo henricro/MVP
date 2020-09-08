@@ -15,6 +15,7 @@ def new_page(pageID):
 
     request_data = request.get_json()
     new_page_title = str(request_data.get('title'))
+    new_page_title = new_page_title.replace("'", "\\'")
     user_id = 1
 
     print(new_page_title)

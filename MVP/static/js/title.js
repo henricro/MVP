@@ -214,7 +214,7 @@ function writeTitle(note){
                     noteX = parseInt(note.css("left").slice(0, -2));
                     noteY = parseInt(note.css("top").slice(0, -2));
 
-                    dragFunc(note, noteX, noteY);
+                    dragNote(note, noteX, noteY);
                 });
 
             }
@@ -245,7 +245,7 @@ function showParents(){
         mouseY = event.pageY;
         noteX = parseInt(note.css("left").slice(0, -2));
         noteY = parseInt(note.css("top").slice(0, -2));
-        dragFunc(note, noteX, noteY);
+        dragNote(note, noteX, noteY);
     });
 
     $("#title_parents").bind('click.resize', function() {
@@ -269,7 +269,7 @@ function showParents(){
             mouseY = event.pageY;
             noteX = parseInt(note.css("left").slice(0, -2));
             noteY = parseInt(note.css("top").slice(0, -2));
-            dragFunc(note, noteX, noteY);
+            dragNote(note, noteX, noteY);
         });
         note.bind('click.resize', function(){
             resize(note);
@@ -306,7 +306,7 @@ function showParents(){
                     noteX = parseInt(note.css("left").slice(0, -2));
                     noteY = parseInt(note.css("top").slice(0, -2));
 
-                    dragFunc(note, noteX, noteY);
+                    dragNote(note, noteX, noteY);
 
                 });
 

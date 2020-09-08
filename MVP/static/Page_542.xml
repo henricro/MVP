@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="448" type="parent"><x>0</x><y>0</y><content>partnership caf&#233;</content></note><note id="2" class="note"><x>532</x><y>422</y><content>Responsabilit&#233; Civile Professionnelle</content></note><note id="3" class="note"><x>796</x><y>423</y><content>&lt;b&gt;--&amp;gt; 250&#8364; / an&lt;/b&gt;</content></note><note id="4" class="note"><x>636</x><y>491</y><content>Salary :&amp;nbsp;</content></note><note id="5" class="note"><x>784</x><y>491</y><content>&lt;b&gt;--&amp;gt; 2840&#8364; / mois&lt;/b&gt;</content></note><note id="6" class="note"><x>606</x><y>623</y><content>Office Expenses :</content></note><note id="7" class="note"><x>781</x><y>625</y><content>&lt;b&gt;--&amp;gt; 30&#8364; / mois&lt;/b&gt;</content></note><note id="8" class="note"><x>632</x><y>562</y><content>Mutuelle :</content></note><note id="9" class="note"><x>786</x><y>570</y><content>&lt;b&gt;--&amp;gt; 100&#8364; / mois&lt;/b&gt;</content></note><note id="10" class="note"><x>581</x><y>682</y><content>Legal &amp;amp; Professional fees</content></note><note id="11" class="note"><x>785</x><y>681</y><content>&lt;b&gt;--&amp;gt; 50&#8364; / mois&lt;/b&gt;</content></note><note id="12" class="note"><x>777</x><y>746</y><content>&lt;b&gt;--&amp;gt; 2100&#8364; / mois&lt;/b&gt;</content></note><note id="13" class="note"><x>778</x><y>800</y><content>&lt;b&gt;--&amp;gt; 37 200&#8364; / an&lt;/b&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>13</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

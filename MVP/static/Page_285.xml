@@ -14,7 +14,7 @@
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="1" type="parent"><x>81</x><y>18</y><content>GYST</content></note><note id="3" class="pageLink" pageID="287" type="child"><x>596</x><y>445</y><content>movie ideas</content></note><note id="7" class="imagePageLink" pageID="298" type="child"><x>843</x><y>437</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>100</width><height>50</height></note></notes>
+<note id="3" class="pageLink" pageID="287" type="child"><x>596</x><y>444</y><content>movie ideas</content></note><note id="7" class="imagePageLink" pageID="298" type="child"><x>843</x><y>437</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>100</width><height>50</height></note></notes>
 
 <meta>
     <biggest_id>7</biggest_id>

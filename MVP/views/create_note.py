@@ -44,4 +44,4 @@ def create_note(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"

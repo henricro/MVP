@@ -3,8 +3,8 @@
 <notes>
     
     <note id="title">
-        <x>807</x>
-        <y>114</y>
+        <x>746</x>
+        <y>122</y>
     </note>
 
     <note id="parents">
@@ -14,33 +14,30 @@
         <height>193</height>
     </note>
 
-    <note id="460" class="imagePageLink" pageID="266" type="child"><x>550</x><y>409</y><content>libraries</content><image>library.png</image><image_id>429</image_id><width>95</width><height>55</height></note>
-    <note id="463" class="pageLink" pageID="271" type="child"><x>1076</x><y>428</y><content>GYST MVP</content></note>
-    <note id="478" class="pageLink" pageID="285" type="child"><x>999</x><y>390</y><content>movies</content></note>
-    <note id="509" class="imagePageLink" pageID="296" type="child"><x>718</x><y>474</y><content>idees</content><image>lightbulbs.jpeg</image><image_id>446</image_id><width>100</width><height>49</height></note>
-    <note id="510" class="imagePageLink" pageID="297" type="child"><x>844</x><y>485</y><content>connaissances</content><image>world-works.jpeg</image><image_id>461</image_id><width>73</width><height>68</height></note>
-    <note id="512" class="imagePageLink" pageID="299" type="child"><x>525</x><y>296</y><content>vacances</content><image>bretagne.jpg</image><image_id>448</image_id><width>47</width><height>31</height></note>
-    <note id="514" class="note"><x>977</x><y>342</y><content>projets</content><css>color : #7E1D7D; font-size: 18px; border: 0px; text-decoration: underline;</css></note>
-    <note id="519" class="imagePageLink" pageID="303" type="child"><x>772</x><y>530</y><content>thoughts</content><image>diderot.jpg</image><image_id>462</image_id><width>60</width><height>76</height></note>
-    <note id="523" class="pageLink" pageID="306" type="child"><x>1151</x><y>309</y><content>Work</content></note>
-    <note id="524" class="imagePageLink" pageID="308" type="child"><x>936</x><y>210</y><content>media</content><image>presse.jpg</image><image_id>449</image_id><width>90</width><height>55</height></note>
-    <note id="527" class="pageLink" pageID="310" type="child"><x>563</x><y>337</y><content>administratif</content></note>
-    <note id="528" class="pageLink" pageID="311" type="child"><x>605</x><y>296</y><content>Etudes</content></note>
-    <note id="529" class="imagePageLink" pageID="307" type="child"><x>1060</x><y>316</y><content>M&#246;kki</content><image>Screenshot_2020-08-17_at_15.17.02.png</image><image_id>473</image_id><width>71</width><height>30</height></note>
-    <note id="530" class="imagePageLink" pageID="312" type="child"><x>1072</x><y>352</y><content>le C !</content><image>Screenshot_2020-08-17_at_15.17.59.png</image><image_id>474</image_id><width>60</width><height>33</height></note>
-    <note id="535" class="imagePageLink" pageID="323" type="child"><x>1143</x><y>351</y><content>learn to code</content><image>html5-css-javascript-logos.png</image><image_id>804</image_id><width>68</width><height>27</height><image_id>808</image_id><width>300</width><height>200</height></note>
-    <note id="537" class="note"><x>776</x><y>326</y><content>rentrer &#224; paris : EPAULE</content></note>
-    <note id="541" class="pageLink" pageID="302" type="child"><x>707</x><y>208</y><content>lifestyle</content></note>
-    <note id="542" class="pageLink" pageID="300" type="child"><x>775</x><y>192</y><content>social</content></note>
-    <note id="546" class="note"><x>773</x><y>424</y><content>appeler Cl&#233;ment !</content></note>
-    <note id="547" class="note"><x>666</x><y>361</y><content>prendre un verre un jour avec la pote de Claire&amp;nbsp;&lt;div&gt;pour lui poser des questions sur Poutine&lt;/div&gt;</content></note>
-    <note id="556" class="note"><x>688</x><y>296</y><content>cours/ateliers : la structure des histoires</content></note>
-
-    <note id="561" class="pageLink" pageID="333" type="child"><x>669</x><y>567</y><content>GYST - idea</content></note>
-    <note id="562" class="note"><x>771</x><y>258</y><content>MAIF</content><css>font-size: 25px; color: red;</css></note><note id="563" class="imagePageLink" pageID="446" type="child"><x>1104</x><y>390</y><content>color codes</content><image>colors.png</image><image_id>802</image_id><width>62</width><height>26</height><image_id>806</image_id><width>300</width><height>200</height><image_id>807</image_id><width>300</width><height>200</height></note><note id="564" class="note"><x>510</x><y>461</y><content>a space for content</content><css>color : #619C5A;</css></note><note id="565" class="note"><x>779</x><y>607</y><content>a space for my thoughts</content><css>color : #619C5A;</css></note><note id="566" class="imagePageLink"><x>645</x><y>521</y><content>a space for ideas</content><css>color : #619C5A;</css><image>learn-javascript-part-2.png</image><image_id>803</image_id><width>100</width><height>50</height></note><note id="567" class="imagePageLink"><x>856</x><y>551</y><content>a space for knowledge</content><css>color : #619C5A;</css><image>colors.png</image><image_id>800</image_id><width>100</width><height>50</height></note><note id="569" class="note"><x>861</x><y>550</y><content>a space for knowledge</content><css>color : #619C5A;</css></note><note id="570" class="note"><x>641</x><y>523</y><content>a space for ideas</content><css>color : #619C5A;</css></note><note id="571" class="note"><x>799</x><y>229</y><content>i need a "log" page</content><css>text-decoration: line-through;</css></note><note id="574" class="pageLink" pageID="465" type="child"><x>839</x><y>196</y><content>planning</content></note><note id="577" class="pageLink" pageID="480" type="child"><x>1406</x><y>273</y><content>faleche</content></note><note id="578" class="pageLink" pageID="495" type="child"><x>1090</x><y>234</y><content>log</content></note></notes>
+    <note id="460" class="imagePageLink" pageID="266" type="child"><x>282</x><y>442</y><content>libraries</content><image>library.png</image><image_id>429</image_id><width>155</width><height>96</height></note>
+    <note id="463" class="pageLink" pageID="271" type="child"><x>1082</x><y>519</y><content>GYST MVP</content><css>font-size: 30px;</css></note>
+    <note id="509" class="imagePageLink" pageID="296" type="child"><x>682</x><y>722</y><content>idees</content><image>lightbulbs.jpeg</image><image_id>446</image_id><width>153</width><height>76</height></note>
+    <note id="510" class="imagePageLink" pageID="297" type="child"><x>843</x><y>681</y><content>connaissances</content><image>world-works.jpeg</image><image_id>461</image_id><width>108</width><height>98</height></note>
+    <note id="512" class="imagePageLink" pageID="299" type="child"><x>448</x><y>235</y><content>vacances</content><image>bretagne.jpg</image><image_id>448</image_id><width>76</width><height>53</height></note>
+    <note id="514" class="note"><x>998</x><y>336</y><content>work</content><css>color : #7E1D7D; font-size: 30px; text-decoration: underline;</css></note>
+    <note id="519" class="imagePageLink" pageID="303" type="child"><x>827</x><y>839</y><content>thoughts</content><image>diderot.jpg</image><image_id>462</image_id><width>64</width><height>73</height></note>
+    <note id="523" class="pageLink" pageID="306" type="child"><x>1056</x><y>393</y><content>Work</content></note>
+    <note id="524" class="imagePageLink" pageID="308" type="child"><x>898</x><y>801</y><content>media</content><image>presse.jpg</image><image_id>449</image_id><width>116</width><height>73</height></note>
+    <note id="527" class="imagePageLink" pageID="310" type="child"><x>1067</x><y>169</y><content>administratif</content><image>banner-small-five-steps-digitize-business_402x-1.jpg</image><image_id>1015</image_id><width>112</width><height>70</height></note>
+    <note id="529" class="imagePageLink" pageID="307" type="child"><x>1054</x><y>435</y><content>M&#246;kki</content><image>Screenshot_2020-08-17_at_15.17.02.png</image><image_id>473</image_id><width>200</width><height>81</height></note>
+    <note id="530" class="imagePageLink" pageID="312" type="child"><x>1271</x><y>422</y><content>le C !</content><image>Screenshot_2020-08-17_at_15.17.59.png</image><image_id>474</image_id><width>116</width><height>63</height></note>
+    <note id="535" class="imagePageLink" pageID="323" type="child"><x>1125</x><y>345</y><content>learn to code</content><image>html5-css-javascript-logos.png</image><image_id>804</image_id><width>173</width><height>69</height><image_id>808</image_id><width>300</width><height>200</height></note>
+    <note id="542" class="pageLink" pageID="300" type="child"><x>525</x><y>186</y><content>social</content></note>
+    <note id="561" class="pageLink" pageID="333" type="child"><x>651</x><y>813</y><content>GYST - idea</content><css>font-size: 30px;</css></note>
+    <note id="566" class="imagePageLink"><x>645</x><y>521</y><content>a space for ideas</content><css>color : #619C5A;</css><image>learn-javascript-part-2.png</image><image_id>803</image_id><width>100</width><height>50</height></note><note id="567" class="imagePageLink"><x>856</x><y>551</y><content>a space for knowledge</content><css>color : #619C5A;</css><image>colors.png</image><image_id>800</image_id><width>100</width><height>50</height></note><note id="578" class="imagePageLink" pageID="495" type="child"><x>350</x><y>617</y><content>log</content><image>Screenshot_2020-09-08_at_16.46.30.png</image><image_id>1057</image_id><width>100</width><height>50</height></note><note id="580" class="imagePageLink" pageID="506" type="child"><x>675</x><y>377</y><content>TO DO</content><image>H-1436.png</image><image_id>1061</image_id><width>246</width><height>233</height></note><note id="581" class="pageLink" pageID="523" type="child"><x>777</x><y>211</y><content>my life</content></note><note id="587" class="imagePageLink" pageID="557" type="child"><x>689</x><y>266</y><content>&lt;img class="imagePageLink_img" draggable="false" src="/static/uploads/Screenshot_2020-09-08_at_12.33.33.png"&gt;&lt;div class="imagePageLink_name"&gt;&lt;div&gt;friends and family &amp;lt;3&lt;/div&gt;&lt;/div&gt;</content><image>Screenshot_2020-09-08_at_12.33.33.png</image><image_id>1013</image_id><width>58</width><height>50</height><image>banner-small-five-steps-digitize-business_402x-1.jpg</image><image_id>1014</image_id><width>100</width><height>50</height></note><note id="590" class="imagePageLink" pageID="219" type="visitor"><x>380</x><y>551</y><content>recettes</content><image>cuisine-libanaise.jpg</image><image_id>416</image_id><width>104</width><height>53</height></note>
+    <note id="591" class="imagePageLink" pageID="464" type="visitor"><x>240</x><y>550</y><content>Podcasts</content><image>Screenshot_2020-09-08_at_13.06.25.png</image><image_id>1016</image_id><width>96</width><height>62</height><css>color : #7E1D7D; font-size: 30px; text-decoration: underline;</css></note><note id="594" class="note"><x>318</x><y>381</y><content>stuff</content><css>color : #7E1D7D; font-size: 30px; text-decoration: underline;</css></note>
+    <note id="596" class="note"><x>656</x><y>661</y><content>knowledge</content><css>color : #7E1D7D; font-size: 30px; text-decoration: underline;</css></note>
+    <note id="598" class="imagePageLink"><x>625</x><y>278</y><content>perso</content><css>color : #7E1D7D; font-size: 30px; text-decoration: underline;</css><image>Screenshot_2020-09-08_at_16.46.30.png</image><image_id>1056</image_id><width>100</width><height>50</height></note>
+    <note id="599" class="note"><x>543</x><y>270</y><content>perso</content><css>color : #7E1D7D; font-size: 30px; text-decoration: underline;</css></note>
+    <note id="601" class="image"><x>755</x><y>1014</y><width>31</width><height>25</height><name>1-brain.jpg</name><image_id>531</image_id></note></notes>
 
 <meta>
-    <biggest_id>578</biggest_id>
+    <biggest_id>601</biggest_id>
     <type/>
 </meta>
 

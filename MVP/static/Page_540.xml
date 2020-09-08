@@ -1,0 +1,25 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="537" type="parent"><x>0</x><y>0</y><content>TO DO</content></note>
+    <note id="4" class="image"><x>800</x><y>891</y><width>85</width><height>35</height><name>Screenshot_2020-08-24_at_12.46.43.png</name><image_id>660</image_id></note><note id="5" class="note"><x>361</x><y>459</y><content>the van idea :&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;i'm personnally not too excited about managing that.&lt;br&gt;But if we decide to go that way i will do it.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;I'm not too convinced about the basic concept (because it's outside)&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>5</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

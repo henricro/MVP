@@ -68,6 +68,6 @@ def add_image_to_pageLink(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
 
 

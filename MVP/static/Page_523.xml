@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-97</x>
+        <y>-125</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>120</x><y>11</y><content>GYST</content></note><note id="6" class="imagePageLink" pageID="557" type="child"><x>396</x><y>414</y><content>friends and family &lt;3</content><image>Screenshot_2020-09-08_at_12.33.33.png</image><image_id>1013</image_id><width>237</width><height>174</height><image>banner-small-five-steps-digitize-business_402x-1.jpg</image><image_id>1014</image_id><width>100</width><height>50</height></note><note id="7" class="imagePageLink" pageID="562" type="child"><x>747</x><y>414</y><content>sant&#233;</content><image>Health-Insurance-Quotes-1920x1080.jpg</image><image_id>1064</image_id><width>287</width><height>151</height></note></notes>
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

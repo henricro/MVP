@@ -249,7 +249,7 @@ function writeNoteLink(note){
                         noteX = parseInt(noteX);
                         noteY = parseInt(noteY);
 
-                        dragFunc(note);
+                        dragNote(note);
 
                     });
 

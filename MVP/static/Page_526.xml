@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="455" type="parent"><x>0</x><y>0</y><content>TO DOs</content></note><note id="2" class="note"><x>592</x><y>435</y><content>ecrire &#224; Robinson</content></note><note id="3" class="note"><x>592</x><y>523</y><content>refaire les &#233;tudes de co&#251;ts</content></note><note id="4" class="pageLink" type="parent" pageID="538"><content>daily to do lists</content><x>71</x><y>82</y></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

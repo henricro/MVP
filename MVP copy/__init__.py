@@ -160,7 +160,7 @@ def update_position(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/create_note/<pageID>", methods=['POST'])
 def create_note(pageID):
@@ -201,7 +201,7 @@ def create_note(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/delete_note/<pageID>", methods=['POST'])
 def delete_note(pageID):
@@ -228,7 +228,7 @@ def delete_note(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/update_content/<pageID>", methods=['POST'])
 def update_content(pageID):
@@ -249,7 +249,7 @@ def update_content(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/add_link/<pageID>", methods=['POST'])
 def add_link(pageID):
@@ -281,7 +281,7 @@ def add_link(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/change_link/<pageID>", methods=['POST'])
 def change_link(pageID):
@@ -313,7 +313,7 @@ def change_link(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/upload_file/<pageID>", methods=['POST'])
 def upload_file(pageID):
@@ -378,7 +378,7 @@ def upload_file(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
 
 @application.route("/new_page/<pageID>", methods=['POST'])
 def new_page(pageID):

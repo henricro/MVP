@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="537" type="parent"><x>0</x><y>0</y><content>TO DO</content></note><note id="2" class="pageLink" pageID="467" type="child"><x>659</x><y>416</y><content>Mokki 27/08/20</content></note><note id="3" class="pageLink" pageID="492" type="child"><x>688</x><y>452</y><content>Mokki 31/08/20</content></note><note id="4" class="pageLink" pageID="496" type="child"><x>714</x><y>490</y><content>Mokki 01/09/20</content></note><note id="5" class="pageLink" pageID="526" type="child"><x>777</x><y>565</y><content>Mokki 03/09/20</content></note><note id="6" class="pageLink" pageID="528" type="child"><x>744</x><y>527</y><content>Mokki 04/09/20</content></note><note id="7" class="pageLink" pageID="555" type="child"><x>961</x><y>419</y><content>Mokki 08/09/20</content></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

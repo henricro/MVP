@@ -15,17 +15,17 @@
     </note>
 
 <note id="1" class="pageLink" pageID="1" type="parent"><x>185</x><y>19</y><content>GYST</content></note>
-    <note id="7" class="imagePageLink" pageID="265" type="child"><x>703</x><y>381</y><content>guitar songs</content><image>cohen.jpg</image><image_id>428</image_id><width>100</width><height>50</height><image_id>430</image_id><width>300</width><height>200</height></note>
-    <note id="8" class="imagePageLink" pageID="268" type="child"><x>909</x><y>340</y><content>series</content><image>six-feet.png</image><image_id>431</image_id><width>100</width><height>50</height></note>
-    <note id="9" class="imagePageLink" pageID="219" type="child"><x>481</x><y>359</y><content>recettes</content><image>cuisine-libanaise.jpg</image><image_id>416</image_id><width>104</width><height>53</height></note>
-    <note id="10" class="imagePageLink" pageID="121" type="child"><x>581</x><y>535</y><content>videos</content><image>youtube.png</image><image_id>427</image_id><width>100</width><height>50</height></note>
-    <note id="11" class="imagePageLink" pageID="269" type="child"><x>842</x><y>474</y><content>books</content><image>books.jpg</image><image_id>432</image_id><width>100</width><height>50</height></note>
-    <note id="12" class="imagePageLink" pageID="298" type="child"><x>783</x><y>570</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>100</width><height>50</height></note>
+    <note id="7" class="imagePageLink" pageID="265" type="child"><x>718</x><y>320</y><content>guitar songs</content><image>cohen.jpg</image><image_id>428</image_id><width>267</width><height>132</height><image_id>430</image_id><width>300</width><height>200</height></note>
+    <note id="8" class="imagePageLink" pageID="268" type="child"><x>999</x><y>258</y><content>series</content><image>six-feet.png</image><image_id>431</image_id><width>265</width><height>137</height></note>
+    <note id="9" class="imagePageLink" pageID="219" type="child"><x>426</x><y>335</y><content>recettes</content><image>cuisine-libanaise.jpg</image><image_id>416</image_id><width>229</width><height>128</height></note>
+    <note id="10" class="imagePageLink" pageID="121" type="child"><x>377</x><y>539</y><content>videos</content><image>youtube.png</image><image_id>427</image_id><width>223</width><height>139</height></note>
+    <note id="11" class="imagePageLink" pageID="269" type="child"><x>684</x><y>474</y><content>books</content><image>books.jpg</image><image_id>432</image_id><width>210</width><height>122</height></note>
+    <note id="12" class="imagePageLink" pageID="298" type="child"><x>642</x><y>631</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>189</width><height>122</height></note>
 
-<note id="13" class="pageLink" pageID="464" type="child"><x>1043</x><y>461</y><content>Podcasts</content></note></notes>
+<note id="13" class="imagePageLink" pageID="464" type="child"><x>937</x><y>558</y><content>Podcasts</content><image>Screenshot_2020-09-08_at_13.06.25.png</image><image_id>1016</image_id><width>235</width><height>143</height></note><note id="16" class="imagePageLink" pageID="559" type="child"><x>1186</x><y>465</y><content>photo library</content><image>119054221_316434619566907_5399735615740267331_n.jpg</image><image_id>1023</image_id><width>248</width><height>151</height></note></notes>
 
 <meta>
-    <biggest_id>15</biggest_id>
+    <biggest_id>16</biggest_id>
     <type/>
 </meta>
 

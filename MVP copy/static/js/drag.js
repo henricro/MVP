@@ -15,11 +15,11 @@ $(".note,  .noteLink, .pageLink, .file").each(function(){
         noteX = parseInt(noteX);
         noteY = parseInt(noteY);
 
-        dragFunc($(this));
+        dragNote($(this));
     });
 });
 
-function dragFunc(note) {
+function dragNote(note) {
 
     $(document).bind('mousemove.drag', function(){
         mouseMove(note);

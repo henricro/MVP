@@ -163,7 +163,7 @@ function selectNoteLink(note){
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
 
-                dragFunc(note, noteX, noteY);
+                dragNote(note, noteX, noteY);
 
             });
 
@@ -456,7 +456,7 @@ function writeNoteLink(note){
                 noteX = parseInt(noteX);
                 noteY = parseInt(noteY);
 
-                dragFunc(note);
+                dragNote(note);
 
             });
 

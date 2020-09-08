@@ -15,14 +15,14 @@ $(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink
         noteX = parseInt(note.css("left").slice(0, -2));
         noteY = parseInt(note.css("top").slice(0, -2));
 
-        dragFunc(note, noteX, noteY);
+        dragNote(note, noteX, noteY);
 
     });
 
 });
 
 
-function dragFunc(note, noteX, noteY) {
+function dragNote(note, noteX, noteY) {
 
     $(document).bind('mousemove.drag', function(){
         mouseMove(note);
@@ -33,10 +33,6 @@ function dragFunc(note, noteX, noteY) {
     });
 
     function mouseMove(note) {
-
-        //console.log(noteX, noteY);
-
-        //console.log("moving mouse");
 
         new_top = noteY + event.pageY - mouseY ;
         new_left = noteX + event.pageX - mouseX ;
@@ -188,7 +184,7 @@ function dragFunc(note, noteX, noteY) {
 
 
 
-//////////////////////////////////////////////
+///////////////////////////////////////////////
 //////////  SELECT MULTIPLE //////////////////
 /////////////////////////////////////////////
 
@@ -278,7 +274,11 @@ function dragSelect() {
             noteX = parseInt(note.css("left").slice(0, -2));
             noteY = parseInt(note.css("top").slice(0, -2));
 
-            if ( (startX < noteX && noteX < endX && startY < noteY && noteY < endY) || (startX > noteX && noteX > endX && startY > noteY && noteY > endY) ){
+            if ( (startX < noteX && noteX < endX && startY < noteY && noteY < endY) ||
+                 (startX > noteX && noteX > endX && startY > noteY && noteY > endY) ||
+                 (startX < noteX && noteX < endX && startY > noteY && noteY > endY) ||
+                 (startX > noteX && noteX > endX && startY < noteY && noteY < endY) )
+                 {
                 selection.push(id);
             }
 
@@ -333,23 +333,25 @@ function dragSelect() {
                 mouseX = event.pageX;
                 mouseY = event.pageY;
 
+                dragNotes(selection);
+
+                /*
                 for (i in selection){
 
                     id = selection[i];
 
                     console.log(id);
 
-                    note = $('#' + id);
+                    var note = $('#' + id);
 
-                    console.log("print the note");
-                    console.log(note);
+                    var noteX = parseInt(note.css("left").slice(0, -2));
+                    var noteY = parseInt(note.css("top").slice(0, -2));
 
-                    noteX = parseInt(note.css("left").slice(0, -2));
-                    noteY = parseInt(note.css("top").slice(0, -2));
+                    console.log(noteX, noteY);
 
-                    dragFunc(note, noteX, noteY);
 
                 }
+                */
 
             });
 
@@ -358,6 +360,162 @@ function dragSelect() {
     }
 
 }
+
+
+/////////////////////////////////////
+//////////// DRAG NOTES /////////////
+/////////////////////////////////////
+
+function dragNotes(selection) {
+
+    selection2 = [];
+
+    for (i in selection){
+
+        id = selection[i];
+        note = $('#' + id);
+
+        noteX = parseInt(note.css("left").slice(0, -2));
+        noteY = parseInt(note.css("top").slice(0, -2));
+
+        selection2.push([note, noteX, noteY])
+
+    }
+
+    $(document).bind('mousemove.dragNotes', function(){
+
+        for (i in selection2){
+
+            note = selection2[i][0];
+            noteX = selection2[i][1];
+            noteY = selection2[i][2];
+
+            new_top = noteY + event.pageY - mouseY ;
+            new_left = noteX + event.pageX - mouseX ;
+            //console.log(new_top, new_left);
+            note.css({ top : new_top + "px", left : new_left + "px" });
+
+            note.css("z-index", "-1");
+
+            event.preventDefault();
+
+        }
+
+    });
+
+    $(document).bind('mouseup.stopDraNotesg', function(){
+        mouseUpNotes(selection);
+    });
+
+    function mouseUpNotes(note) {
+
+        $(document).unbind('mousemove.dragNotes');
+        //console.log("stoping");
+
+        //console.log(event.pageX, event.pageY);
+        $(document).unbind('mouseup.stopDragNotes');
+
+        if (!(mouseX == event.pageX && mouseY == event.pageY)){
+
+            if ( event.target.classList.contains('pageLink') ){
+
+                console.log("moved a selection into another page");
+
+                page_id = $(event.target).attr("pageid");
+
+                $.ajax({
+
+                    url: '/move_notes/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        selection: selection,
+                        page_id: page_id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+
+                });
+
+            } //else if ( event.target.classList.contains('note') ){
+
+              //  $.ajax({
+
+               //     url: '/link_notes/'+pageID,
+               //     type: "POST",
+               //     data: JSON.stringify({
+               //         id_1 : $(event.target).attr("id"),
+               //         id_2 : note.attr("id")
+               //     }),
+               //     contentType: "application/json",
+               //     success: function (data) {
+               //         console.log(data);
+               //          window.location.href='/open_page/'+pageID;
+               //     },
+               //     error: function (error) {
+               //         console.log("problem");
+               //         window.location.href='/open_page/'+pageID;
+               //     }
+
+               // });
+
+            //}
+
+            else {
+
+                console.log("moved a selection");
+
+                positions = [];
+
+                for (i in selection){
+
+                    id = selection[i];
+                    note = $('#' + id);
+                    note.css("z-index", "0");
+
+                    x = parseInt(note.css("left").slice(0, -2));
+                    y = parseInt(note.css("top").slice(0, -2));
+
+                    positions.push([id, x, y]);
+
+                }
+
+                console.log(positions);
+
+                // ajax call with id x and y postion if element has moved
+                $.ajax({
+
+                    url: '/update_positions/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        positions : positions
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                    }
+
+                });
+
+            }
+
+        } else {
+            console.log("object did not move");
+        }
+
+    }
+
+}
+
 
 
 

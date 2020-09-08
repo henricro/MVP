@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>92</x><y>13</y><content>testing</content></note><note id="2" class="note"><x>459</x><y>565</y><content>sc csihb c&lt;div&gt;&lt;br&gt;&lt;/div&gt;</content></note><note id="5" class="imageLink"><x>1047</x><y>450</y><width>219</width><height>156</height><name>youtube-n1X4OzVQFDo.jpg</name><image_id>870</image_id><link>https://www.youtube.com/watch?v=n1X4OzVQFDo</link></note><note id="6" class="pageLink" pageID="498" type="child"><x>409</x><y>420</y><content>ouebef</content></note><note id="7" class="pageLink" pageID="499" type="child"><x>574</x><y>458</y><content>edjhv df</content></note><note id="8" class="note"><x>799</x><y>461</y><content>new content</content></note><note id="9" class="note"><x>472</x><y>717</y><content>new content</content><css>color: blue; font-size: 23px;</css></note></notes>
+
+<meta>
+    <biggest_id>9</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="2" id_2="9"/><connexion id_1="8" id_2="9"/></connexions></canvas>

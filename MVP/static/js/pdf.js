@@ -178,7 +178,7 @@ function selectPDF(note){
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
 
-                dragFunc(note, noteX, noteY);
+                dragNote(note, noteX, noteY);
 
             });
 

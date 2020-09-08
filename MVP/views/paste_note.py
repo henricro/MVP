@@ -63,7 +63,7 @@ def paste_note(pageID):
     f.close()
 
 
-    pass
+    return "yo"
 
 
 
@@ -302,7 +302,7 @@ def paste_pageLink(pageID):
     #print("added the note to current page's xml :")
     #print(etree.tostring(root, pretty_print=True))
 
-    pass
+    return "yo"
 
 
 @application.route("/paste_imagePageLink/<pageID>", methods=['POST'])
@@ -525,7 +525,7 @@ def paste_imagePageLink(pageID):
     #print(etree.tostring(root, pretty_print=True))
 
 
-    pass
+    return "yo"
 
 
 

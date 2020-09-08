@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>0</x><y>0</y><content>M&#246;kki</content></note><note id="3" class="pageLink" pageID="544" type="child"><x>669</x><y>456</y><content>BPI</content></note><note id="4" class="pageLink" pageID="539" type="child"><x>830</x><y>456</y><content>PIA</content></note><note id="5" class="note"><x>597</x><y>370</y><content>--&amp;gt; what other subventions could we be applying for ?</content></note></notes>
+
+<meta>
+    <biggest_id>5</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

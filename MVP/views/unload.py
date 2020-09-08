@@ -53,5 +53,5 @@ def unload(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
 

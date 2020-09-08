@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="455" type="parent"><x>0</x><y>0</y><content>TO DOs</content></note><note id="2" class="note"><x>418</x><y>481</y><content>&lt;b&gt;food truck rental :&lt;/b&gt;&lt;div&gt;appeler plusieurs boites&lt;/div&gt;&lt;div&gt;comparer prix&amp;nbsp;&lt;/div&gt;</content></note><note id="3" class="note"><x>729</x><y>496</y><content>&lt;b&gt;consommation electrique :&lt;/b&gt;&lt;div&gt;estimer co&#251;t&lt;/div&gt;</content></note><note id="4" class="note"><x>1039</x><y>487</y><content>&lt;b&gt;parking :&lt;/b&gt;&lt;div&gt;appeler des parkings&lt;/div&gt;&lt;div&gt;comparer prix&lt;/div&gt;&lt;div&gt;garer un camion electrique !&lt;/div&gt;</content></note><note id="5" class="note"><x>1343</x><y>507</y><content>&lt;b&gt;redevance :&lt;/b&gt;&lt;div&gt;appeler mairie 17e&lt;/div&gt;</content></note><note id="6" class="pageLink" type="parent" pageID="538"><content>daily to do lists</content><x>24</x><y>32</y></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -4,7 +4,7 @@
 
     <note id="title">
         <x>680</x>
-        <y>300</y>
+        <y>301</y>
     </note>
 
     <note id="parents">
@@ -14,10 +14,14 @@
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="285" type="parent"><x>60</x><y>22</y><content>movies</content></note><note id="2" class="note"><x>410</x><y>462</y><content>paris&lt;div&gt;sujet : aller chez le psy&lt;/div&gt;</content></note><note id="3" class="note"><x>836</x><y>429</y><content>teen movie&amp;nbsp;&lt;div&gt;wanting to talk to other adults than your parents&lt;/div&gt;</content></note><note id="4" class="note"><x>601</x><y>546</y><content>movie about not doing anything&lt;div&gt;by the end of the movie, he/she hasn t done anything&lt;/div&gt;</content></note><note id="5" class="note"><x>563</x><y>689</y><content>un riche qui a besoin d'un homme de confiance&lt;div&gt;va chercher un pauvre&lt;/div&gt;</content></note></notes>
+<note id="1" class="pageLink" pageID="285" type="parent"><x>60</x><y>22</y><content>movies</content></note>
+    <note id="2" class="note"><x>410</x><y>462</y><content>paris&lt;div&gt;sujet : aller chez le psy&lt;/div&gt;</content></note>
+    <note id="3" class="note"><x>836</x><y>429</y><content>teen movie&amp;nbsp;&lt;div&gt;wanting to talk to other adults than your parents&lt;/div&gt;</content></note>
+    <note id="4" class="note"><x>601</x><y>546</y><content>movie about not doing anything&lt;div&gt;by the end of the movie, he/she hasn t done anything&lt;/div&gt;</content></note>
+    <note id="5" class="note"><x>563</x><y>689</y><content>un riche qui a besoin d un homme de confiance&lt;div&gt;va chercher un pauvre&lt;/div&gt;</content></note><note id="6" class="pageLink" type="parent" pageID="296"><content>idees</content><x>2</x><y>33</y></note></notes>
 
 <meta>
-    <biggest_id>5</biggest_id>
+    <biggest_id>6</biggest_id>
     <type/>
 </meta>
 

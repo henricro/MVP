@@ -71,6 +71,6 @@ def change_image_imagePageLink(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
 
 

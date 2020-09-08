@@ -47,6 +47,7 @@ engine = db.engine
 application.debug=True
 application.secret_key = 'hC1YCIWOj9GgWspgNEo2'
 
+
 '''
 @application.route('/', methods=['GET', 'POST'])
 def index():

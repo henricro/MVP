@@ -60,7 +60,7 @@ def delete_note(pageID):
             # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
              #              {'pageID': pageID, 'destPageID': destPageID})
         if type =="visitor" :
-            pass
+            return "yo"
             # engine.execute("delete from visitors where visitor_page_id = %(destPageID)s and visited_page_id = %(pageID)s ",
              #              {'pageID': pageID, 'destPageID': destPageID})
 
@@ -97,7 +97,7 @@ def delete_notes(pageID):
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
-    pass
+    return "yo"
 
 
 

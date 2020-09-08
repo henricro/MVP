@@ -35,7 +35,7 @@ def add_link_note(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 @application.route("/add_link_image/<pageID>", methods=['POST'])
 def add_link_image(pageID):
@@ -66,7 +66,7 @@ def add_link_image(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 
 
@@ -99,6 +99,6 @@ def change_link(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+    return "yo"
 
 

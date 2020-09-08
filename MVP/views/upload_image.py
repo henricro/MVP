@@ -37,6 +37,8 @@ def upload_image(pageID):
     else :
         filename = filename + '.png'
 
+    print(filename)
+
     file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + filename)
 
     ### keep the information that this file is in this page in the 'tags' many to many SQL table
@@ -86,5 +88,5 @@ def upload_image(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
 

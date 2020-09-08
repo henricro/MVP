@@ -34,7 +34,47 @@ def update_position(pageID):
     f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
-    pass
+
+    return "yo"
+
+
+@application.route("/update_positions/<pageID>", methods=['POST'])
+def update_positions(pageID):
+
+    print("route : update positions")
+
+    request_data = request.get_json()
+    positions = request_data.get('positions')
+    print(positions)
+
+    pageID = str(pageID)
+    print(pageID)
+    pageName = 'Page_' + pageID
+    print(pageName)
+
+    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    root = tree.getroot()
+
+    print(etree.tostring(root, pretty_print=True))
+
+    for note in positions:
+
+        print(note)
+
+        id = note[0]
+        x = str(note[1])
+        y = str(note[2])
+
+        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
+        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
+
+        print(etree.tostring(root, pretty_print=True))
+
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+    return "yo"
 
 
 
@@ -45,6 +85,7 @@ def update_content(pageID):
     request_data = request.get_json()
     _id = str(request_data.get('id'))
     content = str(request_data.get('content'))
+    content = content.replace("'", "\\'")
 
     print(content, _id)
 
@@ -68,5 +109,5 @@ def update_content(pageID):
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
-    pass
+    return "yo"
 

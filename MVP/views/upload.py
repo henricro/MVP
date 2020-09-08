@@ -98,7 +98,7 @@ def upload_pdf(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
 
     '''
     doc = fitz.open("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename)
@@ -130,4 +130,4 @@ def upload_xlsx(pageID):
 
     print("upload xlsx route")
 
-    pass
+    return "yo"

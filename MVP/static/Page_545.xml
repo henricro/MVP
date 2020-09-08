@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>681</x>
+        <y>301</y>
+    </note>
+
+    <note id="parents">
+        <x>-102</x>
+        <y>-135</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="537" type="parent"><x>107</x><y>20</y><content>TO DO</content></note><note id="2" class="note"><x>771</x><y>469</y><content>we need them to be :&lt;div&gt;&amp;nbsp;&lt;div&gt;- reliable&lt;/div&gt;&lt;div&gt;- matinal&lt;/div&gt;&lt;div&gt;- Social Media / Canva&lt;/div&gt;&lt;/div&gt;</content></note><note id="3" class="imageLink"><x>472</x><y>428</y><width>234</width><height>197</height><name>Screenshot_2020-09-08_at_18.32.07.png</name><image_id>1062</image_id><link>https://docs.google.com/document/d/1CYchr_jfPrjvuSaBWesowmQXqCop1jYdoTXgmgoJEVc/edit</link></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

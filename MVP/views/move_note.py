@@ -56,7 +56,74 @@ def move_note(pageID):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
-    pass
+    return "yo"
+
+
+
+@application.route("/move_notes/<pageID>", methods=['POST'])
+def move_notes(pageID):
+
+    print("route : move notes")
+
+    # get the data of notes to move and page to move to
+
+    request_data = request.get_json()
+    selection = request_data.get('selection')
+    page_id = str(request_data.get('page_id'))
+
+    print(page_id, selection)
+
+    pageID = str(pageID)
+    print(pageID)
+    pageName = 'Page_' + pageID
+
+    destPageName = 'Page_' + page_id
+
+
+    for note_id in selection :
+
+        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+        root = tree.getroot()
+
+        note_id = str(note_id)
+        print(note_id)
+
+        note = root.find("notes").find("note[@id='" + note_id + "']")
+
+        print(note)
+
+        note.getparent().remove(note)
+
+        # save the changes in the xml
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        root = tree.getroot()
+
+        # get the biggest id in the xml and increment the value
+        id = tree.xpath("/canvas/meta/biggest_id")[0].text
+        id = int(id) + 1
+        id = str(id)
+        tree.xpath("/canvas/meta/biggest_id")[0].text = id
+
+        # add a note
+        notes = root.find("notes")
+        notes.append(note)
+
+        # set the note's x, y and content = "new note"
+        note.set("id", id)
+
+        print(etree.tostring(root, pretty_print=True))
+
+        # save the changes in the xml
+        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+    return "yo"
+
 
 
 
