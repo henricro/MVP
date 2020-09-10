@@ -18,7 +18,7 @@ def add_link_note(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -32,7 +32,7 @@ def add_link_note(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"
@@ -49,7 +49,7 @@ def add_link_image(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -63,7 +63,7 @@ def add_link_image(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"
@@ -82,7 +82,7 @@ def change_link(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -96,7 +96,7 @@ def change_link(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"

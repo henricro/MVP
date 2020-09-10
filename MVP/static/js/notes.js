@@ -127,6 +127,7 @@ function selectNote(note){
 
     // COPY THE NOTE
     note.bind('copy', function() {
+        console.log("clicked to copy note");
         copyNote(note);
     });
 

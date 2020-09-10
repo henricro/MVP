@@ -8,7 +8,22 @@ function copyNote(note){
     console.log(info);
     $('#myClipboard').show().attr("value", info);
     $('#myClipboard').select();
-    document.execCommand("copy");
+    $(document).execCommand("copy");
+    $('#myClipboard').hide();
+
+}
+
+
+function copySelection(selection){
+
+    console.log("function copySelection");
+    console.log(selection);
+    yolk = "paste_selection; " + pageID + "; " + selection ;
+    console.log("yolk");
+    console.log(yolk);
+    $('#myClipboard').show().attr("value", yolk);
+    $('#myClipboard').select();
+    $(document).execCommand("copy");
     $('#myClipboard').hide();
 
 }
@@ -19,6 +34,9 @@ $(document).bind('paste', function(e) {
     var data = e.originalEvent.clipboardData.getData('Text');
     //IE9 Equivalent ==> window.clipboardData.getData("Text");
 
+    console.log("data");
+    console.log(data);
+
     if (data.includes("paste_note")) {
 
         data = data.split(", ")
@@ -28,6 +46,35 @@ $(document).bind('paste', function(e) {
         originPageID = data[1];
         note_id = data[2];
         noteClass = data[3];
+
+        pasteNote(note_id, noteClass, originPageID, pageID);
+
+    } else if (data.includes("paste_selection")) {
+
+        console.log(data);
+
+        data = data.split("; ")
+
+        console.log(data);
+
+        console.log("pasted a seleciton");
+
+        originPageID = data[1];
+        selection = data[2];
+
+        console.log(selection);
+
+        pasteSelection(selection, originPageID, pageID);
+
+    } else {
+        console.log("is not clear");
+    }
+
+});
+
+
+
+function pasteNote(note_id, noteClass, originPageID, pageID) {
 
         console.log(originPageID, note_id, noteClass);
 
@@ -240,9 +287,32 @@ $(document).bind('paste', function(e) {
 
         }
 
-    } else {
-        console.log("is not array");
-    }
+}
 
-});
+
+function pasteSelection(selection, originPageID, pageID) {
+
+        console.log("pasting a selection");
+        console.log(selection);
+
+        $.ajax({
+            url: '/paste_selection/' + pageID,
+            type: "POST",
+
+            data: JSON.stringify({
+                originPageID : originPageID,
+                selection: selection,
+            }),
+            contentType: "application/json",
+            success: function (data) {
+                console.log(data);
+                window.location.href='/open_page/'+pageID;
+            },
+            error: function (error) {
+                console.log("problem");
+                window.location.href='/open_page/'+pageID;
+            }
+        });
+
+}
 

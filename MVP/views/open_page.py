@@ -19,7 +19,7 @@ def home():
 
     title = Page.query.filter_by(id=pageID).first().title
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     xml_string = etree.tostring(root).decode('utf-8')
@@ -57,7 +57,7 @@ def open_page(pageID):
 
     title = Page.query.filter_by(id=pageID).first().title
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     print(root)

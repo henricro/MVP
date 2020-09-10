@@ -64,7 +64,7 @@ def youtube(pageID):
 
     ### add a note in the XML with the x, y positions and the name of the file
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -94,7 +94,7 @@ def youtube(pageID):
 
     # save the changes in the xml
 
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

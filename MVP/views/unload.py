@@ -24,7 +24,7 @@ def unload(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
 
@@ -49,7 +49,7 @@ def unload(pageID):
 
         print(etree.tostring(root, pretty_print=True))
 
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

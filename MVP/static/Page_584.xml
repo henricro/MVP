@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="271" type="parent"><x>0</x><y>0</y><content>GYST MVP</content></note><note id="2" class="imageLink"><x>607</x><y>419</y><width>341</width><height>175</height><name>Screenshot_2020-09-10_at_12.24.05.png</name><image_id>1107</image_id><link>https://content.nanobox.io/how-to-deploy-flask-applications-to-ovh-with-nanobox/</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

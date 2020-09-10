@@ -23,7 +23,7 @@ def paste_note(pageID):
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + originPageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + originPageName + '.xml')
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + note_id + "']")
@@ -34,7 +34,7 @@ def paste_note(pageID):
     ## Copy that note in the current page
 
     PageName = 'Page_' + pageID
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -58,7 +58,7 @@ def paste_note(pageID):
     print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -86,7 +86,7 @@ def paste_pageLink(pageID):
 
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + originPageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + originPageName + '.xml')
     root = tree.getroot()
     note = root.find("notes").find("note[@id='" + note_id + "']")
 
@@ -99,7 +99,7 @@ def paste_pageLink(pageID):
 
     ## Copy that note in the current page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -124,7 +124,7 @@ def paste_pageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -132,7 +132,7 @@ def paste_pageLink(pageID):
 
         #### put pageLink child in current page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -157,14 +157,14 @@ def paste_pageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
         #### put pageLink parent in child page
         print('### put parent-pageLink in childPage')
 
-        destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
         destRoot = destTree.getroot()
 
         print(destRoot)
@@ -210,7 +210,7 @@ def paste_pageLink(pageID):
         etree.SubElement(new_note, "y").text = par_y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
         f.write(etree.tostring(destRoot, pretty_print=True))
         f.close()
 
@@ -218,7 +218,7 @@ def paste_pageLink(pageID):
 
         #### put pageLink parent in current page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -246,13 +246,13 @@ def paste_pageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = par_y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
         #### put pageLink child in parent page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
         root = tree.getroot()
         print("destPageName")
         print(destPageName)
@@ -295,7 +295,7 @@ def paste_pageLink(pageID):
         etree.SubElement(note, "y").text = new_y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -323,7 +323,7 @@ def paste_imagePageLink(pageID):
 
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + originPageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + originPageName + '.xml')
     root = tree.getroot()
     note = root.find("notes").find("note[@id='" + note_id + "']")
 
@@ -336,7 +336,7 @@ def paste_imagePageLink(pageID):
 
     ## Copy that note in the current page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -361,7 +361,7 @@ def paste_imagePageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -369,7 +369,7 @@ def paste_imagePageLink(pageID):
 
         #### put pageLink child in current page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -394,14 +394,14 @@ def paste_imagePageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
         #### put pageLink parent in child page
         print('### put parent-pageLink in childPage')
 
-        destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
         destRoot = destTree.getroot()
 
         print(destRoot)
@@ -447,7 +447,7 @@ def paste_imagePageLink(pageID):
         etree.SubElement(new_note, "y").text = par_y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
         f.write(etree.tostring(destRoot, pretty_print=True))
         f.close()
 
@@ -455,7 +455,7 @@ def paste_imagePageLink(pageID):
 
         #### put pageLink parent in current page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -483,13 +483,13 @@ def paste_imagePageLink(pageID):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = par_y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + PageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
         #### put pageLink child in parent page
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
         root = tree.getroot()
         print("destPageName")
         print(destPageName)
@@ -517,7 +517,7 @@ def paste_imagePageLink(pageID):
         etree.SubElement(note, "y").text = y
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -528,5 +528,63 @@ def paste_imagePageLink(pageID):
     return "yo"
 
 
+@application.route("/paste_selection/<pageID>", methods=['POST'])
+def paste_selection(pageID):
+
+    print("paste selection route")
+
+    # get the data of note to move and page to move to
+
+    request_data = request.get_json()
+    originPageID = str(request_data.get('originPageID'))
+    selection = request_data.get('selection')
+
+    selection = selection.split(',')
+
+    print(selection)
+
+    originPageName = 'Page_' + originPageID
+
+    for note_id in selection :
+
+        tree = etree.parse(application.config['STATIC_PATH'] + originPageName + '.xml')
+        root = tree.getroot()
+
+        note_id = str(note_id)
+
+        print(note_id)
+
+        ## Copy that note in the current page
+        note = root.find("notes").find("note[@id='" + note_id + "']")
+
+        print(etree.tostring(note, pretty_print=True))
+
+        PageName = 'Page_' + pageID
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
+        root = tree.getroot()
+
+        # get the biggest id in the xml and increment the value
+        id = tree.xpath("/canvas/meta/biggest_id")[0].text
+        id = int(id) + 1
+        id = str(id)
+        tree.xpath("/canvas/meta/biggest_id")[0].text = id
+
+        # add a note
+        notes = root.find("notes")
+        notes.append(note)
+
+        # change the note's id
+        note.set("id", id)
+
+        print("added the note to current page's xml :")
+        print(etree.tostring(root, pretty_print=True))
+
+        # save the changes in the xml
+        f = open(application.config['STATIC_PATH'] + PageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+
+    return "yo"
 
 

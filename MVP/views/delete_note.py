@@ -4,10 +4,13 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-
+import os
 
 @application.route("/delete_note/<pageID>", methods=['POST'])
 def delete_note(pageID):
+
+    print( "route : delete note")
+
     # get the data for new note
     request_data = request.get_json()
     id = str(request_data.get('id'))
@@ -17,7 +20,7 @@ def delete_note(pageID):
     print(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -27,9 +30,37 @@ def delete_note(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     note.getparent().remove(note)
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
+
+    connexions = root.find("connexions")
+
+    if connexions is not None:
+
+        test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id + "' ] ")
+        test2 = tree.xpath("/canvas/connexions/connexion[ @id_2='" + id + "' ] ")
+
+        print("test1, test2")
+        print(test1, test2)
+
+        if test1:
+            line = test1[0]
+            line.getparent().remove(line)
+
+            # save the changes in the xml
+            f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+            f.write(etree.tostring(root, pretty_print=True))
+            f.close()
+
+        elif test2:
+            line = test2[0]
+            line.getparent().remove(line)
+
+            # save the changes in the xml
+            f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+            f.write(etree.tostring(root, pretty_print=True))
+            f.close()
 
     if noteClass == "pageLink" or noteClass  =="imagePageLink" :
 
@@ -39,22 +70,22 @@ def delete_note(pageID):
 
         if type =="child" :
 
-            destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+            destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
             destRoot = destTree.getroot()
             note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
             note.getparent().remove(note)
-            f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+            f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
             f.write(etree.tostring(destRoot, pretty_print=True))
             f.close()
             # engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
              #              {'pageID': pageID, 'destPageID': destPageID})
         if type =="parent" :
 
-            destTree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+            destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
             destRoot = destTree.getroot()
             note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
             note.getparent().remove(note)
-            f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+            f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
             f.write(etree.tostring(destRoot, pretty_print=True))
             f.close()
             # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
@@ -83,19 +114,80 @@ def delete_notes(pageID):
     print(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     for id in selection :
 
         note = root.find("notes").find("note[@id='" + id + "']")
 
+        noteClass = note.get("class")
+
         note.getparent().remove(note)
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
+
+        connexions = root.find("connexions")
+
+        if connexions is not None:
+
+            test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id + "' ] ")
+            test2 = tree.xpath("/canvas/connexions/connexion[ @id_2='" + id + "' ] ")
+
+            print("test1, test2")
+            print(test1, test2)
+
+            if test1:
+                line = test1[0]
+                line.getparent().remove(line)
+
+                # save the changes in the xml
+                f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+                f.write(etree.tostring(root, pretty_print=True))
+                f.close()
+
+            elif test2:
+                line = test2[0]
+                line.getparent().remove(line)
+
+                # save the changes in the xml
+                f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+                f.write(etree.tostring(root, pretty_print=True))
+                f.close()
+
+        if noteClass == "pageLink" or noteClass == "imagePageLink":
+
+            type = note.get("type")
+            destPageID = note.get("pageID")
+            destPageName = 'Page_' + destPageID
+
+            if type == "child":
+                destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+                destRoot = destTree.getroot()
+                note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
+                note.getparent().remove(note)
+                f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+                f.write(etree.tostring(destRoot, pretty_print=True))
+                f.close()
+                # engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
+                #              {'pageID': pageID, 'destPageID': destPageID})
+            if type == "parent":
+                destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+                destRoot = destTree.getroot()
+                note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
+                note.getparent().remove(note)
+                f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+                f.write(etree.tostring(destRoot, pretty_print=True))
+                f.close()
+                # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
+                #              {'pageID': pageID, 'destPageID': destPageID})
+            if type == "visitor":
+                return "yo"
+                # engine.execute("delete from visitors where visitor_page_id = %(destPageID)s and visited_page_id = %(pageID)s ",
+                #              {'pageID': pageID, 'destPageID': destPageID})
 
     return "yo"
 

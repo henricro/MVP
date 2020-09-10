@@ -28,7 +28,7 @@ def upload_pdf(pageID):
 
     type = file.filename[-4:]
 
-    file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename)
+    file.save(application.config['UPLOADED_PATH'] + file.filename)
 
     ### keep the information that this file is in this page in the 'tags' many to many SQL table
 
@@ -44,14 +44,14 @@ def upload_pdf(pageID):
 
     ### add a note in the XML with the x, y positions and the name of the file
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     ### get the first page of the pdf as an image
 
-    pages = convert_from_path("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename, 500)
+    pages = convert_from_path(application.config['STATIC_PATH'] + file.filename, 500)
     first_page = pages[0]
-    first_page.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename + ".first_page.jpg",
+    first_page.save(application.config['STATIC_PATH'] + file.filename + ".first_page.jpg",
                     'JPEG')
 
     # save the first page as jpeg in DB
@@ -94,31 +94,13 @@ def upload_pdf(pageID):
 
     # save the changes in the xml
 
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
     return "yo"
 
-    '''
-    doc = fitz.open("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename)
 
-    file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + file.filename)
-
-    for img in doc.getPageImageList(0):
-        xref = img[0]
-        pix = fitz.Pixmap(doc, xref)
-        if pix.n < 5:  # this is GRAY or RGB
-            print("write image 1")
-            pix.writePNG("p%s-%s.png" % (0, xref))
-        else:  # CMYK: convert to RGB first
-            print("write image 2")
-            pix1 = fitz.Pixmap(fitz.csRGB, pix)
-            pix1.writePNG("p%s-%s.png" % (0, xref))
-            pix1 = None
-        pix = None
-
-    '''
 
 
 

@@ -21,7 +21,7 @@ def update_position(pageID):
     pageName = 'Page_' + pageID
     print(pageName)
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     print(etree.tostring(root, pretty_print=True))
@@ -31,7 +31,7 @@ def update_position(pageID):
 
     print(etree.tostring(root, pretty_print=True))
 
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -52,7 +52,7 @@ def update_positions(pageID):
     pageName = 'Page_' + pageID
     print(pageName)
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     print(etree.tostring(root, pretty_print=True))
@@ -70,7 +70,7 @@ def update_positions(pageID):
 
         print(etree.tostring(root, pretty_print=True))
 
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -100,12 +100,12 @@ def update_content(pageID):
     else:
         pageName = 'Page_' + pageID
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
         root = tree.getroot()
 
         tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
 
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 

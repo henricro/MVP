@@ -18,7 +18,7 @@ def move_note(pageID):
     print(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + note_id + "']")
@@ -28,12 +28,12 @@ def move_note(pageID):
     note.getparent().remove(note)
 
     # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
     destPageName = 'Page_' + page_id
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -52,7 +52,7 @@ def move_note(pageID):
     print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -82,7 +82,7 @@ def move_notes(pageID):
 
     for note_id in selection :
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
         root = tree.getroot()
 
         note_id = str(note_id)
@@ -95,11 +95,11 @@ def move_notes(pageID):
         note.getparent().remove(note)
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
-        tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml')
+        tree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -118,7 +118,7 @@ def move_notes(pageID):
         print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
-        f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + destPageName + '.xml', 'wb')
+        f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 

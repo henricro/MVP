@@ -14,8 +14,7 @@
         <height>200</height>
     </note>
 
-<note id="1" class="pageLink" pageID="190" type="parent"><x>111</x><y>14</y><content>testing</content></note>
-    <note id="3" class="note"><x>615</x><y>324</y><content>jej s\'echc</content></note>
+<note id="3" class="note"><x>615</x><y>324</y><content>jej s\'echc</content></note>
     <note id="4" class="note"><x>766</x><y>385</y><content>je m\'appekke henri</content></note>
     <note id="5" class="note"><x>558</x><y>522</y><content>je m\'appelle "henri"</content></note>
 

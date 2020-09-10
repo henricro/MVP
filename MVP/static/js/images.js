@@ -75,6 +75,7 @@ function selectImage(note){
 
     // COPY THE NOTE
     note.bind('copy', function() {
+        console.log( "clicked to copy image");
         copyNote(note);
     });
 

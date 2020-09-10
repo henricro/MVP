@@ -32,7 +32,7 @@ def change_image_imagePageLink(pageID):
     filename = file.filename
     filename = filename.replace(' ', '_')
 
-    file.save("/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/" + filename)
+    file.save(application.config['UPLOADED_PATH'] + filename)
 
     ### keep the information that this image is in this page in the 'tags' many to many SQL table
 
@@ -48,7 +48,7 @@ def change_image_imagePageLink(pageID):
 
     ### open the XML
 
-    tree = etree.parse('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml')
+    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
     root = tree.getroot()
 
     #find the note
@@ -67,7 +67,7 @@ def change_image_imagePageLink(pageID):
 
     # save the changes in the xml
 
-    f = open('/Users/macbook/PycharmProjects/MVP/MVP/static/' + pageName + '.xml', 'wb')
+    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

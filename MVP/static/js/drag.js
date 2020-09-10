@@ -293,6 +293,12 @@ function dragSelect() {
 
         } else {
 
+            $(document).bind('copy.copySelection', function() {
+                console.log("clicked to copy selection");
+                copySelection(selection);
+                $(document).unbind('copy.copySelection');
+            });
+
             $(document).bind('keyup.delete', function(){
 
                 if (event.keyCode == 8){
