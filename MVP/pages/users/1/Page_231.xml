@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="219" type="parent"><x>0</x><y>0</y><content>recettes de cuisine</content></note><note id="2" class="imageLink"><x>521</x><y>440</y><width>243</width><height>198</height><name>Screenshot_2020-09-28_at_13.52.59.png</name><image_id>1326</image_id><link>https://www.750g.com/mafe-senegalais-r60559.htm</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

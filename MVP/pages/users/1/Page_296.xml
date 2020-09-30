@@ -1,0 +1,30 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>770</x>
+        <y>58</y>
+    </note>
+
+    <note id="parents">
+        <x>-108</x>
+        <y>-134</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>121</x><y>22</y><content>GYST</content></note>
+    <note id="7" class="note"><x>599</x><y>109</y><content>le lieu pour les id&#233;es de choses &#224; faire, de choses &#224; cr&#233;er, de projets&lt;div&gt;(plut&#244;t business, startUp, Tech, etc.)&lt;/div&gt;</content><css>color : #C70039;</css></note>
+    <note id="45" class="pageLink" pageID="333" type="child"><x>662</x><y>248</y><content>GYST - idea</content></note>
+    <note id="54" class="note"><x>484</x><y>399</y><content>plateformes collectives</content></note>
+    <note id="55" class="note"><x>837</x><y>406</y><content>plateformes individuelles</content></note>
+
+    <note id="71" class="pageLink" pageID="287" type="child"><x>868</x><y>254</y><content>movie ideas</content></note><note id="72" class="note"><x>1038</x><y>501</y><content>"how to" pages&amp;nbsp;&lt;div&gt;with GYST style design of the website&lt;/div&gt;</content></note><note id="73" class="note"><x>1025</x><y>629</y><content>football website</content></note><note id="75" class="pageLink" pageID="620" type="child"><x>413</x><y>436</y><content>etat de la france</content></note><note id="77" class="pageLink" pageID="621" type="child"><x>451</x><y>475</y><content>et toi ?</content></note><note id="78" class="note"><x>882</x><y>455</y><content>site sur le foot, l\'univers du foot</content></note><note id="80" class="pageLink" pageID="622" type="child"><x>615</x><y>537</y><content>ce qu\'ils ont dit - politiciens</content></note><note id="81" class="note"><x>937</x><y>347</y><content>j\'aimerais faire un espace o&#249; je range toutes les id&#233;es, les opinions dites, sur tous les sujets,&amp;nbsp;&lt;div&gt;avec des bouts de vid&#233;os, des bouts de textes&lt;/div&gt;</content></note><note id="82" class="note"><x>1218</x><y>428</y><content>sujet : fermeture d\'usines</content></note><note id="83" class="note"><x>201</x><y>656</y><content>thought : on idea-gyst :&lt;div&gt;the mad mad thing i\'m gonna create is a movie space&lt;/div&gt;&lt;div&gt;with the actual movies, clips of the movies, clips of people talking about the movies, oscar speeches, etc. !!&lt;/div&gt;</content></note><note id="84" class="note"><x>297</x><y>322</y><content>idee de loi : si tu veux fermer une usine, tu dois l\'annoncer 3 ans avant</content></note><note id="85" class="note"><x>979</x><y>711</y><content>visualisation i want to create :&lt;div&gt;how an economy works&lt;/div&gt;&lt;div&gt;how a small cowboy western city works&lt;/div&gt;</content></note><note id="86" class="note"><x>237</x><y>233</y><content>i want to make a library of the classic books&lt;div&gt;to help me decide what i want to read&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>86</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

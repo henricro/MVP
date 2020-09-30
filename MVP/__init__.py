@@ -6,6 +6,8 @@ from flask_dropzone import Dropzone
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 import os
 import json
+from flask_login import LoginManager, current_user
+from functools import wraps
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -25,6 +27,7 @@ dropzone = Dropzone(application)
 
 application.config['UPLOADED_PATH'] = os.path.join(basedir, 'static/uploads/')
 application.config['STATIC_PATH'] = os.path.join(basedir, 'static/')
+application.config['PAGES_PATH'] = os.path.join(basedir, 'pages/')
 
 application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:8889/MVP'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -43,6 +46,9 @@ db = SQLAlchemy(application)
 migrate = Migrate(application, db)
 
 engine = db.engine
+
+login_manager = LoginManager()
+login_manager.init_app(application)
 
 application.debug=True
 application.secret_key = 'hC1YCIWOj9GgWspgNEo2'
@@ -71,8 +77,21 @@ def index():
     return render_template('index.html')
 '''
 
+def user_required():
+    def decor(func):
+        @wraps(func)
+        def inner1(*args, **kwargs):
 
-from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload, \
+            if not current_user.is_authenticated:
+                print("mamamama")
+                return redirect(url_for('login'))
+            else :
+                return func(*args, **kwargs)
+        return inner1
+    return decor
+
+
+from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload, login, celery, login, passwords, \
     add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories
 
 if __name__ == '__main__':

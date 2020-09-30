@@ -26,9 +26,14 @@ def youtube(pageID):
 
     request_data = request.get_json()
     youtube_link = str(request_data.get('data'))
+    x = str(request_data.get('x'))
+    y = str(request_data.get('y'))
 
     if "&list" in youtube_link :
         youtube_link = youtube_link.split("&list",1)[0]
+
+    if "&" in youtube_link:
+        youtube_link = youtube_link.split("&", 1)[0]
 
     print("youtube link : ", youtube_link)
 
@@ -81,8 +86,8 @@ def youtube(pageID):
     # set the note's x, y and content = "title" (for now)
     new_note.set("id", id)
     new_note.set("class", "imageLink")
-    etree.SubElement(new_note, "x").text = "500"
-    etree.SubElement(new_note, "y").text = "500"
+    etree.SubElement(new_note, "x").text = x
+    etree.SubElement(new_note, "y").text = y
     etree.SubElement(new_note, "width").text = "300"
     etree.SubElement(new_note, "height").text = "200"
     etree.SubElement(new_note, "name").text = str(youtube_image)

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="note"><x>435</x><y>432</y><content>as a director i don\'t like to talk about my movie less than 2 years after</content></note><note id="3" class="pageLink" type="parent" pageID="1"><content>GYST</content><x>3</x><y>61</y></note><note id="4" class="imageLink"><x>1096</x><y>610</y><width>174</width><height>54</height><name>Screenshot_2020-09-22_at_17.50.22.png</name><image_id>1287</image_id><link>https://lesmots.co/stage/le-scenario-dans-tous-ses-etats-f5fa8a35-1a49-4d05-b724-2fb7f058d3bb</link></note><note id="6" class="imagePageLink" pageID="586" type="child"><x>1121</x><y>491</y><content>atelier secnario</content><image>Screenshot_2020-09-10_at_19.44.48.png</image><image_id>1115</image_id><width>110</width><height>102</height></note><note id="7" class="note"><x>1105</x><y>435</y><content>&#233;criture de scenarios</content></note><note id="8" class="note"><x>694</x><y>612</y><content>films que j\'aimerais faire :&amp;nbsp;&lt;div&gt;films qui se situent entre paris et les banlieues&lt;/div&gt;</content></note><note id="9" class="imageLink"><x>309</x><y>514</y><width>139</width><height>63</height><name>Screenshot_2020-09-24_at_17.11.45.png</name><image_id>1303</image_id><link>https://drive.google.com/drive/folders/0B3XnH2RzIPmlOWxnYzdXaklwejg</link></note><note id="10" class="note"><x>540</x><y>501</y><content>trouver un festival de courts auquel on pourrait participer !</content></note></notes>
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

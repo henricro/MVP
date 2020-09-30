@@ -7,8 +7,22 @@ class User(db.Model):
     last_name = db.Column(db.String(128))
     email = db.Column(db.String(128))
     phone = db.Column(db.String(128))
+    password = db.Column(db.String(100))
+    is_active = db.Column(db.Boolean, default=True)
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.id
 
     __tablename__ = "Users"
+    __table_args__ = {'extend_existing': True}
 
 class Page (db.Model):
 

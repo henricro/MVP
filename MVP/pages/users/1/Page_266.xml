@@ -1,0 +1,33 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>715</x>
+        <y>99</y>
+    </note>
+
+    <note id="parents">
+        <x>-70</x>
+        <y>-121</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>185</x><y>19</y><content>GYST</content></note>
+    <note id="9" class="imagePageLink" pageID="219" type="child"><x>246</x><y>244</y><content>recettes</content><image>cuisine-libanaise.jpg</image><image_id>416</image_id><width>250</width><height>127</height></note>
+    <note id="10" class="imagePageLink" pageID="121" type="child"><x>215</x><y>539</y><content>videos</content><image>youtube.png</image><image_id>427</image_id><width>223</width><height>139</height></note>
+    <note id="12" class="imagePageLink" pageID="298" type="child"><x>562</x><y>631</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>189</width><height>122</height></note>
+
+<note id="13" class="imagePageLink" pageID="464" type="child"><x>898</x><y>328</y><content>Podcasts</content><image>Screenshot_2020-09-08_at_13.06.25.png</image><image_id>1016</image_id><width>235</width><height>143</height></note>
+    <note id="16" class="imagePageLink" pageID="559" type="child"><x>1281</x><y>480</y><content>photo library</content><image>119054221_316434619566907_5399735615740267331_n.jpg</image><image_id>1023</image_id><width>248</width><height>151</height>
+    </note><note id="17" class="pageLink" pageID="590" type="child"><x>698</x><y>262</y><content>test library</content></note><note id="26" class="imagePageLink" pageID="269" type="child"><x>869</x><y>610</y><content>books</content><image>books.jpg</image><image_id>432</image_id><width>144</width><height>94</height></note>
+    <note id="27" class="imagePageLink" pageID="268" type="child"><x>566</x><y>403</y><content>series</content><image>six-feet.png</image><image_id>431</image_id><width>265</width><height>137</height></note>
+    <note id="28" class="imagePageLink" pageID="599" type="child"><x>1053</x><y>528</y><content>guitar songs</content><image>5fd792c3744af63d5a0cbc3bf4040be5.jpg</image><image_id>1159</image_id><width>140</width><height>96</height></note><note id="30" class="pageLink" pageID="649" type="child"><x>1059</x><y>710</y><content>yolo</content></note></notes>
+
+<meta>
+    <biggest_id>30</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

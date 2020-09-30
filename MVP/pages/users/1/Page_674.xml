@@ -1,0 +1,25 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="523" type="parent"><x>0</x><y>0</y><content>my life</content></note><note id="2" class="imagePageLink" pageID="557" type="child"><x>648</x><y>377</y><content>friends and family &lt;3</content><image>Screenshot_2020-09-08_at_12.33.33.png</image><image_id>1013</image_id><width>91</width><height>84</height><image>banner-small-five-steps-digitize-business_402x-1.jpg</image><image_id>1014</image_id><width>100</width><height>50</height></note><note id="3" class="note"><x>826</x><y>399</y><content>prendre un verre un jour avec la pote de Claire&amp;nbsp;&lt;div&gt;pour lui poser des questions sur Poutine&lt;/div&gt;</content></note>
+    </notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

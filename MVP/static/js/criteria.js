@@ -16,12 +16,16 @@ function createCriteria(note) {
     console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
+    var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
+    var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
 
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
     var criteria_name = "<div class='criteria_name'>" + name + "</div>"
 
     var criteria_categories = "<div class='criteria_categories resizable'></div>"
+
+    var categoriesSpace = "<div class='categories'></div>"
 
     //console.log("print elmnt");
     //console.log(elmnt);
@@ -30,6 +34,7 @@ function createCriteria(note) {
 
     note.append(criteria_name);
     note.append(criteria_categories);
+    $('.criteria_categories').append(categoriesSpace);
 
     categories = note.find(".criteria_categories")
     categories.css("width", width);

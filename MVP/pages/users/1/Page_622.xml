@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>546</x>
+        <y>294</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="296" type="parent"><x>0</x><y>0</y><content>idees</content></note><note id="2" class="note"><x>454</x><y>393</y><content>j\'aimerais tellement cr&#233;er un site o&#249; l\'on pourrait explorer les discours et d&#233;bats politiques. La parole politique&amp;nbsp;</content></note><note id="3" class="note"><x>495</x><y>454</y><content>des bouts de clips, des vid&#233;os enti&#232;res, des textes</content></note><note id="4" class="note"><x>537</x><y>555</y><content>j\'aimerais que cela encourage &#224; plus plus plus de d&#233;bats</content></note><note id="5" class="note"><x>489</x><y>596</y><content>car pour moi la d&#233;mocratie vit quand il y a des d&#233;bats avec plein de gens qui regardent</content></note><note id="6" class="note"><x>573</x><y>690</y><content>on veut que nos politicien.ne.s d&#233;butent !&amp;nbsp;&lt;div&gt;Pas une fois tous les 5 ans !!&lt;/div&gt;&lt;div&gt;Non, tous les ans, plusieurs fois par an.&lt;/div&gt;&lt;div&gt;Tous les deux mois m&#234;me.&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

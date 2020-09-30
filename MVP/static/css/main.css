@@ -4,7 +4,8 @@
   border : 1px solid rgb(0, 0, 0, 0);
   border-radius : 5px;
   text-align: center;
-  background: inherit;
+  /*background: inherit;*/
+
 }
 
 /**********  Image   ***********/
@@ -512,13 +513,21 @@
     position: relative;
     border: 1px dashed green;
     border-radius : 5px;
-    padding : 20px;
     background-color: rgb(224, 250, 190, 0.15);
     z-index: 9;
 }
 
 .category{
     position: absolute;
+    border: 1px solid blue;
+    border-radius : 3px;
+    padding: 2px;
+}
+
+.categories{
+    width:100%;
+    height: 100%;
+    position: relative;
 }
 
 

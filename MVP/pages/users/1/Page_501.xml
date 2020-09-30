@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="310" type="parent"><x>0</x><y>0</y><content>administratif</content></note><note id="2" class="note"><x>397</x><y>461</y><content>&lt;div style="text-align: start;"&gt;&lt;span style="background-color: inherit;"&gt;identifiant :&lt;font color="#e01f25" face="Arial" size="1"&gt;&lt;b&gt;&amp;nbsp;&lt;/b&gt;&lt;/font&gt;7446065T&lt;/span&gt;&lt;/div&gt;&lt;div style="text-align: start;"&gt;&lt;span style="background-color: inherit;"&gt;mdp :&amp;nbsp;&lt;/span&gt;&lt;span style="background-color: inherit; text-align: center;"&gt;jeFAISg4ffe!&lt;/span&gt;&lt;/div&gt;</content></note><note id="3" class="note"><x>686</x><y>421</y><content>15 septembre 2020 : j\'ai appel&#233; pour v&#233;rifier que je. n\'avais pas de reglements en retard. D\'apr&#232;s eux tout est bon !</content></note><note id="4" class="note"><x>688</x><y>446</y><content>--&amp;gt; c\'est 140&#8364; pr an</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

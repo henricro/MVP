@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////
 
 
-$(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .criteria").each(function(){
+$(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .criteria, .category").each(function(){
 
     $(this).bind('mousedown.drag', function(){
 
@@ -97,7 +97,37 @@ function dragNote(note, noteX, noteY) {
 
                     });
 
-                } else if ( event.target.classList.contains('note') ){
+                } /*else if ( event.target.classList.contains('imagePageLink_name') ){
+
+                    console.log("moved an object into another page");
+
+                    note_id = note.attr("id");
+
+                    page_id = $(event.target).parent().attr("pageid");
+
+                    $.ajax({
+
+                        url: '/move_note/'+pageID,
+                        type: "POST",
+                        data: JSON.stringify({
+                            note_id: note_id,
+                            page_id: page_id
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                            window.location.href='/open_page/'+pageID;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+pageID;
+                        }
+
+                    });
+
+                }*/
+
+                else if ( event.target.classList.contains('note') ){
 
                     $.ajax({
 
@@ -341,24 +371,6 @@ function dragSelect() {
 
                 dragNotes(selection);
 
-                /*
-                for (i in selection){
-
-                    id = selection[i];
-
-                    console.log(id);
-
-                    var note = $('#' + id);
-
-                    var noteX = parseInt(note.css("left").slice(0, -2));
-                    var noteY = parseInt(note.css("top").slice(0, -2));
-
-                    console.log(noteX, noteY);
-
-
-                }
-                */
-
             });
 
         }
@@ -369,7 +381,7 @@ function dragSelect() {
 
 
 /////////////////////////////////////
-//////////// DRAG NOTES /////////////
+//////////// DRAG SELECTION /////////////
 /////////////////////////////////////
 
 function dragNotes(selection) {
@@ -449,7 +461,33 @@ function dragNotes(selection) {
 
                 });
 
-            } //else if ( event.target.classList.contains('note') ){
+            } /*else if ( event.target.classList.contains('imagePageLink_name') ){
+
+                console.log("moved a selection into another page");
+
+                page_id = $(event.target).parent().attr("pageid");
+
+                $.ajax({
+
+                    url: '/move_notes/'+pageID,
+                    type: "POST",
+                    data: JSON.stringify({
+                        selection: selection,
+                        page_id: page_id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href='/open_page/'+pageID;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        window.location.href='/open_page/'+pageID;
+                    }
+
+                });
+
+            }*/ //else if ( event.target.classList.contains('note') ){
 
               //  $.ajax({
 

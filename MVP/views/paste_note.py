@@ -132,7 +132,7 @@ def paste_pageLink(pageID):
 
         #### put pageLink child in current page
 
-        tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+        tree = etree.parse(application.config['STATIC_PATH'] + PageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value

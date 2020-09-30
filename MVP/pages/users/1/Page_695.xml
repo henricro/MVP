@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="310" type="parent"><x>0</x><y>0</y><content>administratif</content></note><note id="2" class="imageLink"><x>525</x><y>473</y><width>300</width><height>200</height><name>redbysfr-avis.jpg</name><image_id>1338</image_id><link>https://www.red-by-sfr.fr/</link></note><note id="3" class="note"><x>963</x><y>492</y><content>henri.crozel@gmail.com</content></note><note id="4" class="note"><x>991</x><y>549</y><content>ilike2CALL</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

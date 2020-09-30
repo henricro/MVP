@@ -56,13 +56,23 @@ $(document).bind('paste', function(e) {
 
     if (data.includes("youtube.com/")) {
 
+        if( $('#mouse_position').find('#x_pos').html() ){
+            x = $('#mouse_position').find('#x_pos').html();
+            y = $('#mouse_position').find('#y_pos').html();
+        } else {
+            x = "500";
+            y = "500";
+        }
+
         console.log(data);
 
         $.ajax({
             url: '/youtube/'+pageID,
             type: "POST",
             data: JSON.stringify({
-                data: data
+                data: data,
+                x : x,
+                y : y
             }),
             contentType: "application/json",
             success: function (data) {

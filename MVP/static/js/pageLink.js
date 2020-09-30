@@ -143,7 +143,7 @@ $(document).bind('contextmenu', function(event) {
 
             $('#pageRCPlus_1').bind('click', function() {
                 $('#pageRCPlus_1').unbind('click');
-                var criteria = prompt("Category", "");
+                var criteria = prompt("Criteria", "");
 
                 $.ajax({
                     url: '/new_criteria/'+pageID,

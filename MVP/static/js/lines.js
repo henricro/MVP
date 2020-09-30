@@ -24,6 +24,9 @@ function createLines() {
         var elem1 = $('#' + id_1);
         var elem2 = $('#' + id_2);
 
+        elem1.css("background", "inherit");
+        elem2.css("background", "inherit");
+
         console.log(elem1, elem2);
 
         var x1 = parseInt(elem1.css("left").slice(0, -2)) + (parseInt(elem1.css("width").slice(0, -2))/2);

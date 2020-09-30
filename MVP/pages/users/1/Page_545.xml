@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>681</x>
+        <y>301</y>
+    </note>
+
+    <note id="parents">
+        <x>-102</x>
+        <y>-135</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="537" type="parent"><x>107</x><y>20</y><content>TO DO</content></note><note id="3" class="imageLink"><x>1102</x><y>330</y><width>234</width><height>197</height><name>Screenshot_2020-09-08_at_18.32.07.png</name><image_id>1062</image_id><link>https://docs.google.com/document/d/1CYchr_jfPrjvuSaBWesowmQXqCop1jYdoTXgmgoJEVc/edit</link></note><note id="10" class="imageLink"><x>337</x><y>584</y><width>461</width><height>220</height><name>Screenshot_2020-09-17_at_12.42.24.png</name><image_id>1201</image_id><link>https://iscom.jobteaser.com/fr/backend/job-offers/6502832-mokki-sas-stage-en-communication-marketing</link></note><note id="11" class="image"><x>725</x><y>1819</y><width>85</width><height>35</height><name>Screenshot_2020-08-24_at_12.46.43.png</name><image_id>660</image_id></note><note id="12" class="imageLink"><x>330</x><y>820</y><width>404</width><height>230</height><name>Screenshot_2020-09-17_at_12.50.23.png</name><image_id>1203</image_id><link>https://iticparis.jobteaser.com/fr/backend/job-offers/6502861-mokki-sas-stage-en-communication-marketing</link></note><note id="13" class="image"><x>291</x><y>1081</y><width>531</width><height>186</height><name>Screenshot_2020-09-17_at_12.58.35.png</name><image_id>1205</image_id></note><note id="14" class="note"><x>1012</x><y>1183</y><content>mail envoy&#233; !</content></note><note id="15" class="note"><x>458</x><y>483</y><content>&lt;b&gt;offres de stage&lt;/b&gt;</content><css>font-size: 30px; text-decoration: underline;</css></note><note id="16" class="image"><x>360</x><y>1300</y><width>308</width><height>165</height><name>Screenshot_2020-09-17_at_13.19.55.png</name><image_id>1207</image_id></note><note id="17" class="note"><x>725</x><y>1374</y><content>2 mails envoy&#233;s aux responsables des relations entreprises</content></note><note id="18" class="imageLink"><x>317</x><y>1524</y><width>448</width><height>225</height><name>Screenshot_2020-09-17_at_13.26.33.png</name><image_id>1208</image_id><link>https://groupe-esg.jobteaser.com/fr/backend/job-offers/6502987-mokki-sas-stage-communication-marketing</link></note><note id="19" class="image"><x>1249</x><y>1332</y><width>348</width><height>113</height><name>Screenshot_2020-09-17_at_13.49.17.png</name><image_id>1211</image_id></note><note id="20" class="pageLink" pageID="630" type="child"><x>825</x><y>382</y><content>candidatures</content></note><note id="22" class="pageLink" pageID="644" type="child"><x>738</x><y>453</y><content>chloe dirion</content></note></notes>
+
+<meta>
+    <biggest_id>22</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="14" id_2="13"/><connexion id_1="17" id_2="16"/><connexion id_1="17" id_2="19"/></connexions></canvas>

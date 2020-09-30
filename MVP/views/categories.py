@@ -10,7 +10,7 @@ import random
 @application.route("/new_criteria/<pageID>", methods=['POST'])
 def new_criteria(pageID):
 
-    print("roue : new criteria")
+    print("route : new criteria")
 
     request_data = request.get_json()
     new_x = str(request_data.get('new_x'))
@@ -25,7 +25,8 @@ def new_criteria(pageID):
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
-    id = tree.xpath("/canvas/meta/biggest_id")[0]
+    id = tree.xpath("/canvas/meta/biggest_id")[0].text
+    print(id)
     id = int(id) + 1
     id = str(id)
     tree.xpath("/canvas/meta/biggest_id")[0].text = id
@@ -40,8 +41,8 @@ def new_criteria(pageID):
     new_note.set("class", "criteria")
     etree.SubElement(new_note, "x").text = new_x
     etree.SubElement(new_note, "y").text = new_y
-    etree.SubElement(new_note, "width").text = 150
-    etree.SubElement(new_note, "height").text = 100
+    etree.SubElement(new_note, "width").text = "300"
+    etree.SubElement(new_note, "height").text = "250"
     etree.SubElement(new_note, "name").text = criteria
 
     print(etree.tostring(root, pretty_print=True))
@@ -56,7 +57,7 @@ def new_criteria(pageID):
 @application.route("/add_category/<pageID>", methods=['POST'])
 def add_category(pageID):
 
-    print("roue : add category")
+    print("route : add category")
 
     request_data = request.get_json()
     category = str(request_data.get('category'))
@@ -83,13 +84,13 @@ def add_category(pageID):
     # set the note's x, y and content = "new note"
     new_note.set("id", id)
     new_note.set("class", "category")
+    new_note.set("criteria_id", criteria_id)
 
-    par_x = str(random.randint(0, 150))
-    par_y = str(random.randint(0, 100))
+    par_x = str(random.randint(0, 300))
+    par_y = str(random.randint(0, 250))
 
     etree.SubElement(new_note, "x").text = par_x
     etree.SubElement(new_note, "y").text = par_y
-    etree.SubElement(new_note, "criteria_id").text = criteria_id
     etree.SubElement(new_note, "name").text = category
 
     print(etree.tostring(root, pretty_print=True))
