@@ -1,3 +1,2 @@
-tests/
-
-bookPage.html
+*.xml
+!newPage.xml
