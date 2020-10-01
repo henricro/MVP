@@ -12,9 +12,8 @@ SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
 # administrator list
 ADMINS = ['henri.crozel@gmail.com']
 
-MAIL_USERNAME = 'henri.crozel@gmail.com'
-MAIL_PASSWORD = '4nnabellee'
-MAIL_DEFAULT_SENDER = 'henri.crozel@gmail.com'
+
+
 
 
 ### phpMyAdmin DB

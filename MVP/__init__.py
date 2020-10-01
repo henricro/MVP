@@ -31,6 +31,8 @@ application.config['PAGES_PATH'] = os.path.join(basedir, 'pages/')
 application.config['TEMPLATES_PATH'] = os.path.join(basedir, 'templates/')
 application.config['USER_DATA_PATH'] = os.path.join(basedir, 'static/user_data/users/')
 
+application.config['SERVER_DOMAIN'] = 'http://localhost:5000'
+
 application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:8889/MVP'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
@@ -39,10 +41,9 @@ application.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
 application.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
 application.config['DROPZONE_REDIRECT_VIEW'] = 'results'
 
-application.config['UPLOADED_PHOTOS_DEST'] = os.getcwd() + '/uploads'
-photos = UploadSet('photos', IMAGES)
-configure_uploads(application, photos)
-patch_request_class(application)  # set maximum file size, default is 16MB
+application.config['MAIL_USERNAME'] = 'henri.crozel@gmail.com'
+application.config['MAIL_PASSWORD'] = 'nwjvnfputaxcmngx'
+application.config['MAIL_DEFAULT_SENDER'] = 'henri.crozel@gmail.com'
 
 db = SQLAlchemy(application)
 migrate = Migrate(application, db)
@@ -94,7 +95,7 @@ def user_required():
 
 
 from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload, login, celery, login, passwords, \
-    add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories
+    add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories, sign_up
 
 if __name__ == '__main__':
     application.run(debug=True)

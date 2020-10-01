@@ -12,10 +12,11 @@ from MVP.views.passwords import get_hashed_password
 from MVP import application, db, login_manager, engine, user_required
 from MVP.models import *
 
+
 @login_manager.user_loader
-def load_user(user_id):
-    #print("Load user called with " + str(user_id))
-    return User.query.get(user_id)
+def load_user(id):
+    return User.query.get(id)
+
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/login', methods=['GET', 'POST'])
@@ -37,7 +38,7 @@ def login():
         print("hohohohohohohohohohohhoo")
         if user is not None and encrypted_password==user.password:
             print(current_user.is_authenticated)
-
+            print(user.id)
             login_user(user)
             print(current_user.is_authenticated)
             print("password is correct")

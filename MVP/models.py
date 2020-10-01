@@ -9,6 +9,8 @@ class User(db.Model):
     phone = db.Column(db.String(128))
     password = db.Column(db.String(100))
     is_active = db.Column(db.Boolean, default=True)
+    verification_token = db.Column(db.String(128))
+    verification_token_expiry = db.Column(db.DateTime, nullable=True)
 
     @property
     def is_authenticated(self):
@@ -23,6 +25,8 @@ class User(db.Model):
 
     __tablename__ = "Users"
     __table_args__ = {'extend_existing': True}
+
+
 
 class Page (db.Model):
 

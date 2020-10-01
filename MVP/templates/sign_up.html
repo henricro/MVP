@@ -39,7 +39,22 @@
 </head>
 
 <body>
-
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 limiter">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+       {% if messages %}
+         {% for category, message in messages %}
+           <div class="alert alert-{{category}}">
+             {{ message }}
+           </div>
+         {% endfor %}
+       {% endif  %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</main>
 
 
 <div style="display:flex; flex-direction:column; align-items:center; margin-top: 100px;">
@@ -80,16 +95,6 @@
             <div>
             {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
             </div>
-            <div>
-            <a href="/forgot_password" class="btn btn-outline-info" style="text-transform:None; margin-top:10px;">Mot de passe oublié ?</a>
-            </div>
-            <div>
-            <a href="/reset_password" class="btn btn-outline-info" style="text-transform:None; margin-top:10px;">Changer le mot de passe</a>
-            </div>
-            <div>
-            <a href="/sign_up" class="btn btn-outline-info" style="text-transform:None; margin-top:10px;">Créer un compte</a>
-            </div>
-            <div>
 
 
     </form>

@@ -3,27 +3,30 @@ from wtforms import StringField, SubmitField, BooleanField, SelectField, Integer
 from wtforms.validators import DataRequired, Length, Email
 
 
-
 class LoginForm(FlaskForm):
     email = StringField('Email')
-    password = PasswordField('Mot de passe')
-    submit = SubmitField('Se connecter')
-
-class CreatePasswordForm(FlaskForm):
-    email = StringField('Email')
-    password = PasswordField('Mot de passe')
-    confirm_password = PasswordField('Confirmer mot de passe')
-    submit = SubmitField('Créer mot de passe')
+    password = PasswordField('Password')
+    submit = SubmitField('Go')
 
 class ChangePasswordForm(FlaskForm):
-    old_password = PasswordField('Ancien mot de passe')
-    new_password = PasswordField('Nouveau mot de passe')
-    confirm_password = PasswordField('Confirmer nouveau mot de passe')
-    submit = SubmitField('Changer de mot de passe')
+
+    email = StringField('Email')
+    old_password = PasswordField('Old password')
+    new_password = PasswordField('New password')
+    confirm_password = PasswordField('Confirm new password')
+    submit = SubmitField('Go')
 
 class ForgotPasswordForm(FlaskForm):
     email = StringField('Email')
-    submit = SubmitField('Envoyer nouveau mot de passe')
+    submit = SubmitField('Send new password')
+
+class SignUpForm(FlaskForm):  # inherits from Form
+
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm password')
+    submit = SubmitField('Go')
+
 
 
 

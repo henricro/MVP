@@ -7,8 +7,14 @@ from flask_login import LoginManager, UserMixin, current_user
 
 
 @application.route("/home/<user_id>", methods=['GET', 'POST'])
-#@user_required()
+@user_required()
 def home(user_id):
+
+    user_id = int(user_id)
+    if not user_id == current_user.id:
+        return redirect(url_for('login'))
+
+    user_id = str(user_id)
 
     print("route : open home page")
 
@@ -34,12 +40,14 @@ def home(user_id):
 
 
 @application.route("/open_page/<pageID>/<user_id>", methods=['GET', 'POST'])
-#@user_required()
+@user_required()
 def open_page(pageID, user_id):
 
-    #user_id = int(user_id)
-    #if not user_id == current_user.user_id:
-    #    return redirect(url_for('login'))
+    user_id = int(user_id)
+    if not user_id == current_user.id:
+        return redirect(url_for('login'))
+
+    user_id = str(user_id)
 
     print("opening page")
 
