@@ -93,7 +93,7 @@ $(".criteria_categories").bind('contextmenu', function(event) {
 
         if (value != null) {
             $.ajax({
-                url: '/add_category/'+pageID,
+                url: '/add_category/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     category : value,
@@ -102,11 +102,11 @@ $(".criteria_categories").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
         }

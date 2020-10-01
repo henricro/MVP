@@ -36,7 +36,7 @@ function createPDF(note) {
 
     console.log(img, x, y);
 
-    pdf_src = "/static/uploads/" + name
+    pdf_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     note.attr("pdf",pdf_src );
 
     //console.log("print elmnt");
@@ -108,7 +108,7 @@ function selectPDF(note){
             console.log(event.keyCode);
 
             $.ajax({
-                url: '/delete_note/'+pageID,
+                url: '/delete_note/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -116,11 +116,11 @@ function selectPDF(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
         }
@@ -232,7 +232,7 @@ $(".pdf").bind('contextmenu', function(event) {
             console.log("sending css");
 
             $.ajax({
-                url: '/add_css/'+pageID,
+                url: '/add_css/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
@@ -241,11 +241,11 @@ $(".pdf").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
 

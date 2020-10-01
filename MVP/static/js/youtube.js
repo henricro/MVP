@@ -67,7 +67,7 @@ $(document).bind('paste', function(e) {
         console.log(data);
 
         $.ajax({
-            url: '/youtube/'+pageID,
+            url: '/youtube/'+pageID + '/' + user_id,
             type: "POST",
             data: JSON.stringify({
                 data: data,
@@ -77,11 +77,11 @@ $(document).bind('paste', function(e) {
             contentType: "application/json",
             success: function (data) {
                 console.log(data);
-                window.location.href='/open_page/'+pageID;
+                window.location.href='/open_page/'+ pageID + '/' + user_id;
             },
             error: function (error) {
                 console.log("problem");
-                window.location.href='/open_page/'+pageID;
+                window.location.href='/open_page/'+ pageID + '/' + user_id;
             }
         });
 

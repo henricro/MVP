@@ -79,7 +79,7 @@ function dragNote(note, noteX, noteY) {
 
                     $.ajax({
 
-                        url: '/move_note/'+pageID,
+                        url: '/move_note/'+pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             note_id: note_id,
@@ -88,11 +88,11 @@ function dragNote(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
 
                     });
@@ -131,7 +131,7 @@ function dragNote(note, noteX, noteY) {
 
                     $.ajax({
 
-                        url: '/link_notes/'+pageID,
+                        url: '/link_notes/'+pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             id_1 : $(event.target).attr("id"),
@@ -140,11 +140,11 @@ function dragNote(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
 
                     });
@@ -158,7 +158,7 @@ function dragNote(note, noteX, noteY) {
                     // ajax call with id x and y postion if element has moved
                     $.ajax({
 
-                        url: '/update_position/'+pageID,
+                        url: '/update_position/'+pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             id: id,
@@ -184,7 +184,7 @@ function dragNote(note, noteX, noteY) {
                 // ajax call with id x and y postion if element has moved
                 $.ajax({
 
-                    url: '/update_position/'+pageID,
+                    url: '/update_position/'+pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         id: id,
@@ -336,7 +336,7 @@ function dragSelect() {
                     selectionString = selection.toString();
 
                     $.ajax({
-                        url: '/delete_notes/'+pageID,
+                        url: '/delete_notes/'+pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             selection: selectionString
@@ -345,11 +345,11 @@ function dragSelect() {
                         success: function (data) {
 
                             console.log(data);
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
                     });
 
@@ -443,7 +443,7 @@ function dragNotes(selection) {
 
                 $.ajax({
 
-                    url: '/move_notes/'+pageID,
+                    url: '/move_notes/'+pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         selection: selection,
@@ -452,11 +452,11 @@ function dragNotes(selection) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
 
                 });
@@ -535,7 +535,7 @@ function dragNotes(selection) {
                 // ajax call with id x and y postion if element has moved
                 $.ajax({
 
-                    url: '/update_positions/'+pageID,
+                    url: '/update_positions/'+pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         positions : positions

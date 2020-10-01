@@ -15,8 +15,8 @@ import urllib.request
 #output.close()
 
 
-@application.route("/youtube/<pageID>", methods=['POST'])
-def youtube(pageID):
+@application.route("/youtube/<pageID>/<user_id>", methods=['POST'])
+def youtube(pageID, user_id):
 
     print( "youtube route")
 
@@ -69,7 +69,7 @@ def youtube(pageID):
 
     ### add a note in the XML with the x, y positions and the name of the file
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -99,7 +99,7 @@ def youtube(pageID):
 
     # save the changes in the xml
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

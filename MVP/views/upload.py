@@ -5,9 +5,12 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 from pdf2image import convert_from_path
 
+import uuid
+import os
 
-@application.route("/upload_pdf/<pageID>", methods=['POST'])
-def upload_pdf(pageID):
+
+@application.route("/upload_pdf/<pageID>/<user_id>", methods=['POST'])
+def upload_pdf(pageID, user_id):
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -28,7 +31,12 @@ def upload_pdf(pageID):
 
     type = file.filename[-4:]
 
-    file.save(application.config['UPLOADED_PATH'] + file.filename)
+    filename = file.filename
+    filename = filename.replace(' ', '_')
+
+    filename = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+
+    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
 
     ### keep the information that this file is in this page in the 'tags' many to many SQL table
 
@@ -44,20 +52,20 @@ def upload_pdf(pageID):
 
     ### add a note in the XML with the x, y positions and the name of the file
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     ### get the first page of the pdf as an image
 
-    pages = convert_from_path(application.config['STATIC_PATH'] + file.filename, 500)
+    pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename, 500)
     first_page = pages[0]
-    first_page.save(application.config['STATIC_PATH'] + file.filename + ".first_page.jpg",
+    first_page.save(application.config['UPLOADED_PATH'] + filename + ".first_page.jpg",
                     'JPEG')
 
     # save the first page as jpeg in DB
 
     engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-                   {'name': file.filename + ".first_page.jpg", 'type': ".jpg"})
+                   {'name': filename + ".first_page.jpg", 'type': ".jpg"})
 
     # save relationship between pdf and first page image in DB
 
@@ -84,8 +92,8 @@ def upload_pdf(pageID):
     new_note.set("class", "pdf")
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(file.filename)
-    etree.SubElement(new_note, "image").text = str(file.filename + ".first_page.jpg")
+    etree.SubElement(new_note, "name").text = str(filename)
+    etree.SubElement(new_note, "image").text = str(filename + ".first_page.jpg")
     etree.SubElement(new_note, "pdf_id").text = str(pdf_id)
     etree.SubElement(new_note, "width").text = "100"
     etree.SubElement(new_note, "height").text = "150"
@@ -94,7 +102,7 @@ def upload_pdf(pageID):
 
     # save the changes in the xml
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -104,8 +112,8 @@ def upload_pdf(pageID):
 
 
 
-@application.route("/upload_xlsx/<pageID>", methods=['POST'])
-def upload_xlsx(pageID):
+@application.route("/upload_xlsx/<pageID>/<user_id>", methods=['POST'])
+def upload_xlsx(pageID, user_id):
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID

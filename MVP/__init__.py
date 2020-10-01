@@ -28,6 +28,8 @@ dropzone = Dropzone(application)
 application.config['UPLOADED_PATH'] = os.path.join(basedir, 'static/uploads/')
 application.config['STATIC_PATH'] = os.path.join(basedir, 'static/')
 application.config['PAGES_PATH'] = os.path.join(basedir, 'pages/')
+application.config['TEMPLATES_PATH'] = os.path.join(basedir, 'templates/')
+application.config['USER_DATA_PATH'] = os.path.join(basedir, 'static/user_data/users/')
 
 application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:8889/MVP'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True

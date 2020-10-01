@@ -6,8 +6,8 @@ from lxml import etree
 
 
 
-@application.route("/update_position/<pageID>", methods=['POST'])
-def update_position(pageID):
+@application.route("/update_position/<pageID>/<user_id>", methods=['POST'])
+def update_position(pageID, user_id):
     print("update position")
 
     request_data = request.get_json()
@@ -21,7 +21,7 @@ def update_position(pageID):
     pageName = 'Page_' + pageID
     print(pageName)
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     print(etree.tostring(root, pretty_print=True))
@@ -31,15 +31,15 @@ def update_position(pageID):
 
     print(etree.tostring(root, pretty_print=True))
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
     return "yo"
 
 
-@application.route("/update_positions/<pageID>", methods=['POST'])
-def update_positions(pageID):
+@application.route("/update_positions/<pageID>/<user_id>", methods=['POST'])
+def update_positions(pageID, user_id):
 
     print("route : update positions")
 
@@ -52,7 +52,7 @@ def update_positions(pageID):
     pageName = 'Page_' + pageID
     print(pageName)
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     print(etree.tostring(root, pretty_print=True))
@@ -70,7 +70,7 @@ def update_positions(pageID):
 
         print(etree.tostring(root, pretty_print=True))
 
-        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -78,8 +78,8 @@ def update_positions(pageID):
 
 
 
-@application.route("/update_content/<pageID>", methods=['POST'])
-def update_content(pageID):
+@application.route("/update_content/<pageID>/<user_id>", methods=['POST'])
+def update_content(pageID, user_id):
     print("update content")
 
     request_data = request.get_json()
@@ -100,12 +100,12 @@ def update_content(pageID):
     else:
         pageName = 'Page_' + pageID
 
-        tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
         root = tree.getroot()
 
         tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
 
-        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 

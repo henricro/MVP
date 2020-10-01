@@ -22,8 +22,8 @@ def common_data(list1, list2):
     return result
 
 
-@application.route("/link_notes/<pageID>", methods=['POST'])
-def link_notes(pageID):
+@application.route("/link_notes/<pageID>/<user_id>", methods=['POST'])
+def link_notes(pageID, user_id):
 
     print("route : link notes")
 
@@ -38,7 +38,7 @@ def link_notes(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     connexions = root.find("connexions")
@@ -60,7 +60,7 @@ def link_notes(pageID):
             line.getparent().remove(line)
 
             # save the changes in the xml
-            f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
             f.write(etree.tostring(root, pretty_print=True))
             f.close()
 
@@ -73,7 +73,7 @@ def link_notes(pageID):
             line.getparent().remove(line)
 
             # save the changes in the xml
-            f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
             f.write(etree.tostring(root, pretty_print=True))
             f.close()
 
@@ -86,7 +86,7 @@ def link_notes(pageID):
                 new_connexion.set("id_2", id_2)
 
                 # save the changes in the xml
-                f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+                f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
                 f.write(etree.tostring(root, pretty_print=True))
                 f.close()
 
@@ -100,7 +100,7 @@ def link_notes(pageID):
         new_connexion.set("id_2", id_2)
 
         # save the changes in the xml
-        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 

@@ -6,8 +6,8 @@ from lxml import etree
 
 
 
-@application.route("/add_css/<pageID>", methods=['POST'])
-def add_css(pageID):
+@application.route("/add_css/<pageID>/<user_id>", methods=['POST'])
+def add_css(pageID, user_id):
 
     print("route : add css")
 
@@ -20,7 +20,7 @@ def add_css(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -41,7 +41,7 @@ def add_css(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"

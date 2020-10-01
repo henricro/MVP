@@ -183,7 +183,7 @@ function writeTitle(note){
                 $(document).unbind('click.update_content2');
 
                 $.ajax({
-                    url: '/update_content/'+pageID,
+                    url: '/update_content/'+pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         id: 'title',

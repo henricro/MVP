@@ -38,7 +38,7 @@ function save_sizes(){
     var parents_height = parents.css("height").slice(0,-2);
 
     $.ajax({
-        url: '/unload/'+pageID,
+        url: '/unload/'+pageID + '/' + user_id,
         type: "POST",
         data: JSON.stringify({
             data: sizes,

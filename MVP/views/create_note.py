@@ -6,8 +6,8 @@ from lxml import etree
 
 
 
-@application.route("/create_note/<pageID>", methods=['POST'])
-def create_note(pageID):
+@application.route("/create_note/<pageID>/<user_id>", methods=['POST'])
+def create_note(pageID, user_id):
     # get the data for new note
     request_data = request.get_json()
     new_x = str(request_data.get('x'))
@@ -17,7 +17,7 @@ def create_note(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -41,7 +41,7 @@ def create_note(pageID):
     print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"

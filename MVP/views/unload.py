@@ -6,8 +6,8 @@ from lxml import etree
 
 
 
-@application.route("/unload/<pageID>", methods=['GET', 'POST'])
-def unload(pageID):
+@application.route("/unload/<pageID>/<user_id>", methods=['GET', 'POST'])
+def unload(pageID, user_id):
 
     print("UNLOADDDDIIIINNNNGGG")
 
@@ -24,7 +24,7 @@ def unload(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
 
@@ -49,7 +49,7 @@ def unload(pageID):
 
         print(etree.tostring(root, pretty_print=True))
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

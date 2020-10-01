@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>802</x>
+        <y>241</y>
+    </note>
+
+    <note id="parents">
+        <x>-114</x>
+        <y>-141</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>106</x><y>6</y><content>testing</content></note><note id="5" class="imageLink"><x>261</x><y>366</y><width>136</width><height>102</height><name>RECEVEZ_(1).png</name><image_id>1353</image_id><link>ef</link></note><note id="6" class="imagePageLink" pageID="697" type="child"><x>638</x><y>602</y><content>zdc</content><image>RECYCLE_(1).png</image><image_id>1354</image_id><width>100</width><height>104</height></note><note id="7" class="imageLink"><x>1171</x><y>204</y><width>300</width><height>200</height><name>youtube-lcsBXBUi8S8.jpg</name><image_id>1355</image_id><link>https://www.youtube.com/watch?v=lcsBXBUi8S8</link></note><note id="8" class="pageLink" pageID="698" type="child"><x>975</x><y>692</y><content>jkl:=l</content></note><note id="10" class="note"><x>505</x><y>399</y><content>new content</content></note><note id="11" class="note"><x>874</x><y>393</y><content>new content</content></note><note id="12" class="note"><x>596</x><y>504</y><content>new content</content></note><note id="14" class="pdf"><x>1150</x><y>644</y><name>Quittance_Henri_juillet_2020.pdf</name><image>Quittance_Henri_juillet_2020.pdf.first_page.jpg</image><pdf_id>26</pdf_id><width>100</width><height>150</height></note></notes>
+
+<meta>
+    <biggest_id>14</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="2" id_2="4"/></connexions></canvas>

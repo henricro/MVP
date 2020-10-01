@@ -6,8 +6,8 @@ from lxml import etree
 
 
 
-@application.route("/new_page/<pageID>", methods=['POST'])
-def new_page(pageID):
+@application.route("/new_page/<pageID>/<user_id>", methods=['POST'])
+def new_page(pageID, user_id):
 
     print("route : new page")
 
@@ -16,7 +16,6 @@ def new_page(pageID):
     request_data = request.get_json()
     new_page_title = str(request_data.get('title'))
     new_page_title = new_page_title.replace("'", "\\'")
-    user_id = 1
 
     print(new_page_title)
     print("testing")
@@ -43,7 +42,7 @@ def new_page(pageID):
 
     # Créer une nouvelle page XML
 
-    tree = etree.parse(application.config['STATIC_PATH'] + 'newPage.xml')
+    tree = etree.parse(application.config['TEMPLATES_PATH'] + 'newPage.xml')
     root = tree.getroot()
 
     # get x and y of title
@@ -74,7 +73,7 @@ def new_page(pageID):
 
     print(etree.tostring(root, pretty_print=True))
 
-    f = open(application.config['STATIC_PATH'] + newPageName + '.xml', 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + newPageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -88,7 +87,7 @@ def new_page(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -115,7 +114,7 @@ def new_page(pageID):
 
     # save the changes in the xml
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

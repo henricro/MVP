@@ -105,7 +105,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             $('#paste_1').bind('click', function(){
                 console.log("clicked child");
                 $.ajax({
-                    url: '/paste_pageLink/' + pageID,
+                    url: '/paste_pageLink/' + pageID + '/' + user_id,
                     type: "POST",
 
                     data: JSON.stringify({
@@ -116,11 +116,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
             });
@@ -128,7 +128,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             $('#paste_2').bind('click', function(){
                 console.log("clicked parent");
                 $.ajax({
-                    url: '/paste_pageLink/' + pageID,
+                    url: '/paste_pageLink/' + pageID + '/' + user_id,
                     type: "POST",
 
                     data: JSON.stringify({
@@ -141,11 +141,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
             });
@@ -153,7 +153,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             $('#paste_3').bind('click', function(){
                 console.log("clicked visitor");
                 $.ajax({
-                    url: '/paste_pageLink/' + pageID,
+                    url: '/paste_pageLink/' + pageID + '/' + user_id,
                     type: "POST",
 
                     data: JSON.stringify({
@@ -166,11 +166,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
             });
@@ -190,7 +190,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             $('#paste_1').bind('click', function(){
                 console.log("clicked child");
                 $.ajax({
-                    url: '/paste_imagePageLink/' + pageID,
+                    url: '/paste_imagePageLink/' + pageID + '/' + user_id,
                     type: "POST",
 
                     data: JSON.stringify({
@@ -201,11 +201,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
             });
@@ -213,7 +213,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             $('#paste_2').bind('click', function(){
                 console.log("clicked parent");
                 $.ajax({
-                    url: '/paste_imagePageLink/' + pageID,
+                    url: '/paste_imagePageLink/' + pageID + '/' + user_id,
                     type: "POST",
 
                     data: JSON.stringify({
@@ -226,11 +226,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
             });
@@ -238,7 +238,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             $('#paste_3').bind('click', function(){
                 console.log("clicked visitor");
                 $.ajax({
-                    url: '/paste_imagePageLink/' + pageID,
+                    url: '/paste_imagePageLink/' + pageID + '/' + user_id,
                     type: "POST",
 
                     data: JSON.stringify({
@@ -251,11 +251,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
             });
@@ -265,7 +265,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             console.log("pasting a note that is not a pageLink");
 
             $.ajax({
-                url: '/paste_note/' + pageID,
+                url: '/paste_note/' + pageID + '/' + user_id,
                 type: "POST",
 
                 data: JSON.stringify({
@@ -277,11 +277,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
 
@@ -296,7 +296,7 @@ function pasteSelection(selection, originPageID, pageID) {
         console.log(selection);
 
         $.ajax({
-            url: '/paste_selection/' + pageID,
+            url: '/paste_selection/' + pageID + '/' + user_id,
             type: "POST",
 
             data: JSON.stringify({
@@ -306,11 +306,11 @@ function pasteSelection(selection, originPageID, pageID) {
             contentType: "application/json",
             success: function (data) {
                 console.log(data);
-                window.location.href='/open_page/'+pageID;
+                window.location.href='/open_page/'+ pageID + '/' + user_id;
             },
             error: function (error) {
                 console.log("problem");
-                window.location.href='/open_page/'+pageID;
+                window.location.href='/open_page/'+ pageID + '/' + user_id;
             }
         });
 

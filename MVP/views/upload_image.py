@@ -3,11 +3,13 @@ from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+import uuid
+import os
 
 
 
-@application.route("/upload_image/<pageID>", methods=['POST'])
-def upload_image(pageID):
+@application.route("/upload_image/<pageID>/<user_id>", methods=['POST'])
+def upload_image(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
@@ -30,6 +32,8 @@ def upload_image(pageID):
     filename = file.filename
     filename = filename.replace(' ', '_')
 
+    filename = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+
     type = file.filename[-4:]
 
     if type ==".png" or type ==".jpg" or type =="jpeg" :
@@ -39,7 +43,7 @@ def upload_image(pageID):
 
     print(filename)
 
-    file.save(application.config['UPLOADED_PATH'] + filename)
+    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
 
     ### keep the information that this file is in this page in the 'tags' many to many SQL table
 
@@ -55,7 +59,7 @@ def upload_image(pageID):
 
     ### add a note in the XML with the x, y positions and the name of the file
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -84,7 +88,7 @@ def upload_image(pageID):
 
     # save the changes in the xml
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

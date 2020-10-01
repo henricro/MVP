@@ -41,7 +41,7 @@ def new_book(pageID):
 
     # Créer une nouvelle page XML
 
-    tree = etree.parse(application.config['STATIC_PATH'] + 'newPage.xml')
+    tree = etree.parse(application.config['TEMPLATES_PATH'] + 'newPage.xml')
     root = tree.getroot()
 
     # get x and y of title

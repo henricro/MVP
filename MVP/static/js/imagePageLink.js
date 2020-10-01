@@ -29,7 +29,7 @@ function createImagePageLink(note) {
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
 
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
-    var src = "/static/uploads/" + image
+    var src = "/static/user_data/users/" + user_id + "/uploads/" + image
     var img = "<img class='imagePageLink_img' draggable='false' src=" + src + " />";
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
@@ -106,7 +106,7 @@ function selectImagePageLink(note){
             console.log(event.keyCode);
 
             $.ajax({
-                url: '/delete_note/'+pageID,
+                url: '/delete_note/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -114,11 +114,11 @@ function selectImagePageLink(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
         }
@@ -135,7 +135,7 @@ function selectImagePageLink(note){
         $(this).bind('mouseup.gotopage', function(){
             console.log(event.pageX, event.pageY);
             if (!(left != event.pageX || top != event.pageY)) {
-                window.open('/open_page/'+ pageLinkID, '_blank');
+                window.open('/open_page/'+ pageLinkID + '/' + user_id, '_blank');
             }
         });
 
@@ -266,7 +266,7 @@ $(".imagePageLink").bind('contextmenu', function(event) {
             console.log("sending css");
 
             $.ajax({
-                url: '/add_css/'+pageID,
+                url: '/add_css/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
@@ -275,11 +275,11 @@ $(".imagePageLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
 
@@ -383,7 +383,7 @@ function writeImagePageLink(note){
                     id = note.attr('id')
 
                     $.ajax({
-                        url: '/update_content/' + pageID,
+                        url: '/update_content/' + pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             id: id,

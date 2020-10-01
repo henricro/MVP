@@ -4,8 +4,8 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-@application.route("/move_note/<pageID>", methods=['POST'])
-def move_note(pageID):
+@application.route("/move_note/<pageID>/<user_id>", methods=['POST'])
+def move_note(pageID, user_id):
 
     # get the data of note to move and page to move to
     request_data = request.get_json()
@@ -18,7 +18,7 @@ def move_note(pageID):
     print(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + note_id + "']")
@@ -33,7 +33,7 @@ def move_note(pageID):
     f.close()
 
     destPageName = 'Page_' + page_id
-    tree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -52,7 +52,7 @@ def move_note(pageID):
     print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -60,8 +60,8 @@ def move_note(pageID):
 
 
 
-@application.route("/move_notes/<pageID>", methods=['POST'])
-def move_notes(pageID):
+@application.route("/move_notes/<pageID>/<user_id>", methods=['POST'])
+def move_notes(pageID, user_id):
 
     print("route : move notes")
 
@@ -82,7 +82,7 @@ def move_notes(pageID):
 
     for note_id in selection :
 
-        tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
         root = tree.getroot()
 
         note_id = str(note_id)
@@ -95,11 +95,11 @@ def move_notes(pageID):
         note.getparent().remove(note)
 
         # save the changes in the xml
-        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
-        tree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
         root = tree.getroot()
 
         # get the biggest id in the xml and increment the value
@@ -118,7 +118,7 @@ def move_notes(pageID):
         print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
-        f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 

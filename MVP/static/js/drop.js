@@ -80,18 +80,18 @@ $('*:not("div")').on(
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_image/'+pageID,
+                        url:  '/upload_image/'+pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
                     });
 
@@ -103,18 +103,18 @@ $('*:not("div")').on(
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_image/'+pageID,
+                        url:  '/upload_image/'+pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
                     });
 
@@ -126,18 +126,18 @@ $('*:not("div")').on(
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_pdf/'+pageID,
+                        url:  '/upload_pdf/'+pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
                     });
 
@@ -149,18 +149,18 @@ $('*:not("div")').on(
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_xlsx/'+pageID,
+                        url:  '/upload_xlsx/'+ pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
                     });
 
@@ -212,18 +212,18 @@ $('.modal.forPageLink .drop-area').on(
 
                 $.ajax({
                     type: 'POST',
-                    url:  '/add_image_to_pageLink/'+pageID,
+                    url:  '/add_image_to_pageLink/'+pageID + '/' + user_id,
                     data: form_data,
                     contentType: false,
                     cache: false,
                     processData: false,
                     success: function (data) {
                         console.log("success");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
 
@@ -261,18 +261,18 @@ $('.modal.forImagePageLink .drop-area').on(
 
                 $.ajax({
                     type: 'POST',
-                    url:  '/change_image_imagePageLink/'+pageID,
+                    url:  '/change_image_imagePageLink/'+pageID + '/' + user_id,
                     data: form_data,
                     contentType: false,
                     cache: false,
                     processData: false,
                     success: function (data) {
                         console.log("success");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
 
@@ -311,18 +311,18 @@ $('.modal.forImageLink .drop-area').on(
 
                 $.ajax({
                     type: 'POST',
-                    url:  '/change_image_imageLink/'+pageID,
+                    url:  '/change_image_imageLink/'+pageID + '/' + user_id,
                     data: form_data,
                     contentType: false,
                     cache: false,
                     processData: false,
                     success: function (data) {
                         console.log("success");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
 

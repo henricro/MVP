@@ -6,8 +6,8 @@ from lxml import etree
 
 
 
-@application.route("/add_link_note/<pageID>", methods=['POST'])
-def add_link_note(pageID):
+@application.route("/add_link_note/<pageID>/<user_id>", methods=['POST'])
+def add_link_note(pageID, user_id):
     # get the data for new note
     request_data = request.get_json()
     id = str(request_data.get('id'))
@@ -18,7 +18,7 @@ def add_link_note(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -32,13 +32,13 @@ def add_link_note(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"
 
-@application.route("/add_link_image/<pageID>", methods=['POST'])
-def add_link_image(pageID):
+@application.route("/add_link_image/<pageID>/<user_id>", methods=['POST'])
+def add_link_image(pageID, user_id):
     # get the data for new note
     request_data = request.get_json()
     id = str(request_data.get('id'))
@@ -49,7 +49,7 @@ def add_link_image(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -63,15 +63,15 @@ def add_link_image(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"
 
 
 
-@application.route("/change_link/<pageID>", methods=['POST'])
-def change_link(pageID):
+@application.route("/change_link/<pageID>/<user_id>", methods=['POST'])
+def change_link(pageID, user_id):
     # get the data for new note
     request_data = request.get_json()
     id = str(request_data.get('id'))
@@ -82,7 +82,7 @@ def change_link(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -96,7 +96,7 @@ def change_link(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"

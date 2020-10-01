@@ -7,8 +7,8 @@ from lxml import etree
 import random
 
 
-@application.route("/new_criteria/<pageID>", methods=['POST'])
-def new_criteria(pageID):
+@application.route("/new_criteria/<pageID>/<user_id>", methods=['POST'])
+def new_criteria(pageID, user_id):
 
     print("route : new criteria")
 
@@ -21,7 +21,7 @@ def new_criteria(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -48,14 +48,14 @@ def new_criteria(pageID):
     print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"
 
 
-@application.route("/add_category/<pageID>", methods=['POST'])
-def add_category(pageID):
+@application.route("/add_category/<pageID>/<user_id>", methods=['POST'])
+def add_category(pageID, user_id):
 
     print("route : add category")
 
@@ -67,7 +67,7 @@ def add_category(pageID):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     # get the biggest id in the xml and increment the value
@@ -96,7 +96,7 @@ def add_category(pageID):
     print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
     return "yo"

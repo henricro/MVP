@@ -22,7 +22,7 @@ def home(user_id):
 
     title = Page.query.filter_by(id=pageID).first().title
 
-    tree = etree.parse(application.config['PAGES_PATH'] + 'users/' + user_id + '/' + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     xml_string = etree.tostring(root).decode('utf-8')
@@ -37,9 +37,9 @@ def home(user_id):
 #@user_required()
 def open_page(pageID, user_id):
 
-    user_id = int(user_id)
-    if not user_id == current_user.user_id:
-        return redirect(url_for('login'))
+    #user_id = int(user_id)
+    #if not user_id == current_user.user_id:
+    #    return redirect(url_for('login'))
 
     print("opening page")
 
@@ -65,7 +65,7 @@ def open_page(pageID, user_id):
 
     title = Page.query.filter_by(id=pageID).first().title
 
-    tree = etree.parse(application.config['PAGES_PATH'] + 'users/' + user_id + '/' + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     print(root)

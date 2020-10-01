@@ -5,8 +5,8 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 
-@application.route("/add_image_to_pageLink/<pageID>", methods=['POST'])
-def add_image_to_pageLink(pageID):
+@application.route("/add_image_to_pageLink/<pageID>/<user_id>", methods=['POST'])
+def add_image_to_pageLink(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
@@ -47,7 +47,7 @@ def add_image_to_pageLink(pageID):
 
     ### open the XML
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     #find the note
@@ -64,7 +64,7 @@ def add_image_to_pageLink(pageID):
 
     # save the changes in the xml
 
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

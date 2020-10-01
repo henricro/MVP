@@ -98,7 +98,7 @@ function selectNoteLink(note){
             console.log(event.keyCode);
 
             $.ajax({
-                url: '/delete_note/'+pageID,
+                url: '/delete_note/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -106,11 +106,11 @@ function selectNoteLink(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
         }
@@ -208,7 +208,7 @@ $(".noteLink").bind('contextmenu', function(event) {
 
         if (value != null) {
             $.ajax({
-                url: '/change_link/'+pageID,
+                url: '/change_link/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     link : value,
@@ -217,11 +217,11 @@ $(".noteLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
         }
@@ -252,7 +252,7 @@ $(".noteLink").bind('contextmenu', function(event) {
             console.log("sending css");
 
             $.ajax({
-                url: '/add_css/'+pageID,
+                url: '/add_css/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
@@ -261,11 +261,11 @@ $(".noteLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+pageID;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
 
@@ -425,7 +425,7 @@ function writeNoteLink(note){
             id = note.attr('id')
 
             $.ajax({
-                url: '/update_content/'+pageID,
+                url: '/update_content/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id,

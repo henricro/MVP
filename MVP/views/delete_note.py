@@ -6,8 +6,8 @@ from lxml import etree
 
 import os
 
-@application.route("/delete_note/<pageID>", methods=['POST'])
-def delete_note(pageID):
+@application.route("/delete_note/<pageID>/<user_id>", methods=['POST'])
+def delete_note(pageID, user_id):
 
     print( "route : delete note")
 
@@ -20,7 +20,7 @@ def delete_note(pageID):
     print(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
@@ -30,7 +30,7 @@ def delete_note(pageID):
     print(etree.tostring(note, pretty_print=True))
 
     note.getparent().remove(note)
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
@@ -49,7 +49,7 @@ def delete_note(pageID):
             line.getparent().remove(line)
 
             # save the changes in the xml
-            f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
             f.write(etree.tostring(root, pretty_print=True))
             f.close()
 
@@ -58,7 +58,7 @@ def delete_note(pageID):
             line.getparent().remove(line)
 
             # save the changes in the xml
-            f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
             f.write(etree.tostring(root, pretty_print=True))
             f.close()
 
@@ -70,22 +70,22 @@ def delete_note(pageID):
 
         if type =="child" :
 
-            destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+            destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
             destRoot = destTree.getroot()
             note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
             note.getparent().remove(note)
-            f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
             f.write(etree.tostring(destRoot, pretty_print=True))
             f.close()
             # engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
              #              {'pageID': pageID, 'destPageID': destPageID})
         if type =="parent" :
 
-            destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+            destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
             destRoot = destTree.getroot()
             note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
             note.getparent().remove(note)
-            f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
             f.write(etree.tostring(destRoot, pretty_print=True))
             f.close()
             # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
@@ -98,8 +98,8 @@ def delete_note(pageID):
 
 
 
-@application.route("/delete_notes/<pageID>", methods=['POST'])
-def delete_notes(pageID):
+@application.route("/delete_notes/<pageID>/<user_id>", methods=['POST'])
+def delete_notes(pageID, user_id):
 
     print("route : delete notes")
 
@@ -114,7 +114,7 @@ def delete_notes(pageID):
     print(pageID)
     pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['STATIC_PATH'] + pageName + ".xml")
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
     for id in selection :
@@ -126,7 +126,7 @@ def delete_notes(pageID):
         note.getparent().remove(note)
 
         # save the changes in the xml
-        f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
@@ -145,7 +145,7 @@ def delete_notes(pageID):
                 line.getparent().remove(line)
 
                 # save the changes in the xml
-                f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+                f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
                 f.write(etree.tostring(root, pretty_print=True))
                 f.close()
 
@@ -154,7 +154,7 @@ def delete_notes(pageID):
                 line.getparent().remove(line)
 
                 # save the changes in the xml
-                f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+                f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
                 f.write(etree.tostring(root, pretty_print=True))
                 f.close()
 
@@ -165,21 +165,21 @@ def delete_notes(pageID):
             destPageName = 'Page_' + destPageID
 
             if type == "child":
-                destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+                destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
                 destRoot = destTree.getroot()
                 note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
                 note.getparent().remove(note)
-                f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+                f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
                 f.write(etree.tostring(destRoot, pretty_print=True))
                 f.close()
                 # engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
                 #              {'pageID': pageID, 'destPageID': destPageID})
             if type == "parent":
-                destTree = etree.parse(application.config['STATIC_PATH'] + destPageName + '.xml')
+                destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
                 destRoot = destTree.getroot()
                 note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
                 note.getparent().remove(note)
-                f = open(application.config['STATIC_PATH'] + destPageName + '.xml', 'wb')
+                f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
                 f.write(etree.tostring(destRoot, pretty_print=True))
                 f.close()
                 # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
