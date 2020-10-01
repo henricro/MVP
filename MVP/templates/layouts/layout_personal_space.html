@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% block head %}
+    {% endblock head %}
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/quotes.css">
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/personal_space.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="/static/js/main.js"></script>
+
+<style>
+
+{% block style %}
+{% endblock style %}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="mokki-big-text">
+
+
+
+{% block content %}
+
+<script>
+{% block javascript %}
+{% endblock javascript %}
+</script>
+
+{% endblock content %}
+
+</div>
+
+
+
+</body>
+
+</html>

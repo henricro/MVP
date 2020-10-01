@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
+
+    <!-- fontAwesome -->
+
+        <!-- ONLINE
+        <script src="https://kit.fontawesome.com/2cb897d3bd.js" crossorigin="anonymous"></script>  -->
+
+        <!-- OFFLINE -->
+        <script type="text/javascript" src="/static/libraries/fontawesome.js" ></script>
+
+    <!-- jQuery -->
+
+        <!-- ONLINE
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>   -->
+
+        <!-- OFFLINE -->
+        <script type="text/javascript" src="/static/libraries/jquery.js" ></script>
+
+        <link rel="stylesheet" type="text/css" href="/static/libraries/contextMenu.min.css">
+        <script type="text/javascript" src="/static/libraries/contextMenu.min.js" ></script>
+        <script type="text/javascript" src="/static/libraries/contextMenu.js" ></script>
+
+    <!-- jQuery Rotate  -->
+
+    <script type="text/javascript" src="/static/libraries/jQueryUI.js"></script>
+    <script type="text/javascript" src="/static/libraries/jQueryRotate.js" ></script>
+
+    <!-- Tooltipster
+
+    <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
+
+    <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>-->
+
+    <!-- Bootstrap -->
+
+        <!-- ONLINE
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+        <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">   -->
+
+        <!--  OFFLINE   -->
+
+        <link rel="stylesheet" type="text/css" href="/static/libraries/bootstrap.min.css">
+        <script type="text/javascript" src="/static/libraries/bootstrap.min.js" ></script>
+
+        <script type="text/javascript" src="/static/libraries/dropzone.js" ></script>
+        <link rel="stylesheet" type="text/css" href="/static/libraries/dropzone.css">
+
+</head>
+
+<body>
+
+
+<!-- Dropzones for images -->
+
+<div class="modal forPageLink">
+  <div class="modal-content">
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop image here</div>
+    <span class="close">&times;</span>
+  </div>
+</div>
+
+<div class="modal forImagePageLink">
+  <div class="modal-content">
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop image here</div>
+    <span class="close">&times;</span>
+  </div>
+</div>
+
+<div class="modal forImageLink">
+  <div class="modal-content">
+    <div style="text-align:center; width:100%; height:100px; border:dashed 1px blue;" class="drop-area">drop image here</div>
+    <span class="close">&times;</span>
+  </div>
+</div>
+
+<input style=" opacity:0;" type="text" value="you" id="myClipboard">
+
+<div  id="mouse_position">
+    <div id="x_pos"></div>
+    <div id="y_pos"></div>
+</div>
+
+<!--
+<div class="note" contenteditable="true" style="position:relative; top:300px; left: 300px; border: 1px solid blue; display: inline-block; ">my title
+    <div style="position:absolute; border: 1px solid green; width: 100px; height: 50ps; bottom: 30px; left: 30px;">parent space</div>
+</div>-->
+
+
+<div id="title">
+    <div id="title_title"></div>
+    <div id="title_parents">
+        <div id="parents"></div>
+    </div>
+</div>
+
+<div id="pasteBox">
+    <div class="choiceBox">
+        <div id="pasteAs">Paste as :</div>
+        <div id="paste_1" class="choiceButton choiceDGreen">Parent</div>
+        <div id="paste_2" class="choiceButton choiceLGreen">Child</div>
+        <div id="paste_3" class="choiceButton choiceYellow">Visitor</div>
+    </div>
+</div>
+
+<div id="pageRCBox">
+    <div class="choiceBox">
+           <div id="pageRC_1" class="choiceButton choiceLOrange"><i class="fa fa-copy"></i> New Page</div>
+           <div id="pageRC_2" class="choiceButton choiceLGreen"><i class="fa fa-plus"></i> </div>
+    </div>
+</div>
+
+<div id="pageRCPlusBox">
+    <div class="choiceBox">
+           <div id="pageRCPlus_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> New Criteria</div>
+           <div id="pageRCPlus_2" class="choiceButton choiceLGreen"><i class="fa fa-print"></i> Export page as PDF</div>
+    </div>
+
+</div>
+
+<div id="noteRCBox">
+    <div class="choiceBox">
+        <div id="noteRC_1" class="choiceButton choiceLOrange"><i class="fa fa-link"></i> Add Link</div>
+        <div id="noteRC_2" class="choiceButton choiceLGreen"><i class="fa fa-copy"></i> Copy Link</div>
+        <div id="noteRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+    </div>
+</div>
+
+<div id="noteLinkRCBox">
+    <div class="choiceBox">
+        <div id="noteLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-link"></i> Change Link</div>
+        <div id="noteLinkRC_2" class="choiceButton choiceLGreen"><i class="fa fa-edit"></i> Edit Link</div>
+        <div id="noteLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+    </div>
+</div>
+
+<div id="imageRCBox">
+    <div class="choiceBox">
+        <div id="imageRC_1" class="choiceButton choiceLOrange"><i class="fa fa-link"></i> Add Link</div>
+        <div id="imageRC_2" class="choiceButton choiceLGreen"><i class="fa fa-download"></i> Download</div>
+        <div id="imageRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+    </div>
+</div>
+
+<div id="imageLinkRCBox">
+    <div class="choiceBox">
+        <div id="imageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-link"></i> Change Link</div>
+        <div id="imageLinkRC_2" class="choiceButton choiceLGreen"><i class="fa fa-images"></i> Change Image</div>
+        <div id="imageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+    </div>
+</div>
+
+<div id="pdfRCBox">
+    <div class="choiceBox">
+        <div id="pdfRC_1" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+    </div>
+</div>
+
+<div id="pageLinkRCBox">
+    <div class="choiceBox">
+        <div id="pageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit</div>
+        <div id="pageLinkRC_2" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Add Image</div>
+        <div id="pageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+    </div>
+</div>
+
+<div id="imagePageLinkRCBox">
+    <div class="choiceBox">
+        <div id="imagePageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Change Text</div>
+        <div id="imagePageLinkRC_2" class="choiceButton choiceLGreen"><i class="fa fa-copy"></i> Change Image</div>
+        <div id="imagePageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Style</div>
+    </div>
+</div>
+
+<div id="criteriaRCBox">
+    <div class="choiceBox">
+        <div id="criteriaRC_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> Add a Category</div>
+    </div>
+</div>
+
+<div id="titleRCBox">
+    <div class="choiceBox">
+        <div id="titleRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit</div>
+    </div>
+</div>
+
+</body>
+
+
+
+<script>
+
+var title = '{{title}}';
+console.log("print title");
+console.log(title);
+
+var pages = {{pages|safe}};
+
+
+var xml = '{{xml_string|safe}}';
+console.log("print xml");
+console.log(xml);
+
+var xmlDoc = $.parseXML(xml);
+console.log(xmlDoc);
+var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
+console.log(biggest);
+
+var pageID = '{{pageID|safe}}';
+
+var user_id = '{{user_id|safe}}';
+
+
+
+</script>
+
+    <script type="text/javascript" src="/static/js/copy_paste.js" ></script>
+
+    <script type="text/javascript" src="/static/js/main.js" ></script>
+
+    <script type="text/javascript" src="/static/js/notes.js" ></script>
+
+    <script type="text/javascript" src="/static/js/noteLinks.js" ></script>
+
+    <script type="text/javascript" src="/static/js/drop.js" ></script>
+
+    <script type="text/javascript" src="/static/js/images.js" ></script>
+
+    <script type="text/javascript" src="/static/js/pdf.js" ></script>
+
+    <script type="text/javascript" src="/static/js/pageLink.js" ></script>
+
+    <script type="text/javascript" src="/static/js/drag.js" ></script>
+
+    <script type="text/javascript" src="/static/js/title.js" ></script>
+
+    <script type="text/javascript" src="/static/js/selectables.js" ></script>
+
+    <script type="text/javascript" src="/static/js/imagePageLink.js" ></script>
+
+    <script type="text/javascript" src="/static/js/imageLink.js" ></script>
+
+    <script type="text/javascript" src="/static/js/unload.js" ></script>
+
+    <script type="text/javascript" src="/static/js/youtube.js" ></script>
+
+    <script type="text/javascript" src="/static/js/lines.js" ></script>
+
+    <script type="text/javascript" src="/static/js/criteria.js" ></script>
+
+    <script type="text/javascript" src="/static/js/categories.js" ></script>
+
+</html>
+
+
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <script src="https://kit.fontawesome.com/2cb897d3bd.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <!-- jQuery contextMenu
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.6.4/jquery.contextMenu.min.js"></script> -->
+
+    <style>
+
+    .note {
+      position: absolute;
+      z-index: 9;
+      padding : 3px;
+      border: 1px solid #d3d3d3;
+      border-radius : 5px;
+      text-align: center;
+    }
+
+    .noteLink {
+      position: absolute;
+      z-index: 9;
+      padding : 3px;
+      border: 1px solid #d3d3d3;
+      border-radius : 5px;
+      text-align: center;
+      background-color : #9FCDDA;
+    }
+
+    .pageLink {
+      position: absolute;
+      z-index: 9;
+      padding : 3px;
+      border: 1px solid #d3d3d3;
+      border-radius : 5px;
+      text-align: center;
+      background-color : #90D8A4;
+    }
+
+    .input{
+      display:none;
+      border:0;
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    .title{
+        font-size : 30px;
+        color : #6E1055;
+        text-decoration: underline;
+        font-weight: 800;
+    }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<img src="/static/uploads/bruit_blanc.png" />
+
+</body>
+
+
+<script>
+
+
+var xml='{{xml_string|safe}}';
+//console.log("print xml");
+//console.log(xml);
+
+var xmlDoc = $.parseXML(xml);
+var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
+console.log(biggest);
+
+var pageID = '{{pageID|safe}}';
+
+
+</script>
+
+    <script type="text/javascript" src="/static/js/main.js" ></script>
+
+    <script type="text/javascript" src="/static/js/notes.js" ></script>
+
+    <script type="text/javascript" src="/static/js/noteLinks.js" ></script>
+
+    <script type="text/javascript" src="/static/js/files.js" ></script>
+
+    <script type="text/javascript" src="/static/js/pageLink.js" ></script>
+
+    <script type="text/javascript" src="/static/js/drag.js" ></script>
+
+    <script type="text/javascript" src="/static/js/title.js" ></script>
+
+</html>
