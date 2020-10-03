@@ -3,6 +3,7 @@ from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+import uuid
 
 
 @application.route("/change_image_imagePageLink/<pageID>/<user_id>", methods=['POST'])
@@ -32,7 +33,9 @@ def change_image_imagePageLink(pageID, user_id):
     filename = file.filename
     filename = filename.replace(' ', '_')
 
-    file.save(application.config['UPLOADED_PATH'] + filename)
+    filename = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+
+    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
 
     ### keep the information that this image is in this page in the 'tags' many to many SQL table
 

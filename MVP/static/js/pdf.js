@@ -28,7 +28,7 @@ function createPDF(note) {
     }
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
-    var img_src = "/static/uploads/" + image
+    var img_src = "/static/user_data/users/" + user_id + "/uploads/" + image
     var img = "<img class='pdf_img' draggable='false' src=" + img_src + " />";
     var pdf_id = XMLnote.getElementsByTagName("pdf_id")[0].childNodes[0].nodeValue;
 
@@ -45,7 +45,7 @@ function createPDF(note) {
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
     note.append(img);
-    note.append(name_div);
+    //note.append(name_div);
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
 

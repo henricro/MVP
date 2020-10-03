@@ -59,7 +59,7 @@ def upload_pdf(pageID, user_id):
 
     pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename, 500)
     first_page = pages[0]
-    first_page.save(application.config['UPLOADED_PATH'] + filename + ".first_page.jpg",
+    first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename + ".first_page.jpg",
                     'JPEG')
 
     # save the first page as jpeg in DB

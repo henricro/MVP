@@ -9,6 +9,10 @@ import json
 from flask_login import LoginManager, current_user
 from functools import wraps
 
+import dotenv
+
+dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -31,9 +35,7 @@ application.config['PAGES_PATH'] = os.path.join(basedir, 'pages/')
 application.config['TEMPLATES_PATH'] = os.path.join(basedir, 'templates/')
 application.config['USER_DATA_PATH'] = os.path.join(basedir, 'static/user_data/users/')
 
-application.config['SERVER_DOMAIN'] = 'http://localhost:5000'
 
-application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:8889/MVP'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 application.config['DROPZONE_UPLOAD_MULTIPLE'] = True
@@ -45,6 +47,14 @@ application.config['MAIL_USERNAME'] = 'henri.crozel@gmail.com'
 application.config['MAIL_PASSWORD'] = 'nwjvnfputaxcmngx'
 application.config['MAIL_DEFAULT_SENDER'] = 'henri.crozel@gmail.com'
 
+### PRODUCTION DB
+#application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
+application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@localhost/gystdb')
+
+
+### SERVER DOMAIN
+application.config['SERVER_DOMAIN'] = 'http://localhost:5000'
+
 db = SQLAlchemy(application)
 migrate = Migrate(application, db)
 
@@ -55,6 +65,9 @@ login_manager.init_app(application)
 
 application.debug=True
 application.secret_key = 'hC1YCIWOj9GgWspgNEo2'
+
+
+
 
 
 '''
