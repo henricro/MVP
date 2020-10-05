@@ -109,4 +109,4 @@ from MVP.views import create_note, delete_note, links, new_book, new_page, open_
     add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories, sign_up
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    application.run(debug=True, host='0.0.0.0', port=80)
