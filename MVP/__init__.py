@@ -53,7 +53,7 @@ application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI'
 
 
 ### SERVER DOMAIN
-application.config['SERVER_DOMAIN'] = 'http://localhost:5000'
+application.config['SERVER_DOMAIN'] = 'http://localhost:80'
 
 db = SQLAlchemy(application)
 migrate = Migrate(application, db)
