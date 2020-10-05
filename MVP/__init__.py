@@ -49,7 +49,7 @@ application.config['MAIL_DEFAULT_SENDER'] = 'henri.crozel@gmail.com'
 
 ### PRODUCTION DB
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
-application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@localhost/gystdb')
+application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@localhost:3306/gystdb')
 
 
 ### SERVER DOMAIN
