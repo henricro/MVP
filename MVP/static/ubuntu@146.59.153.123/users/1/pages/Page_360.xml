@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>301</y>
+    </note>
+
+    <note id="parents">
+        <x>-41</x>
+        <y>-138</y>
+        <width>432</width>
+        <height>201</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="341" type="parent"><x>270</x><y>44</y><content>personnalit&#233;s</content></note><note id="2" class="pageLink" pageID="361" type="child"><x>325</x><y>497</y><content>Jean-Luc M&#233;lenchon</content></note><note id="3" class="note"><x>824</x><y>341</y><content>France</content><css>color : #871334; font-size: 20px;</css></note><note id="4" class="pageLink" pageID="362" type="child"><x>1157</x><y>494</y><content>Marine Le Pen</content></note><note id="6" class="pageLink" pageID="354" type="child"><x>382</x><y>568</y><content>Fran&#231;ois Ruffin</content></note><note id="7" class="pageLink" type="parent" pageID="336"><content>politique</content><x>70</x><y>46</y></note><note id="8" class="pageLink" pageID="358" type="child"><x>913</x><y>516</y><content>Rachida Dati</content></note><note id="9" class="pageLink" pageID="364" type="child"><x>1178</x><y>553</y><content>Jordan Bardella</content></note><note id="10" class="pageLink" pageID="366" type="child"><x>683</x><y>519</y><content>Emmanuel Macron</content></note><note id="11" class="pageLink" type="parent" pageID="373"><content>personnalit&#233;s politiques</content><x>25</x><y>22</y></note></notes>
+
+<meta>
+    <biggest_id>11</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

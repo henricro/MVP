@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>0</x><y>0</y><content>M&#246;kki</content></note><note id="2" class="imageLink"><x>790</x><y>453</y><width>156</width><height>76</height><name>Screenshot_2020-08-24_at_14.19.51.png</name><image_id>690</image_id><link>https://drive.google.com/drive/u/2/folders/1bzACXP0lmv6kON-zYqcorsZNICcYA4V6</link></note><note id="3" class="note"><x>802</x><y>398</y><content>notre mod&#232;le :</content><css>font-size: 20px; text-decoration: underline;</css></note><note id="4" class="note"><x>797</x><y>606</y><content>nos partenaires :</content><css>font-size: 20px; text-decoration: underline;</css></note><note id="5" class="imageLink"><x>488</x><y>669</y><width>279</width><height>95</height><name>Screenshot_2020-08-24_at_14.21.17.png</name><image_id>692</image_id><link>https://institut-economie-circulaire.fr/</link></note><note id="6" class="imageLink"><x>824</x><y>1926</y><width>85</width><height>35</height><name>Screenshot_2020-08-24_at_12.46.43.png</name><image_id>660</image_id><link>https://institut-economie-circulaire.fr/</link></note><note id="7" class="imageLink"><x>808</x><y>647</y><width>117</width><height>136</height><name>Screenshot_2020-08-24_at_14.23.05.png</name><image_id>694</image_id><link>https://www.ademe.fr/</link></note><note id="8" class="imageLink"><x>983</x><y>686</y><width>156</width><height>76</height><name>Screenshot_2020-08-24_at_14.24.39.png</name><image_id>696</image_id><link>https://www.associationbilancarbone.fr/</link></note><note id="9" class="note"><x>613</x><y>846</y><content>we re gonna sign an agreement with ABC (filiale ADEME)&lt;div&gt;partnership contract&lt;/div&gt;&lt;div&gt;evaluate our algorithm&lt;/div&gt;&lt;div&gt;their methodology will be the authority for 2030 40% carbon footprint regulation&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;--&amp;gt; conference&amp;nbsp;&lt;/div&gt;&lt;div&gt;Union Investment&lt;/div&gt;&lt;div&gt;they want the van&lt;/div&gt;</content></note><note id="10" class="pageLink" pageID="524" type="child"><x>1122</x><y>471</y><content>presentation</content></note><note id="12" class="image"><x>104</x><y>1072</y><width>1339</width><height>525</height><name>Screenshot_2020-01-14_at_11.41.51.png</name><image_id>1099</image_id></note></notes>
+
+<meta>
+    <biggest_id>12</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

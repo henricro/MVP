@@ -1,0 +1,27 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>679</x>
+        <y>301</y>
+    </note>
+
+    <note id="parents">
+        <x>-91</x>
+        <y>-140</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="271" type="parent"><x>96</x><y>26</y><content>GYST MVP</content></note><note id="2" class="note"><x>835</x><y>364</y><content>i need to work on making libraries</content></note>
+    <note id="7" class="note"><x>864</x><y>399</y><content>what defines a library ?</content></note>
+    <note id="8" class="note"><x>920</x><y>433</y><content>--&amp;gt; categories</content></note>
+    <note id="10" class="note"><x>917</x><y>474</y><content>--&amp;gt; criteria (or dimensions)</content><css>border-color: blue;</css></note><note id="11" class="note"><x>421</x><y>480</y><content>first easy use-cases :</content><css>font-size: 15px; font-weight:bold; text-decoration: underline; border: 0px;</css></note><note id="12" class="note"><x>443</x><y>518</y><content>- cooking recipes&lt;div&gt;- media library&lt;/div&gt;</content></note><note id="13" class="note"><x>406</x><y>607</y><content>more complex use-cases :&amp;nbsp;</content><css>font-size: 15px; font-weight:bold; text-decoration: underline;border: 0px;</css></note><note id="14" class="note"><x>452</x><y>640</y><content>- video library&lt;div&gt;- movie library&lt;/div&gt;&lt;div&gt;- book library&lt;/div&gt;</content><css/></note><note id="17" class="note"><x>859</x><y>592</y><content>mvp gyst :&amp;nbsp;&lt;div&gt;une fois qu\'on est dans une sous cat&#233;gorie&amp;nbsp;&lt;/div&gt;&lt;div&gt;selon un crit&#232;re (ex : fran&#231;ais)&lt;/div&gt;&lt;div&gt;on peut ajouter des sous-categories &#224; un autre crit&#232;re&lt;/div&gt;&lt;div&gt;qui n\'existeront que dans cette sous cat&#233;gorie (fran&#231;ais)&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>17</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

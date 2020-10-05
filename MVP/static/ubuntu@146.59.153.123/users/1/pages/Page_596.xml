@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="2" class="note"><x>511</x><y>391</y><content>--&amp;gt; aller dans des cinemas d\'art et d\'essai/ associatifs</content></note><note id="3" class="note"><x>535</x><y>459</y><content>--&amp;gt; aller au tribunal voir des proc&#232;s</content></note><note id="4" class="note"><x>581</x><y>518</y><content>--&amp;gt; aller &#224; l\'Assembl&#233;e Nationale</content></note><note id="5" class="pageLink" pageID="606" type="child"><x>963</x><y>440</y><content>festivals cinemas Paris</content></note><note id="7" class="pageLink" pageID="623" type="child"><x>887</x><y>493</y><content>jazz clubs paris</content></note><note id="8" class="note"><x>551</x><y>631</y><content>things i want to do in paris : des mini festivals de films</content></note><note id="9" class="note"><x>736</x><y>573</y><content>thing i want to do :&amp;nbsp;&lt;div&gt;go check out comedy clubs in paris&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>9</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

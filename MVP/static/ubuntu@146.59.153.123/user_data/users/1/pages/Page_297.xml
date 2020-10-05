@@ -1,0 +1,29 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-34</x>
+        <y>-129</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>113</x><y>18</y><content>GYST</content></note><note id="5" class="note"><x>970</x><y>307</y><content>this is a very long process, very long term&lt;div&gt;i am only starting it, for me, little by little&lt;/div&gt;&lt;div&gt;No expectations&lt;/div&gt;</content><css>color : #A62BA4; border: 0px;</css></note>
+
+
+<note id="6" class="note"><x>927</x><y>271</y><content>organize what i know</content><css>color : #A62BA4; border: 0px;</css></note>
+    <note id="8" class="note"><x>606</x><y>388</y><content>goal : have a better unerstanding of how the world works</content><css>color : #A62BA4; border: 0px;</css></note><note id="9" class="pageLink" pageID="284" type="child"><x>691</x><y>580</y><content>spiritualit&#233;</content></note>
+    <note id="10" class="pageLink" pageID="327" type="child"><x>546</x><y>647</y><content>covid-19</content></note><note id="11" class="imagePageLink" pageID="334" type="child"><x>909</x><y>512</y><content>France</content><image>france.jpg</image><image_id>482</image_id><width>77</width><height>49</height></note><note id="13" class="imagePageLink" pageID="255" type="child"><x>315</x><y>535</y><content>football</content><image>football.jpg</image><image_id>425</image_id><width>100</width><height>50</height></note><note id="18" class="imagePageLink" pageID="356" type="child"><x>1005</x><y>529</y><content>US</content><image>us-flag.jpg</image><image_id>502</image_id><width>72</width><height>45</height></note><note id="19" class="pageLink" pageID="371" type="child"><x>738</x><y>488</y><content>politique</content></note><note id="20" class="pageLink" pageID="429" type="child"><x>548</x><y>489</y><content>Irak War</content></note><note id="21" class="imagePageLink" pageID="433" type="child"><x>934</x><y>582</y><content>Russie</content><image>langfr-225px-Flag_of_Russia.svg.png</image><image_id>642</image_id><width>69</width><height>50</height></note><note id="23" class="pageLink" pageID="434" type="child"><x>1166</x><y>507</y><content>Orwell</content></note><note id="24" class="pageLink" pageID="435" type="child"><x>863</x><y>717</y><content>violences polici&#232;res</content></note><note id="26" class="pageLink" pageID="436" type="child"><x>668</x><y>739</y><content>Tha&#239;lande</content></note><note id="28" class="note"><x>1010</x><y>415</y><content>&lt;a href="https://filmdaily.co/news/is-epstein-really-dead/"&gt;https://filmdaily.co/news/is-epstein-really-dead/&lt;/a&gt;</content></note><note id="32" class="note"><x>1107</x><y>175</y><content>a definition of charisma : a capacity to influence without using logic</content></note><note id="33" class="note"><x>722</x><y>336</y><content>a space for knwoledge</content><css>color : #A62BA4; border: 0px;</css></note><note id="34" class="imageLink"><x>1285</x><y>477</y><width>326</width><height>73</height><name>Screenshot_2020-09-11_at_11.03.05.png</name><image_id>1131</image_id><link>https://www.investopedia.com/</link></note><note id="35" class="pageLink" pageID="597" type="child"><x>721</x><y>661</y><content>philosophie</content></note><note id="36" class="pageLink" pageID="624" type="child"><x>1098</x><y>648</y><content>fermeture d\'usines</content></note><note id="37" class="pageLink" pageID="625" type="child"><x>1128</x><y>701</y><content>la globalisation</content></note><note id="38" class="imageLink"><x>162</x><y>272</y><width>138</width><height>59</height><name>Screenshot_2020-09-24_at_17.11.45.png</name><image_id>1298</image_id><link>https://drive.google.com/drive/folders/0B3XnH2RzIPmlUUZaVWU5U1dUSU0</link></note><note id="39" class="note"><x>138</x><y>355</y><content>--&amp;gt; importer ce qu\'il y a sur le Drive</content></note></notes>
+
+<meta>
+    <biggest_id>39</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-102</x>
+        <y>-119</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>87</x><y>19</y><content>testing</content></note><note id="3" class="image"><x>1198</x><y>351</y><width>527</width><height>318</height><name>5fd792c3744af63d5a0cbc3bf4040be5.jpg</name><image_id>1172</image_id></note><note id="7" class="imagePageLink"><x>750</x><y>589</y><content>new content</content><link>https://www.petitfute.com/v17231-17288-paris-75014/c1169-s-amuser-sortir/</link><link/><image>QuietParis-2020-PostCovid-GettyImages-872302416.jpg</image><image_id>1175</image_id><width>100</width><height>50</height></note><note id="10" class="pageLink" pageID="604" type="child"><x>372</x><y>399</y><content>aefeaf</content></note><note id="12" class="note"><x>714</x><y>417</y><content>new content</content><css>color: blue; font-size: 30px;</css></note><note id="13" class="note"><x>346</x><y>542</y><content>new content</content></note><note id="14" class="note"><x>703</x><y>696</y><content>new content</content></note><note id="15" class="imageLink"><x>641</x><y>483</y><width>291</width><height>182</height><name>youtube-3a3ERxzuh80.jpg</name><image_id>1177</image_id><link>https://www.youtube.com/watch?v=3a3ERxzuh80</link></note></notes>
+
+<meta>
+    <biggest_id>15</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="13" id_2="14"/></connexions></canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-71</x>
+        <y>-123</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="328" type="parent"><x>104</x><y>28</y><content>competitors</content></note><note id="2" class="imageLink"><x>916</x><y>306</y><width>99</width><height>44</height><name>Screenshot_2020-08-21_at_14.31.54.png</name><image_id>616</image_id><link>https://nimbusweb.me/</link></note><note id="3" class="imageLink"><x>190</x><y>408</y><width>163</width><height>41</height><name>Screenshot_2020-08-21_at_14.08.49.png</name><image_id>598</image_id><link>https://www.crunchbase.com/organization/evernote</link></note><note id="4" class="imageLink"><x>190</x><y>453</y><width>144</width><height>41</height><name>Screenshot_2020-08-21_at_14.11.21.png</name><image_id>600</image_id><link>https://www.crunchbase.com/organization/nimbus-web-inc</link></note><note id="6" class="image"><x>622</x><y>643</y><width>455</width><height>188</height><name>Screenshot_2020-08-21_at_14.41.11.png</name><image_id>620</image_id></note><note id="13" class="image"><x>584</x><y>479</y><width>511</width><height>113</height><name>Screenshot_2020-08-21_at_14.40.09.png</name><image_id>633</image_id></note><note id="14" class="image"><x>849</x><y>1491</y><width>31</width><height>25</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="15" class="image"><x>552</x><y>861</y><width>571</width><height>211</height><name>Screenshot_2020-08-21_at_14.44.06.png</name><image_id>635</image_id></note><note id="16" class="imageLink"><x>1432</x><y>390</y><width>143</width><height>92</height><name>Screenshot_2020-08-21_at_14.34.13.png</name><image_id>637</image_id><link>https://nimbusweb.me/ws/1dkav8y4mju0qw2t/recent/note/hORePvofTJEAxdIJ</link></note><note id="17" class="note"><x>1250</x><y>410</y><content>Homepage :</content><css>font-size: 30px; color : blue;</css></note><note id="18" class="imageLink"><x>608</x><y>1110</y><width>431</width><height>265</height><name>Screenshot_2020-08-21_at_14.46.14.png</name><image_id>639</image_id><link>https://nimbusweb.me/ws/1dkav8y4mju0qw2t/recent/note/hORePvofTJEAxdIJ</link><link>https://nimbusweb.me/ws/1dkav8y4mju0qw2t/recent/note/hORePvofTJEAxdIJ</link></note></notes>
+
+<meta>
+    <biggest_id>18</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>679</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-102</x>
+        <y>-116</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="667" type="parent"><x>120</x><y>0</y><content>zvzvd</content></note><note id="2" class="pageLink" type="parent" pageID="669"><content>zeec</content><x>65</x><y>85</y></note><note id="3" class="pageLink" pageID="669" type="child"><content>zeec</content><x>671</x><y>400</y></note><note id="4" class="noteLink"><x>529</x><y>514</y><content>new content</content><link>https://www.lemonde.fr/les-decodeurs/article/2020/09/22/fonctionnement-fiabilite-alternatives-30-questions-sur-les-tests-pcr_6053146_4355770.html</link></note><note id="5" class="image"><x>362</x><y>613</y><width>300</width><height>200</height><name>2232.jpg</name><image_id>1282</image_id></note><note id="6" class="note"><x>740</x><y>527</y><content>new content</content></note><note id="7" class="note"><x>660</x><y>456</y><content>new content</content></note><note id="8" class="pageLink" pageID="668" type="child"><x>938</x><y>522</y><content>eihybzef</content></note></notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-116</x>
+        <y>-164</y>
+        <width>407</width>
+        <height>262</height>
+    </note>
+
+    </notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

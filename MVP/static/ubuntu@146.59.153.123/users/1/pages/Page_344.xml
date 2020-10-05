@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="334" type="parent"><x>0</x><y>0</y><content>France</content></note><note id="2" class="imageLink"><x>750</x><y>471</y><width>239</width><height>155</height><name>Screenshot_2020-08-18_at_13.34.05.png</name><image_id>488</image_id><link>https://www.mediapart.fr/journal/dossier/economie/areva-dans-le-scandale-duramin</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

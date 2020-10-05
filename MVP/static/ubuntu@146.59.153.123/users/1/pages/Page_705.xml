@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="703" type="parent"><x>0</x><y>0</y><content>OVH</content></note><note id="2" class="image"><x>846</x><y>268</y><width>508</width><height>330</height><name>0b59a922-01b1-4410-a56d-688def30a8c8.png</name><image_id>1397</image_id></note><note id="3" class="image"><x>356</x><y>484</y><width>300</width><height>200</height><name>68e009ec-79bd-470f-8d44-3ae605c71f5d.png</name><image_id>1399</image_id></note></notes>
+
+<meta>
+    <biggest_id>3</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

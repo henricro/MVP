@@ -1,0 +1,26 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>745</x>
+        <y>260</y>
+    </note>
+
+    <note id="parents">
+        <x>-103</x>
+        <y>-117</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>61</x><y>16</y><content>testing</content></note>
+    <note id="2" class="noteLink"><x>784</x><y>465</y><content>films</content><link>https://www.google.com.au/</link></note>
+<note id="6" class="note"><x>890</x><y>396</y><content>new content</content></note><note id="7" class="image"><x>370</x><y>443</y><width>300</width><height>200</height><name>ski.jpg</name><image_id>469</image_id></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

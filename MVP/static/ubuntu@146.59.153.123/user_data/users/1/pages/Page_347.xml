@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="323" type="parent"><x>0</x><y>0</y><content>learn to code</content></note><note id="2" class="pageLink" pageID="348" type="child"><x>519</x><y>446</y><content>LXML</content></note><note id="3" class="image"><x>763</x><y>505</y><width>591</width><height>96</height><name>root_find.png</name><image_id>399</image_id></note><note id="4" class="image"><x>763</x><y>505</y><width>591</width><height>96</height><name>root_find.png</name><image_id>399</image_id></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

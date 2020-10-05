@@ -1,0 +1,28 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="296" type="parent"><x>0</x><y>0</y><content>idees</content></note><note id="2" class="note"><x>590</x><y>352</y><content>j\'aimerais vraiment creer un site o&#249; l\'on a une vision de la france</content></note>
+
+
+<note id="4" class="note"><x>625</x><y>414</y><content>o&#249; l\'on peut acc&#233;der &#224; toutes les dataviz sur la france</content></note><note id="5" class="note"><x>539</x><y>524</y><content>les d&#233;penses de l\'Etat</content></note><note id="6" class="note"><x>807</x><y>525</y><content>les grandes entreprises</content></note><note id="7" class="note"><x>705</x><y>597</y><content>les proportions</content></note><note id="8" class="note"><x>719</x><y>646</y><content>les m&#233;tiers</content></note><note id="9" class="note"><x>569</x><y>718</y><content>pour qu\'on se rende compte : qui fait quoi, qui poss&#232;de quoi ?</content></note><note id="10" class="note"><x>1155</x><y>430</y><content>pour une prise de conscience collective</content></note></notes>
+
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

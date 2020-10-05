@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="557" type="parent"><x>0</x><y>0</y><content>friends and family &lt;3</content></note><note id="2" class="imageLink"><x>705</x><y>365</y><width>209</width><height>239</height><name>Screenshot_2020-09-24_at_17.32.27.png</name><image_id>1305</image_id><link>https://docs.google.com/document/d/1dfpX_kOnPlRes-J_wVI4WTS6gkTOnrlm/edit</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="560" type="parent"><x>0</x><y>0</y><content>to-do lists</content></note><note id="3" class="note"><x>440</x><y>485</y><content>M&#246;kki</content></note><note id="4" class="note"><x>382</x><y>539</y><content>faire une s&#233;ance de 2/3h&amp;nbsp;&lt;div&gt;o&#249; je fais le plus possible !&lt;/div&gt;</content></note><note id="5" class="note"><x>674</x><y>518</y><content>r&#233;pondre &#224; Papa</content><css>text-decoration : line-through;</css></note><note id="6" class="note"><x>701</x><y>590</y><content>message prepa</content></note><note id="7" class="note"><x>911</x><y>497</y><content>messages contacts GYST</content></note><note id="8" class="note"><x>891</x><y>621</y><content>session de rangement de mon GYST :&amp;nbsp;&lt;div&gt;une bonne heure,&lt;/div&gt;&lt;div&gt;prendre du recul&lt;/div&gt;</content><css>text-decoration: line-through;</css></note></notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

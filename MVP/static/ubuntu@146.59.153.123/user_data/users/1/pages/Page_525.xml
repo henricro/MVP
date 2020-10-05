@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>299</y>
+    </note>
+
+    <note id="parents">
+        <x>13</x>
+        <y>-132</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="524" type="parent"><x>101</x><y>23</y><content>presentation</content></note><note id="2" class="imageLink"><x>267</x><y>499</y><width>139</width><height>137</height><name>Screenshot_2020-09-03_at_13.37.39.png</name><image_id>928</image_id><link>https://drive.google.com/drive/u/2/folders/1bzACXP0lmv6kON-zYqcorsZNICcYA4V6</link></note><note id="3" class="imageLink"><x>644</x><y>505</y><width>180</width><height>118</height><name>Screenshot_2020-09-03_at_13.38.44.png</name><image_id>930</image_id><link>https://docs.google.com/presentation/d/1ZA9B30wv79EyTwqAms1aAL4_rIwStdF0Y79V9LvHmYg/edit</link></note><note id="5" class="imageLink"><x>1050</x><y>538</y><width>173</width><height>41</height><name>Screenshot_2020-08-25_at_11.07.35.png</name><image_id>725</image_id><link>https://drive.google.com/file/d/1lseUZFJLZeaAjR801L8AjMNNAfr--q_M/view?ts=5f43bf80</link></note><note id="6" class="image"><x>1000</x><y>604</y><width>300</width><height>200</height><name>Screenshot_2020-08-25_at_12.13.45.png</name><image_id>766</image_id></note><note id="7" class="image"><x>1005</x><y>994</y><width>300</width><height>200</height><name>Screenshot_2020-08-25_at_12.14.35.png</name><image_id>768</image_id></note><note id="8" class="image"><x>1019</x><y>807</y><width>245</width><height>180</height><name>Screenshot_2020-08-25_at_12.15.06.png</name><image_id>770</image_id></note><note id="9" class="image"><x>978</x><y>1202</y><width>355</width><height>37</height><name>Screenshot_2020-08-25_at_12.15.34.png</name><image_id>772</image_id></note><note id="10" class="image"><x>750</x><y>1295</y><width>85</width><height>35</height><name>Screenshot_2020-08-24_at_12.46.43.png</name><image_id>660</image_id></note></notes>
+
+<meta>
+    <biggest_id>10</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="imagePageLink" pageID="462" type="child"><x>562</x><y>483</y><content>Primonial</content><image>Screenshot_2020-08-25_at_11.45.08.png</image><image_id>732</image_id><width>110</width><height>39</height></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

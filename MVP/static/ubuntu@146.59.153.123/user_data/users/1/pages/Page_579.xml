@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-127</x>
+        <y>-123</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="578" type="parent"><x>158</x><y>28</y><content>louise</content></note><note id="2" class="noteLink"><x>706</x><y>439</y><content>new content</content><link>https://www.lemonde.fr/societe/article/2020/09/08/cannabis-therapeutique-les-partisans-du-projet-inquiets-d-un-retard-de-l-experimentation_6051446_3224.html</link></note><note id="3" class="pageLink" pageID="580" type="parent"><x>65</x><y>38</y><content>djbcs</content></note><note id="4" class="pageLink" pageID="580" type="visitor"><x>922</x><y>581</y><content>djbcs</content></note><note id="5" class="note"><x>914</x><y>365</y><content>new content</content></note><note id="7" class="note"><x>1151</x><y>261</y><content>new content</content></note><note id="13" class="note"><x>1171</x><y>545</y><content>new content</content></note></notes>
+
+<meta>
+    <biggest_id>13</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="7" id_2="5"/></connexions></canvas>

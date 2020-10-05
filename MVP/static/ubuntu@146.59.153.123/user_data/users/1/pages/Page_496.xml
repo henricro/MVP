@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>650</x>
+        <y>280</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="455" type="parent"><x>0</x><y>0</y><content>TO DOs</content></note><note id="2" class="note"><x>138</x><y>450</y><content>Ajay</content><css>font-size: 20px; font-weight: bold;</css></note><note id="3" class="note"><x>104</x><y>523</y><content>upload images</content></note><note id="4" class="note"><x>103</x><y>557</y><content>change website url redirection</content></note><note id="5" class="note"><x>428</x><y>443</y><content>Mokki-van</content><css>font-size: 20px; font-weight: bold;</css></note><note id="6" class="note"><x>711</x><y>453</y><content>BPI&amp;nbsp;</content><css>font-size: 20px; font-weight: bold;</css></note><note id="7" class="note"><x>940</x><y>445</y><content>Circle</content><css>font-size: 20px; font-weight: bold;</css></note><note id="8" class="note"><x>918</x><y>536</y><content>contacter machin</content></note><note id="9" class="note"><x>696</x><y>539</y><content>ask Tamara</content></note><note id="11" class="note"><x>1189</x><y>441</y><content>Mondial Relay</content><css>font-size: 20px; font-weight: bold;</css></note><note id="12" class="note"><x>1179</x><y>541</y><content>demander au coffee shop</content></note><note id="14" class="imageLink"><x>421</x><y>521</y><width>146</width><height>27</height><name>Screenshot_2020-08-31_at_11.55.13.png</name><image_id>845</image_id><link>https://docs.google.com/spreadsheets/u/2/d/1nlof-P9YLLrrLPrh2l7g2ayGzYWph8WXXdhX1xRCCQY/edit?usp=sharing_eip&amp;ts=5f47c303&amp;urp=gmail_link</link></note><note id="15" class="note"><x>433</x><y>595</y><content>assurance</content></note><note id="16" class="pageLink" type="parent" pageID="538"><content>daily to do lists</content><x>57</x><y>77</y></note></notes>
+
+<meta>
+    <biggest_id>16</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

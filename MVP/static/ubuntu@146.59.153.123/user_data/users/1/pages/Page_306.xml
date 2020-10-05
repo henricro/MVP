@@ -1,0 +1,25 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>767</x>
+        <y>181</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="4" class="pageLink" pageID="313" type="child"><x>739</x><y>445</y><content>freelance</content></note><note id="5" class="imagePageLink" pageID="307" type="child"><x>350</x><y>368</y><content>M&#246;kki</content><image>Screenshot_2020-08-17_at_15.17.02.png</image><image_id>473</image_id><width>307</width><height>121</height></note><note id="6" class="imagePageLink" pageID="312" type="child"><x>681</x><y>517</y><content>le C !</content><image>Screenshot_2020-08-17_at_15.17.59.png</image><image_id>474</image_id><width>300</width><height>151</height></note><note id="11" class="imagePageLink" pageID="323" type="child"><x>957</x><y>356</y><content>learn to code</content><image>html5-css-javascript-logos.png</image><image_id>804</image_id><width>274</width><height>120</height><image_id>808</image_id><width>300</width><height>200</height></note>
+    </notes>
+
+<meta>
+    <biggest_id>11</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

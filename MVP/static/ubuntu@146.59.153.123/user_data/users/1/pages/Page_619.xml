@@ -1,0 +1,26 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="452" type="parent"><x>0</x><y>0</y><content>website</content></note><note id="2" class="note"><x>302</x><y>531</y><content>finir de reprendre les pages (width : 80%)</content><css>background-color: #BFF1C1;</css></note>
+    <note id="3" class="note"><x>249</x><y>569</y><content>Evenements</content><css>font-weight: bold; font-size: 30px; text-decoration: underline;</css></note>
+    <note id="4" class="note"><x>299</x><y>652</y><content>un evenement c est :</content><css>background-color: #BFF1C1;</css></note><note id="5" class="note"><x>299</x><y>652</y><content>un evenement c est :</content><css>background-color: #BFF1C1;</css></note><note id="6" class="note"><x>361</x><y>703</y><content>une image</content><css>background-color: #BFF1C1;</css></note><note id="7" class="note"><x>361</x><y>730</y><content>un sous-titre (avec la date)</content><css>background-color: #BFF1C1;</css></note><note id="8" class="note"><x>359</x><y>756</y><content>du texte de description</content><css>background-color: #BFF1C1;</css></note><note id="9" class="note"><x>150</x><y>825</y><content>python :&amp;nbsp;&lt;div&gt;- va chercher dans la DB les evenements actifs&lt;div&gt;- envoie l info &#224; la page html website_events&lt;/div&gt;&lt;/div&gt;&lt;div&gt;- la page ajoute une page dans le caroussel pour chaque evenement&lt;/div&gt;</content><css>background-color: #BFF1C1;</css></note><note id="10" class="note"><x>298</x><y>940</y><content>refaire le caroussel&amp;nbsp;</content><css>background-color: #BFF1C1;</css></note><note id="11" class="note"><x>785</x><y>689</y><content>refaire le caroussel pour la page personnal_stats_home&lt;div&gt;(en faisant la meme chose que pour la page eventements)&lt;/div&gt;</content><css>background-color: #BFF1C1;</css></note><note id="12" class="note"><x>814</x><y>743</y><content>mettre les bons contenus dans la BDD Events</content><css>background-color: #BFF1C1;</css></note><note id="13" class="note"><x>784</x><y>831</y><content>refaire le showroom et showroom_cms en reprenant ce que j ai fait pour evenements</content><css>background-color: #BFF1C1;</css></note><note id="14" class="note"><x>804</x><y>877</y><content>enlever Victor de la page Equipe</content><css>background-color: #BFF1C1;</css></note><note id="15" class="note"><x>818</x><y>917</y><content>faire un CMS pour la banni&#232;re du personal space</content><css>background-color : #EBD743;</css></note><note id="16" class="note"><x>796</x><y>785</y><content>taille des boutons evenements</content><css>background-color: #BFF1C1;</css></note></notes>
+
+<meta>
+    <biggest_id>16</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

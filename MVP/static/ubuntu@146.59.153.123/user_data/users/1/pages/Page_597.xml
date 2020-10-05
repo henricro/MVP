@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="297" type="parent"><x>0</x><y>0</y><content>connaissances</content></note><note id="2" class="image"><x>394</x><y>444</y><width>404</width><height>239</height><name>119650708_725934391589001_6493320968561915016_n.jpg</name><image_id>1158</image_id></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

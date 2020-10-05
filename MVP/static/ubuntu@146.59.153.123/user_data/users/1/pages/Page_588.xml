@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>81</x><y>11</y><content>testing</content></note><note id="2" class="note"><x>436</x><y>491</y><content>yfcxucugv</content></note><note id="3" class="imageLink"><x>853</x><y>448</y><width>300</width><height>200</height><name>LYNXMPEE2Q1K7_L.jpg</name><image_id>1126</image_id><link>https://www.fip.fr/</link></note><note id="4" class="imageLink"><x>162</x><y>442</y><width>300</width><height>200</height><name>Screenshot_2020-09-11_at_00.55.29.png</name><image_id>1128</image_id><link>https://www.fip.fr/</link></note><note id="5" class="imageLink"><x>462</x><y>162</y><width>223</width><height>160</height><name>youtube-QUvLAa_KNhU.jpg</name><image_id>1129</image_id><link>https://www.youtube.com/watch?v=QUvLAa_KNhU</link></note></notes>
+
+<meta>
+    <biggest_id>5</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

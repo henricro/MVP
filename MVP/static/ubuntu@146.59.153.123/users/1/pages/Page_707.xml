@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-111</x>
+        <y>-136</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="323" type="parent"><x>96</x><y>8</y><content>learn to code</content></note><note id="2" class="image"><x>457</x><y>456</y><width>630</width><height>79</height><name>e2d178f2-fd9e-46e3-806b-605d666b0d45.png</name><image_id>1407</image_id></note><note id="3" class="note"><x>606</x><y>423</y><content>SQLalchemy connect to DB</content></note><note id="4" class="imageLink"><x>240</x><y>545</y><width>396</width><height>148</height><name>f9e5c998-9a26-4537-8697-9d12c57fb024.png</name><image_id>1409</image_id><link>https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04</link></note><note id="5" class="note"><x>1068</x><y>609</y><content>log into mysql : mysql -u root -p</content></note><note id="7" class="imageLink"><x>315</x><y>694</y><width>505</width><height>82</height><name>7bf2037a-9768-4821-b0b8-a5dc25b1d6cb.png</name><image_id>1413</image_id><link>https://linuxize.com/post/how-to-create-a-mysql-database/</link></note><note id="8" class="imageLink"><x>94</x><y>340</y><width>394</width><height>96</height><name>d3eed96c-e949-455e-8dc2-0b61a9326463.png</name><image_id>1416</image_id><link>http://blog-en.mamp.info/2009/08/using-mysql-command-line-with-mamp.html</link><link>http://blog-en.mamp.info/2009/08/using-mysql-command-line-with-mamp.html</link></note><note id="9" class="image"><x>1156</x><y>201</y><width>268</width><height>198</height><name>26b034a3-f0a6-4164-bb69-dc132d4266c4.png</name><image_id>1428</image_id></note></notes>
+
+<meta>
+    <biggest_id>9</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

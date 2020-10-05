@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="297" type="parent"><x>0</x><y>0</y><content>connaissances</content></note><note id="2" class="pageLink" pageID="372" type="child"><x>689</x><y>470</y><content>Poutine</content></note><note id="3" class="pageLink" pageID="336" type="child"><x>840</x><y>436</y><content>politique france</content></note><note id="4" class="pageLink" pageID="373" type="child"><x>356</x><y>474</y><content>personnalit&#233;s politiques</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

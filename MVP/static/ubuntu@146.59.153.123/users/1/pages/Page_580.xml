@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="578" type="parent"><x>0</x><y>0</y><content>louise</content></note><note id="2" class="pageLink" pageID="579" type="child"><content>scihb</content><x>720</x><y>400</y></note><note id="3" class="note"><x>291</x><y>359</y><content>new content</content></note><note id="4" class="note"><x>291</x><y>359</y><content>new content</content></note><note id="5" class="note"><x>1169</x><y>410</y><content>new content</content></note><note id="6" class="note"><x>1290</x><y>476</y><content>new content</content></note><note id="7" class="note"><x>1390</x><y>544</y><content>new content</content></note><note id="8" class="image"><x>810</x><y>533</y><width>300</width><height>200</height><name>jung.jpg</name><image_id>1081</image_id></note></notes>
+
+<meta>
+    <biggest_id>8</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

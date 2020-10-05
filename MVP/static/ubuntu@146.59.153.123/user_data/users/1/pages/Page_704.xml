@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="323" type="parent"><x>0</x><y>0</y><content>learn to code</content></note><note id="2" class="imageLink"><x>530</x><y>429</y><width>538</width><height>233</height><name>7bb4906a-53fe-4b73-ad8a-9a9c71d8224d.png</name><image_id>1395</image_id><link>https://simpledns.plus/help/definition-domains-vs-zones#:~:text=A%20%22domain%22%20represents%20the%20entire,(see%20NS%2Drecords).</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

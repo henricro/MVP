@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note><note id="2" class="pageLink" pageID="318" type="child"><x>672</x><y>412</y><content>TO DOs administratifs</content></note><note id="3" class="noteLink"><x>1166</x><y>207</y><content>new content</content><link>!(note.attr("id")==$(event.target).attr("id"))</link></note><note id="4" class="pageLink" pageID="319" type="child"><x>764</x><y>305</y><content>TO DOs</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

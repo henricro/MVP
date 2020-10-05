@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>291</y>
+    </note>
+
+    <note id="parents">
+        <x>-88</x>
+        <y>-120</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="333" type="parent"><x>105</x><y>8</y><content>GYST - idea</content></note><note id="2" class="note"><x>481</x><y>329</y><content>this is a page where i keep the information about the people i have talked to or want to talk to about GYST.</content><css>color: #8C1248;</css></note><note id="4" class="note"><x>556</x><y>371</y><content>People who can help me with advice and/or potential associates</content><css>color: #8C1248;</css></note><note id="5" class="image"><x>721</x><y>975</y><width>31</width><height>25</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="6" class="note"><x>347</x><y>523</y><content>Walid</content></note><note id="8" class="note"><x>466</x><y>523</y><content>Vincent Touboul</content></note><note id="9" class="note"><x>490</x><y>586</y><content>David Marques</content></note><note id="10" class="note"><x>727</x><y>550</y><content>Th&#233;o R.</content></note><note id="11" class="note"><x>747</x><y>607</y><content>Matthieu H.</content></note><note id="12" class="note"><x>942</x><y>518</y><content>Balthazar Delavergne</content></note><note id="13" class="note"><x>998</x><y>586</y><content>William Suquet</content></note><note id="14" class="note"><x>1166</x><y>566</y><content>Mathias Pastor</content></note><note id="15" class="note"><x>1059</x><y>723</y><content>Benjamin M.</content></note><note id="16" class="note"><x>1177</x><y>656</y><content>Laura T.</content></note><note id="17" class="note"><x>945</x><y>671</y><content>Nicolas M.</content></note><note id="18" class="pageLink" pageID="665" type="child"><x>566</x><y>677</y><content>the family</content></note><note id="19" class="pageLink" pageID="670" type="child"><x>667</x><y>459</y><content>Matthieu Hocquart</content></note></notes>
+
+<meta>
+    <biggest_id>19</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

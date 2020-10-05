@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="538" type="parent"><x>0</x><y>0</y><content>daily to do lists</content></note><note id="2" class="note"><x>490</x><y>488</y><content>check the emails</content><css>text-decoration: line-through;</css></note><note id="3" class="note"><x>777</x><y>481</y><content>post internship offer</content><css>text-decoration: line-through;</css></note><note id="4" class="note"><x>718</x><y>567</y><content>contacter Le Closet</content><css>text-decoration: line-through;</css></note><note id="5" class="note"><x>512</x><y>629</y><content>check Tamara\'s email \'Mokki priorities\'</content></note></notes>
+
+<meta>
+    <biggest_id>5</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

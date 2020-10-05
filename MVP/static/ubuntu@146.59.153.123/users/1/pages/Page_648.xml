@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-98</x>
+        <y>-126</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="646" type="parent"><x>121</x><y>31</y><content>zvezev</content></note><note id="2" class="note"><x>548</x><y>455</y><content>yrzyrz</content></note><note id="3" class="noteLink"><x>1151</x><y>467</y><content>new content</content><link>https://www.lemonde.fr/planete/article/2020/09/20/arnaud-fontanet-je-n-aurais-jamais-cru-voir-cela-de-mon-vivant_6052902_3244.html</link></note><note id="4" class="note"><x>648</x><y>602</y><content>new content</content></note><note id="5" class="note"><x>1096</x><y>604</y><content>yrzyrz</content></note><note id="6" class="pageLink" pageID="647" type="child"><content>zevdz</content><x>928</x><y>461</y></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="2" id_2="4"/></connexions></canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="660" type="parent"><x>103</x><y>3</y><content>jacques</content></note><note id="2" class="noteLink"><x>694</x><y>425</y><content>efiyeg faef&lt;div&gt;&lt;br&gt;&lt;/div&gt;</content><link>https://www.rugbyrama.fr/rugby/affaire-altrad-laporte-le-patron-du-rugby-francais-place-en-garde-a-vue_sto7899898/story.shtml</link></note><note id="3" class="note"><x>518</x><y>509</y><content>new content</content></note><note id="4" class="note"><x>966</x><y>430</y><content>new content</content></note><note id="5" class="image"><x>1084</x><y>525</y><width>300</width><height>200</height><name>bob-dylan-auction-handwritten-lyrics-the-times-they-are-a-changin.jpg</name><image_id>1277</image_id></note><note id="6" class="pageLink" pageID="662" type="child"><x>463</x><y>428</y><content>feigbef</content></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

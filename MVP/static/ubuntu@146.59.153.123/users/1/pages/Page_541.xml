@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>681</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-47</x>
+        <y>-136</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="448" type="parent"><x>93</x><y>27</y><content>partnership caf&#233;</content></note><note id="2" class="note"><x>935</x><y>498</y><content>we don t pay rent,&lt;div&gt;we expose Le Closet, we do our thing&lt;/div&gt;</content></note><note id="5" class="note"><x>475</x><y>564</y><content>TO DO : chat with coffee shop owners</content></note><note id="6" class="note"><x>445</x><y>437</y><content>goal for now : POC : prove that we can "placemake"</content></note><note id="7" class="note"><x>478</x><y>491</y><content>we need to prove that we are able to&amp;nbsp;&lt;div&gt;&lt;b&gt;draw &lt;/b&gt;people into retail spaces !&lt;/div&gt;</content></note><note id="8" class="note"><x>996</x><y>464</y><content>business model :&amp;nbsp;</content></note><note id="9" class="note"><x>922</x><y>596</y><content>for now : we do not get paid by the coffee shop.&lt;br&gt;We try to convince that this could be win-win</content></note></notes>
+
+<meta>
+    <biggest_id>9</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

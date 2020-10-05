@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>738</x>
+        <y>96</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="pageLink" type="parent" pageID="323"><content>learn to code</content><x>13</x><y>80</y></note><note id="5" class="image"><x>97</x><y>187</y><width>300</width><height>200</height><name>dd9d19ec-157a-47e5-ad19-d797370e56bf.png</name><image_id>1380</image_id></note><note id="7" class="image"><x>97</x><y>386</y><width>300</width><height>200</height><name>95242007-1737-4d22-bb2c-d67bf4c6551f.png</name><image_id>1382</image_id></note><note id="10" class="image"><x>96</x><y>594</y><width>300</width><height>200</height><name>fc14568d-efc1-42e4-8ea4-8209b0cd3576.png</name><image_id>1387</image_id></note><note id="12" class="pdf"><x>648</x><y>483</y><name>d1a65def-57e5-4d37-9406-119de49a27cb.pdf</name><image>d1a65def-57e5-4d37-9406-119de49a27cb.pdf.first_page.jpg</image><pdf_id>37</pdf_id><width>100</width><height>150</height></note><note id="13" class="note"><x>658</x><y>452</y><content>facture</content></note><note id="14" class="image"><x>543</x><y>231</y><width>300</width><height>200</height><name>7b278b3f-41ec-4d4e-93a9-8258cbd62d5a.png</name><image_id>1391</image_id></note><note id="15" class="note"><x>613</x><y>200</y><content>beware phishing !</content></note><note id="16" class="note"><x>181</x><y>152</y><content>commande</content></note><note id="17" class="imageLink"><x>1251</x><y>506</y><width>303</width><height>159</height><name>be244d3c-22f8-4971-ba8b-d2d400213905.png</name><image_id>1393</image_id><link>https://docs.ovh.com/fr/vps/debuter-avec-vps/</link></note><note id="18" class="note"><x>1389</x><y>480</y><content>tutoriel</content></note><note id="19" class="pageLink" pageID="705" type="child"><x>930</x><y>118</y><content>DNS</content></note><note id="22" class="image"><x>541</x><y>688</y><width>300</width><height>200</height><name>27ae504e-19ae-4bd1-a28b-d938322088e9.png</name><image_id>1401</image_id></note><note id="23" class="note"><x>625</x><y>657</y><content>commande confirm&#233;e !!</content></note><note id="24" class="pageLink" pageID="706" type="child"><x>874</x><y>118</y><content>SSH</content></note><note id="25" class="note"><x>934</x><y>545</y><content>&lt;pre class="new-security-section-wizard-backup-codes" style="margin-bottom: 12px; font-size: 15px; padding: 11.5px; line-height: 1.5; border-radius: 6px; letter-spacing: 0.12px; text-align: left;"&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;J2UQ-O7RZ-KDHW-VBJB&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;TTJY-5OEL-C7LS-UBRC&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;D6M5-T57K-E3TE-RG2R&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;18DR-86YY-B6PQ-4COD&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;99V2-8UVC-2T2K-LPTM&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;UJ6F-KOF4-OAVA-0E79&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;S20C-P9BB-6CHW-VSVE&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;3JHO-UFEE-MYPS-S9JL&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;MDNW-VB5W-OHN1-BERH&lt;/div&gt;&lt;div data-ng-repeat="code in step3.backupCode.codes" data-ng-bind="code" class="ng-binding ng-scope"&gt;9CPP-6F49-VD52-H3N7&lt;/div&gt;&lt;/pre&gt;</content></note><note id="26" class="image"><x>896</x><y>261</y><width>291</width><height>314</height><name>82e9be0e-e1da-4339-91ad-1a69dc7a5d3c.png</name><image_id>1405</image_id></note><note id="27" class="imageLink"><x>1101</x><y>83</y><width>96</width><height>66</height><name>14ae1eed-9cc1-40b1-a5e3-81bb730c3c6d.png</name><image_id>1414</image_id><link>https://www.ovh.com/manager/#/</link></note></notes>
+
+<meta>
+    <biggest_id>27</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

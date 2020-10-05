@@ -1,0 +1,25 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>299</y>
+    </note>
+
+    <note id="parents">
+        <x>-102</x>
+        <y>-139</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="pageLink" pageID="271" type="child"><x>849</x><y>371</y><content>GYST MVP</content></note>
+    </notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

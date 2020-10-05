@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>686</x>
+        <y>207</y>
+    </note>
+
+    <note id="parents">
+        <x>-71</x>
+        <y>-126</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="328" type="parent"><x>102</x><y>24</y><content>competitors</content></note><note id="2" class="image"><x>600</x><y>373</y><width>300</width><height>200</height><name>Screenshot_2020-08-21_at_13.18.07.png</name><image_id>564</image_id></note><note id="3" class="image"><x>422</x><y>599</y><width>611</width><height>290</height><name>Screenshot_2020-08-21_at_13.45.06.png</name><image_id>566</image_id></note><note id="5" class="image"><x>1118</x><y>685</y><width>313</width><height>134</height><name>Screenshot_2020-08-21_at_13.45.37.png</name><image_id>568</image_id></note><note id="6" class="imageLink"><x>844</x><y>214</y><width>128</width><height>35</height><name>Screenshot_2020-08-21_at_13.46.49.png</name><image_id>570</image_id><link>https://evernote.com/</link></note><note id="7" class="imageLink"><x>1377</x><y>406</y><width>183</width><height>121</height><name>Screenshot_2020-08-21_at_13.59.41.png</name><image_id>590</image_id><link>https://www.evernote.com/client/web?_sourcePage=-4DcJHJXDjziMUD9T65RG_YvRLZ-1eYO3fqfqRu0fynRL_1nukNa4gH1t86pc1SP&amp;__fp=1fsizK_Id_k3yWPvuidLz-TPR6I9Jhx8&amp;hpts=1598011084490&amp;showSwitchService=true&amp;usernameImmutable=false&amp;login=&amp;login=Sign+in&amp;login=true&amp;hptsh=zDzt2ky%2F172FDXKyUT7zqBd1H5k%3D#?an=true&amp;n=71b9a274-24a6-43da-908e-d193acb131a3&amp;</link><link/></note><note id="8" class="note"><x>1206</x><y>441</y><content>Homepage :</content><css>font-size: 30px; color : blue;</css></note><note id="9" class="image"><x>782</x><y>1177</y><width>31</width><height>25</height><name>1-brain.jpg</name><image_id>531</image_id></note><note id="10" class="imageLink"><x>94</x><y>435</y><width>163</width><height>41</height><name>Screenshot_2020-08-21_at_14.08.49.png</name><image_id>598</image_id><link>https://www.crunchbase.com/organization/evernote</link></note><note id="11" class="imageLink"><x>92</x><y>487</y><width>185</width><height>54</height><name>Screenshot_2020-08-21_at_14.11.21.png</name><image_id>600</image_id><link>https://techcrunch.com/tag/evernote/</link></note></notes>
+
+<meta>
+    <biggest_id>11</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>754</x>
+        <y>94</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="275" type="parent"><x>0</x><y>0</y><content>/appli</content></note><note id="2" class="image"><x>624</x><y>185</y><width>284</width><height>376</height><name>HP1.jpeg</name><image_id>437</image_id></note><note id="5" class="noteLink"><x>435</x><y>202</y><content>Harry Potter 1</content><link>https://www.wikiwand.com/en/Harry_Potter_and_the_Philosopher%27s_Stone_(film)</link></note><note id="7" class="pageLink" type="parent" pageID="275"><content>/appli</content><x>78</x><y>59</y></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

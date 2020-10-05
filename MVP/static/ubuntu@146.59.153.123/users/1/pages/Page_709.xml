@@ -1,0 +1,38 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="560" type="parent"><x>0</x><y>0</y><content>to-do lists</content></note>
+    <note id="2" class="note"><x>379</x><y>562</y><content>r&#233;diger message pour la psy</content></note>
+    <note id="3" class="note"><x>677</x><y>511</y><content>r&#233;pondre :</content></note>
+    <note id="4" class="note"><x>721</x><y>566</y><content>le C ! sondage</content><css>text-decoration : line-through;</css></note>
+    <note id="5" class="note"><x>723</x><y>594</y><content>Alice D</content><css>text-decoration : line-through;</css></note>
+    <note id="6" class="note"><x>723</x><y>619</y><content>Agathe</content></note>
+    <note id="7" class="note"><x>721</x><y>541</y><content>Judith</content><css>text-decoration : line-through;</css></note>
+    <note id="8" class="note"><x>966</x><y>574</y><content>lire Pr&#233;sentes</content></note>
+    <note id="9" class="note"><x>863</x><y>489</y><content>regarder docu judith</content></note>
+    <note id="10" class="note"><x>902</x><y>651</y><content>m&#233;diter</content></note>
+    <note id="11" class="note"><x>490</x><y>706</y><content>payer loyer</content></note>
+    <note id="12" class="note"><x>693</x><y>705</y><content>passer au 55 r&#233;cup&#233;rer :</content></note>
+    <note id="13" class="note"><x>767</x><y>731</y><content>documents &#233;paule</content></note>
+    <note id="14" class="note"><x>394</x><y>647</y><content>ecrire &#224; Benjamin et Jordan</content><css/></note>
+    </notes>
+
+<meta>
+    <biggest_id>15</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

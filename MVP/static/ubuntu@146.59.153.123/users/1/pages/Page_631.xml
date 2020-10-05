@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>575</x>
+        <y>80</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="570" type="parent"><x>0</x><y>0</y><content>testing stuff</content></note><note id="2" class="image"><x>246</x><y>258</y><width>221</width><height>280</height><name>MV5BMTQ2Mzg4MDAzNV5BMl5BanBnXkFtZTgwMjcxNTYxMTE@._V1_.jpg</name><image_id>1214</image_id></note><note id="3" class="note"><x>313</x><y>222</y><content>cover photo</content></note><note id="4" class="note"><x>689</x><y>232</y><content>actors</content></note><note id="9" class="note"><x>1042</x><y>228</y><content>directors</content></note><note id="10" class="pageLink" pageID="632" type="child"><x>633</x><y>308</y><content>Hugh Grant - actor</content></note><note id="11" class="pageLink" pageID="633" type="child"><x>707</x><y>347</y><content>Rachel Weisz - actress</content></note><note id="12" class="pageLink" pageID="634" type="child"><x>695</x><y>428</y><content>Toni Collette - actress</content></note><note id="14" class="pageLink" pageID="636" type="child"><x>620</x><y>387</y><content>Nicolas Hoult - actor</content></note><note id="15" class="pageLink" pageID="637" type="child"><x>1003</x><y>306</y><content>Chris Weitz</content></note><note id="17" class="pageLink" pageID="639" type="child"><x>1028</x><y>358</y><content>Paul Weitz</content></note><note id="18" class="note"><x>1248</x><y>247</y><content>screenwriter</content></note><note id="20" class="pageLink" pageID="641" type="child"><x>1225</x><y>311</y><content>Peter Hedges</content></note><note id="21" class="image"><x>682</x><y>1110</y><width>78</width><height>85</height><name>film-camera-logo_7108-42.jpg</name><image_id>1215</image_id></note><note id="22" class="imageLink"><x>187</x><y>677</y><width>136</width><height>77</height><name>Screenshot_2020-09-17_at_14.50.21.png</name><image_id>1217</image_id><link>https://www.imdb.com/title/tt0276751/fullcredits?ref_=tt_ov_wr#writers/</link></note><note id="23" class="note"><x>1167</x><y>436</y><content>genre</content></note><note id="24" class="note"><x>1107</x><y>493</y><content>comedy</content></note><note id="25" class="note"><x>1189</x><y>527</y><content>family</content></note><note id="26" class="note"><x>1089</x><y>539</y><content>feel-good</content></note><note id="27" class="imageLink"><x>384</x><y>659</y><width>140</width><height>61</height><name>Screenshot_2020-09-17_at_14.51.56.png</name><image_id>1219</image_id><link>https://www.rottentomatoes.com/m/about_a_boy</link></note><note id="28" class="imageLink"><x>336</x><y>728</y><width>176</width><height>59</height><name>Screenshot_2020-09-17_at_14.52.25.png</name><image_id>1220</image_id><link>https://www.metacritic.com/movie/about-a-boy</link></note><note id="29" class="note"><x>1160</x><y>607</y><content>parent - children</content></note><note id="30" class="note"><x>1220</x><y>556</y><content>father-son</content></note><note id="31" class="note"><x>1260</x><y>511</y><content>big city</content></note><note id="32" class="note"><x>1122</x><y>572</y><content>growing up</content></note><note id="33" class="imageLink"><x>742</x><y>627</y><width>300</width><height>200</height><name>youtube--apwoGTpi7E.jpg</name><image_id>1222</image_id><link>https://www.youtube.com/watch?v=-apwoGTpi7E</link></note><note id="34" class="note"><x>860</x><y>592</y><content>trailer</content></note></notes>
+
+<meta>
+    <biggest_id>34</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

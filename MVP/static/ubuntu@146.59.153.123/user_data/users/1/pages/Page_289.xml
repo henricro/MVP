@@ -1,0 +1,35 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="pageLink" pageID="273" type="parent"><x>23</x><y>112</y><content>gegeagea</content></note>
+    <note id="3" class="note"><x>137</x><y>111</y><content>create !!!</content></note>
+    <note id="4" class="note"><x>97</x><y>144</y><content>that is no longer up for debate</content></note>
+    <note id="5" class="note"><x>521</x><y>80</y><content>organize what i know</content></note>
+    <note id="6" class="note"><x>505</x><y>112</y><content>this is a very long process&lt;div&gt;i am only starting it, for me,&lt;/div&gt;&lt;div&gt;little by little&lt;/div&gt;&lt;div&gt;No expectations&lt;/div&gt;</content></note>
+
+
+<note id="7" class="pageLink" pageID="198" type="parent"><x>9</x><y>24</y><content>cacahuete</content></note>
+    <note id="8" class="note"><x>1109</x><y>362</y><content>social</content></note>
+    <note id="9" class="note"><x>97</x><y>144</y><content>that is no longer up for debate</content></note>
+    <note id="10" class="note"><x>1044</x><y>449</y><content>a faire &#224; paris : ateliers pour ecriture de scenarios</content></note>
+    </notes>
+
+<meta>
+    <biggest_id>11</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

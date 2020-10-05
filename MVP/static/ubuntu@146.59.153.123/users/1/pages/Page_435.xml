@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="297" type="parent"><x>0</x><y>0</y><content>connaissances</content></note><note id="2" class="imageLink"><x>624</x><y>483</y><width>467</width><height>151</height><name>Screenshot_2020-08-22_at_16.04.45.png</name><image_id>646</image_id><link>https://www.mediapart.fr/journal/culture-idees/210820/une-rentree-litteraire-engagee?page_article=3</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

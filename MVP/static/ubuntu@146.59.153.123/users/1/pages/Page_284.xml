@@ -1,0 +1,29 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>689</x>
+        <y>266</y>
+    </note>
+
+    <note id="parents">
+        <x>-80</x>
+        <y>-163</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+    <note id="2" class="imageLink"><x>527</x><y>403</y><width>265</width><height>107</height><name>corine-sombrun.png</name><image_id>440</image_id><link>https://www.franceculture.fr/emissions/les-racines-du-ciel/le-chamanisme-avec-corine-sombrun</link></note>
+    <note id="3" class="note"><x>867</x><y>389</y><content>emission france culture</content></note>
+    <note id="5" class="note"><x>875</x><y>473</y><content>chamanisme</content></note>
+
+
+<note id="8" class="note"><x>875</x><y>444</y><content>conseill&#233; par judith</content></note><note id="10" class="note"><x>822</x><y>520</y><content>travailler le fait d etre des etres "percpetuels"&lt;div&gt;par opposition &#224; la partie du cerveau dite "speculative"&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;travailler l intuition&lt;/div&gt;&lt;div&gt;plutot que de penser tout le temps&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;par le r&#234;ve, la pratique d art, &#233;couter de la musique ...&lt;/div&gt;&lt;div&gt;de se laisser ne rien faire&lt;/div&gt;</content></note><note id="11" class="pageLink" type="parent" pageID="297"><content>connaissances</content><x>165</x><y>68</y></note><note id="12" class="pageLink" type="parent" pageID="302"><content>lifestyle</content><x>69</x><y>61</y></note></notes>
+
+<meta>
+    <biggest_id>12</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

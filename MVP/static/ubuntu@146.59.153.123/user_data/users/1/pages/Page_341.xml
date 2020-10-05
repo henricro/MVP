@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-49</x>
+        <y>-118</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="334" type="parent"><x>97</x><y>23</y><content>France</content></note><note id="2" class="pageLink" pageID="342" type="child"><x>795</x><y>495</y><content>Juan Branco</content></note><note id="3" class="pageLink" pageID="346" type="child"><x>956</x><y>479</y><content>Michel Onfray</content></note><note id="4" class="pageLink" pageID="351" type="child"><x>1170</x><y>487</y><content>Pr. Raoult</content></note><note id="5" class="pageLink" pageID="352" type="child"><x>969</x><y>549</y><content>Emmaneul Todd</content></note><note id="6" class="pageLink" pageID="353" type="child"><x>771</x><y>595</y><content>Thomas Piketty</content></note><note id="7" class="pageLink" pageID="354" type="child"><x>1120</x><y>593</y><content>Fran&#231;ois Ruffin</content></note><note id="9" class="pageLink" pageID="360" type="child"><x>277</x><y>509</y><content>personnalit&#233;s politiques</content></note><note id="10" class="note"><x>740</x><y>340</y><content>France</content><css>color : #871334; font-size: 20px;</css></note><note id="11" class="pageLink" pageID="369" type="child"><x>977</x><y>649</y><content>Jean-Jacques Bourdin</content></note></notes>
+
+<meta>
+    <biggest_id>11</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

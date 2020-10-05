@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>717</x>
+        <y>188</y>
+    </note>
+
+    <note id="parents">
+        <x>-97</x>
+        <y>-113</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="307" type="parent"><x>121</x><y>18</y><content>M&#246;kki</content></note><note id="2" class="note"><x>631</x><y>441</y><content>right now priorities are :&amp;nbsp;</content></note><note id="3" class="note"><x>685</x><y>519</y><content>signing Ivanhoe, Invesco, maybe D2</content></note><note id="4" class="note"><x>686</x><y>553</y><content>working on the van and the caf&#233;</content></note><note id="5" class="note"><x>687</x><y>589</y><content>BPI</content></note><note id="6" class="note"><x>689</x><y>630</y><content>making Fanny happy</content></note><note id="7" class="note"><x>686</x><y>661</y><content>the website</content></note><note id="8" class="pageLink" pageID="467" type="child"><x>941</x><y>429</y><content>Mokki 27/08/20</content></note><note id="9" class="pageLink" pageID="492" type="child"><x>990</x><y>461</y><content>Mokki 31/08/20</content></note><note id="10" class="pageLink" pageID="496" type="child"><x>1052</x><y>494</y><content>Mokki 01/09/20</content></note><note id="12" class="pageLink" pageID="526" type="child"><x>1098</x><y>526</y><content>Mokki 03/09/20</content></note><note id="14" class="pageLink" pageID="528" type="child"><x>1157</x><y>559</y><content>Mokki 04/09/20</content></note></notes>
+
+<meta>
+    <biggest_id>14</biggest_id>
+    <type/>
+</meta>
+
+</canvas>
