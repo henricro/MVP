@@ -32,11 +32,9 @@ def login():
         password = form.password.data
         encrypted_password = hashlib.md5(password.encode()).hexdigest()
         user = User.query.filter_by(email=email).first()
-        user_id = str(user.id)
-        print(user)
-        print(user_id)
-        print("hohohohohohohohohohohhoo")
+
         if user is not None and encrypted_password==user.password:
+            user_id = str(user.id)
             print(current_user.is_authenticated)
             print(user.id)
             login_user(user)
