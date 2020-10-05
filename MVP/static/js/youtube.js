@@ -64,6 +64,8 @@ $(document).bind('paste', function(e) {
             y = "500";
         }
 
+        console.log("pasted youtube video");
+
         console.log(data);
 
         $.ajax({
@@ -77,11 +79,11 @@ $(document).bind('paste', function(e) {
             contentType: "application/json",
             success: function (data) {
                 console.log(data);
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                //window.location.href='/open_page/'+ pageID + '/' + user_id;
             },
             error: function (error) {
                 console.log("problem");
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                //window.location.href='/open_page/'+ pageID + '/' + user_id;
             }
         });
 

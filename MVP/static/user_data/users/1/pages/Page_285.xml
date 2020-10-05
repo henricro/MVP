@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>301</y>
+    </note>
+
+    <note id="parents">
+        <x>-57</x>
+        <y>-129</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="3" class="pageLink" pageID="287" type="child"><x>596</x><y>444</y><content>movie ideas</content></note><note id="7" class="imagePageLink" pageID="298" type="child"><x>843</x><y>437</y><content>movie library</content><image>rideau.png</image><image_id>447</image_id><width>100</width><height>50</height></note></notes>
+
+<meta>
+    <biggest_id>7</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

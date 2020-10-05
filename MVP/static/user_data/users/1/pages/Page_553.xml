@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="2" class="pageLink" pageID="554" type="child"><x>620</x><y>447</y><content>Tuesday 08/09/20</content></note><note id="3" class="pageLink" pageID="466" type="child"><x>518</x><y>390</y><content>Jeu. 27/08/20</content></note><note id="4" class="pageLink" pageID="470" type="child"><x>673</x><y>554</y><content>Fri 28/08/20</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

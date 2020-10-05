@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>124</x>
+        <y>-132</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="502" type="parent"><x>93</x><y>22</y><content>assurance</content></note><note id="2" class="imageLink"><x>1311</x><y>412</y><width>268</width><height>155</height><name>Screenshot_2020-09-02_at_15.51.56.png</name><image_id>889</image_id><link>https://app.coover.fr/responsabilite-civile-professionnelle/resultats/4c0e7eb377722ae1abeb7e2ab25f79ff</link></note><note id="3" class="note"><x>227</x><y>436</y><content>Garanties</content><css>font-size: 25px; font-weight: bold;</css></note><note id="4" class="note"><x>176</x><y>509</y><content>RC exploitation</content></note><note id="5" class="note"><x>176</x><y>544</y><content>RC apr&#232;s livraison</content></note><note id="6" class="note"><x>175</x><y>578</y><content>Recours et Assistance Judiciaire et Protection Juridique</content></note><note id="7" class="note"><x>175</x><y>613</y><content>RC Pro</content></note><note id="8" class="note"><x>174</x><y>643</y><content>Garantie financi&#232;re</content><css/></note><note id="10" class="image"><x>786</x><y>363</y><width>300</width><height>200</height><name>Screenshot_2020-09-02_at_15.58.01.png</name><image_id>891</image_id></note><note id="11" class="noteLink"><x>675</x><y>612</y><content>comparateur de prix de RC pro pour secteur "service aux entreprises"</content><link>https://reassurez-moi.fr/guide/pro/responsabilite-civile/comparateur</link></note><note id="12" class="note"><x>692</x><y>654</y><content>les moins cheres sont &#224; 180/an</content></note><note id="13" class="note"><x>693</x><y>686</y><content>les plus cheres sont &#224; 400/an</content></note><note id="14" class="image"><x>819</x><y>1100</y><width>85</width><height>35</height><name>Screenshot_2020-08-24_at_12.46.43.png</name><image_id>660</image_id></note><note id="15" class="note"><x>781</x><y>734</y><content>--&amp;gt; estimation : 250&#8364; / an</content><css>font-size: 22px; font-weight: bold;</css></note><note id="16" class="imageLink"><x>432</x><y>293</y><width>197</width><height>62</height><name>Screenshot_2020-09-02_at_16.15.41.png</name><image_id>893</image_id><link>https://reassurez-moi.fr/guide/pro/responsabilite-civile/tarif</link></note><note id="17" class="note"><x>1361</x><y>383</y><content>SIMULATION AIG :&amp;nbsp;</content></note></notes>
+
+<meta>
+    <biggest_id>17</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

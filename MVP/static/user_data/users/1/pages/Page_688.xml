@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>771</x>
+        <y>243</y>
+    </note>
+
+    <note id="parents">
+        <x>-93</x>
+        <y>-158</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="190" type="parent"><x>122</x><y>15</y><content>testing</content></note><note id="3" class="pageLink" pageID="690" type="child"><x>716</x><y>382</y><content>diygzdc</content></note><note id="4" class="pageLink" pageID="691" type="child"><x>945</x><y>474</y><content>zcdug</content></note><note id="5" class="image"><x>363</x><y>400</y><width>225</width><height>172</height><name>Post_1_-_Le_Closet.png</name><image_id>1316</image_id></note><note id="6" class="imageLink"><x>860</x><y>592</y><width>388</width><height>128</height><name>Screenshot_2020-09-27_at_14.03.56.png</name><image_id>1318</image_id><link>https://www.lemonde.fr/societe/article/2020/09/27/attaque-a-paris-huit-gardes-a-vue-en-cours-les-enqueteurs-cherchent-a-authentifier-une-video_6053792_3224.html</link></note><note id="8" class="noteLink"><x>1203</x><y>246</y><content>article sur attentats - le monde&amp;nbsp;</content><link>https://www.lemonde.fr/societe/article/2020/09/27/attaque-a-paris-huit-gardes-a-vue-en-cours-les-enqueteurs-cherchent-a-authentifier-une-video_6053792_3224.html</link></note><note id="9" class="imageLink"><x>1286</x><y>391</y><width>232</width><height>151</height><name>youtube-iOfkBRaWmGE.jpg</name><image_id>1319</image_id><link>https://www.youtube.com/watch?v=iOfkBRaWmGE</link></note><note id="10" class="note"><x>163</x><y>634</y><content>new content</content></note><note id="12" class="note"><x>436</x><y>705</y><content>new content</content></note><note id="13" class="note"><x>429</x><y>293</y><content>new content</content><css>color: blue;</css></note></notes>
+
+<meta>
+    <biggest_id>13</biggest_id>
+    <type/>
+</meta>
+
+<connexions><connexion id_1="11" id_2="12"/></connexions></canvas>

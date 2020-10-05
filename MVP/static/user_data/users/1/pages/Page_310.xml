@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="6" class="imagePageLink" pageID="321" type="child"><x>1032</x><y>342</y><content>banques</content><image>LYNXMPEE2Q1K7_L.jpg</image><image_id>1119</image_id><width>348</width><height>199</height></note><note id="7" class="imagePageLink" pageID="501" type="child"><x>299</x><y>536</y><content>MAIF</content><image>Screenshot_2020-09-01_at_12.55.00.png</image><image_id>875</image_id><width>174</width><height>143</height></note><note id="8" class="note"><x>561</x><y>401</y><content>to do : v&#233;rifier que je ne suis plus &#224; la SoG&#233;</content><css>color : red ; font-size: 20px;</css></note><note id="10" class="imagePageLink"><x>324</x><y>401</y><width>149</width><height>63</height><name>Screenshot_2020-09-08_at_16.31.13.png</name><image_id>1055</image_id><link>https://drive.google.com/drive/u/0/folders/18h3NUxIJhM0Av0C8IRBTMRIbL7IR79Cn</link><image>LYNXMPEE2Q1K7_L.jpg</image><image_id>1116</image_id><width>100</width><height>50</height></note><note id="12" class="imageLink"><x>325</x><y>389</y><width>124</width><height>62</height><name>Screenshot_2020-09-10_at_19.50.59.png</name><image_id>1118</image_id><link>https://drive.google.com/drive/folders/0B3XnH2RzIPmlQWdIa0xlWE5yQkU</link></note><note id="15" class="imagePageLink" pageID="587" type="child"><x>580</x><y>499</y><content>impots</content><image>Screenshot_2020-09-10_at_19.48.12.png</image><image_id>1122</image_id><width>339</width><height>95</height></note><note id="16" class="note"><x>605</x><y>361</y><content>--&amp;gt; payer impots et obtenir avis d\'imposition !</content></note><note id="17" class="pageLink" type="parent" pageID="523"><content>my life</content><x>27</x><y>89</y></note><note id="18" class="image"><x>989</x><y>608</y><width>300</width><height>200</height><name>Screenshot_2020-09-28_at_14.36.20.png</name><image_id>1334</image_id></note><note id="20" class="imagePageLink" pageID="694" type="child"><x>369</x><y>219</y><content>velib</content><image>280px-Ve&#769;lib-Me&#769;tropole-Logo.png</image><image_id>1336</image_id><width>140</width><height>92</height></note><note id="21" class="imagePageLink" pageID="695" type="child"><x>200</x><y>279</y><content>RED by SFR</content><image>redbysfr-avis.jpg</image><image_id>1337</image_id><width>109</width><height>79</height></note></notes>
+
+<meta>
+    <biggest_id>21</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

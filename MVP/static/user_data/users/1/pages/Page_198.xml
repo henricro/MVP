@@ -1,0 +1,27 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>456</x>
+        <y>93</y>
+    </note>
+
+    <note id="parents">
+        <x>-55</x>
+        <y>-109</y>
+        <width>453</width>
+        <height>125</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="1" type="parent"><x>32</x><y>24</y><content>GYST</content></note>
+    <note id="2" class="pageLink" pageID="176" type="parent"><x>185</x><y>26</y><content>keep</content></note>
+    <note id="3" class="note"><x>867</x><y>258</y><content>new cod dzcb cz&lt;div&gt;utfgdz d&lt;/div&gt;</content></note>
+<note id="5" class="note"><x>514</x><y>243</y><content>new content</content></note><note id="6" class="note"><x>403</x><y>348</y><content>new content</content></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

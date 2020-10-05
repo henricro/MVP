@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>542</x>
+        <y>292</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="582" type="parent"><x>0</x><y>0</y><content>home</content></note><note id="15" class="imageLink"><x>424</x><y>426</y><width>213</width><height>144</height><name>Screenshot_2020-09-09_at_14.22.23.png</name><image_id>1097</image_id><link>https://doc-0g-7g-apps-viewer.googleusercontent.com/viewer/secure/pdf/iqm86qccl4fraucptuc987sl6m0ua6vl/mikt0cebs0juvs7qnvqm1a9ch1q5ua5d/1599653775000/drive/16324699822488596901/ACFrOgB_zO5wKWU43pJjzyJvxNavxpG_H5eDroQ-jfQnqNJob3m6vXXMx8iaufvPS6t794LigJKHvehddDvhLDZaTAnz4DNllQHp-Ok99HhHQxFtowIQKA20TgEcl714N_EzKHf7X0jMFIWihXxH?print=true&amp;nonce=iiho3sdo9uaji&amp;user=16324699822488596901&amp;hash=gkdkblrh1rvca63m9jg0do3ddiuaevmh</link></note><note id="16" class="note"><x>994</x><y>427</y><content>--&amp;gt; faire un dossier digital&lt;div&gt;&lt;br&gt;&lt;div&gt;--&amp;gt; faire un dossier physique&lt;/div&gt;&lt;/div&gt;</content></note><note id="17" class="note"><x>754</x><y>590</y><content>de la part de papa j\'ai besoin :&amp;nbsp;&lt;div&gt;- ID&lt;/div&gt;&lt;div&gt;- bulletins de salaire&lt;/div&gt;&lt;div&gt;- avis d\'impots&lt;/div&gt;&lt;div&gt;- contrat de travail&lt;/div&gt;&lt;div&gt;- justificatif de domicile&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>17</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

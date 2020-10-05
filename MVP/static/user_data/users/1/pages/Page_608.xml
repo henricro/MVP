@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="523" type="parent"><x>0</x><y>0</y><content>my life</content></note><note id="2" class="note"><x>369</x><y>427</y><content>i want to make movies</content></note><note id="3" class="note"><x>403</x><y>617</y><content>i want to create an awesome app&amp;nbsp;&lt;div&gt;that helps people organize their knowledge&lt;/div&gt;</content></note><note id="4" class="note"><x>881</x><y>426</y><content>i want to go away to a wonderful beach&amp;nbsp;&lt;div&gt;and surf, do sports, have fun for a few months while i\'m still young&lt;/div&gt;</content></note><note id="5" class="note"><x>428</x><y>481</y><content>i want to make music clips</content></note><note id="6" class="note"><x>767</x><y>569</y><content>thing i want to do :&lt;div&gt;go on movie sets to help out for free&lt;/div&gt;&lt;div&gt;hi, i\'m me, i\'m offering free work&lt;/div&gt;</content></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

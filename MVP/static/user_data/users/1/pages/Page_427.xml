@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-93</x>
+        <y>-116</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="426" type="parent"><x>2</x><y>8</y><content>louis</content></note><note id="2" class="pageLink" pageID="428" type="child"><content>haha</content><x>658</x><y>400</y></note><note id="3" class="pageLink" pageID="428" type="child"><content>haha</content><x>653</x><y>400</y></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

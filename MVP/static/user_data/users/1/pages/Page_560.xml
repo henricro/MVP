@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>720</x>
+        <y>77</y>
+    </note>
+
+    <note id="parents">
+        <x>-97</x>
+        <y>-104</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="506" type="parent"><x>168</x><y>11</y><content>TO DO</content></note><note id="12" class="pageLink" pageID="709" type="child"><x>696</x><y>356</y><content>Sundy 04 oct 2020</content></note></notes>
+
+<meta>
+    <biggest_id>12</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

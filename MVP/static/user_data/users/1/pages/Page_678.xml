@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="323" type="parent"><x>0</x><y>0</y><content>learn to code</content></note><note id="2" class="imageLink"><x>621</x><y>389</y><width>176</width><height>76</height><name>Screenshot_2020-09-24_at_17.11.45.png</name><image_id>1296</image_id><link>https://drive.google.com/drive/folders/0B3XnH2RzIPmlcUtTYTU1R1I5c1U</link></note></notes>
+
+<meta>
+    <biggest_id>2</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

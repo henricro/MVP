@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>680</x>
+        <y>300</y>
+    </note>
+
+    <note id="parents">
+        <x>-89</x>
+        <y>-107</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="591" type="parent"><x>191</x><y>21</y><content>ytddyrtdry</content></note><note id="2" class="pageLink" pageID="593" type="parent"><x>96</x><y>51</y><content>ydtrsyr</content></note><note id="3" class="pageLink" pageID="593" type="visitor"><x>722</x><y>470</y><content>ydtrsyr</content></note><note id="4" class="note"><x>1237</x><y>226</y><content>new content</content></note><note id="5" class="pageLink" pageID="592" type="child"><x>1142</x><y>282</y><content>utduj</content></note><note id="6" class="imageLink"><x>428</x><y>544</y><width>314</width><height>218</height><name>youtube-8Pp-YvqKKf0.jpg</name><image_id>1154</image_id><link>https://www.youtube.com/watch?v=8Pp-YvqKKf0</link></note></notes>
+
+<meta>
+    <biggest_id>6</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

@@ -1,0 +1,24 @@
+<canvas>
+
+<notes>
+
+    <note id="title">
+        <x>727</x>
+        <y>174</y>
+    </note>
+
+    <note id="parents">
+        <x>-114</x>
+        <y>-114</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
+
+<note id="1" class="pageLink" pageID="523" type="parent"><x>117</x><y>16</y><content>my life</content></note><note id="2" class="imagePageLink" pageID="564" type="child"><x>321</x><y>405</y><content>psy</content><image>jung.jpg</image><image_id>1065</image_id><width>355</width><height>244</height></note><note id="3" class="imagePageLink" pageID="568" type="child"><x>808</x><y>310</y><content>&#233;paule</content><image>80aad7fcb84df2625b227eb1ddef8f_big_gallery.jpeg</image><image_id>1066</image_id><width>312</width><height>235</height></note><note id="4" class="note"><x>634</x><y>248</y><content>TO DO : retrouver mon carnet de sant&#233;</content></note></notes>
+
+<meta>
+    <biggest_id>4</biggest_id>
+    <type/>
+</meta>
+
+</canvas>

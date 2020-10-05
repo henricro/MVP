@@ -51,7 +51,7 @@ def youtube(pageID, user_id):
 
     resource = urllib.request.urlopen(youtube_thumbnail)
     youtube_image = "youtube-" + youtube_id + ".jpg"
-    output = open(application.config['UPLOADED_PATH']+ youtube_image ,"wb")
+    output = open(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + youtube_image ,"wb")
     output.write(resource.read())
     output.close()
 
