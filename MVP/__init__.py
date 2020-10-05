@@ -11,6 +11,7 @@ from functools import wraps
 
 import dotenv
 
+
 dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 
@@ -53,16 +54,19 @@ application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI'
 
 
 ### SERVER DOMAIN
-application.config['SERVER_DOMAIN'] = 'http://gyst.store:5000'
+application.config['SERVER_DOMAIN'] = 'http://gyst.store:80'
 
 
 db = SQLAlchemy(application)
 migrate = Migrate(application, db)
 
+
 engine = db.engine
+
 
 login_manager = LoginManager()
 login_manager.init_app(application)
+
 
 application.debug=True
 application.secret_key = 'hC1YCIWOj9GgWspgNEo2'
