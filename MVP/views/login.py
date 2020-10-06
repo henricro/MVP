@@ -33,17 +33,18 @@ def login():
         encrypted_password = hashlib.md5(password.encode()).hexdigest()
         user = User.query.filter_by(email=email).first()
 
-        if user is not None and encrypted_password==user.password:
-            user_id = str(user.id)
-            print(current_user.is_authenticated)
-            print(user.id)
-            login_user(user)
-            print(current_user.is_authenticated)
-            print("password is correct")
-            return redirect(url_for('home', user_id=user_id))
+        if user is not None :
+
+            if encrypted_password==user.password:
+                user_id = str(user.id)
+                login_user(user)
+                return redirect(url_for('home', user_id=user_id))
+            else :
+                flash("Wrong password you dumb fuck 💀", 'danger')
 
         else:
             print("password is incorrect")
+            flash("we don't recognize your email 🧐", 'danger')
             pass
 
     return render_template('/login.html', form=form)

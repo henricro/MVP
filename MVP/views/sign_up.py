@@ -30,7 +30,7 @@ def sign_up():
     data = {}
 
     if request.args.get('email'):
-        data['email'] = request.args['emaiul']
+        data['email'] = request.args['email']
     if request.method == 'POST':
         form = SignUpForm()
     else:
@@ -57,20 +57,20 @@ def sign_up():
             engine.execute("INSERT INTO Users(email, verification_token, "
                            "verification_token_expiry, password, is_active) VALUES (%s, %s, %s, %s, %s)",
                            (email, verification_token, verification_token_expiry, encrypted_password, 0))
-            flash(f"Merci ! Un mail vous a été envoyé à {email} pour confirmer votre inscription", 'success')
+            flash(f"Thanks ! 🙏 Just click on the link in the confirmtion email we sent you and you'll be good to go ☺️", 'success')
 
             link = "{}{}{}".format(application.config['SERVER_DOMAIN'], '/confirm/', verification_token)
 
-            text2 = "Bonjour,\nPour confirmer votre inscription, merci de cliquer sur le lien suivant :"
+            text2 = "Hi,\nTo confirm you want to sign up to GYST, please click this link"
 
             html2 = render_template('conf_email1.html',
                                     **{'link':link})
 
-            send_email2.delay("Confirmez votre inscription à GYST", text2, html2, to=email)
+            send_email2.delay("GYST sign up confirmation", text2, html2, to=email)
 
             return render_template('/sign_up.html', form=form)
         else :
-            flash(f"L'adresse mail {email} est déjà utilisée!", 'danger')
+            flash(f"It looks like you already have an account associated with {email}", 'danger')
             return render_template('/sign_up.html', form=form)
 
     return render_template('/sign_up.html', form=form)

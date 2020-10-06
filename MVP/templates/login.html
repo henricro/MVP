@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}{% endblock %}</title>
 
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/libraries/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 
     {% block head %}{% endblock head %}
 
 <style>
 
-    form{
-    width: 40%;
+form{
+    width: 300px;
 }
 
-@media screen and (max-width: 1100px) {
- form{
-    width: 80%;
-  }
-}
 
 
 </style>
@@ -42,13 +28,30 @@
 
 
 
-<div style="display:flex; flex-direction:column; align-items:center; margin-top: 100px;">
 
+<div style="display:flex; flex-direction:column; align-items:center; margin-top: 100px; font-family: 'Quicksand', sans-serif; ">
+
+    <div style="width:300px; margin-top: 50px;">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+       {% if messages %}
+         {% for category, message in messages %}
+           <div class="alert alert-{{category}}">
+             {{ message }}
+           </div>
+         {% endfor %}
+       {% endif  %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+
+    <div>
+        <img src="static/logos/gyst_login.png" style="width: 200px; margin-bottom: 30px;"/>
+    </div>
 
     <form method="POST" action="" >
         {{ form.hidden_tag() }}
 
-            <div class="mokki-flex-start">
+            <div style="margin-bottom:10px;">
                 {{ form.email.label(class="form-control-label") }}
 
                 {% if form.email.errors %}
@@ -63,7 +66,7 @@
                 {% endif %}
             </div>
 
-            <div class="mokki-flex-start">
+            <div>
                 {{ form.password.label(class="form-control-label") }}
 
                 {% if form.password.errors %}
@@ -77,19 +80,26 @@
                     {{ form.password(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
-            <div>
-            {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
+            <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                <div style=" margin-top:10px; text-decoration: underline;">
+                    <a href="/forgot_password" >Forgot password ?</a>
+                </div>
+                <div>
+                    {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
+                </div>
             </div>
-            <div>
-            <a href="/forgot_password" class="btn btn-outline-info" style="text-transform:None; margin-top:10px;">Mot de passe oublié ?</a>
+            <div style="text-decoration: underline;">
+            <a href="/reset_password"  >Change password</a>
             </div>
-            <div>
-            <a href="/reset_password" class="btn btn-outline-info" style="text-transform:None; margin-top:10px;">Changer le mot de passe</a>
+
+            <div style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 40px;">
+                <div>
+                    Don't have an account ?
+                </div>
+                <div>
+                    <a href="/sign_up"   style=" margin-top:10px;">Sign up</a>
+                </div>
             </div>
-            <div>
-            <a href="/sign_up" class="btn btn-outline-info" style="text-transform:None; margin-top:10px;">Créer un compte</a>
-            </div>
-            <div>
 
 
     </form>

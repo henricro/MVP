@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,111 +10,19 @@
 
     <style>
 
-.mokki-bg{
-    background-image: url('/static/images/emails/background3.png');
-    background-size: cover;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: None;
-    letter-spacing: 0.2em;
-    font-size: 18px;
-    color: rgb(42, 39, 114);
-    font-weight:100;
-}
 
 
-#mokki-col-right {
-    display:inline-block;
-    width:300px;
-    height:600px;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-@media screen and (max-width: 1330px) {
-  #mokki-col-right {
-        display:block;
-        margin-left:auto;
-        margin-right:aauto;
-        width:600px;
-        margin-top:15px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  #mokki-col-right {
-        display:block;
-        margin-left:auto;
-        margin-right:aauto;
-        width:100%;
-        margin-top:15px;
-  }
-}
-
-#mokki-logo{
-    margin-top:100px;
-    width:95%;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-    margin-bottom:30px;
-}
-
-@media screen and (max-width: 1330px) {
-  #mokki-logo {
-        margin-top:15px;
-        width:80%;
-  }
-}
-
-#mokki-personal-space{
-    width:95%;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-@media screen and (max-width: 1330px) {
-  #mokki-personal-space {
-        margin-top:15px;
-        width:80%;
-  }
-}
-
-#mokki-col-left{
+#column{
     width:800px;
     display:inline-block;
 }
 
 @media screen and (max-width: 850px) {
-  #mokki-col-left {
+  #column {
         width:100%;
   }
 }
 
-.mokki-img-container{
-    width:80px;
-    height:50px;
-    float:left;
-}
-
-.mokki-img{
-    height:100%;
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
-}
-
-.mokki-text-container{
-    width:70%;
-    position : absolute;
-    left : 150px;
-    display : table;
-}
-
-.mokki-text{
-    display:table-cell;
-    vertical-align:middle;
-}
 
 
 
@@ -123,17 +31,15 @@
 </head>
     <body>
 
-            <div class="mokki-bg" style="display:inline-block;">
+            <div style="display:inline-block; font-family: 'Quicksand', sans-serif;">
 
-                <div id="mokki-col-left" >
+                <div id="column" >
 
                     <div style="margin-top:30px; margin-left:5%; padding-bottom:5px;">
-                        <p>Bonjour,</p><br>
+                        <p>Hi,</p><br>
 
-                        <p>Pour confirmer votre inscription, merci de cliquer sur le lien suivant :</p>
+                        <p>To confirm you want to sign up to GYST, please click this link :</p>
                         <p>{{link}}</p><br>
-
-
 
                     </div>
 

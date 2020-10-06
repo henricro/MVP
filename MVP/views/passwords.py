@@ -21,24 +21,27 @@ from MVP.models import *
 def forgot_password():
     form = ForgotPasswordForm()
 
+
+
     if form.is_submitted():
+
         email = form.email.data
-        getemails = "SELECT email from Users where email = %(email)s"
-        result = engine.execute(getemails, {'email': email})
-        allemails = result.fetchall()
-        if len(allemails)==0:
-            flash(f"L'adresse email ne fait pas partie de nos utilisateurs", 'danger')
-        else :
+        user = User.query.filter_by(email=email).first()
+
+        if user is not None :
+
             base_query = User.query.filter_by(email=email).first()
-            firstname = base_query.first_name
-            lastname = base_query.last_name
+
             password = ''.join(random.choice(string.ascii_letters) for i in range(8))
             html2 = render_template('new_password_email.html',
-                                **{'firstname': firstname, 'lastname': lastname, 'password':password})
-            send_email2.delay("nouveau mot de passe Mokki", "nouveau mot de passe Mokki", html2, to=email)
+                                **{'password':password})
+            send_email2.delay("new GYST password", "new GYST password", html2, to=email)
             encrypted_password = get_hashed_password(password)
             engine.execute("update Users set password= %(password)s where email= %(email)s",{'email': email, 'password': encrypted_password})
-            flash(f"Un nouveau mot de passe vous a été envoyé à votre adresse", 'success')
+            flash(f"We just sent you a new password 🤘", 'success')
+
+        else :
+            flash(f"We don't recognize your email 🧐", 'danger')
 
     return render_template('/passwords/forgot_password.html', form=form)
 
@@ -55,22 +58,28 @@ def reset_password():
         new_password=form.new_password.data
         confirm_password=form.confirm_password.data
 
-        base_query = User.query.filter_by(email=email).first()
-        password = base_query.password
-        user_id = base_query.id
+        user = User.query.filter_by(email=email).first()
 
-        if get_hashed_password(old_password)==password :
-            if new_password==confirm_password:
-                print("passwords match and old password good")
-                encrypted_password = get_hashed_password(new_password)
-                flash(f"Your password has been changed", "success")
-                engine.execute("update Users set password= %(new_password)s where id= %(user_id)s",{'user_id':user_id, 'new_password':encrypted_password})
-                return redirect(url_for('login'))
-            else:
-                print("passwords dont match")
-                flash(f"Passwords don't match", "danger")
+
+        if user is not None :
+            password = user.password
+            user_id = user.id
+
+            if get_hashed_password(old_password)==password :
+                if new_password==confirm_password:
+                    print("passwords match and old password good")
+                    encrypted_password = get_hashed_password(new_password)
+                    flash(f"Your password has been changed 👌", "success")
+                    engine.execute("update Users set password= %(new_password)s where id= %(user_id)s",{'user_id':user_id, 'new_password':encrypted_password})
+                    return redirect(url_for('login'))
+                else:
+                    print("passwords don't match")
+                    flash(f"Your passwords don't match 👀", "danger")
+            else :
+                print("wrong bloody password you dumb fuck")
+                flash(f"Wrong password 💀", "danger")
+
         else :
-            print("wrong bloody password you dumb fuck")
-            flash(f"Wrong password", "danger")
+            flash("we don't recognize your email 🧐", "danger")
 
     return render_template('/passwords/reset_password.html', form=form)
