@@ -18,7 +18,6 @@ ADMINS = ['henri.crozel@gmail.com']
 #SQLALCHEMY_DATABASE_URI = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb')
 
 ### LOCAL DEV DB
-# SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://mokkiappdb_dev:mokkiappdb_dev@mokkiappdbdev.cc561awiz5c5.eu-west-3.rds.amazonaws.com:3306/mokkiappdb_dev'
 
 ### SERVER DOMAIN
 #SERVER_DOMAIN= os.environ.get('SERVER_DOMAIN', "146.59.153.123")

@@ -28,7 +28,7 @@ def move_note(pageID, user_id):
     note.getparent().remove(note)
 
     # save the changes in the xml
-    f = open(application.config['STATIC_PATH'] + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 

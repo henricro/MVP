@@ -20,7 +20,6 @@ from MVP.models import *
 #query = User.query.filter_by(first_name='uygu').all()
 
 celery = Celery(application.name, backend="redis://localhost:6379/1", broker="redis://localhost:6379/1")  # , include=CELERY_TASKS)
-#celery = Celery(application.name, backend="redis://mokkiapp3.aln3lh.ng.0001.euw3.cache.amazonaws.com:6379/1", broker="redis://mokkiapp3.aln3lh.ng.0001.euw3.cache.amazonaws.com:6379/1", include=CELERY_TASKS)
 
 mail = Mail(application)
 celery.conf.update(application.config)
