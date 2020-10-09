@@ -20,7 +20,6 @@ def home(user_id):
 
     pages = engine.execute("select id, title from Pages").fetchall()
     pages = dict(pages)
-    print(pages)
 
     pageID = "1"
 
