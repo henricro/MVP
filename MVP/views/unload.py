@@ -39,7 +39,7 @@ def unload(pageID, user_id):
         id = str(data[i]["id"])
         width = str(data[i]["width"])
         height = str(data[i]["height"])
-        print(id, height, width, file=sys.stderr)
+        #print(id, height, width, file=sys.stderr)
 
         tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
         tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height
