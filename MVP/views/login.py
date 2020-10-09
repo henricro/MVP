@@ -12,6 +12,8 @@ from MVP.views.passwords import get_hashed_password
 from MVP import application, db, login_manager, engine, user_required
 from MVP.models import *
 
+import sys
+
 
 @login_manager.user_loader
 def load_user(id):
@@ -43,7 +45,7 @@ def login():
                 flash("Wrong password you dumb fuck 💀", 'danger')
 
         else:
-            print("password is incorrect")
+            print("password is incorrect", file=sys.stderr)
             flash("we don't recognize your email 🧐", 'danger')
             pass
 

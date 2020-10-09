@@ -5,23 +5,25 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 import uuid
 
+import sys
+
 
 @application.route("/add_image_to_pageLink/<pageID>/<user_id>", methods=['POST'])
 def add_image_to_pageLink(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("route : add image to pageLink")
+    print("route : add image to pageLink", file=sys.stderr)
 
     ### add the image to uploads
 
     Request = request.form
-    print(Request)
+    print(Request, file=sys.stderr)
 
     pageLink_id = Request.get('pageLink_id')
     file = request.files.get('file')
-    print("printing the file")
-    print(pageLink_id, file)
+    print("printing the file", file=sys.stderr)
+    print(pageLink_id, file, file=sys.stderr)
     # print(type(file))
     # print(dict(file))
 
@@ -42,8 +44,8 @@ def add_image_to_pageLink(pageID, user_id):
                    {'name': filename, 'type': type})
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id")
-    print(image_id)
+    print("image_id", file=sys.stderr)
+    print(image_id, file=sys.stderr)
 
     engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
                    {'page_id': pageID, 'image_id': image_id})

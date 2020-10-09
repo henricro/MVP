@@ -4,12 +4,12 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-
+import sys
 
 @application.route("/unload/<pageID>/<user_id>", methods=['GET', 'POST'])
 def unload(pageID, user_id):
 
-    print("UNLOADDDDIIIINNNNGGG")
+    print("UNLOADDDDIIIINNNNGGG", file=sys.stderr)
 
     request_data = request.get_json()
     data = request_data.get('data')
@@ -19,7 +19,7 @@ def unload(pageID, user_id):
     parents_width = str(request_data.get('parents_width'))
     parents_height = str(request_data.get('parents_height'))
 
-    print(parents_x, parents_y, parents_width, parents_height)
+    print(parents_x, parents_y, parents_width, parents_height, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -39,7 +39,7 @@ def unload(pageID, user_id):
         id = str(data[i]["id"])
         width = str(data[i]["width"])
         height = str(data[i]["height"])
-        print(id, height, width)
+        print(id, height, width, file=sys.stderr)
 
         tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
         tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height

@@ -3,7 +3,7 @@ from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
-
+import sys
 
 
 @application.route("/add_link_note/<pageID>/<user_id>", methods=['POST'])
@@ -13,7 +13,7 @@ def add_link_note(pageID, user_id):
     id = str(request_data.get('id'))
     link = str(request_data.get('link'))
 
-    print(id, link)
+    print(id, link, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -25,11 +25,11 @@ def add_link_note(pageID, user_id):
 
     note.set("class", "noteLink")
 
-    print(etree.tostring(note, pretty_print=True))
+    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
 
     etree.SubElement(note, "link").text = link
 
-    print(etree.tostring(note, pretty_print=True))
+    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -44,7 +44,7 @@ def add_link_image(pageID, user_id):
     id = str(request_data.get('id'))
     link = str(request_data.get('link'))
 
-    print(id, link)
+    print(id, link, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -56,11 +56,11 @@ def add_link_image(pageID, user_id):
 
     note.set("class", "imageLink")
 
-    print(etree.tostring(note, pretty_print=True))
+    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
 
     etree.SubElement(note, "link").text = link
 
-    print(etree.tostring(note, pretty_print=True))
+    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -77,7 +77,7 @@ def change_link(pageID, user_id):
     id = str(request_data.get('id'))
     link = str(request_data.get('link'))
 
-    print(id, link)
+    print(id, link, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -89,11 +89,11 @@ def change_link(pageID, user_id):
 
     note.find("link").text = link
 
-    print(etree.tostring(note, pretty_print=True))
+    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
 
     # etree.SubElement(note, "link").text = link
 
-    print(etree.tostring(note, pretty_print=True))
+    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

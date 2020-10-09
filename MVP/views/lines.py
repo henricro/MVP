@@ -4,6 +4,7 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
+import sys
 
 def common_data(list1, list2):
     result = False
@@ -25,7 +26,7 @@ def common_data(list1, list2):
 @application.route("/link_notes/<pageID>/<user_id>", methods=['POST'])
 def link_notes(pageID, user_id):
 
-    print("route : link notes")
+    print("route : link notes", file=sys.stderr)
 
     # get the data for new note
     request_data = request.get_json()
@@ -33,7 +34,7 @@ def link_notes(pageID, user_id):
         'id_1'))
     id_2 = str(request_data.get('id_2'))
 
-    print(id_1, id_2)
+    print(id_1, id_2, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -48,14 +49,14 @@ def link_notes(pageID, user_id):
         test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_1 + "' and @id_2='" + id_2 + "' ] ")
         test2 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_2 + "' and @id_2='" + id_1 + "' ] ")
 
-        print("test1, test2")
-        print(test1, test2)
+        print("test1, test2", file=sys.stderr)
+        print(test1, test2, file=sys.stderr)
 
         if test1:
 
             line = test1[0]
 
-            print(line)
+            print(line, file=sys.stderr)
 
             line.getparent().remove(line)
 
@@ -68,7 +69,7 @@ def link_notes(pageID, user_id):
         elif test2:
             line = test2[0]
 
-            print(line)
+            print(line, file=sys.stderr)
 
             line.getparent().remove(line)
 
@@ -79,7 +80,7 @@ def link_notes(pageID, user_id):
 
         else :
 
-                print("tests unsuccessfull")
+                print("tests unsuccessfull", file=sys.stderr)
                 connexions.append(etree.Element("connexion"))
                 new_connexion = connexions[-1]
                 new_connexion.set("id_1", id_1)

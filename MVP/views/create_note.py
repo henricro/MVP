@@ -4,7 +4,7 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-
+import sys
 
 @application.route("/create_note/<pageID>/<user_id>", methods=['POST'])
 def create_note(pageID, user_id):
@@ -12,7 +12,7 @@ def create_note(pageID, user_id):
     request_data = request.get_json()
     new_x = str(request_data.get('x'))
     new_y = str(request_data.get('y'))
-    print(new_x, new_y)
+    print(new_x, new_y, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID

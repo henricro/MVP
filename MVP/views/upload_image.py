@@ -5,29 +5,28 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 import uuid
 import os
-
-
+import sys
 
 @application.route("/upload_image/<pageID>/<user_id>", methods=['POST'])
 def upload_image(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("upload image route")
+    print("upload image route", file=sys.stderr)
 
     ### add the image to uploads
 
     Request = request.form
-    print(Request)
+    print(Request, file=sys.stderr)
 
     x = Request.get('x')
     y = Request.get('y')
     file = request.files.get('file')
-    print(x, y, file)
+    print(x, y, file, file=sys.stderr)
     # print(type(file))
     # print(dict(file))
 
-    print(file.content_length)
+    print(file.content_length, file=sys.stderr)
 
     filename = file.filename
     filename = filename.replace(' ', '_')
@@ -41,7 +40,7 @@ def upload_image(pageID, user_id):
     else :
         filename = filename + '.png'
 
-    print(filename)
+    print(filename, file=sys.stderr)
 
     file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
 
@@ -51,8 +50,8 @@ def upload_image(pageID, user_id):
                    {'name': filename, 'type': type})
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id")
-    print(image_id)
+    print("image_id", file=sys.stderr)
+    print(image_id, file=sys.stderr)
 
     engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
                    {'page_id': pageID, 'image_id': image_id})

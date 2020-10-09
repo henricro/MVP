@@ -16,12 +16,12 @@ def get_hashed_password(password):
 from MVP import application, db, login_manager, engine, user_required
 from MVP.models import *
 
+import sys
+
 
 @application.route("/forgot_password", methods=['GET','POST'])
 def forgot_password():
     form = ForgotPasswordForm()
-
-
 
     if form.is_submitted():
 
@@ -60,23 +60,22 @@ def reset_password():
 
         user = User.query.filter_by(email=email).first()
 
-
         if user is not None :
             password = user.password
             user_id = user.id
 
             if get_hashed_password(old_password)==password :
                 if new_password==confirm_password:
-                    print("passwords match and old password good")
+                    print("passwords match and old password good", file=sys.stderr)
                     encrypted_password = get_hashed_password(new_password)
                     flash(f"Your password has been changed 👌", "success")
                     engine.execute("update Users set password= %(new_password)s where id= %(user_id)s",{'user_id':user_id, 'new_password':encrypted_password})
                     return redirect(url_for('login'))
                 else:
-                    print("passwords don't match")
+                    print("passwords don't match", file=sys.stderr)
                     flash(f"Your passwords don't match 👀", "danger")
             else :
-                print("wrong bloody password you dumb fuck")
+                print("wrong bloody password you dumb fuck", file=sys.stderr)
                 flash(f"Wrong password 💀", "danger")
 
         else :

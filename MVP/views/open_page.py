@@ -5,6 +5,7 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 from flask_login import LoginManager, UserMixin, current_user
 
+import sys
 
 @application.route("/home/<user_id>", methods=['GET', 'POST'])
 @user_required()
@@ -16,7 +17,7 @@ def home(user_id):
 
     user_id = str(user_id)
 
-    print("route : open home page")
+    print("route : open home page", file=sys.stderr)
 
     pages = engine.execute("select id, title from Pages").fetchall()
     pages = dict(pages)
@@ -48,33 +49,33 @@ def open_page(pageID, user_id):
 
     user_id = str(user_id)
 
-    print("opening page")
+    print("opening page", file=sys.stderr)
 
-    print(pageID)
+    print(pageID, file=sys.stderr)
 
     # get the parents of the page
     parents = engine.execute("select * from parents where child_page_id= %(pageID)s", {'pageID':pageID}).fetchall()
     parents=dict(parents)
-    print(parents)
+    print(parents, file=sys.stderr)
 
     pages = engine.execute("select id, title from Pages").fetchall()
     pages = dict(pages)
 
-    print("open page")
+    print("open page", file=sys.stderr)
 
     request_data = request.get_json()
     pageID = str(pageID)
 
     pageName = 'Page_' + pageID
 
-    print(pageName)
+    print(pageName, file=sys.stderr)
 
     title = Page.query.filter_by(id=pageID).first().title
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    print(root)
+    print(root, file=sys.stderr)
 
     xml_string = etree.tostring(root).decode('utf-8')
 

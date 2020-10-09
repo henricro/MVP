@@ -6,6 +6,8 @@ from lxml import etree
 
 import urllib.request
 
+import sys
+
 # urllib.request.urlretrieve("http://img.youtube.com/vi/WHUVJyfbMRg/0.jpg", "/Users/macbook/PycharmProjects/MVP/MVP/static/uploads/youtube-WHUVJyfbMRg.jpg")
 
 ### example
@@ -18,7 +20,7 @@ import urllib.request
 @application.route("/youtube/<pageID>/<user_id>", methods=['POST'])
 def youtube(pageID, user_id):
 
-    print( "youtube route")
+    print( "youtube route", file=sys.stderr)
 
     # code : import youtube thumbnail
 
@@ -35,19 +37,19 @@ def youtube(pageID, user_id):
     if "&" in youtube_link:
         youtube_link = youtube_link.split("&", 1)[0]
 
-    print("youtube link : ", youtube_link)
+    print("youtube link : ", youtube_link, file=sys.stderr)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
     youtube_id = youtube_link.split("v=",1)[1]
-    print("youtube_id : ", youtube_id)
+    print("youtube_id : ", youtube_id, file=sys.stderr)
 
     youtube_thumbnail = "http://img.youtube.com/vi/" + youtube_id + "/0.jpg"
-    print("youtube_thumbnail : ", youtube_thumbnail)
+    print("youtube_thumbnail : ", youtube_thumbnail, file=sys.stderr)
 
     print(basedir)
-    print(application.config['UPLOADED_PATH'])
+    print(application.config['UPLOADED_PATH'], file=sys.stderr)
 
     resource = urllib.request.urlopen(youtube_thumbnail)
     youtube_image = "youtube-" + youtube_id + ".jpg"
@@ -61,8 +63,8 @@ def youtube(pageID, user_id):
                    {'name': youtube_image, 'type': "jpg"})
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id")
-    print(image_id)
+    print("image_id", file=sys.stderr)
+    print(image_id, file=sys.stderr)
 
     engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
                    {'page_id': pageID, 'image_id': image_id})
