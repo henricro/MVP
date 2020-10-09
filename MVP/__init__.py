@@ -11,6 +11,10 @@ from functools import wraps
 
 import dotenv
 
+import sys
+
+sys.stdout = open('%logstart', 'w')
+
 
 dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 

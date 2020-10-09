@@ -3,12 +3,12 @@ from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
-
+import sys
 
 
 @application.route("/update_position/<pageID>/<user_id>", methods=['POST'])
 def update_position(pageID, user_id):
-    print("update position")
+    print("update position", file=sys.stderr)
 
     request_data = request.get_json()
     _id = str(request_data.get('id'))
@@ -29,7 +29,7 @@ def update_position(pageID, user_id):
     tree.xpath("/canvas/notes/note[@id='" + _id + "']/x")[0].text = new_x
     tree.xpath("/canvas/notes/note[@id='" + _id + "']/y")[0].text = new_y
 
-    print(etree.tostring(root, pretty_print=True))
+    application.logger.error(etree.tostring(root, pretty_print=True))
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
