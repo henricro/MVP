@@ -24,12 +24,12 @@ def update_position(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     tree.xpath("/canvas/notes/note[@id='" + _id + "']/x")[0].text = new_x
     tree.xpath("/canvas/notes/note[@id='" + _id + "']/y")[0].text = new_y
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
@@ -55,7 +55,7 @@ def update_positions(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     for note in positions:
 
@@ -68,7 +68,7 @@ def update_positions(pageID, user_id):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
-        print(etree.tostring(root, pretty_print=True))
+        #print(etree.tostring(root, pretty_print=True))
 
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))

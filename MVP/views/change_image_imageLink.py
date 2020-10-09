@@ -67,7 +67,7 @@ def change_image_imageLink(pageID, user_id):
     etree.SubElement(note, "width").text = "300"
     etree.SubElement(note, "height").text = "200"
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
 

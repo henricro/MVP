@@ -38,7 +38,7 @@ def create_note(pageID, user_id):
     etree.SubElement(new_note, "y").text = new_y
     etree.SubElement(new_note, "content").text = "new content"
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

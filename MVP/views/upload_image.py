@@ -84,7 +84,7 @@ def upload_image(pageID, user_id):
     etree.SubElement(new_note, "image_id").text = str(image_id)
 
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
 

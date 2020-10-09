@@ -45,7 +45,7 @@ def new_criteria(pageID, user_id):
     etree.SubElement(new_note, "height").text = "250"
     etree.SubElement(new_note, "name").text = criteria
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -93,7 +93,7 @@ def add_category(pageID, user_id):
     etree.SubElement(new_note, "y").text = par_y
     etree.SubElement(new_note, "name").text = category
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

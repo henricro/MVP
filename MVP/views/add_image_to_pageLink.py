@@ -63,7 +63,7 @@ def add_image_to_pageLink(pageID, user_id):
     etree.SubElement(note, "width").text = "100"
     etree.SubElement(note, "height").text = "50"
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
 

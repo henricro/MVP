@@ -77,7 +77,7 @@ def new_book(pageID):
     notes = root.find("notes")
     notes.append(etree.Element("note"))
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     f = open(application.config['STATIC_PATH'] + newPageName + '.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
@@ -116,7 +116,7 @@ def new_book(pageID):
     etree.SubElement(new_note, "y").text = new_y
     etree.SubElement(new_note, "content").text = new_book_title
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
 

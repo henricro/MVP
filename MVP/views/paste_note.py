@@ -55,7 +55,7 @@ def paste_note(pageID, user_id):
     tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
     print("added the note to current page's xml :")
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -300,7 +300,7 @@ def paste_pageLink(pageID, user_id):
         f.close()
 
     #print("added the note to current page's xml :")
-    #print(etree.tostring(root, pretty_print=True))
+    ##print(etree.tostring(root, pretty_print=True))
 
     return "yo"
 
@@ -522,7 +522,7 @@ def paste_imagePageLink(pageID, user_id):
         f.close()
 
     #print("added the note to current page's xml :")
-    #print(etree.tostring(root, pretty_print=True))
+    ##print(etree.tostring(root, pretty_print=True))
 
 
     return "yo"
@@ -577,7 +577,7 @@ def paste_selection(pageID, user_id):
         note.set("id", id)
 
         print("added the note to current page's xml :")
-        print(etree.tostring(root, pretty_print=True))
+        #print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

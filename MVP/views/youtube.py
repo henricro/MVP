@@ -95,7 +95,7 @@ def youtube(pageID, user_id):
     etree.SubElement(new_note, "link").text = youtube_link
 
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
 

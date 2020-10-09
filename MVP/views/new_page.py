@@ -71,7 +71,7 @@ def new_page(pageID, user_id):
     # biggest id=1
     tree.xpath("/canvas/meta/biggest_id")[0].text = "1"
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + newPageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
@@ -110,7 +110,7 @@ def new_page(pageID, user_id):
     etree.SubElement(new_note, "y").text = new_y
     etree.SubElement(new_note, "content").text = new_page_title
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
 

@@ -45,9 +45,7 @@ def unload(pageID, user_id):
         tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
         tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height
 
-        print("funnymarco")
-
-        print(etree.tostring(root, pretty_print=True))
+        #print(etree.tostring(root, pretty_print=True))
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))

@@ -49,7 +49,7 @@ def move_note(pageID, user_id):
     # set the note's x, y and content = "new note"
     note.set("id", id)
 
-    print(etree.tostring(root, pretty_print=True))
+    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
@@ -115,7 +115,7 @@ def move_notes(pageID, user_id):
         # set the note's x, y and content = "new note"
         note.set("id", id)
 
-        print(etree.tostring(root, pretty_print=True))
+        #print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
