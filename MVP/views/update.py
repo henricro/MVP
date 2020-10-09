@@ -29,7 +29,7 @@ def update_position(pageID, user_id):
     tree.xpath("/canvas/notes/note[@id='" + _id + "']/x")[0].text = new_x
     tree.xpath("/canvas/notes/note[@id='" + _id + "']/y")[0].text = new_y
 
-    application.logger.error(etree.tostring(root, pretty_print=True))
+    print(etree.tostring(root, pretty_print=True))
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
