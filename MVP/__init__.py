@@ -114,6 +114,6 @@ def user_required():
     return decor
 
 
-from MVP.views import create_note, delete_note, links, new_book, new_page, open_page, unload, update, upload_image, upload, login, celery, login, passwords, \
+from MVP.views import create_note, delete_note, links, new_page, open_page, unload, update, upload_image, upload, login, celery, login, passwords, \
     add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories, sign_up
 
