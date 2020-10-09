@@ -34,7 +34,6 @@ def unload(pageID, user_id):
     tree.xpath("/canvas/notes/note[@id='parents']/height")[0].text = parents_height
 
 
-
     for i in range(len(data)):
 
         id = str(data[i]["id"])

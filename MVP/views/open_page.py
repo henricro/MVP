@@ -59,7 +59,6 @@ def open_page(pageID, user_id):
 
     pages = engine.execute("select id, title from Pages").fetchall()
     pages = dict(pages)
-    print(pages)
 
     print("open page")
 
