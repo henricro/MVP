@@ -2,4 +2,6 @@ MVP/static/user_data
 
 .env
 
+%logstart
+
 *.pyc
