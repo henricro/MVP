@@ -5,12 +5,12 @@ import random
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-import sys
+#import sys
 
 @application.route("/paste_note/<pageID>/<user_id>", methods=['POST'])
 def paste_note(pageID, user_id):
 
-    print("paste note route", file=sys.stderr)
+    print("paste note route", "yoyoyoyo")
 
     # get the data of note to move and page to move to
 
@@ -20,7 +20,7 @@ def paste_note(pageID, user_id):
     x = request_data.get('x')
     y = request_data.get('y')
 
-    print(originPageID, note_id, x, y, file=sys.stderr)
+    print(originPageID, note_id, x, y, "yoyoyoyo")
 
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
@@ -30,8 +30,8 @@ def paste_note(pageID, user_id):
 
     note = root.find("notes").find("note[@id='" + note_id + "']")
 
-    print("copied the note :", file=sys.stderr)
-    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
+    print("copied the note :", "yoyoyoyo")
+    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     ## Copy that note in the current page
 
@@ -56,7 +56,7 @@ def paste_note(pageID, user_id):
     tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
     tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
-    print("added the note to current page's xml :", file=sys.stderr)
+    print("added the note to current page's xml :", "yoyoyoyo")
     #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
@@ -73,7 +73,7 @@ def paste_note(pageID, user_id):
 @application.route("/paste_pageLink/<pageID>/<user_id>", methods=['POST'])
 def paste_pageLink(pageID, user_id):
 
-    print("route : paste pageLink", file=sys.stderr)
+    print("route : paste pageLink", "yoyoyoyo")
 
     # get the data of note to move and page to move to
 
@@ -84,7 +84,7 @@ def paste_pageLink(pageID, user_id):
     y = request_data.get('y')
     type = request_data.get('type')
 
-    print(originPageID, note_id, x, y, file=sys.stderr)
+    print(originPageID, note_id, x, y, "yoyoyoyo")
 
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
@@ -164,14 +164,14 @@ def paste_pageLink(pageID, user_id):
         f.close()
 
         #### put pageLink parent in child page
-        print('### put parent-pageLink in childPage', file=sys.stderr)
+        print('### put parent-pageLink in childPage', "yoyoyoyo")
 
         destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
         destRoot = destTree.getroot()
 
-        print(destRoot, file=sys.stderr)
-        print(destPageID, file=sys.stderr)
-        print(destPageName, file=sys.stderr)
+        print(destRoot, "yoyoyoyo")
+        print(destPageID, "yoyoyoyo")
+        print(destPageName, "yoyoyoyo")
 
         # get the biggest id in the xml and increment the value
         id = destTree.xpath("/canvas/meta/biggest_id")[0].text
@@ -179,7 +179,7 @@ def paste_pageLink(pageID, user_id):
         id = str(id)
         destTree.xpath("/canvas/meta/biggest_id")[0].text = id
 
-        print(id, file=sys.stderr)
+        print(id, "yoyoyoyo")
 
         # add a note
         notes = destRoot.find("notes")
@@ -195,7 +195,7 @@ def paste_pageLink(pageID, user_id):
 
         parentName = Page.query.filter_by(id=pageID).first().title
 
-        print(parentName, file=sys.stderr)
+        print(parentName, "yoyoyoyo")
 
         etree.SubElement(new_note, "content").text = parentName
 
@@ -256,8 +256,8 @@ def paste_pageLink(pageID, user_id):
 
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
         root = tree.getroot()
-        print("destPageName", file=sys.stderr)
-        print(destPageName, file=sys.stderr)
+        print("destPageName", "yoyoyoyo")
+        print(destPageName, "yoyoyoyo")
 
         # get the biggest id in the xml and increment the value
         id = tree.xpath("/canvas/meta/biggest_id")[0].text
@@ -278,7 +278,7 @@ def paste_pageLink(pageID, user_id):
         note.set("type", "child")
 
         childName = Page.query.filter_by(id=pageID).first().title
-        print(childName, file=sys.stderr)
+        print(childName, "yoyoyoyo")
         etree.SubElement(note, "content").text = childName
 
         # ajouter relation visitor-visited dans la DB
@@ -291,7 +291,7 @@ def paste_pageLink(pageID, user_id):
         new_x = str(title_x - 50 + random.randint(0, 100))
         new_y = str(title_y + 100)
 
-        print(new_x, new_y, file=sys.stderr)
+        print(new_x, new_y, "yoyoyoyo")
 
         etree.SubElement(note, "x").text = new_x
         etree.SubElement(note, "y").text = new_y
@@ -310,7 +310,7 @@ def paste_pageLink(pageID, user_id):
 @application.route("/paste_imagePageLink/<pageID>/<user_id>", methods=['POST'])
 def paste_imagePageLink(pageID, user_id):
 
-    print("route : paste imagePageLink", file=sys.stderr)
+    print("route : paste imagePageLink", "yoyoyoyo")
 
     # get the data of note to move and page to move to
 
@@ -321,7 +321,7 @@ def paste_imagePageLink(pageID, user_id):
     y = request_data.get('y')
     type = request_data.get('type')
 
-    print(originPageID, note_id, x, y, file=sys.stderr)
+    print(originPageID, note_id, x, y, "yoyoyoyo")
 
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
@@ -401,14 +401,14 @@ def paste_imagePageLink(pageID, user_id):
         f.close()
 
         #### put pageLink parent in child page
-        print('### put parent-pageLink in childPage', file=sys.stderr)
+        print('### put parent-pageLink in childPage', "yoyoyoyo")
 
         destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
         destRoot = destTree.getroot()
 
-        print(destRoot, file=sys.stderr)
-        print(destPageID, file=sys.stderr)
-        print(destPageName, file=sys.stderr)
+        print(destRoot, "yoyoyoyo")
+        print(destPageID, "yoyoyoyo")
+        print(destPageName, "yoyoyoyo")
 
         # get the biggest id in the xml and increment the value
         id = destTree.xpath("/canvas/meta/biggest_id")[0].text
@@ -416,7 +416,7 @@ def paste_imagePageLink(pageID, user_id):
         id = str(id)
         destTree.xpath("/canvas/meta/biggest_id")[0].text = id
 
-        print(id, file=sys.stderr)
+        print(id, "yoyoyoyo")
 
         # add a note
         notes = destRoot.find("notes")
@@ -432,7 +432,7 @@ def paste_imagePageLink(pageID, user_id):
 
         parentName = Page.query.filter_by(id=pageID).first().title
 
-        print(parentName, file=sys.stderr)
+        print(parentName, "yoyoyoyo")
 
         etree.SubElement(new_note, "content").text = parentName
 
@@ -493,8 +493,8 @@ def paste_imagePageLink(pageID, user_id):
 
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
         root = tree.getroot()
-        print("destPageName", file=sys.stderr)
-        print(destPageName, file=sys.stderr)
+        print("destPageName", "yoyoyoyo")
+        print(destPageName, "yoyoyoyo")
 
         # get the biggest id in the xml and increment the value
         id = tree.xpath("/canvas/meta/biggest_id")[0].text
@@ -533,7 +533,7 @@ def paste_imagePageLink(pageID, user_id):
 @application.route("/paste_selection/<pageID>/<user_id>", methods=['POST'])
 def paste_selection(pageID, user_id):
 
-    print("paste selection route", file=sys.stderr)
+    print("paste selection route", "yoyoyoyo")
 
     # get the data of note to move and page to move to
 
@@ -543,7 +543,7 @@ def paste_selection(pageID, user_id):
 
     selection = selection.split(',')
 
-    print(selection, file=sys.stderr)
+    print(selection, "yoyoyoyo")
 
     originPageName = 'Page_' + originPageID
 
@@ -554,12 +554,12 @@ def paste_selection(pageID, user_id):
 
         note_id = str(note_id)
 
-        print(note_id, file=sys.stderr)
+        print(note_id, "yoyoyoyo")
 
         ## Copy that note in the current page
         note = root.find("notes").find("note[@id='" + note_id + "']")
 
-        print(etree.tostring(note, pretty_print=True), file=sys.stderr)
+        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         pageName = 'Page_' + pageID
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -578,7 +578,7 @@ def paste_selection(pageID, user_id):
         # change the note's id
         note.set("id", id)
 
-        print("added the note to current page's xml :", file=sys.stderr)
+        print("added the note to current page's xml :", "yoyoyoyo")
         #print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml

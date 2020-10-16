@@ -5,19 +5,19 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 import random
-import sys
+#import sys
 
 
 @application.route("/new_criteria/<pageID>/<user_id>", methods=['POST'])
 def new_criteria(pageID, user_id):
 
-    print("route : new criteria", file=sys.stderr)
+    print("route : new criteria", "yoyoyoyo")
 
     request_data = request.get_json()
     new_x = str(request_data.get('new_x'))
     new_y = str(request_data.get('new_y'))
     criteria = str(request_data.get('criteria'))
-    print(new_x, new_y, criteria, file=sys.stderr)
+    print(new_x, new_y, criteria, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -27,7 +27,7 @@ def new_criteria(pageID, user_id):
 
     # get the biggest id in the xml and increment the value
     id = tree.xpath("/canvas/meta/biggest_id")[0].text
-    print(id, file=sys.stderr)
+    print(id, "yoyoyoyo")
     id = int(id) + 1
     id = str(id)
     tree.xpath("/canvas/meta/biggest_id")[0].text = id
@@ -58,12 +58,12 @@ def new_criteria(pageID, user_id):
 @application.route("/add_category/<pageID>/<user_id>", methods=['POST'])
 def add_category(pageID, user_id):
 
-    print("route : add category", file=sys.stderr)
+    print("route : add category", "yoyoyoyo")
 
     request_data = request.get_json()
     category = str(request_data.get('category'))
     criteria_id = str(request_data.get('criteria_id'))
-    print(criteria_id, category, file=sys.stderr)
+    print(criteria_id, category, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID

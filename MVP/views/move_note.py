@@ -3,7 +3,7 @@ from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
-import sys
+#import sys
 
 @application.route("/move_note/<pageID>/<user_id>", methods=['POST'])
 def move_note(pageID, user_id):
@@ -13,10 +13,10 @@ def move_note(pageID, user_id):
     note_id = str(request_data.get('note_id'))
     page_id = str(request_data.get('page_id'))
 
-    print(page_id, note_id, file=sys.stderr)
+    print(page_id, note_id, "yoyoyoyo")
 
     pageID = str(pageID)
-    print(pageID, file=sys.stderr)
+    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -24,7 +24,7 @@ def move_note(pageID, user_id):
 
     note = root.find("notes").find("note[@id='" + note_id + "']")
 
-    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
+    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     note.getparent().remove(note)
 
@@ -64,7 +64,7 @@ def move_note(pageID, user_id):
 @application.route("/move_notes/<pageID>/<user_id>", methods=['POST'])
 def move_notes(pageID, user_id):
 
-    print("route : move notes", file=sys.stderr)
+    print("route : move notes", "yoyoyoyo")
 
     # get the data of notes to move and page to move to
 
@@ -75,7 +75,7 @@ def move_notes(pageID, user_id):
     print(page_id, selection)
 
     pageID = str(pageID)
-    print(pageID, file=sys.stderr)
+    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
 
     destPageName = 'Page_' + page_id
@@ -87,11 +87,11 @@ def move_notes(pageID, user_id):
         root = tree.getroot()
 
         note_id = str(note_id)
-        print(note_id, file=sys.stderr)
+        print(note_id, "yoyoyoyo")
 
         note = root.find("notes").find("note[@id='" + note_id + "']")
 
-        print(note, file=sys.stderr)
+        print(note, "yoyoyoyo")
 
         note.getparent().remove(note)
 

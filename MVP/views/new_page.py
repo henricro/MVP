@@ -4,12 +4,12 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-import sys
+#import sys
 
 @application.route("/new_page/<pageID>/<user_id>", methods=['POST'])
 def new_page(pageID, user_id):
 
-    print("route : new page", file=sys.stderr)
+    print("route : new page", "yoyoyoyo")
 
     page_title = Page.query.filter_by(id=pageID).first().title
 
@@ -17,8 +17,8 @@ def new_page(pageID, user_id):
     new_page_title = str(request_data.get('title'))
     new_page_title = new_page_title.replace("'", "\\'")
 
-    print(new_page_title, file=sys.stderr)
-    print("testing", file=sys.stderr)
+    print(new_page_title, "yoyoyoyo")
+    print("testing", "yoyoyoyo")
 
     # creer une nouvelle ligne dans la table 'Pages' de la DB
 
@@ -28,7 +28,7 @@ def new_page(pageID, user_id):
 
     newPageID = Page.query.all()[-1].id + 1
 
-    print(newPageID, file=sys.stderr)
+    print(newPageID, "yoyoyoyo")
 
     # ajouter relation parent-enfant dans la DB
     engine.execute("insert into parents (parent_page_id, child_page_id) VALUES ( %(pageID)s, %(newPageID)s )",
@@ -38,7 +38,7 @@ def new_page(pageID, user_id):
 
     newPageName = 'Page_' + str(newPageID)
 
-    print(newPageName, file=sys.stderr)
+    print(newPageName, "yoyoyoyo")
 
     # Créer une nouvelle page XML
 
@@ -49,7 +49,7 @@ def new_page(pageID, user_id):
     title_x = root.find("notes").find("note[@id='title']").find("x").text
     title_y = root.find("notes").find("note[@id='title']").find("y").text
 
-    print(title_x, title_y, file=sys.stderr)
+    print(title_x, title_y, "yoyoyoyo")
 
     # ajouter la note 'page parente' dans le xml
     # c'est une note de class="pageLink", type="parent", id=1, pageID=pageID, x = title_x -10, y = title_y- 30, content=title
@@ -82,7 +82,7 @@ def new_page(pageID, user_id):
     new_x = str(request_data.get('new_x'))
     new_y = str(request_data.get('new_y'))
 
-    print(new_x, new_y, file=sys.stderr)
+    print(new_x, new_y, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID

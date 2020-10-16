@@ -8,7 +8,7 @@ from pdf2image import convert_from_path
 import uuid
 import os
 
-import sys
+#import sys
 
 
 @application.route("/upload_pdf/<pageID>/<user_id>", methods=['POST'])
@@ -17,17 +17,17 @@ def upload_pdf(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("upload pdf route", file=sys.stderr)
+    print("upload pdf route", "yoyoyoyo")
 
     ### add the pdf to uploads
 
     Request = request.form
-    print(Request, file=sys.stderr)
+    print(Request, "yoyoyoyo")
 
     x = Request.get('x')
     y = Request.get('y')
     file = request.files.get('file')
-    print(x, y, file, file=sys.stderr)
+    print(x, y, file, "yoyoyoyo")
     # print(type(file))
     # print(dict(file))
 
@@ -46,8 +46,8 @@ def upload_pdf(pageID, user_id):
                    {'name': file.filename})
 
     pdf_id = engine.execute("SELECT id FROM Pdfs ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("pdf_id", file=sys.stderr)
-    print(pdf_id, file=sys.stderr)
+    print("pdf_id", "yoyoyoyo")
+    print(pdf_id, "yoyoyoyo")
 
     engine.execute("insert into pages_pdfs (page_id, pdf_id) VALUES ( %(page_id)s, %(pdf_id)s )",
                    {'page_id': pageID, 'pdf_id': pdf_id})
@@ -72,8 +72,8 @@ def upload_pdf(pageID, user_id):
     # save relationship between pdf and first page image in DB
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id", file=sys.stderr)
-    print(image_id, file=sys.stderr)
+    print("image_id", "yoyoyoyo")
+    print(image_id, "yoyoyoyo")
 
     engine.execute("insert into pdfs_images (pdf_id, image_id) VALUES ( %(pdf_id)s, %(image_id)s )",
                    {'pdf_id': pdf_id, 'image_id': image_id})
@@ -120,6 +120,6 @@ def upload_xlsx(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("upload xlsx route", file=sys.stderr)
+    print("upload xlsx route", "yoyoyoyo")
 
     return "yo"

@@ -5,20 +5,20 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 import os
-import sys
+#import sys
 
 @application.route("/delete_note/<pageID>/<user_id>", methods=['POST'])
 def delete_note(pageID, user_id):
 
-    print( "route : delete note", file=sys.stderr)
+    print( "route : delete note", "yoyoyoyo")
 
     # get the data for new note
     request_data = request.get_json()
     id = str(request_data.get('id'))
-    print(id, file=sys.stderr)
+    print(id, "yoyoyoyo")
 
     pageID = str(pageID)
-    print(pageID, file=sys.stderr)
+    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -28,7 +28,7 @@ def delete_note(pageID, user_id):
 
     noteClass = note.get("class")
 
-    print(etree.tostring(note, pretty_print=True), file=sys.stderr)
+    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     note.getparent().remove(note)
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -42,8 +42,8 @@ def delete_note(pageID, user_id):
         test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id + "' ] ")
         test2 = tree.xpath("/canvas/connexions/connexion[ @id_2='" + id + "' ] ")
 
-        print("test1, test2", file=sys.stderr)
-        print(test1, test2, file=sys.stderr)
+        print("test1, test2", "yoyoyoyo")
+        print(test1, test2, "yoyoyoyo")
 
         if test1:
             line = test1[0]
@@ -102,17 +102,17 @@ def delete_note(pageID, user_id):
 @application.route("/delete_notes/<pageID>/<user_id>", methods=['POST'])
 def delete_notes(pageID, user_id):
 
-    print("route : delete notes", file=sys.stderr)
+    print("route : delete notes", "yoyoyoyo")
 
     # get the data for new note
     request_data = request.get_json()
     selection = request_data.get('selection')
     selection = selection.split(",")
 
-    print(selection, file=sys.stderr)
+    print(selection, "yoyoyoyo")
 
     pageID = str(pageID)
-    print(pageID, file=sys.stderr)
+    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -138,8 +138,8 @@ def delete_notes(pageID, user_id):
             test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id + "' ] ")
             test2 = tree.xpath("/canvas/connexions/connexion[ @id_2='" + id + "' ] ")
 
-            print("test1, test2", file=sys.stderr)
-            print(test1, test2, file=sys.stderr)
+            print("test1, test2", "yoyoyoyo")
+            print(test1, test2, "yoyoyoyo")
 
             if test1:
                 line = test1[0]

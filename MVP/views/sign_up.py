@@ -20,7 +20,7 @@ from MVP import application, db, login_manager, engine, user_required
 import os
 
 from lxml import etree
-import sys
+#import sys
 
 
 ### SIGN UP
@@ -81,7 +81,7 @@ def sign_up():
 def confirm(verification_token):
 
     user=User.query.filter_by(verification_token=verification_token).first()
-    print(user, file=sys.stderr)
+    print(user, "yoyoyoyo")
     email=user.email
 
     engine.execute("update Users set is_active = True where verification_token = %(verification_token)s;",

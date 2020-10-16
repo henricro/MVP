@@ -17,15 +17,13 @@ sys.stdout = open('%logstart', 'w')
 
 dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-#print(basedir)
 
 def create_application():
 
     application = Flask(__name__)
-    #application.config.from_object('MVP.config')
+
 
     return application
 

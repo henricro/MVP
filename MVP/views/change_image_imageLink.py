@@ -5,7 +5,7 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 import uuid
 
-import sys
+#import sys
 
 
 @application.route("/change_image_imageLink/<pageID>/<user_id>", methods=['POST'])
@@ -14,17 +14,17 @@ def change_image_imageLink(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("change image in imageLink", file=sys.stderr)
+    print("change image in imageLink", "yoyoyoyo")
 
     ### add the image to uploads
 
     Request = request.form
-    print(Request, file=sys.stderr)
+    print(Request, "yoyoyoyo")
 
     imageLink_id = Request.get('imageLink_id')
     file = request.files.get('file')
-    print("printing the file", file=sys.stderr)
-    print(imageLink_id, file, file=sys.stderr)
+    print("printing the file", "yoyoyoyo")
+    print(imageLink_id, file, "yoyoyoyo")
     # print(type(file))
     # print(dict(file))
 
@@ -45,8 +45,8 @@ def change_image_imageLink(pageID, user_id):
                    {'name': filename, 'type': type})
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id", file=sys.stderr)
-    print(image_id, file=sys.stderr)
+    print("image_id", "yoyoyoyo")
+    print(image_id, "yoyoyoyo")
 
     engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
                    {'page_id': pageID, 'image_id': image_id})
@@ -61,10 +61,10 @@ def change_image_imageLink(pageID, user_id):
 
     # set the note's x, y and content = "title" (for now)
     image = note.find('name')
-    print(image, file=sys.stderr)
+    print(image, "yoyoyoyo")
 
     image.text = str(filename)
-    print(image, file=sys.stderr)
+    print(image, "yoyoyoyo")
     etree.SubElement(note, "image_id").text = str(image_id)
     etree.SubElement(note, "width").text = "300"
     etree.SubElement(note, "height").text = "200"

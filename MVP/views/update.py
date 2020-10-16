@@ -3,23 +3,23 @@ from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
-import sys
+#import sys
 
 
 @application.route("/update_position/<pageID>/<user_id>", methods=['POST'])
 def update_position(pageID, user_id):
-    print("update position", file=sys.stderr)
+    print("update position", "yoyoyoyo")
 
     request_data = request.get_json()
     _id = str(request_data.get('id'))
     new_x = str(request_data.get('x'))[:-2]
     new_y = str(request_data.get('y'))[:-2]
-    print(_id, new_x, new_y, file=sys.stderr)
+    print(_id, new_x, new_y, "yoyoyoyo")
 
     pageID = str(pageID)
-    print(pageID, file=sys.stderr)
+    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
-    print(pageName, file=sys.stderr)
+    print(pageName, "yoyoyoyo")
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
@@ -41,16 +41,16 @@ def update_position(pageID, user_id):
 @application.route("/update_positions/<pageID>/<user_id>", methods=['POST'])
 def update_positions(pageID, user_id):
 
-    print("route : update positions", file=sys.stderr)
+    print("route : update positions", "yoyoyoyo")
 
     request_data = request.get_json()
     positions = request_data.get('positions')
-    print(positions, file=sys.stderr)
+    print(positions, "yoyoyoyo")
 
     pageID = str(pageID)
-    print(pageID, file=sys.stderr)
+    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
-    print(pageName, file=sys.stderr)
+    print(pageName, "yoyoyoyo")
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
@@ -59,7 +59,7 @@ def update_positions(pageID, user_id):
 
     for note in positions:
 
-        print(note, file=sys.stderr)
+        print(note, "yoyoyoyo")
 
         id = note[0]
         x = str(note[1])
@@ -80,20 +80,20 @@ def update_positions(pageID, user_id):
 
 @application.route("/update_content/<pageID>/<user_id>", methods=['POST'])
 def update_content(pageID, user_id):
-    print("update content", file=sys.stderr)
+    print("update content", "yoyoyoyo")
 
     request_data = request.get_json()
     _id = str(request_data.get('id'))
     content = str(request_data.get('content'))
     content = content.replace("'", "\\'")
 
-    print(content, _id, file=sys.stderr)
+    print(content, _id, "yoyoyoyo")
 
     pageID = str(pageID)
 
     # change title in DB if the note changed is the title.
     if _id == 'title':
-        print("change title", file=sys.stderr)
+        print("change title", "yoyoyoyo")
         engine.execute("Update Pages set title = %(content)s where id= %(pageID)s ",
                        {'content': content, 'pageID': pageID})
 
