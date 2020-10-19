@@ -67,7 +67,7 @@ function dragNote(note, noteX, noteY) {
 
             console.log( $(event.target).parent().hasClass("imagePageLink_name") );
 
-            if ( !($(event.target).attr("id") == id) ){
+            if ( !( $(event.target).attr("id") == id || $(event.target).parent().attr("id") == id || $(event.target).parent().parent().attr("id") == id ) ){
 
                 console.log("not same id");
 
