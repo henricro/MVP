@@ -61,9 +61,11 @@ function dragNote(note, noteX, noteY) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            console.log("event target"); console.log(event.target);
+            console.log("event target : ", $(event.target));
 
-            console.log(id);
+            console.log("parent : ", $(event.target).parent() );
+
+            console.log( $(event.target).parent().hasClass("imagePageLink_name") );
 
             if ( !($(event.target).attr("id") == id) ){
 
@@ -97,17 +99,19 @@ function dragNote(note, noteX, noteY) {
 
                     });
 
-                } /*else if ( event.target.classList.contains('imagePageLink_name') ){
+                } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
 
-                    console.log("moved an object into another page");
+                    console.log("moved an object into another page (imagePageLink");
 
                     note_id = note.attr("id");
 
-                    page_id = $(event.target).parent().attr("pageid");
+                    page_id = $(event.target).parent().parent().attr("pageid");
+
+                    console.log("destination page id : ", page_id)
 
                     $.ajax({
 
-                        url: '/move_note/'+pageID,
+                        url: '/move_note/'+pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             note_id: note_id,
@@ -116,16 +120,16 @@ function dragNote(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+pageID;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
                         }
 
                     });
 
-                }*/
+                }
 
                 else if ( event.target.classList.contains('note') ){
 
@@ -461,15 +465,15 @@ function dragNotes(selection) {
 
                 });
 
-            } /*else if ( event.target.classList.contains('imagePageLink_name') ){
+            } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
 
                 console.log("moved a selection into another page");
 
-                page_id = $(event.target).parent().attr("pageid");
+                page_id = $(event.target).parent().parent().attr("pageid");
 
                 $.ajax({
 
-                    url: '/move_notes/'+pageID,
+                    url: '/move_notes/'+pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         selection: selection,
@@ -478,16 +482,16 @@ function dragNotes(selection) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+pageID;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
 
                 });
 
-            }*/ //else if ( event.target.classList.contains('note') ){
+            } //else if ( event.target.classList.contains('note') ){
 
               //  $.ajax({
 

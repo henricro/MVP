@@ -75,12 +75,6 @@ function selectImage(note){
 
     id = note.attr("id");
 
-    // COPY THE NOTE
-    note.bind('copy', function() {
-        console.log( "clicked to copy image");
-        copyNote(note);
-    });
-
     console.log("selected an image");
 
     note.css({"border-color":"green"});
@@ -216,7 +210,9 @@ $(".image").bind('contextmenu', function(event) {
     new_x = event.pageX;
     new_y = event.pageY;
 
-    id = $(this).attr("id");
+    var note = $(this);
+
+    id = note.attr("id");
     css = $(this).attr("added_css");
 
     $("#imageRCBox").css("left", new_x);
@@ -260,10 +256,10 @@ $(".image").bind('contextmenu', function(event) {
 
     });
 
-    // Download
+    // Copy Image
     $('#imageRC_2').bind('click', function() {
 
-        console.log("download");
+        copyNote(note);
 
     });
 

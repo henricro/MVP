@@ -310,7 +310,9 @@ $(".note").bind('contextmenu', function(event) {
     new_x = event.pageX;
     new_y = event.pageY;
 
-    id = $(this).attr("id");
+    var note= $(this);
+
+    id = note.attr("id");
     console.log("note id : ", id);
     css = $(this).attr('added_css');
 
@@ -359,7 +361,7 @@ $(".note").bind('contextmenu', function(event) {
 
     // Copy Note
     $('#noteRC_2').bind('click', function() {
-        copyNote($(this));
+        copyNote(note);
     });
 
     // Style

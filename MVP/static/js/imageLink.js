@@ -71,6 +71,7 @@ function createImageLink(note) {
 
 $('.imageLink').each(function(){
     $(this).bind('click.select', function(){
+        console.log("hobo");
         selectImageLink($(this));
     });
 });
@@ -79,6 +80,7 @@ function selectImageLink(note){
 
     // COPY THE NOTE
     note.bind('copy', function() {
+        console.log("clicked to copy an imageLink");
         copyNote(note);
     });
 
