@@ -147,6 +147,46 @@ function selectImagePageLink(note){
 
     note.unbind('click.select');
 
+    $(document).bind('contextmenu', function(event) {
+
+        event.preventDefault();
+
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            note.css("cursor","");
+
+            note.css({"border-color":""});
+
+            note.unbind('mousedown.gotopage');
+
+            note.unbind('mouseup.gotopage');
+
+            note.unbind('copy');
+
+            note.removeClass("resizable");
+
+            $(document).unbind('keyup.delete');
+
+            note.bind('click.select', function(){
+                selectImagePageLink($(this));
+            });
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = parseInt(note.css("left").slice(0, -2));
+                noteY = parseInt(note.css("top").slice(0, -2));
+
+                dragNote(note, noteX, noteY);
+
+            });
+
+        }
+
+    });
+
     $(document).click(function(){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){

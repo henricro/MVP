@@ -143,6 +143,51 @@ function selectImageLink(note){
 
     });
 
+    $(document).bind('contextmenu', function(event) {
+
+        event.preventDefault();
+
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            note.css({"border-color":""});
+
+            note.css({"cursor":""});
+
+            note.removeClass("resizable");
+
+            note.css("overflow", "hidden")
+
+            $(document).unbind('keyup.delete');
+
+            note.unbind('copy');
+
+            note.unbind('mousedown.gotolink');
+
+            note.unbind('mouseup.gotolink');
+
+            note.bind('click.select', function(){
+                selectImageLink($(this));
+            });
+
+            console.log("monkeeeey");
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = parseInt(note.css("left").slice(0, -2));
+                noteY = parseInt(note.css("top").slice(0, -2));
+
+                dragNote(note, noteX, noteY);
+
+            });
+
+        }
+
+
+    });
+
 
     $(document).click(function(){
 

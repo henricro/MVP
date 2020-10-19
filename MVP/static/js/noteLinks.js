@@ -132,6 +132,47 @@ function selectNoteLink(note){
 
     });
 
+    $(document).bind('contextmenu', function(event) {
+
+        event.preventDefault();
+
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            noteLink_link.css("opacity", 0);
+            noteLink_link.css("font-size", "15px");
+
+            content.css("opacity", 1);
+
+            note.css({"border-color":""});
+
+            note.css({"cursor":""});
+
+            note.unbind('copy');
+
+            $(document).unbind('keyup.delete');
+
+            note.unbind('click.gotolink');
+
+            note.bind('click.select', function(){
+                selectNoteLink($(this));
+            });
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = parseInt(note.css("left").slice(0, -2));
+                noteY = parseInt(note.css("top").slice(0, -2));
+
+                dragNote(note, noteX, noteY);
+
+            });
+
+        }
+
+    });
+
     $(document).click(function(){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){

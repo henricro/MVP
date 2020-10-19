@@ -125,6 +125,8 @@ $('.note').each(function(){
 
 function selectNote(note){
 
+    id = note.attr("id");
+
     // COPY THE NOTE
     note.bind('copy', function() {
         console.log("clicked to copy note");
@@ -140,7 +142,6 @@ function selectNote(note){
 
         if (event.keyCode == 8){
 
-            id = note.attr("id");
             console.log(id);
             console.log(event.keyCode);
 
@@ -171,6 +172,30 @@ function selectNote(note){
         $(document).unbind('keyup.delete')
 
         writeNote($(this));
+
+    });
+
+    $(document).bind('contextmenu', function(event) {
+
+        event.preventDefault();
+
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            note.css({"border-color":""});
+
+            $(document).unbind('keyup.delete');
+
+            note.unbind('click.write');
+
+            note.unbind('copy');
+
+            note.bind('click.select', function(){
+                selectNote($(this));
+            });
+
+            $(document).unbind('copy');
+
+        }
 
     });
 
@@ -286,6 +311,7 @@ $(".note").bind('contextmenu', function(event) {
     new_y = event.pageY;
 
     id = $(this).attr("id");
+    console.log("note id : ", id);
     css = $(this).attr('added_css');
 
     $("#noteRCBox").css("left", new_x);
@@ -370,105 +396,4 @@ $(".note").bind('contextmenu', function(event) {
     });
 
 });
-
-/*
-
-$(function() {
-      "use strict";
-
-      $.contextMenu({
-        selector: '.note',
-        callback: function(key, options) {
-
-          id = $(this).attr("id");
-
-          if (key === 'link') {
-
-            console.log($(this));
-
-            console.log(id);
-
-            var value = prompt("Lien", "");
-
-            if (value != null) {
-
-                $.ajax({
-                    url: '/add_link_note/'+pageID,
-                    type: "POST",
-                    data: JSON.stringify({
-                        link : value,
-                        id : id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+pageID;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+pageID;
-                    }
-                });
-
-            }
-
-          } else if (key === 'copy') {
-            copyNote($(this));
-          } else if (key === 'style') {
-
-            if ($(this).attr('added_css')){
-                var value = prompt("CSS", $(this).attr('added_css'));
-            } else {
-                var value = prompt("CSS", "");
-            }
-
-            if (value != null) {
-
-                console.log("sending css");
-
-                $.ajax({
-                    url: '/add_css/'+pageID,
-                    type: "POST",
-                    data: JSON.stringify({
-                        css : value,
-                        id : id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+pageID;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+pageID;
-                    }
-                });
-
-            }
-
-          }
-
-        },
-
-        items: {
-          'link': {
-            name: "Add Link",
-            icon: "fa-link"
-          },
-          'copy': {
-            name : "Copy",
-            icon : "fa-copy"
-          },
-          'style': {
-            name: "Style",
-            icon: "fa-paint-brush"
-          }
-        }
-
-      });
-
-    });
-
-*/
-
 

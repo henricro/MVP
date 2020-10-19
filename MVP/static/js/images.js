@@ -73,6 +73,8 @@ $('.image').each(function(){
 
 function selectImage(note){
 
+    id = note.attr("id");
+
     // COPY THE NOTE
     note.bind('copy', function() {
         console.log( "clicked to copy image");
@@ -158,6 +160,45 @@ function selectImage(note){
             });
 
         }
+
+    });
+
+    $(document).bind('contextmenu', function(event) {
+
+        event.preventDefault();
+
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            note.css({"border-color":""});
+
+            image_name.css("opacity", 0);
+
+            image_img.css("opacity", 1);
+
+            note.unbind('copy');
+
+            note.removeClass("resizable");
+
+            $(document).unbind('keyup.delete');
+
+            note.bind('click.select', function(){
+                selectImage($(this));
+            });
+
+            note.bind('mousedown.drag', function(){
+
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                noteX = parseInt(note.css("left").slice(0, -2));
+                noteY = parseInt(note.css("top").slice(0, -2));
+
+                dragNote(note, noteX, noteY);
+
+            });
+
+        }
+
     });
 
 }
@@ -260,101 +301,3 @@ $(".image").bind('contextmenu', function(event) {
     });
 
 });
-
-/*
-$(function() {
-
-      "use strict";
-
-      $.contextMenu({
-
-        selector: '.image',
-        callback: function(key, options) {
-
-          if (key === 'link') {
-
-            console.log($(this));
-            console.log($(this).attr("id"));
-            id = $(this).attr("id");
-
-            var value = prompt("Lien", "");
-
-            if (value != null) {
-                $.ajax({
-                    url: '/add_link_image/'+pageID,
-                    type: "POST",
-                    data: JSON.stringify({
-                        link : value,
-                        id : id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+pageID;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+pageID;
-                    }
-                });
-
-            }
-
-          } else if (key === 'style') {
-
-            if ($(this).attr('added_css')){
-                var value = prompt("CSS", $(this).attr('added_css'));
-            } else {
-                var value = prompt("CSS", "");
-            }
-
-            if (value != null) {
-
-                console.log("sending css");
-
-                $.ajax({
-                    url: '/add_css/'+pageID,
-                    type: "POST",
-                    data: JSON.stringify({
-                        css : value,
-                        id : id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+pageID;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+pageID;
-                    }
-                });
-
-            }
-
-          }
-
-        },
-        items: {
-          'link': {
-            name: "Add Link",
-            icon: "fa-link"
-          },
-          'download': {
-            name: "Download",
-            icon: "fa-download"
-          },
-          'style': {
-            name: "Style",
-            icon: "fa-paint-brush"
-          }
-        }
-
-      });
-    });
-
-
-*/
-
-
-

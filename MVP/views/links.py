@@ -39,7 +39,9 @@ def add_link_note(pageID, user_id):
 
 @application.route("/add_link_image/<pageID>/<user_id>", methods=['POST'])
 def add_link_image(pageID, user_id):
-    # get the data for new note
+
+    print("route : add link to image")
+
     request_data = request.get_json()
     id = str(request_data.get('id'))
     link = str(request_data.get('link'))

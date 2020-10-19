@@ -9,7 +9,7 @@ from lxml import etree
 @application.route("/unload/<pageID>/<user_id>", methods=['GET', 'POST'])
 def unload(pageID, user_id):
 
-    print("UNLOADDDDIIIINNNNGGG", "yoyoyoyo")
+    print("route : unloading")
 
     request_data = request.get_json()
     data = request_data.get('data')
