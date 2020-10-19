@@ -45,9 +45,9 @@ application.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
 application.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
 application.config['DROPZONE_REDIRECT_VIEW'] = 'results'
 
-application.config['MAIL_USERNAME'] = 'henri.crozel@gmail.com'
-application.config['MAIL_PASSWORD'] = 'nwjvnfputaxcmngx'
-application.config['MAIL_DEFAULT_SENDER'] = 'henri.crozel@gmail.com'
+application.config['MAIL_USERNAME'] = 'gyst.webapp@gmail.com'
+application.config['MAIL_PASSWORD'] = 'ccdqckkedxxyjwgk'
+application.config['MAIL_DEFAULT_SENDER'] = 'gyst.webapp@gmail.com'
 
 ### PRODUCTION DB
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
@@ -56,7 +56,6 @@ application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI'
 
 ### SERVER DOMAIN
 application.config['SERVER_DOMAIN'] = 'http://gyst.store:80'
-
 
 db = SQLAlchemy(application)
 migrate = Migrate(application, db)

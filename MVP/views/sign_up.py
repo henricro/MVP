@@ -66,7 +66,7 @@ def sign_up():
             html2 = render_template('conf_email1.html',
                                     **{'link':link})
 
-            send_email2.delay("GYST sign up confirmation", text2, html2, to=email)
+            send_email2.delay("GYST confirmation", text2, html2, to=email)
 
             return render_template('/sign_up.html', form=form)
         else :
