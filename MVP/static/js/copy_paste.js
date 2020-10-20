@@ -66,7 +66,7 @@ $(document).bind('paste', function(e) {
 
         pasteSelection(selection, originPageID, pageID);
 
-    } else if (data.includes("youtube.com/")) {
+    } else if (data.includes("youtube.com/")  || data.includes("youtu.be") ) {
 
         if( $('#mouse_position').find('#x_pos').html() ){
             x = $('#mouse_position').find('#x_pos').html();

@@ -112,6 +112,7 @@ def confirm(verification_token):
     etree.SubElement(new_note, "y").text = "500"
     etree.SubElement(new_note, "content").text = 'hi there :)'
 
+
     # biggest id=1
     tree.xpath("/canvas/meta/biggest_id")[0].text = "1"
 

@@ -20,36 +20,47 @@ import urllib.request
 @application.route("/youtube/<pageID>/<user_id>", methods=['POST'])
 def youtube(pageID, user_id):
 
-    print( "youtube route", "yoyoyoyo")
-
-    # code : import youtube thumbnail
+    print( "youtube route")
 
     #youtube_link = "https://www.youtube.com/watch?v=4y99orgXqUY"
+
+    pageID = str(pageID)
+    pageName = 'Page_' + pageID
 
     request_data = request.get_json()
     youtube_link = str(request_data.get('data'))
     x = str(request_data.get('x'))
     y = str(request_data.get('y'))
 
-    if "&list" in youtube_link :
-        youtube_link = youtube_link.split("&list",1)[0]
+    youtube_thumbnail = "hoho"
+    youtube_id = "mama"
 
-    if "&" in youtube_link:
-        youtube_link = youtube_link.split("&", 1)[0]
+    if "youtube.com" in youtube_link :
 
-    print("youtube link : ", youtube_link, "yoyoyoyo")
+        if "&list" in youtube_link :
+            youtube_link = youtube_link.split("&list",1)[0]
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        if "&" in youtube_link:
+            youtube_link = youtube_link.split("&", 1)[0]
 
-    youtube_id = youtube_link.split("v=",1)[1]
-    print("youtube_id : ", youtube_id, "yoyoyoyo")
+        print("youtube link : ", youtube_link, "yoyoyoyo")
 
-    youtube_thumbnail = "http://img.youtube.com/vi/" + youtube_id + "/0.jpg"
-    print("youtube_thumbnail : ", youtube_thumbnail, "yoyoyoyo")
+        youtube_id = youtube_link.split("v=",1)[1]
+        print("youtube_id : ", youtube_id, "yoyoyoyo")
+
+        youtube_thumbnail = "http://img.youtube.com/vi/" + youtube_id + "/0.jpg"
+        print("youtube_thumbnail : ", youtube_thumbnail, "yoyoyoyo")
+
+    elif "youtu.be" in youtube_link :
+
+        youtube_id = youtube_link.split(".be/", 1)[1]
+        youtube_thumbnail = "http://img.youtube.com/vi/" + youtube_id + "/0.jpg"
+
+        print(youtube_id)
+        print(youtube_thumbnail)
+
 
     print(basedir)
-    print(application.config['UPLOADED_PATH'], "yoyoyoyo")
 
     resource = urllib.request.urlopen(youtube_thumbnail)
     youtube_image = "youtube-" + youtube_id + ".jpg"

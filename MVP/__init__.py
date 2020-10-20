@@ -13,7 +13,7 @@ import dotenv
 
 import sys
 
-sys.stdout = open('%logstart', 'w')
+#sys.stdout = open('%logstart', 'w')
 
 dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
@@ -39,6 +39,7 @@ application.config['USER_DATA_PATH'] = os.path.join(basedir, 'static/user_data/u
 
 
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
 
 application.config['DROPZONE_UPLOAD_MULTIPLE'] = True
 application.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
