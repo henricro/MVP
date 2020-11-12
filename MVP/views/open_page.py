@@ -25,6 +25,7 @@ def home(user_id):
     title = Page.query.filter_by(user_id=user_id).first().title
 
     PageID = Page.query.filter_by(user_id=user_id).first().id
+    PageID = str(PageID)
 
     pageName = 'Page_' + PageID
 
