@@ -22,11 +22,11 @@ def home(user_id):
     pages = engine.execute("select id, title from Pages").fetchall()
     pages = dict(pages)
 
-    pageID = "1"
+    title = Page.query.filter_by(user_id=user_id).first().title
 
-    pageName = 'Page_' + pageID
+    PageID = Page.query.filter_by(user_id=user_id).first().id
 
-    title = Page.query.filter_by(id=pageID).first().title
+    pageName = 'Page_' + PageID
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
@@ -35,7 +35,7 @@ def home(user_id):
 
     xml_string = xml_string.replace("\n", "")
 
-    return render_template('/page.html', xml_string=xml_string, pageID = pageID, pages=pages, title=title, user_id=user_id)
+    return render_template('/page.html', xml_string=xml_string, pageID = PageID, pages=pages, title=title, user_id=user_id)
 
 
 

@@ -75,13 +75,15 @@ function selectImage(note){
 
     id = note.attr("id");
 
+    // COPY THE NOTE
+    $(document).bind('copy', function() {
+        console.log("clicked to copy an image");
+        copyNote(note);
+    });
+
     console.log("selected an image");
 
     note.css({"border-color":"green"});
-
-    var image_name = note.find('.image_name');
-
-    image_name.css("opacity", 1);
 
     var image_img = note.find('.image_img');
 
@@ -127,11 +129,9 @@ function selectImage(note){
 
             note.css({"border-color":""});
 
-            image_name.css("opacity", 0);
-
             image_img.css("opacity", 1);
 
-            note.unbind('copy');
+            $(document).unbind('copy');
 
             note.removeClass("resizable");
 
@@ -165,11 +165,9 @@ function selectImage(note){
 
             note.css({"border-color":""});
 
-            image_name.css("opacity", 0);
-
             image_img.css("opacity", 1);
 
-            note.unbind('copy');
+            $(document).unbind('copy');
 
             note.removeClass("resizable");
 
