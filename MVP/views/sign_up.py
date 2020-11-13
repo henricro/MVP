@@ -97,9 +97,7 @@ def confirm(verification_token):
 
     engine.execute("insert into Pages (user_id, title) VALUES (%s, %s)", (user_id, 'GYST'))
 
-    yoyo = user.id
-
-    pageID = Page.query.filter_by(user_id=yoyo).first().id
+    pageID = engine.execute("SELECT id FROM Pages ORDER BY id DESC LIMIT 1").fetchall()[0][0]
     pageID = str(pageID)
 
     pageName = 'Page_' + pageID
