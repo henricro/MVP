@@ -96,8 +96,12 @@ def confirm(verification_token):
     os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/uploads/')
 
     engine.execute("insert into Pages (user_id, title) VALUES (%s, %s)", (user_id, 'GYST'))
+    pageID = Page.query.filter_by(user_id=user_id).first().id
+    pageID = str(pageID)
 
-    tree = etree.parse(application.config['TEMPLATES_PATH'] + 'newPage.xml')
+    pageName = 'Page_' + pageID
+
+    tree = etree.parse(application.config['TEMPLATES_PATH'] + 'startPage.xml')
     root = tree.getroot()
 
     # create a new note
@@ -116,7 +120,7 @@ def confirm(verification_token):
     # biggest id=1
     tree.xpath("/canvas/meta/biggest_id")[0].text = "1"
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + "/pages/Page_1.xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
