@@ -19,10 +19,12 @@ def home(user_id):
 
     print("route : open home page", "yoyoyoyo")
 
-    pages = engine.execute("select id, title from Pages").fetchall()
+    pages = engine.execute("select id, title from Pages where user_id = %(user_id)s", {'user_id':user_id}).fetchall()
     pages = dict(pages)
 
     title = Page.query.filter_by(user_id=user_id).first().title
+    print("title")
+    print(title)
 
     PageID = Page.query.filter_by(user_id=user_id).first().id
     PageID = str(PageID)
@@ -59,7 +61,7 @@ def open_page(pageID, user_id):
     parents=dict(parents)
     print(parents, "yoyoyoyo")
 
-    pages = engine.execute("select id, title from Pages").fetchall()
+    pages = engine.execute("select id, title from Pages where user_id = %(user_id)s", {'user_id':user_id}).fetchall()
     pages = dict(pages)
 
     print("open page", "yoyoyoyo")
