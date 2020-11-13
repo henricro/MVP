@@ -96,7 +96,10 @@ def confirm(verification_token):
     os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/uploads/')
 
     engine.execute("insert into Pages (user_id, title) VALUES (%s, %s)", (user_id, 'GYST'))
-    pageID = Page.query.filter_by(user_id=user.id).first().id
+
+    yoyo = user.id
+
+    pageID = Page.query.filter_by(user_id=yoyo).first().id
     pageID = str(pageID)
 
     pageName = 'Page_' + pageID
