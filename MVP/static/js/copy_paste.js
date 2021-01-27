@@ -14,7 +14,6 @@ function copyText(note){
 }
 
 
-
 function copyNote(note){
 
     console.log("copied a note");

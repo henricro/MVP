@@ -1,7 +1,7 @@
 import os
 import dotenv
 
-dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '../.env'))
 
 PREFERRED_URL_SCHEME = os.environ.get('PREFERRED_URL_SCHEME')
 

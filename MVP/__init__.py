@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, make_response, request
+
 from lxml import etree
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -15,7 +16,7 @@ import sys
 
 #sys.stdout = open('%logstart', 'w')
 
-dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '../.env'))
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -52,12 +53,12 @@ application.config['MAIL_DEFAULT_SENDER'] = 'gyst.webapp@gmail.com'
 
 ### PRODUCTION DB
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
-#application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
-application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:il0ved4t4@127.0.0.1:3306/gystdblocal'
+application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
+#application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:il0ved4t4@127.0.0.1:3306/gystdblocal'
 
 ### SERVER DOMAIN
-#application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.store:80')
-application.config['SERVER_DOMAIN'] = 'http://127.0.0.1:3306'
+application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.store:80')
+#application.config['SERVER_DOMAIN'] = 'http://127.0.0.1:3306'
 
 
 db = SQLAlchemy(application)
