@@ -6,8 +6,10 @@ blinker==1.4
 bs4==0.0.1
 celery==4.3.0
 certifi==2019.9.11
+cffi==1.14.4
 chardet==3.0.4
 Click==7.0
+cryptography==3.3.1
 Flask==1.1.1
 Flask-CKEditor==0.4.3
 Flask-Dance==3.0.0
@@ -26,7 +28,7 @@ Jinja2==2.10.3
 kombu==4.6.5
 lxml==4.5.0
 Mako==1.1.0
-Markupsafe==1.1.1
+MarkupSafe==1.1.1
 more-itertools==7.2.0
 mysql-connector==2.2.9
 numpy==1.17.4
@@ -35,6 +37,7 @@ pandas==0.25.3
 pdf2image==1.13.1
 Pillow==7.1.2
 pudb==2019.1
+pycparser==2.20
 Pygments==2.4.2
 PyJWT==1.7.1
 PyMuPDF==1.17.2

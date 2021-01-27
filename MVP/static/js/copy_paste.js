@@ -1,3 +1,20 @@
+function copyText(note){
+
+    console.log("copied a note");
+    console.log(note);
+    id = note.attr("id");
+    noteClass = note.attr("class");
+    info = "yoloooo";
+    console.log(info);
+    $('#myClipboard').show().attr("value", info);
+    $('#myClipboard').select();
+    $(document).execCommand("copy");
+    $('#myClipboard').hide();
+
+}
+
+
+
 function copyNote(note){
 
     console.log("copied a note");
@@ -12,6 +29,8 @@ function copyNote(note){
     $('#myClipboard').hide();
 
 }
+
+
 
 
 function copySelection(selection){

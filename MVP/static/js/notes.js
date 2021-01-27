@@ -239,9 +239,11 @@ $('.note').each(function(){
 
 function writeNote(note){
 
+
     note.unbind('click.select');
     note.unbind('dblclick.write');
     note.unbind('mousedown.drag');
+    note.unbind('copy');
 
     note.attr("contenteditable", "true");
 

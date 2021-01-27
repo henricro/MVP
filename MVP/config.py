@@ -23,7 +23,5 @@ ADMINS = ['henri.crozel@gmail.com']
 #SERVER_DOMAIN= os.environ.get('SERVER_DOMAIN', "146.59.153.123")
 
 
-
-
 DEBUG = True
 SQLALCHEMY_TRACK_MODIFICATIONS = True
