@@ -429,7 +429,7 @@ function dragNotes(selection) {
         mouseUpNotes(selection);
     });
 
-    function mouseUpNotes(note) {
+    function mouseUpNotes(selection) {
 
         $(document).unbind('mousemove.dragNotes');
         //console.log("stoping");
@@ -439,122 +439,155 @@ function dragNotes(selection) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            if ( event.target.classList.contains('pageLink') ){
+            console.log("event target : ", $(event.target));
 
-                console.log("moved a selection into another page");
+            console.log($(event.target).attr("id"));
 
-                page_id = $(event.target).attr("pageid");
+            console.log("parent : ", $(event.target).parent() );
 
-                $.ajax({
+            console.log(selection);
 
-                    url: '/move_notes/'+pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        selection: selection,
-                        page_id: page_id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+            console.log(selection.includes($(event.target).attr("id")));
+
+            console.log( $(event.target).parent().hasClass("imagePageLink_name") );
+
+            if ( !( selection.includes($(event.target).attr("id"))  || selection.includes($(event.target).parent().attr("id")) || selection.includes($(event.target).parent().parent().attr("id")) ) ){
+
+                if ( event.target.classList.contains('pageLink') ){
+
+                    console.log("moved a selection into another page");
+
+                    page_id = $(event.target).attr("pageid");
+
+                    $.ajax({
+
+                        url: '/move_notes/'+pageID + '/' + user_id,
+                        type: "POST",
+                        data: JSON.stringify({
+                            selection: selection,
+                            page_id: page_id
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        }
+
+                    });
+
+                } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
+
+                    console.log("moved a selection into another page");
+
+                    page_id = $(event.target).parent().parent().attr("pageid");
+
+                    $.ajax({
+
+                        url: '/move_notes/'+pageID + '/' + user_id,
+                        type: "POST",
+                        data: JSON.stringify({
+                            selection: selection,
+                            page_id: page_id
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        }
+
+                    });
+
+                } //else if ( event.target.classList.contains('note') ){
+
+                else {
+
+                    console.log("moved a selection");
+
+                    positions = [];
+
+                    for (i in selection){
+
+                        id = selection[i];
+                        note = $('#' + id);
+                        note.css("z-index", "0");
+
+                        x = parseInt(note.css("left").slice(0, -2));
+                        y = parseInt(note.css("top").slice(0, -2));
+
+                        positions.push([id, x, y]);
+
                     }
 
-                });
+                    console.log(positions);
 
-            } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
+                    // ajax call with id x and y postion if element has moved
+                    $.ajax({
 
-                console.log("moved a selection into another page");
+                        url: '/update_positions/'+pageID + '/' + user_id,
+                        type: "POST",
+                        data: JSON.stringify({
+                            positions : positions
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                        }
 
-                page_id = $(event.target).parent().parent().attr("pageid");
-
-                $.ajax({
-
-                    url: '/move_notes/'+pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        selection: selection,
-                        page_id: page_id
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    }
-
-                });
-
-            } //else if ( event.target.classList.contains('note') ){
-
-              //  $.ajax({
-
-               //     url: '/link_notes/'+pageID,
-               //     type: "POST",
-               //     data: JSON.stringify({
-               //         id_1 : $(event.target).attr("id"),
-               //         id_2 : note.attr("id")
-               //     }),
-               //     contentType: "application/json",
-               //     success: function (data) {
-               //         console.log(data);
-               //          window.location.href='/open_page/'+pageID;
-               //     },
-               //     error: function (error) {
-               //         console.log("problem");
-               //         window.location.href='/open_page/'+pageID;
-               //     }
-
-               // });
-
-            //}
-
-            else {
-
-                console.log("moved a selection");
-
-                positions = [];
-
-                for (i in selection){
-
-                    id = selection[i];
-                    note = $('#' + id);
-                    note.css("z-index", "0");
-
-                    x = parseInt(note.css("left").slice(0, -2));
-                    y = parseInt(note.css("top").slice(0, -2));
-
-                    positions.push([id, x, y]);
+                    });
 
                 }
 
-                console.log(positions);
+            }   else {
 
-                // ajax call with id x and y postion if element has moved
-                $.ajax({
+                    console.log("moved a selection");
 
-                    url: '/update_positions/'+pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        positions : positions
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (error) {
-                        console.log("problem");
+                    positions = [];
+
+                    for (i in selection){
+
+                        id = selection[i];
+                        note = $('#' + id);
+                        note.css("z-index", "0");
+
+                        x = parseInt(note.css("left").slice(0, -2));
+                        y = parseInt(note.css("top").slice(0, -2));
+
+                        positions.push([id, x, y]);
+
                     }
 
-                });
+                    console.log(positions);
 
-            }
+                    // ajax call with id x and y postion if element has moved
+                    $.ajax({
+
+                        url: '/update_positions/'+pageID + '/' + user_id,
+                        type: "POST",
+                        data: JSON.stringify({
+                            positions : positions
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                        }
+
+                    });
+
+                }
 
         } else {
             console.log("object did not move");
