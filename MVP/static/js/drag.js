@@ -240,14 +240,14 @@ $(document).bind('mousedown.multipleSelect', function(){
     var selectBox = $('#selectBox');
 
     if (event.target.nodeName === 'HTML'){
-        dragSelect();
+        createSelect();
     }
 
 });
 
 
 
-function dragSelect() {
+function createSelect() {
 
     $(document).bind('mousemove.multipleSelect', function(){
         moveSelect();
@@ -365,11 +365,55 @@ function dragSelect() {
 
             });
 
+
+
+
+/////////////////////////
+
+            //$(document).unbind('contextmenu.newPage');
+
+            $("#selectBox").bind('contextmenu', function(event){
+
+                event.preventDefault();
+
+                console.log("print this");
+
+                console.log(event.target);
+
+                //if ($("#selectBox").is(event.target)){
+
+                    console.log("heeeey :)");
+
+                    new_x = event.pageX;
+                    new_y = event.pageY;
+
+                    $("#selectionRCBox").css("left", new_x);
+                    $("#selectionRCBox").css("top", new_y);
+                    $("#selectionRCBox").show();
+
+                    $(document).click(function(){
+                        if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0){
+                            $("#selectionRCBox").hide();
+                            newPage();
+                        }
+                    });
+
+                    $('#selectionRC_1').bind('click', function() {
+                        alignItems(selection);
+                    });
+
+                //}
+
+            });
+
             $('#selectBox').bind('mousedown.drag', function(){
 
                 $(document).unbind('keyup.delete');
 
-                $('#selectBox').remove();
+                setTimeout(
+                    function() {$('#selectBox').hide();},
+                    100
+                )
 
                 console.log("mousedown on selectBox");
                 console.log(selection);
@@ -382,6 +426,43 @@ function dragSelect() {
             });
 
         }
+
+    }
+
+}
+
+/////////////////////////////////////
+//////////   ALIGN ITEMS  /////////////
+/////////////////////////////////////
+
+function alignItems(selection){
+
+    noteXs = [];
+
+    for (i in selection){
+
+        id = selection[i];
+        note = $('#' + id);
+
+        noteX = parseInt(note.css("left").slice(0, -2));
+        noteY = parseInt(note.css("top").slice(0, -2));
+
+        noteXs.push(noteX);
+
+    }
+
+    console.log(noteXs);
+
+    var min = Math.min.apply(null, noteXs)
+
+    console.log(min);
+
+    for (i in selection){
+
+        id = selection[i];
+        note = $('#' + id);
+
+        note.css("left", min);
 
     }
 
@@ -430,7 +511,10 @@ function dragNotes(selection) {
     });
 
     $(document).bind('mouseup.stopDraNotesg', function(){
+
+        //$('#selectBox').remove();
         mouseUpNotes(selection);
+
     });
 
     function mouseUpNotes(selection) {

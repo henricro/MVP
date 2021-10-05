@@ -309,8 +309,8 @@ $(".note").bind('contextmenu', function(event) {
 
     event.preventDefault();
 
-    new_x = 2*event.pageX;
-    new_y = 2*event.pageY;
+    new_x = event.pageX;
+    new_y = event.pageY;
 
     var note= $(this);
 

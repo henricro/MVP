@@ -53,7 +53,10 @@ function createPageLink(note) {
 /////////   CREATE A NEW PAGE  ///////////////
 /////////////////////////////////////////////
 
-$(document).bind('contextmenu', function(event) {
+
+function newPage() {
+
+$(document).bind('contextmenu.newPage', function(event) {
 
     event.preventDefault();
 
@@ -171,6 +174,10 @@ $(document).bind('contextmenu', function(event) {
     }
 
 });
+
+}
+
+newPage();
 
 
 /*
