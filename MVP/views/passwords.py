@@ -8,7 +8,7 @@ from MVP.forms import  ChangePasswordForm, ForgotPasswordForm
 from flask_login import LoginManager, UserMixin, current_user
 from flask import g, request, redirect
 
-from MVP.views.celery import send_email2
+from MVP.views.celery_view import send_email2
 
 def get_hashed_password(password):
     return hashlib.md5(password.encode()).hexdigest()

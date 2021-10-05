@@ -34,8 +34,12 @@ function dragNote(note, noteX, noteY) {
 
     function mouseMove(note) {
 
+        //new_top = noteY + 2*event.pageY - 2*mouseY ;
+        //new_left = noteX + 2*event.pageX - 2*mouseX ;
+
         new_top = noteY + event.pageY - mouseY ;
         new_left = noteX + event.pageX - mouseX ;
+
         //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });
 

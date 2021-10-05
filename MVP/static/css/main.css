@@ -3,7 +3,7 @@
   padding : 3px;
   border : 1px solid rgb(0, 0, 0, 0);
   border-radius : 5px;
-  text-align: center;
+  text-align: left;
   /*background: inherit;*/
 
 }
@@ -530,4 +530,15 @@
     position: relative;
 }
 
+/**************  ZOOM  ***************/
 
+/*body {
+/*    -moz-transform: scale(0.5, 0.5); /* Moz-browsers */
+/*    zoom: 0.5; /* Other non-webkit browsers */
+/*    zoom: 50%; /* Webkit browsers */
+/*}
+*/
+
+body {
+    zoom: 1;
+}

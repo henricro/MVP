@@ -53,12 +53,14 @@ application.config['MAIL_DEFAULT_SENDER'] = 'gyst.webapp@gmail.com'
 
 ### PRODUCTION DB
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
-application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
-#application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:il0ved4t4@127.0.0.1:3306/gystdblocal'
+#application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
+application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:il0ved4t4@127.0.0.1:3306/gystdblocal'
+
+#application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb'
 
 ### SERVER DOMAIN
-application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.store:80')
-#application.config['SERVER_DOMAIN'] = 'http://127.0.0.1:3306'
+#application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.store:80')
+application.config['SERVER_DOMAIN'] = 'http://127.0.0.1:3306'
 
 
 db = SQLAlchemy(application)
@@ -114,6 +116,6 @@ def user_required():
     return decor
 
 
-from MVP.views import create_note, delete_note, links, new_page, open_page, unload, update, upload_image, upload, login, celery, login, passwords, \
+from MVP.views import create_note, delete_note, links, new_page, open_page, unload, update, upload_image, upload, login, celery_view, login, passwords, \
     add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, youtube, move_note, paste_note, add_css, lines, categories, sign_up
 

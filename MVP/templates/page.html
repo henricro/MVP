@@ -5,6 +5,8 @@
 
     <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 
     <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
@@ -66,6 +68,32 @@
 
 <body>
 
+<!--
+<div onwheel="myFunction(event)" style="width:100px;height:100px;background-color:Tomato"></div>
+
+<svg width="50" height="50" viewBox="25 25 100 100">
+  <ellipse cx="50" cy="50" rx="50" ry="50"></ellipse>
+</svg>
+
+<p>4.</p>
+<svg width="50" height="50" viewBox="0 0 100 100">
+  <ellipse cx="50" cy="50" rx="50" ry="50"></ellipse>
+</svg>
+
+<p>5.</p>
+<svg width="50" height="50" viewBox="0 0 25 25">
+  <ellipse cx="50" cy="50" rx="50" ry="50"></ellipse>
+</svg>
+-->
+
+<!--
+
+<svg id="pageSVG" width="2000" height="200" style="background-color:rgb(252, 186, 3, 0.3)">
+            <foreignobject class="node" x="50" y="30" width="5000" height="50">
+
+                <svg viewBox="30 30 200 200" style="background-color: green"></svg>
+
+-->
 
 <!-- Dropzones for images -->
 
@@ -201,11 +229,19 @@
     </div>
 </div>
 
+
+                <!--
+    </foreignobject>
+</svg>
+
+-->
+
 </body>
 
 
 
 <script>
+
 
 var title = '{{title}}';
 console.log("print title");
@@ -264,6 +300,11 @@ var user_id = '{{user_id|safe}}';
     <script type="text/javascript" src="/static/js/criteria.js" ></script>
 
     <script type="text/javascript" src="/static/js/categories.js" ></script>
+
+    <!--<script type="text/javascript" src="/static/js/zoom.js" ></script>-->
+
+
+
 
 </html>
 

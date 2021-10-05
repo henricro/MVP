@@ -8,7 +8,7 @@ from flask import request, redirect
 from sqlalchemy import or_
 
 from flask_login import login_user
-from MVP.views.celery import send_email2
+from MVP.views.celery_view import send_email2
 from MVP.views.passwords import get_hashed_password
 
 import uuid
