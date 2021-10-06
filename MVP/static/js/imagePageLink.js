@@ -105,9 +105,14 @@ function selectImagePageLink(note){
 
     pageLinkID= note.attr("pageID");
 
-    note.css({"border-color":"green"});
+    note.css({"border-top":"1px solid #60A835"});
+    note.css({"border-left":"1px solid #60A835"});
+    note.css({"border-bottom":"1px solid #F68C57"});
+    note.css({"border-right":"1px solid #F68C57"});
+    note.find(".imagePageLink_name").css({"text-decoration": "underline"});
+    note.find(".imagePageLink_name").css({"text-decoration-color": "#F68C57"});
 
-    note.css("cursor","pointer");
+    note.css({"cursor":"pointer"});
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -166,10 +171,6 @@ function selectImagePageLink(note){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css("cursor","");
-
-            note.css({"border-color":""});
-
             note.unbind('mousedown.gotopage');
 
             note.unbind('mouseup.gotopage');
@@ -204,9 +205,10 @@ function selectImagePageLink(note){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css("cursor","");
-
             note.css({"border-color":""});
+            note.css({"cursor":""});
+            note.css({"border":""});
+            note.find(".imagePageLink_name").css({"text-decoration":""});
 
             note.unbind('mousedown.gotopage');
 

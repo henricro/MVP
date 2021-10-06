@@ -274,11 +274,10 @@ function selectPageLink(note){
     note.css({"border-left":"1px solid #60A835"});
     note.css({"border-bottom":"1px solid #F68C57"});
     note.css({"border-right":"1px solid #F68C57"});
-
-    note.css({"cursor":"pointer"});
-
     note.css({"text-decoration": "underline"});
     note.css({"text-decoration-color": "#F68C57"});
+
+    note.css({"cursor":"pointer"});
 
     pageLinkID= note.attr("pageID");
 
