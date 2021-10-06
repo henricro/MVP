@@ -644,6 +644,8 @@ function writePageLink(note){
 
 $("#plusSign").bind("click", function(){
 
+    console.log("forever young");
+
     new_x = event.pageX;
     new_y = event.pageY;
 
@@ -654,15 +656,15 @@ $("#plusSign").bind("click", function(){
     $("#pageRCPlusBox").css("top", new_y);
     $("#pageRCPlusBox").show();
 
-    $(document).click(function(){
-        $(document).click(function(){
-
+    $(document).bind('click.pageRCPlusBox', function(){
+        $(document).bind('click.pageRCPlusBox2', function(){
             if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
 
                 console.log("mother of all mothers");
                 $("#pageRCPlusBox").hide();
+                $(document).unbind('click.pageRCPlusBox2');
+                $(document).unbind('click.pageRCPlusBox2');
             }
-
         });
     });
 
