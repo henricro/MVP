@@ -1,3 +1,8 @@
+.note, .pageLink, noteLink, #title  {
+    font-family: Geneva;
+}
+
+
 .note {
   position: absolute;
   padding : 3px;
@@ -7,6 +12,8 @@
   /*background: inherit;*/
 
 }
+
+
 
 /**********  Image   ***********/
 
@@ -236,13 +243,23 @@
 .pageLink {
   position: absolute;
   padding : 3px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid rgb(200, 240, 149, 0.3);
   border-radius : 5px;
   text-align: center;
+  border-bottom: 1px solid #F68C57;
+  border-right: 1px solid #F68C57;
+}
+
+.pageLink:hover {
+    font-size: 15px;
+    cursor: default;
+    font-weight: 450;
+    border-bottom : 2px solid #F68C57;
+    border-right : 2px solid #F68C57;
 }
 
 .child.pageLink{
-    background-color : rgb(200, 240, 149, 0.5);
+    background-color : rgb(200, 240, 149, 0.2);
 }
 
 .parent.pageLink{
@@ -348,6 +365,17 @@
     border-radius : 2px;
 }
 
+.choiceButtonSmall{
+    width:30px;
+    background-color: green;
+    margin-bottom: 5px;
+    margin-left:3px;
+    margin-right: 3px;
+    text-align: center;
+    cursor: pointer;
+    border-radius : 2px;
+}
+
 
 #pasteAs{
     text-align: center;
@@ -394,6 +422,8 @@
 #pageRCBox{
     z-index: 15;
     display : none;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 300px;
     left: 300px;

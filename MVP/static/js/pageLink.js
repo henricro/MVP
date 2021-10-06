@@ -268,7 +268,17 @@ function selectPageLink(note){
 
     console.log("selected page link");
 
-    note.css({"border-color":"green"});
+    //note.css({"border":"1px solid #60A835"});
+
+    note.css({"border-top":"1px solid #60A835"});
+    note.css({"border-left":"1px solid #60A835"});
+    note.css({"border-bottom":"1px solid #F68C57"});
+    note.css({"border-right":"1px solid #F68C57"});
+
+    note.css({"cursor":"pointer"});
+
+    note.css({"text-decoration": "underline"});
+    note.css({"text-decoration-color": "#F68C57"});
 
     pageLinkID= note.attr("pageID");
 
@@ -302,8 +312,6 @@ function selectPageLink(note){
         }
     });
 
-    note.css({"cursor":"pointer"});
-
     note.unbind('click.select');
 
     // SECOND CLICK
@@ -320,8 +328,9 @@ function selectPageLink(note){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             note.css({"border-color":""});
-
             note.css({"cursor":""});
+            note.css({"border":""});
+            note.css({"text-decoration":""});
 
             note.unbind('copy');
 

@@ -54,11 +54,17 @@ application.config['MAIL_DEFAULT_SENDER'] = 'gyst.webapp@gmail.com'
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
 #application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
 
+application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
+
+
+
 #### LOCAL GYST DB
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:il0ved4t4@127.0.0.1:3306/gystdblocal'
 
 #### PRODUCTION DB
-application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb'
+#application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb'
+
+
 
 ### SERVER DOMAIN
 #application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.store:80')
