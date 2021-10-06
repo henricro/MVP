@@ -95,6 +95,8 @@
 
 -->
 
+<div id="zoomLevel">1</div>
+
 <!-- Dropzones for images -->
 
 <div class="modal forPageLink">
@@ -149,17 +151,25 @@
 
 <div id="pageRCBox">
     <div class="choiceBox">
-           <div id="pageRC_1" class="choiceButton choiceLOrange"><i class="fa fa-copy"></i> New Page</div>
+           <div id="pageRC_1" class="choiceButton choiceLOrange"> New Page</div>
            <!--<div id="pageRC_2" style="display: flex; flex-direction: row; width: 100%; justify-content: space-evenly;">
                <div class="choiceButtonSmall choiceLGreen"><a href="/zoom_in"><i class="fa fa-plus"></i></a></div>
                <div class="choiceButtonSmall choiceLYellow"><a href="/zoom_out"><i class="fa fa-minus"></i></a></div>
            </div>-->
     </div>
+    <img id="plusSign"  src="/static/images/icons/more.png" />
+    <!--<i style="border:2px solid blue; color: blue; border-radius: 5px;" class="fa fa-plus"></i>-->
 </div>
 
 
 <div id="pageRCPlusBox">
+
     <div class="choiceBox">
+           <div id="zoomButton" class="choiceLOrange">
+               <img id="minusZoom"  src="/static/images/icons/minus.png" />
+               zoom
+               <img id="plusZoom"  src="/static/images/icons/add.png" />
+           </div>
            <div id="pageRCPlus_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> New Criteria</div>
            <div id="pageRCPlus_2" class="choiceButton choiceLGreen"><i class="fa fa-print"></i> Export page as PDF</div>
     </div>
@@ -311,9 +321,7 @@ var user_id = '{{user_id|safe}}';
 
     <script type="text/javascript" src="/static/js/categories.js" ></script>
 
-    <!--<script type="text/javascript" src="/static/js/zoom.js" ></script>-->
-
-
+    <script type="text/javascript" src="/static/js/zoom.js" ></script>
 
 
 </html>

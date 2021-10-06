@@ -2,25 +2,34 @@
 /////////////    DRAG ELEMENTS   //////////////////
 ///////////////////////////////////////////////////
 
+function defineDrag() {
 
-$(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .criteria, .category").each(function(){
+    $(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .criteria, .category").each(function(){
 
-    $(this).bind('mousedown.drag', function(){
+        $(this).bind('mousedown.drag', function(){
 
-        note = $(this);
+            note = $(this);
 
-        mouseX = event.pageX;
-        mouseY = event.pageY;
+            zoomLevel = $("#zoomLevel").html();
+            zoomLevel = parseFloat(zoomLevel);
 
-        noteX = parseInt(note.css("left").slice(0, -2));
-        noteY = parseInt(note.css("top").slice(0, -2));
+            zoomCoeff = 1/zoomLevel;
 
-        dragNote(note, noteX, noteY);
+            mouseX = event.pageX;
+            mouseY = event.pageY;
+
+            noteX = parseInt(note.css("left").slice(0, -2));
+            noteY = parseInt(note.css("top").slice(0, -2));
+
+            dragNote(note, noteX, noteY);
+
+        });
 
     });
 
-});
+}
 
+defineDrag();
 
 function dragNote(note, noteX, noteY) {
 
@@ -34,11 +43,11 @@ function dragNote(note, noteX, noteY) {
 
     function mouseMove(note) {
 
-        //new_top = noteY + 2*event.pageY - 2*mouseY ;
-        //new_left = noteX + 2*event.pageX - 2*mouseX ;
+        new_top = noteY + zoomCoeff*event.pageY - zoomCoeff*mouseY ;
+        new_left = noteX + zoomCoeff*event.pageX - zoomCoeff*mouseX ;
 
-        new_top = noteY + event.pageY - mouseY ;
-        new_left = noteX + event.pageX - mouseX ;
+        //new_top = noteY + event.pageY - mouseY ;
+        //new_left = noteX + event.pageX - mouseX ;
 
         //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });

@@ -74,7 +74,9 @@ $(document).bind('contextmenu.newPage', function(event) {
 
         $("#pageRCBox").css("left", new_x);
         $("#pageRCBox").css("top", new_y);
-        $("#pageRCBox").show();
+        $("#pageRCBox").css("display", "flex");
+
+        $("#plusSign").show();
 
         $(document).bind('click.pageRCBox', function(event){
 
@@ -638,4 +640,32 @@ function writePageLink(note){
     });
 
 }
+
+
+$("#plusSign").bind("click", function(){
+
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    $("#pageRCBox").css("display", "none");
+    $("#plusSign").hide();
+
+    $("#pageRCPlusBox").css("left", new_x);
+    $("#pageRCPlusBox").css("top", new_y);
+    $("#pageRCPlusBox").show();
+
+    $(document).click(function(){
+        $(document).click(function(){
+
+            if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
+
+                console.log("mother of all mothers");
+                $("#pageRCPlusBox").hide();
+            }
+
+        });
+    });
+
+});
+
 

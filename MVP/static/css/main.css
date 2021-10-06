@@ -383,6 +383,16 @@
     border-radius : 2px;
 }
 
+#zoomButton{
+    width: 130px;
+    margin-bottom: 5px;
+    text-align: center;
+    border-radius : 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
 #pasteAs{
     text-align: center;
@@ -592,4 +602,24 @@
 
 body {
     zoom: 1;
+}
+
+#plusSign {
+    height:23px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#plusZoom {
+    height:20px;
+    cursor: pointer;
+}
+
+#minusZoom {
+    height:20px;
+    cursor: pointer;
+}
+
+#zoomLevel {
+    display: none;
 }

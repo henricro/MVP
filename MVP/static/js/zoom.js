@@ -25,7 +25,7 @@ $(document).on("mousewheel", function(event) {
 
 });
 */
-
+/*
 $('body').on('mousewheel DOMMouseScroll', function(e){
 
   if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
@@ -69,7 +69,7 @@ function myFunction(event) {
   event.target.style.width = newSize + "px";
   event.target.style.height = newSize + "px";
 }
-
+*/
 
 /*
 function myZoomFunction(event) {
@@ -85,3 +85,48 @@ function myZoomFunction(event) {
 }
 
 */
+
+$("#plusZoom").bind("click.zoomIn", function() {
+
+    console.log("zoom in");
+
+    zoomLevel = $('body').css("zoom");
+    console.log("zoom level ", zoomLevel);
+    console.log(typeof(zoomLevel));
+    zoomLevel = parseFloat(zoomLevel);
+    console.log("zoom level ", zoomLevel);
+    console.log(typeof(zoomLevel));
+    newZoomLevel = zoomLevel + 0.05;
+
+    console.log(2+3);
+
+    console.log("new zoom level ", newZoomLevel);
+
+
+    if (zoomLevel < 0.96) {
+        console.log("should zoom in");
+        $('body').css("zoom", newZoomLevel);
+        defineDrag();
+    }
+
+});
+
+$("#minusZoom").bind("click.zoomOut", function() {
+
+    zoomLevel = $('body').css("zoom");
+    console.log("zoom level ", zoomLevel);
+    console.log(typeof(zoomLevel));
+    newZoomLevel = zoomLevel - 0.05;
+    console.log("new zoom level ", newZoomLevel);
+
+    if (zoomLevel > 0.1) {
+        $('body').css("zoom", newZoomLevel);
+        defineDrag();
+    }
+
+});
+
+
+$("#zoomButton").bind("click", function() {
+    console.log("murder in the first degree");
+});
