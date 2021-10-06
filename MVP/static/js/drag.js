@@ -10,7 +10,7 @@ function defineDrag() {
 
             note = $(this);
 
-            zoomLevel = $("#zoomLevel").html();
+            zoomLevel = $("body").css("zoom");
             zoomLevel = parseFloat(zoomLevel);
 
             zoomCoeff = 1/zoomLevel;
