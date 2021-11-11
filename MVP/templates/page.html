@@ -168,8 +168,9 @@
                zoom
                <img id="plusZoom"  src="/static/images/icons/add.png" />
            </div>
-           <div id="pageRCPlus_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> New Criteria</div>
-           <div id="pageRCPlus_2" class="choiceButton choiceLGreen"><i class="fa fa-print"></i> Export page as PDF</div>
+           <div id="pageRCPlus_1" class="choiceButton choiceLOrange">
+               Make a List</div>
+           <!--<div id="pageRCPlus_2" class="choiceButton choiceLGreen"><i class="fa fa-print"></i> Export page as PDF</div>-->
     </div>
 
 </div>
@@ -217,6 +218,7 @@
         <div id="pageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit</div>
         <div id="pageLinkRC_2" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Add Image</div>
         <div id="pageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
+        <div id="pageLinkRC_4" class="choiceButton choiceGreen"><i class="fa fa-paint-brush"></i> Preview Page</div>
     </div>
 </div>
 
@@ -238,6 +240,7 @@
 <div id="titleRCBox">
     <div class="choiceBox">
         <div id="titleRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit</div>
+        <div id="titleRC_2" class="choiceButton choiceLGreen"><i class="fa fa-note"></i> Add Notes</div>
     </div>
 </div>
 
@@ -256,7 +259,15 @@
 
 </body>
 
+<ul>
+    <li>ifshbisfhb</li>
+    <li style="text-decoration:line-through;">hzfddz</li>
+    <li>cbhz</li>
+</ul>
 
+<!--
+<iframe class="iframe" src="/open_page/2/1" height="200" width="300" title="Iframe Example"></iframe>
+-->
 
 <script>
 
@@ -265,33 +276,40 @@ var title = '{{title}}';
 console.log("print title");
 console.log(title);
 
-var pages = {{pages|safe}};
+//var pages = {{pages|safe}};
+
+//var xml = '{{xml_string|safe}}';
+//console.log("print xml");
+//console.log(xml);
 
 
-var xml = '{{xml_string|safe}}';
-console.log("print xml");
-console.log(xml);
 
-var xmlDoc = $.parseXML(xml);
-console.log(xmlDoc);
-var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
-console.log(biggest);
+//var xmlDoc = $.parseXML(xml);
+//console.log(xmlDoc);
+//var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
+//console.log(biggest);
 
-var pageID = '{{pageID|safe}}';
 
-var user_id = '{{user_id|safe}}';
+
+var page_id = {{page_id}};
+
+var user_id = {{user_id}};
+
+var notes = {{notes|safe}};
+
+console.log(notes);
 
 
 
 </script>
 
-    <script type="text/javascript" src="/static/js/copy_paste.js" ></script>
+    <!--<script type="text/javascript" src="/static/js/copy_paste.js" ></script>
 
-    <script type="text/javascript" src="/static/js/main.js" ></script>
+    <!<script type="text/javascript" src="/static/js/main.js" ></script>-->
 
     <script type="text/javascript" src="/static/js/notes.js" ></script>
 
-    <script type="text/javascript" src="/static/js/noteLinks.js" ></script>
+    <!--<script type="text/javascript" src="/static/js/noteLinks.js" ></script>
 
     <script type="text/javascript" src="/static/js/drop.js" ></script>
 
@@ -319,7 +337,7 @@ var user_id = '{{user_id|safe}}';
 
     <script type="text/javascript" src="/static/js/categories.js" ></script>
 
-    <script type="text/javascript" src="/static/js/zoom.js" ></script>
+    <script type="text/javascript" src="/static/js/zoom.js" ></script>-->
 
 
 </html>

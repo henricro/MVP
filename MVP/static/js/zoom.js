@@ -107,6 +107,7 @@ $("#plusZoom").bind("click.zoomIn", function() {
         console.log("should zoom in");
         $('body').css("zoom", newZoomLevel);
         defineDrag();
+        RCNote();
     }
 
 });
@@ -122,6 +123,7 @@ $("#minusZoom").bind("click.zoomOut", function() {
     if (zoomLevel > 0.1) {
         $('body').css("zoom", newZoomLevel);
         defineDrag();
+        RCNote();
     }
 
 });
@@ -130,3 +132,14 @@ $("#minusZoom").bind("click.zoomOut", function() {
 $("#zoomButton").bind("click", function() {
     console.log("murder in the first degree");
 });
+
+
+$(document).bind('gestureend', function(e) {
+    if (e.originalEvent.scale < 1.0) {
+        console.log("zoooooooom")
+        // User moved fingers closer together
+    } else if (e.originalEvent.scale > 1.0) {
+        console.log("zoooooooooooooom")
+        // User moved fingers further apart
+    }
+}, false);

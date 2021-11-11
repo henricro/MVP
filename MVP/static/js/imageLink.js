@@ -273,7 +273,7 @@ $(".imageLink").bind('contextmenu', function(event) {
 
         if (value != null) {
             $.ajax({
-                url: '/change_link/'+pageID + '/' + user_id,
+                url: '/change_link/'+ pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     link : value,

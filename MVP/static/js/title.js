@@ -125,9 +125,39 @@ $("#title").bind('contextmenu', function(event) {
 
     });
 
-    writeTitle($(this));
+    // Add Notes
+    $('#titleRC_2').bind('click', function() {
+
+        console.log("tiiiiitle")
+
+        $(document).bind('click.', function() {
+
+            $.ajax({
+                url: '/add_notes/'+pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    page_id: pageID,
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log(pageID);
+                    console.log(user_id);
+                    console.log("problem");
+                }
+            });
+
+        });
+
+    });
+
+    //writeTitle($(this));
 
 });
+
+
 
 
 /*

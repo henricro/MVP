@@ -145,7 +145,7 @@ $(document).bind('contextmenu.newPage', function(event) {
 
                 });
             });
-
+/*
             $('#pageRCPlus_1').bind('click', function() {
                 $('#pageRCPlus_1').unbind('click');
                 var criteria = prompt("Criteria", "");
@@ -169,9 +169,11 @@ $(document).bind('contextmenu.newPage', function(event) {
                     }
                 });
             });
-
+*/
 
         });
+
+
 
     }
 
@@ -452,6 +454,17 @@ $(".pageLink").bind('contextmenu', function(event) {
         }
     });
 
+    // Preview
+    $('#pageLinkRC_4').bind('click', function() {
+
+        $(document).bind('click.writePageLink', function() {
+
+            writePageLink(note);
+
+        });
+
+    });
+
 });
 
 
@@ -668,6 +681,29 @@ $("#plusSign").bind("click", function(){
         });
     });
 
+});
+
+
+$('#pageRCPlus_1').bind('click', function() {
+    $('#pageRCPlus_1').unbind('click');
+
+    $.ajax({
+        url: '/to_do_list/'+pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            new_x : new_x,
+            new_y : new_y,
+        }),
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+            window.location.href='/open_page/'+ pageID + '/' + user_id;
+        },
+        error: function (error) {
+            console.log("problem");
+            window.location.href='/open_page/'+ pageID + '/' + user_id;
+        }
+    });
 });
 
 

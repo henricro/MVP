@@ -77,3 +77,26 @@ pages_pdfs = db.Table('pages_pdfs',
     db.Column('page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True),
     db.Column('pdf_id', db.Integer, db.ForeignKey('Pdfs.id'), primary_key=True)
 )
+
+class Note (db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    page_id = db.Column(db.Integer, db.ForeignKey('Pages.id'))
+    text = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    x = db.Column(db.Integer)
+    y = db.Column(db.Integer)
+    css = db.Column(db.String(1000))
+
+    __tablename__ = "Notes"
+
+class ToDo (db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    page_id = db.Column(db.Integer, db.ForeignKey('Pages.id'))
+    text = db.Column(db.String(128))
+    status = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('ToDos.id'))
+
+    __tablename__ = "ToDos"
+

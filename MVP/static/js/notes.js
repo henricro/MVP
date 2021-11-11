@@ -4,12 +4,16 @@
 ////////////////    BUILD THE NOTES   /////////////////
 ///////////////////////////////////////////////////////
 
-
+/*
 $('.note').each(function(){
     createNote($(this));
+
+    console.log("cerate aveve")
 });
+*/
 
 
+/*
 function createNote(note) {
 
     id = note.attr("id");
@@ -49,14 +53,12 @@ function createNote(note) {
 
     }
 
-
 }
+*/
 
 
-
-///////////////////////////////////////////////////////
 /////////////    CREATE NEW NOTE   ////////////////////
-///////////////////////////////////////////////////////
+
 
 $('*:not("div")').dblclick(function(){
 
@@ -64,46 +66,32 @@ $('*:not("div")').dblclick(function(){
 
     console.log("double clicked on page");
 
-    id = biggest + 1;
-    console.log(id);
-
     if (event.target.nodeName === 'HTML'){
+
         x = event.pageX.toString();
         y = event.pageY.toString();
 
-        // CREATE HTML NOTE
-
-        //console.log(x, y);
-
-        //elem = '<div class="note"><input type="text" class="input" value=""/><div class="content"></div></div>';
-        //$('body').append(elem);
-
-        //var elmnt = $(".note:last");
-        //console.log("print elmnt");
-        //console.log(elmnt);
-        //elmnt.css("position","absolute");
-        //elmnt.css("top",y.concat("px"));
-        //elmnt.css("left",x.concat("px"));
-        //elmnt.attr("id",id);
-        //elmnt.find('.content').text("new content");
-
+        console.log(x, y);
 
         $.ajax({
-            url: '/create_note/'+pageID + '/' + user_id,
+
+            url: '/create_note',
             type: "POST",
             data: JSON.stringify({
                 x : x,
-                y : y
+                y : y,
+                page_id : page_id,
+                user_id : user_id
             }),
             contentType: "application/json",
             success: function (data) {
-                //console.log(data);
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                console.log("successful motherfucker")
+                console.log(data);
             },
             error: function (error) {
-                //console.log("problem");
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                console.log("problem");
             }
+
         });
 
     }
@@ -111,10 +99,41 @@ $('*:not("div")').dblclick(function(){
 
 });
 
+
+///////////   PRINT NOTES   ///////////
+
+for (note in notes) {
+
+    console.log(note)
+
+/*
+    id = note[0].toString();
+    console.log(id);
+    text = note[1];
+    user_id = note[2];
+    page_id = note[3];
+    css = note[4];
+    x = note[5].toString();
+    y = note[6].toString();
+
+    html = "<div class='note' id=" + id.toString() + " contenteditable='false' ></div>"
+
+    $('body').append(html);
+
+    htmlNote = $("#" + id);
+
+    htmlNote.css("top",y.concat("px"));
+    htmlNote.css("left",x.concat("px"));
+    htmlNote.html(text);
+*/
+}
+
+
+
 ///////////////////////////////////////////////////
 /////////////    SELECT NOTE   ////////////////////
 ///////////////////////////////////////////////////
-
+/*
 $('.note').each(function(){
     $(this).bind('click.select', function(){
         selectNote($(this));
@@ -146,7 +165,7 @@ function selectNote(note){
             console.log(event.keyCode);
 
             $.ajax({
-                url: '/delete_note/'+pageID + '/' + user_id,
+                url: '/delete_note/'+page_id + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -154,11 +173,11 @@ function selectNote(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    window.location.href='/open_page/'+ page_id + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    window.location.href='/open_page/'+ page_id + '/' + user_id;
                 }
             });
         }
@@ -221,7 +240,7 @@ function selectNote(note){
     });
 
 }
-
+*/
 
 
 
@@ -229,7 +248,7 @@ function selectNote(note){
 /////////////    WRITE IN NOTE   ////////////////////
 /////////////////////////////////////////////////////
 
-
+/*
 $('.note').each(function(){
     $(this).bind('dblclick.write', function(){
         console.log("double clicked on note");
@@ -258,7 +277,7 @@ function writeNote(note){
             id = note.attr('id')
 
             $.ajax({
-                url: '/update_content/'+pageID + '/' + user_id,
+                url: '/update_content/'+page_id + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id,
@@ -299,11 +318,13 @@ function writeNote(note){
     });
 
 }
-
+*/
 
 //////////////////////////////////////////////////
 ///////////////// RIGHT CLICK NOTE ///////////////
 //////////////////////////////////////////////////
+/*
+function RCNote () {
 
 $(".note").bind('contextmenu', function(event) {
 
@@ -311,6 +332,13 @@ $(".note").bind('contextmenu', function(event) {
 
     new_x = event.pageX;
     new_y = event.pageY;
+
+    zoomLevel = $('body').css("zoom");
+    zoomLevel = parseFloat(zoomLevel);
+    zoomCoeff = 1/zoomLevel;
+
+    new_x = zoomCoeff*new_x;
+    new_y = zoomCoeff*new_y;
 
     var note= $(this);
 
@@ -340,7 +368,7 @@ $(".note").bind('contextmenu', function(event) {
         if (value != null) {
 
             $.ajax({
-                url: '/add_link_note/'+pageID + '/' + user_id,
+                url: '/add_link_note/'+page_id + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     link : value,
@@ -349,11 +377,11 @@ $(".note").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    window.location.href='/open_page/'+ page_id + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    window.location.href='/open_page/'+ page_id + '/' + user_id;
                 }
             });
 
@@ -379,7 +407,7 @@ $(".note").bind('contextmenu', function(event) {
             console.log("sending css");
 
             $.ajax({
-                url: '/add_css/'+pageID + '/' + user_id,
+                url: '/add_css/'+page_id + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
@@ -388,11 +416,11 @@ $(".note").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    window.location.href='/open_page/'+ page_id + '/' + user_id;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    window.location.href='/open_page/'+ page_id + '/' + user_id;
                 }
             });
 
@@ -401,3 +429,8 @@ $(".note").bind('contextmenu', function(event) {
 
 });
 
+}
+
+RCNote();
+
+*/
