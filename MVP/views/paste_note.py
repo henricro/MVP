@@ -82,7 +82,6 @@ def paste_pageLink(pageID, user_id):
     note_id = str(request_data.get('note_id'))
     x = request_data.get('x')
     y = request_data.get('y')
-    type = request_data.get('type')
 
     print(originPageID, note_id, x, y, "yoyoyoyo")
 
@@ -97,209 +96,38 @@ def paste_pageLink(pageID, user_id):
 
     pageName = 'Page_' + pageID
 
-    if type == "visitor":
 
-    ## Copy that note in the current page
+    #### put pageLink child in current page
 
-        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-        root = tree.getroot()
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+    root = tree.getroot()
 
-        # get the biggest id in the xml and increment the value
-        id = tree.xpath("/canvas/meta/biggest_id")[0].text
-        id = int(id) + 1
-        id = str(id)
-        tree.xpath("/canvas/meta/biggest_id")[0].text = id
+    # get the biggest id in the xml and increment the value
+    id = tree.xpath("/canvas/meta/biggest_id")[0].text
+    id = int(id) + 1
+    id = str(id)
+    tree.xpath("/canvas/meta/biggest_id")[0].text = id
 
-        # add a note
-        notes = root.find("notes")
-        notes.append(note)
+    # add a note
+    notes = root.find("notes")
+    notes.append(note)
 
-        # change the note's id
-        note.set("id", id)
+    # change the note's id
+    note.set("id", id)
 
-        note.set("type", "visitor")
-        # ajouter relation visitor-visited dans la DB
-        # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
-        #              {'destPageID': destPageID, 'pageID': pageID})
+    note.set("type", "child")
+    # ajouter relation visitor-visited dans la DB
+    # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
+    #              {'destPageID': destPageID, 'pageID': pageID})
 
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
+    tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
+    tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
 
-        # save the changes in the xml
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
+    # save the changes in the xml
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+    f.write(etree.tostring(root, pretty_print=True))
+    f.close()
 
-    elif type == "child":
-
-        #### put pageLink child in current page
-
-        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-        root = tree.getroot()
-
-        # get the biggest id in the xml and increment the value
-        id = tree.xpath("/canvas/meta/biggest_id")[0].text
-        id = int(id) + 1
-        id = str(id)
-        tree.xpath("/canvas/meta/biggest_id")[0].text = id
-
-        # add a note
-        notes = root.find("notes")
-        notes.append(note)
-
-        # change the note's id
-        note.set("id", id)
-
-        note.set("type", "child")
-        # ajouter relation visitor-visited dans la DB
-        # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
-        #              {'destPageID': destPageID, 'pageID': pageID})
-
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
-
-        # save the changes in the xml
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
-
-        #### put pageLink parent in child page
-        print('### put parent-pageLink in childPage', "yoyoyoyo")
-
-        destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
-        destRoot = destTree.getroot()
-
-        print(destRoot, "yoyoyoyo")
-        print(destPageID, "yoyoyoyo")
-        print(destPageName, "yoyoyoyo")
-
-        # get the biggest id in the xml and increment the value
-        id = destTree.xpath("/canvas/meta/biggest_id")[0].text
-        id = int(id) + 1
-        id = str(id)
-        destTree.xpath("/canvas/meta/biggest_id")[0].text = id
-
-        print(id, "yoyoyoyo")
-
-        # add a note
-        notes = destRoot.find("notes")
-
-        notes.append(etree.Element("note"))
-        new_note = notes[-1]
-
-        # set the note's id, class
-        new_note.set("id", id)
-        new_note.set("class", "pageLink")
-        new_note.set("type", "parent")
-        new_note.set("pageID", pageID)
-
-        parentName = Page.query.filter_by(id=pageID).first().title
-
-        print(parentName, "yoyoyoyo")
-
-        etree.SubElement(new_note, "content").text = parentName
-
-        #print(etree.tostring(destRoot, pretty_print=True))
-
-        # ajouter relation visitor-visited dans la DB
-        # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
-        #              {'destPageID': destPageID, 'pageID': pageID})
-
-        par_x = str(random.randint(0, 100))
-        par_y = str(random.randint(0, 100))
-
-        etree.SubElement(new_note, "x").text = par_x
-        etree.SubElement(new_note, "y").text = par_y
-
-        # save the changes in the xml
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
-        f.write(etree.tostring(destRoot, pretty_print=True))
-        f.close()
-
-    elif type == "parent" :
-
-        #### put pageLink parent in current page
-
-        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-        root = tree.getroot()
-
-        # get the biggest id in the xml and increment the value
-        id = tree.xpath("/canvas/meta/biggest_id")[0].text
-        id = int(id) + 1
-        id = str(id)
-        tree.xpath("/canvas/meta/biggest_id")[0].text = id
-
-        # add a note
-        notes = root.find("notes")
-        notes.append(note)
-
-        # change the note's id
-        note.set("id", id)
-
-        note.set("type", "parent")
-        # ajouter relation visitor-visited dans la DB
-        # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
-        #              {'destPageID': destPageID, 'pageID': pageID})
-
-        par_x = str(random.randint(0, 100))
-        par_y = str(random.randint(0, 100))
-
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = par_x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = par_y
-
-        # save the changes in the xml
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
-
-        #### put pageLink child in parent page
-
-        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
-        root = tree.getroot()
-        print("destPageName", "yoyoyoyo")
-        print(destPageName, "yoyoyoyo")
-
-        # get the biggest id in the xml and increment the value
-        id = tree.xpath("/canvas/meta/biggest_id")[0].text
-        id = int(id) + 1
-        id = str(id)
-        tree.xpath("/canvas/meta/biggest_id")[0].text = id
-
-        # add a note
-        notes = root.find("notes")
-        notes.append(etree.Element("note"))
-        note = notes[-1]
-
-
-        # set the note's id, class, type
-        note.set("id", id)
-        note.set("class", "pageLink")
-        note.set("pageID", pageID)
-        note.set("type", "child")
-
-        childName = Page.query.filter_by(id=pageID).first().title
-        print(childName, "yoyoyoyo")
-        etree.SubElement(note, "content").text = childName
-
-        # ajouter relation visitor-visited dans la DB
-        # engine.execute("insert into visitors (visitor_page_id, visited_page_id) VALUES ( %(destPageID)s, %(pageID)s )",
-        #              {'destPageID': destPageID, 'pageID': pageID})
-
-        title_x = int(tree.xpath("/canvas/notes/note[@id='title']/x")[0].text)
-        title_y = int(tree.xpath("/canvas/notes/note[@id='title']/y")[0].text)
-
-        new_x = str(title_x - 50 + random.randint(0, 100))
-        new_y = str(title_y + 100)
-
-        print(new_x, new_y, "yoyoyoyo")
-
-        etree.SubElement(note, "x").text = new_x
-        etree.SubElement(note, "y").text = new_y
-
-        # save the changes in the xml
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
 
     #print("added the note to current page's xml :")
     ##print(etree.tostring(root, pretty_print=True))

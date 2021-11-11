@@ -143,41 +143,6 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
 
         if (noteClass.includes("pageLink")){
 
-            $("#pasteBox").css("left", x.concat("px"));
-            $("#pasteBox").css("top", y.concat("px"));
-            $("#pasteBox").show();
-
-            $(document).bind('click', function(){
-                if (!$("#pasteBox").is(event.target) && $("#pasteBox").has(event.target).length === 0){
-                    $("#pasteBox").hide();
-                }
-            });
-
-            $('#paste_1').bind('click', function(){
-                console.log("clicked child");
-                $.ajax({
-                    url: '/paste_pageLink/' + pageID + '/' + user_id,
-                    type: "POST",
-
-                    data: JSON.stringify({
-                        originPageID : originPageID,
-                        note_id : note_id,
-                        type : "parent"
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    }
-                });
-            });
-
-            $('#paste_2').bind('click', function(){
-                console.log("clicked parent");
                 $.ajax({
                     url: '/paste_pageLink/' + pageID + '/' + user_id,
                     type: "POST",
@@ -187,7 +152,6 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                         note_id : note_id,
                         x : x,
                         y : y,
-                        type : "child"
                     }),
                     contentType: "application/json",
                     success: function (data) {
@@ -199,70 +163,11 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                         window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
-            });
 
-            $('#paste_3').bind('click', function(){
-                console.log("clicked visitor");
-                $.ajax({
-                    url: '/paste_pageLink/' + pageID + '/' + user_id,
-                    type: "POST",
-
-                    data: JSON.stringify({
-                        originPageID : originPageID,
-                        note_id : note_id,
-                        x : x,
-                        y : y,
-                        type : "visitor"
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    }
-                });
-            });
 
         } else if (noteClass.includes("imagePageLink")){
 
-            $("#pasteBox").css("left", x.concat("px"));
-            $("#pasteBox").css("top", y.concat("px"));
-            $("#pasteBox").show();
 
-            $(document).bind('click', function(){
-                if (!$("#pasteBox").is(event.target) && $("#pasteBox").has(event.target).length === 0){
-                    $("#pasteBox").hide();
-                }
-            });
-
-            $('#paste_1').bind('click', function(){
-                console.log("clicked child");
-                $.ajax({
-                    url: '/paste_imagePageLink/' + pageID + '/' + user_id,
-                    type: "POST",
-
-                    data: JSON.stringify({
-                        originPageID : originPageID,
-                        note_id : note_id,
-                        type : "parent"
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    }
-                });
-            });
-
-            $('#paste_2').bind('click', function(){
-                console.log("clicked parent");
                 $.ajax({
                     url: '/paste_imagePageLink/' + pageID + '/' + user_id,
                     type: "POST",
@@ -284,32 +189,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                         window.location.href='/open_page/'+ pageID + '/' + user_id;
                     }
                 });
-            });
 
-            $('#paste_3').bind('click', function(){
-                console.log("clicked visitor");
-                $.ajax({
-                    url: '/paste_imagePageLink/' + pageID + '/' + user_id,
-                    type: "POST",
-
-                    data: JSON.stringify({
-                        originPageID : originPageID,
-                        note_id : note_id,
-                        x : x,
-                        y : y,
-                        type : "visitor"
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
-                    }
-                });
-            });
 
         } else {
 
