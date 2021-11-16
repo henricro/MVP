@@ -670,4 +670,17 @@ $("#plusSign").bind("click", function(){
 
 });
 
+$(".pageLink").bind("mouseover", function(){
+    console.log("ihbe");
+    pageid = $(this).attr("pageid");
+    x = event.pageX;
+    y = event.pageY;
+    $("iframe").css('top', y);
+    $("iframe").css('left', x);
+    $("iframe").attr("src", "/open_page/" + pageid + "/1")
+    $("iframe").show();
+});
 
+$("iframe").bind("mouseleave", function(){
+    $("iframe").hide();
+});

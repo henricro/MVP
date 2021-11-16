@@ -35,7 +35,7 @@ function createNotes() {
             var title = pages[pageID];
             console.log(id, pageID,title);
             if (type === "child"){
-                elem = '<div class="pageLink child" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+                elem = '<div class="pageLink child" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
                 $('body').append(elem);
             } else if (type ==="parent"){
                 console.log("we have a parent !!");
