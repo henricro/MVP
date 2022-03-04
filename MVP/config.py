@@ -14,8 +14,15 @@ SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
 ADMINS = ['henri.crozel@gmail.com']
 
 
-### PRODUCTION DB
+### DB CONNECTION
 #SQLALCHEMY_DATABASE_URI = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb')
+
+### PRODUCTION DB
+#SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
+
+
+#SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://henricro:ist0reGYST@ch121926-001.dbaas.ovh.net:35951/gystdb'
+
 
 ### LOCAL DEV DB
 

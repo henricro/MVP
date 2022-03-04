@@ -670,6 +670,7 @@ $("#plusSign").bind("click", function(){
 
 });
 
+/*
 $(".pageLink").bind("mouseover", function(){
     x = event.pageX;
     y = event.pageY;
@@ -686,3 +687,4 @@ $(".pageLink").bind("mouseover", function(){
 $("iframe").bind("mouseleave", function(){
     $("iframe").hide();
 });
+*/
