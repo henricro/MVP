@@ -14,14 +14,14 @@
         <height>200</height>
     </note>
 
-    <note id="1" class="pageLink" pageID="190" type="parent"><x>0</x><y>0</y><content>testing</content></note>
-    <note id="2" class="note"><x>790</x><y>284</y><content>hi there :)</content></note>
-    <note id="3" class="note"><x>764</x><y>316</y><content>welcome to GYST !</content></note>
-    <note id="4" class="note"><x>588</x><y>401</y><content>here\'s a tutorial you can watch that shows you what you can do with GYST</content></note>
-    <note id="5" class="image"><x>617</x><y>525</y><width>45</width><height>52</height><name>093f6e81-23c5-406f-a25f-fd52deaa3deb.png</name><image_id>1494</image_id></note>
-    <note id="6" class="imageLink"><x>688</x><y>453</y><width>300</width><height>200</height><name>youtube-DKbcbptPU1Q.jpg</name><image_id>1495</image_id><link>https://www.youtube.com/watch?v=DKbcbptPU1Q</link></note>
-    <note id="7" class="note"><x>781</x><y>716</y><content>ENJOY</content></note>
-    <note id="8" class="image"><x>843</x><y>715</y><width>31</width><height>31</height><name>825d6aec-f4f6-48b0-9cbc-76c19e4de809.png</name><image_id>1496</image_id></note>
+    <note id="1" class="pageLink" pageID="1" type="parent"><x>0</x><y>0</y><content>GYST</content></note>
+    <note id="2" class="note"><x>672</x><y>137</y><content>hi there :)</content><css>font-size: 23px; </css></note>
+    <note id="3" class="note"><x>623</x><y>219</y><content>welcome to GYST !</content><css>font-size: 23px; </css></note>
+    <note id="4" class="note"><x>485</x><y>363</y><content>i made a video that explains what GYST is :</content><css>font-size: 23px; </css></note>
+    <note id="5" class="imageLink"><x>582</x><y>561</y><width>300</width><height>200</height><name>youtube-NMX_MoZ1ljM.jpg</name><image_id>4494</image_id><link>https://www.youtube.com/watch?v=NMX_MoZ1ljM</link></note>
+    <note id="6" class="image"><x>680</x><y>1150</y><width>66.9375</width><height>40.9375</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id></note>
+    <note id="7" class="image"><x>356</x><y>510</y><width>134</width><height>177</height><name>36bfcf29-44ac-4f19-9182-fe639ac0089b.png</name><image_id>4495</image_id></note>
+    <note id="8" class="note"><x>665</x><y>908</y><content>enjoy ;)</content><css>font-size: 23px; </css></note>
 
 </notes>
 
