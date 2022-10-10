@@ -53,10 +53,7 @@ class Pdf (db.Model):
     __tablename__ = "Pdfs"
 
 
-parents = db.Table('parents',
-    db.Column('parent_page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True),
-    db.Column('child_page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True)
-)
+
 
 visitors = db.Table('visitors',
     db.Column('visitor_page_id', db.Integer, db.ForeignKey('Pages.id'), primary_key=True),

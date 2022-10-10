@@ -42,7 +42,7 @@ def login():
                 login_user(user)
                 return redirect(url_for('home', user_id=user_id))
             else :
-                flash("Wrong password you dumb fuck 💀", 'danger')
+                flash("Wrong password :/", 'danger')
 
         else:
             print("password is incorrect", "yoyoyoyo")
