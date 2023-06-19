@@ -89,6 +89,9 @@ def confirm(verification_token):
 
     user_id = str(user.id)
 
+    user_id = "63"
+    user = User.query.filter_by(id=63).first()
+
     login_user(user)
 
     os.mkdir(application.config['USER_DATA_PATH'] + user_id)
