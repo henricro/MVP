@@ -29,11 +29,11 @@ function createImage(note) {
 
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
 
-    if ([6220, 6219, 2288].includes(image_id)) {
-        console.log("id in selection, ", id);
+    if (["6220", "6219", "2288"].includes(image_id)) {
+        console.log("id in selection, ", image_id);
         var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
-        console.log("id not in selection, ", id);
+        console.log("id not in selection, ", image_id);
         var img_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
