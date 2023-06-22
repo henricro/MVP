@@ -11,6 +11,8 @@ function createImage(note) {
 
     var id = note.attr("id");
 
+    console.log(id);
+
     var XMLnote = xmlDoc.getElementById(id);
     console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
@@ -26,8 +28,10 @@ function createImage(note) {
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
     if ([6220, 6219, 2288].includes(id)) {
+        console.log("id in selection, ", id);
         var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
+        console.log("id not in selection, ", id);
         var img_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
