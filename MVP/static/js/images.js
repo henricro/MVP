@@ -27,7 +27,9 @@ function createImage(note) {
 
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
-    if ([6220, 6219, 2288].includes(id)) {
+    var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
+
+    if ([6220, 6219, 2288].includes(image_id)) {
         console.log("id in selection, ", id);
         var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
@@ -36,7 +38,6 @@ function createImage(note) {
     }
 
     var img = "<img class='image_img' draggable='false' src=" + img_src + " />";
-    var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
 
     var name_div = "<div class='image_name'><div>" + name + "</div></div>"
 
