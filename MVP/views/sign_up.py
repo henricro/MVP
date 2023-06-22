@@ -93,8 +93,7 @@ def confirm(verification_token):
 
     user_id = str(user.id)
 
-    user_id = "63"
-    user = User.query.filter_by(id=63).first()
+    user = User.query.filter_by(id=user_id).first()
 
     login_user(user)
 
