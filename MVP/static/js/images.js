@@ -25,7 +25,7 @@ function createImage(note) {
 
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
-    if (["6220", "6219", "2288"].includes(id)) {
+    if ([6220, 6219, 2288].includes(id)) {
         var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
         var img_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
