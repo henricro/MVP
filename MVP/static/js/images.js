@@ -9,7 +9,7 @@ $('.image').each(function(){
 
 function createImage(note) {
 
-    id = note.attr("id");
+    var id = note.attr("id");
 
     var XMLnote = xmlDoc.getElementById(id);
     console.log(XMLnote);
