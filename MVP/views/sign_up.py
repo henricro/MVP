@@ -39,25 +39,27 @@ def sign_up():
 
     if form.is_submitted():
 
-        email=form.email.data
-        password=form.password.data
+        email = form.email.data
+        password = form.password.data
         encrypted_password = get_hashed_password(password)
         form.email.data = None
 
         getemails = "SELECT email from Users where email = %(email)s"
         result = engine.execute(getemails, {'email': email})
         allemails = result.fetchall()
+
         result.close()
 
 
         if not allemails:
+
             verification_token = str(uuid.uuid4())
             verification_token_expiry = datetime.now() + timedelta(hours=72)
             today=datetime.now()
             engine.execute("INSERT INTO Users(email, verification_token, "
                            "verification_token_expiry, password, is_active) VALUES (%s, %s, %s, %s, %s)",
                            (email, verification_token, verification_token_expiry, encrypted_password, 0))
-            flash(f"Thanks ! 🙏 Just click on the link in the confirmtion email we sent you and you'll be good to go ☺️", 'success')
+            flash(f"Thanks ! 🙏 Just click on the link in the confirmation email we sent you and you'll be good to go ☺️", 'success')
 
             link = "{}{}{}".format(application.config['SERVER_DOMAIN'], '/confirm/', verification_token)
 
@@ -69,7 +71,9 @@ def sign_up():
             send_email2.delay("GYST confirmation", text2, html2, to=email)
 
             return render_template('/sign_up.html', form=form)
+
         else :
+
             flash(f"It looks like you already have an account associated with {email}", 'danger')
             return render_template('/sign_up.html', form=form)
 

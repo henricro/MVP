@@ -68,7 +68,7 @@ application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI'
 
 
 ### SERVER DOMAIN
-application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.store:80')
+application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.fr:80')
 #application.config['SERVER_DOMAIN'] = 'http://0.0.0.0'
 
 
