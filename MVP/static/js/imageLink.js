@@ -32,7 +32,6 @@ function createImageLink(note) {
         var src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
-    var src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     var img = "<img class='imageLink_img' draggable='false' src=" + src + " />";
 
     var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
