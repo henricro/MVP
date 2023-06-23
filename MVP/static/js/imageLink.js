@@ -20,10 +20,20 @@ function createImageLink(note) {
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
 
-    var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
-    var src = "/static/user_data/users/" + user_id + "/uploads/" + name
-    var img = "<img class='imageLink_img' draggable='false' src=" + src + " />";
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
+
+    var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+
+    if (["6220", "6219", "2288"].includes(image_id)) {
+        console.log("id in selection, ", image_id);
+        var src = "/static/user_data/users/" + 1 + "/uploads/" + name;
+    } else {
+        console.log("id not in selection, ", image_id);
+        var src = "/static/user_data/users/" + user_id + "/uploads/" + name;
+    }
+
+    var src = "/static/user_data/users/" + user_id + "/uploads/" + name;
+    var img = "<img class='imageLink_img' draggable='false' src=" + src + " />";
 
     var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
 
