@@ -14,10 +14,13 @@
         <height>200</height>
     </note>
 
+    <note id="1" class="image"><x>687</x><y>1196</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
+
+
 </notes>
 
 <meta>
-    <biggest_id>0</biggest_id>
+    <biggest_id>1</biggest_id>
     <type/>
 </meta>
 
