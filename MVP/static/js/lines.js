@@ -4,7 +4,7 @@ createLines();
 
 function createLines() {
 
-    console.log("create the bloody lines");
+    //console.log("create the bloody lines");
 
     var lines = xmlDoc.getElementsByTagName("connexion");
 
@@ -14,7 +14,7 @@ function createLines() {
         var id_1 = line.getAttribute("id_1");
         var id_2 = line.getAttribute("id_2");
 
-        console.log(line);
+        //console.log(line);
 
         var line_id = id_1 + "_" +id_2
 
@@ -27,18 +27,18 @@ function createLines() {
         elem1.css("background", "inherit");
         elem2.css("background", "inherit");
 
-        console.log(elem1, elem2);
+        //console.log(elem1, elem2);
 
         var x1 = parseInt(elem1.css("left").slice(0, -2)) + (parseInt(elem1.css("width").slice(0, -2))/2);
         var x2 = parseInt(elem2.css("left").slice(0, -2)) + (parseInt(elem2.css("width").slice(0, -2))/2);
         var y1 = parseInt(elem1.css("top").slice(0, -2)) + (parseInt(elem1.css("height").slice(0, -2))/2);
         var y2 = parseInt(elem2.css("top").slice(0, -2)) + (parseInt(elem2.css("height").slice(0, -2))/2);
 
-        console.log(x1, y1, x2, y2);
+        //console.log(x1, y1, x2, y2);
 
         var hypotenuse = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
         var angle = Math.atan2((y1-y2), (x1-x2)) *  (180/Math.PI);
-        console.log(hypotenuse, angle);
+        //console.log(hypotenuse, angle);
 
         if(angle >= 90 && angle < 180){
             y1 = y1 - (y1-y2);
@@ -76,7 +76,7 @@ function createLines() {
 
                 var hypotenuse = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
                 var angle = Math.atan2((y1-y2), (x1-x2)) *  (180/Math.PI);
-                console.log(hypotenuse, angle);
+                //console.log(hypotenuse, angle);
 
                 if(angle >= 90 && angle < 180){
                     y1 = y1 - (y1-y2);
@@ -113,7 +113,7 @@ function createLines() {
 
                 var hypotenuse = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
                 var angle = Math.atan2((y1-y2), (x1-x2)) *  (180/Math.PI);
-                console.log(hypotenuse, angle);
+                //console.log(hypotenuse, angle);
 
                 if(angle >= 90 && angle < 180){
                     y1 = y1 - (y1-y2);

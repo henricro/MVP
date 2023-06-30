@@ -1,11 +1,11 @@
 function copyText(note){
 
-    console.log("copied a note");
-    console.log(note);
+    //console.log("copied a note");
+    //console.log(note);
     id = note.attr("id");
     noteClass = note.attr("class");
     info = "yoloooo";
-    console.log(info);
+    //console.log(info);
     $('#myClipboard').show().attr("value", info);
     $('#myClipboard').select();
     $(document).execCommand("copy");
@@ -16,12 +16,12 @@ function copyText(note){
 
 function copyNote(note){
 
-    console.log("copied a note");
-    console.log(note);
+    //console.log("copied a note");
+    //console.log(note);
     id = note.attr("id");
     noteClass = note.attr("class");
     info = "paste_note, " + pageID + ", "  + id + ", "  + noteClass;
-    console.log(info);
+    //console.log(info);
     $('#myClipboard').show().attr("value", info);
     $('#myClipboard').select();
     $(document).execCommand("copy");
@@ -34,11 +34,11 @@ function copyNote(note){
 
 function copySelection(selection){
 
-    console.log("function copySelection");
-    console.log(selection);
+    //console.log("function copySelection");
+    //console.log(selection);
     yolk = "paste_selection; " + pageID + "; " + selection ;
-    console.log("yolk");
-    console.log(yolk);
+    //console.log("yolk");
+    //console.log(yolk);
     $('#myClipboard').show().attr("value", yolk);
     $('#myClipboard').select();
     $(document).execCommand("copy");
@@ -52,14 +52,14 @@ $(document).bind('paste', function(e) {
     var data = e.originalEvent.clipboardData.getData('Text');
     //IE9 Equivalent ==> window.clipboardData.getData("Text");
 
-    console.log("data");
-    console.log(data);
+    //console.log("data");
+    //console.log(data);
 
     if (data.includes("paste_note")) {
 
         data = data.split(", ")
 
-        console.log("pasted a note");
+        //console.log("pasted a note");
 
         originPageID = data[1];
         note_id = data[2];
@@ -69,18 +69,17 @@ $(document).bind('paste', function(e) {
 
     } else if (data.includes("paste_selection")) {
 
-        console.log(data);
+        //console.log(data);
 
         data = data.split("; ")
 
-        console.log(data);
-
-        console.log("pasted a seleciton");
+        //console.log(data);
+        //console.log("pasted a seleciton");
 
         originPageID = data[1];
         selection = data[2];
 
-        console.log(selection);
+        //console.log(selection);
 
         pasteSelection(selection, originPageID, pageID);
 
@@ -94,9 +93,8 @@ $(document).bind('paste', function(e) {
             y = "500";
         }
 
-        console.log("pasted youtube video");
-
-        console.log(data);
+        //console.log("pasted youtube video");
+        //console.log(data);
 
         $.ajax({
             url: '/youtube/'+pageID + '/' + user_id,
@@ -108,17 +106,21 @@ $(document).bind('paste', function(e) {
             }),
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                //console.log(data);
+                current_y = document.documentElement.scrollTop;
+                console.log("current y :", current_y);
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             },
             error: function (error) {
-                console.log("problem");
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                //console.log("problem");
+                current_y = document.documentElement.scrollTop;
+                console.log("current y :", current_y);
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             }
         });
 
     } else {
-        console.log("is not clear");
+        //console.log("is not clear");
     }
 
 });
@@ -127,7 +129,7 @@ $(document).bind('paste', function(e) {
 
 function pasteNote(note_id, noteClass, originPageID, pageID) {
 
-        console.log(originPageID, note_id, noteClass);
+        //console.log(originPageID, note_id, noteClass);
 
         if( $('#mouse_position').find('#x_pos').html() ){
             x = $('#mouse_position').find('#x_pos').html();
@@ -137,9 +139,9 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
             y = "300";
         }
 
-        console.log("last x and y");
-        console.log(x, y, noteClass);
-        console.log(typeof noteClass);
+        //console.log("last x and y");
+        //console.log(x, y, noteClass);
+        //console.log(typeof noteClass);
 
         if (noteClass.includes("pageLink")){
 
@@ -155,12 +157,16 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     }),
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        //console.log(data);
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        //console.log("problem");
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 
@@ -181,38 +187,49 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
                     }),
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        //console.log(data);
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
-                        console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        //console.log("problem");
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 
 
         } else {
 
-            console.log("pasting a note that is not a pageLink");
+            //console.log("pasting a note that is not a pageLink");
 
             $.ajax({
+
                 url: '/paste_note/' + pageID + '/' + user_id,
                 type: "POST",
 
                 data: JSON.stringify({
+
                     originPageID : originPageID,
                     note_id : note_id,
                     x : x,
                     y : y
+
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    //console.log(data);
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    //console.log("problem");
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
@@ -223,8 +240,8 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
 
 function pasteSelection(selection, originPageID, pageID) {
 
-        console.log("pasting a selection");
-        console.log(selection);
+        //console.log("pasting a selection");
+        //console.log(selection);
 
         $.ajax({
             url: '/paste_selection/' + pageID + '/' + user_id,
@@ -236,12 +253,16 @@ function pasteSelection(selection, originPageID, pageID) {
             }),
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                //console.log(data);
+                current_y = document.documentElement.scrollTop;
+                console.log("current y :", current_y);
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             },
             error: function (error) {
-                console.log("problem");
-                window.location.href='/open_page/'+ pageID + '/' + user_id;
+                //console.log("problem");
+                current_y = document.documentElement.scrollTop;
+                console.log("current y :", current_y);
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             }
         });
 

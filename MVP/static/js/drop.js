@@ -58,16 +58,16 @@ $('*:not("div")').on(
             if(e.originalEvent.dataTransfer.files.length) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log("dropped a file");
+                //console.log("dropped a file");
 
                 file = e.originalEvent.dataTransfer.files[0];
 
                 x = e.pageX;
                 y = e.pageY;
 
-                console.log(file);
+                //console.log(file);
                 var type = file['name'].slice(-4);
-                console.log(type);
+                //console.log(type);
 
                 var form_data = new FormData();
                 form_data.append('file', file);
@@ -76,7 +76,7 @@ $('*:not("div")').on(
 
                 if (type ==".png" || type ==".jpg"|| type =="jpeg" ) {
 
-                    console.log("upload image ajax")
+                    //console.log("upload image ajax")
 
                     $.ajax({
                         type: 'POST',
@@ -87,11 +87,15 @@ $('*:not("div")').on(
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
@@ -110,11 +114,15 @@ $('*:not("div")').on(
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
@@ -133,11 +141,15 @@ $('*:not("div")').on(
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
@@ -145,7 +157,7 @@ $('*:not("div")').on(
 
                 if (type =="xlsx") {
 
-                    console.log("upload xlsx ajax")
+                    //console.log("upload xlsx ajax")
 
                     $.ajax({
                         type: 'POST',
@@ -156,11 +168,15 @@ $('*:not("div")').on(
                         processData: false,
                         success: function (data) {
                             console.log("success");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
@@ -201,8 +217,8 @@ $('.modal.forPageLink .drop-area').on(
 
                 file = e.originalEvent.dataTransfer.files[0];
 
-                console.log("drop image in drop area");
-                console.log(file);
+                //console.log("drop image in drop area");
+                //console.log(file);
 
                 pageLink_id = $(this).attr("pageLink_id");
 
@@ -219,11 +235,15 @@ $('.modal.forPageLink .drop-area').on(
                     processData: false,
                     success: function (data) {
                         console.log("success");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 
@@ -250,8 +270,8 @@ $('.modal.forImagePageLink .drop-area').on(
 
                 file = e.originalEvent.dataTransfer.files[0];
 
-                console.log("drop image in drop area");
-                console.log(file);
+                //console.log("drop image in drop area");
+                //console.log(file);
 
                 imagePageLink_id = $(this).attr("imagePageLink_id");
 
@@ -268,11 +288,15 @@ $('.modal.forImagePageLink .drop-area').on(
                     processData: false,
                     success: function (data) {
                         console.log("success");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 
@@ -300,8 +324,8 @@ $('.modal.forImageLink .drop-area').on(
 
                 file = e.originalEvent.dataTransfer.files[0];
 
-                console.log("drop image in drop area");
-                console.log(file);
+                //console.log("drop image in drop area");
+                //console.log(file);
 
                 imageLink_id = $(this).attr("imageLink_id");
 
@@ -318,11 +342,15 @@ $('.modal.forImageLink .drop-area').on(
                     processData: false,
                     success: function (data) {
                         console.log("success");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 

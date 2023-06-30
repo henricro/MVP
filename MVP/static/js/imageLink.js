@@ -10,10 +10,10 @@ function createImageLink(note) {
 
     id = note.attr("id");
 
-    console.log(id);
+    //console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
@@ -25,10 +25,10 @@ function createImageLink(note) {
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
     if (["6220", "6219", "2288"].includes(image_id)) {
-        console.log("id in selection, ", image_id);
+        //console.log("id in selection, ", image_id);
         var src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
-        console.log("id not in selection, ", image_id);
+        //console.log("id not in selection, ", image_id);
         var src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
@@ -80,7 +80,7 @@ function createImageLink(note) {
 
 $('.imageLink').each(function(){
     $(this).bind('click.select', function(){
-        console.log("hobo");
+        //console.log("hobo");
         selectImageLink($(this));
     });
 });
@@ -89,11 +89,11 @@ function selectImageLink(note){
 
     // COPY THE NOTE
     note.bind('copy', function() {
-        console.log("clicked to copy an imageLink");
+        //console.log("clicked to copy an imageLink");
         copyNote(note);
     });
 
-    console.log("select image link");
+    //console.log("select image link");
 
     note.css({"border-color":"green"});
 
@@ -105,8 +105,8 @@ function selectImageLink(note){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            console.log(id);
-            console.log(event.keyCode);
+            //console.log(id);
+            //console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
@@ -117,11 +117,15 @@ function selectImageLink(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -143,10 +147,10 @@ function selectImageLink(note){
 
         var left  = event.pageX;
         var top   = event.pageY;
-        console.log(left, top);
+        //console.log(left, top);
 
         $(this).bind('mouseup.gotolink', function(){
-            console.log(event.pageX, event.pageY);
+            //console.log(event.pageX, event.pageY);
             if (!(left != event.pageX || top != event.pageY)) {
                 window.open(link, '_blank');
             }
@@ -180,7 +184,7 @@ function selectImageLink(note){
                 selectImageLink($(this));
             });
 
-            console.log("monkeeeey");
+            //console.log("monkeeeey");
 
             note.bind('mousedown.drag', function(){
 
@@ -224,7 +228,7 @@ function selectImageLink(note){
                 selectImageLink($(this));
             });
 
-            console.log("monkeeeey");
+            //console.log("monkeeeey");
 
             note.bind('mousedown.drag', function(){
 
@@ -291,11 +295,15 @@ $(".imageLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -313,7 +321,7 @@ $(".imageLink").bind('contextmenu', function(event) {
            $(document).bind('click.second' , function() {
 
                if (event.target.classList.contains('drop-area')) {
-                  console.log('clicked the drop area');
+                  //console.log('clicked the drop area');
                }
                else {
                     modalImageLink.hide();
@@ -327,7 +335,7 @@ $(".imageLink").bind('contextmenu', function(event) {
 
     // Style
     $('#imageLinkRC_3').bind('click', function() {
-        console.log($(this));
+        //console.log($(this));
         if (css){
             var value = prompt("CSS", css);
         } else {
@@ -348,11 +356,15 @@ $(".imageLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 

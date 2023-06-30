@@ -42,9 +42,9 @@ def home(user_id):
 
 
 
-@application.route("/open_page/<pageID>/<user_id>", methods=['GET', 'POST'])
+@application.route("/open_page/<pageID>/<user_id>/<y_position>", methods=['GET', 'POST'])
 @user_required()
-def open_page(pageID, user_id):
+def open_page(pageID, user_id, y_position):
 
     user_id = int(user_id)
     if not user_id == current_user.id:
@@ -53,8 +53,8 @@ def open_page(pageID, user_id):
     user_id = str(user_id)
 
     print("opening page", "yoyoyoyo")
-
     print(pageID, "yoyoyoyo")
+    print(y_position)
 
     # get the parents of the page
     parents = engine.execute("select * from parents where child_page_id= %(pageID)s", {'pageID':pageID}).fetchall()
@@ -87,4 +87,6 @@ def open_page(pageID, user_id):
     type = tree.xpath("/canvas/meta/type")[0].text
 
 
-    return render_template('/page.html', xml_string=xml_string, pageID=pageID, user_id=user_id, pages=pages, title=title)
+    return render_template('/page.html', xml_string=xml_string, pageID=pageID,
+                           user_id=user_id, pages=pages, title=title, y_position = y_position)
+

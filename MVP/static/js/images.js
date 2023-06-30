@@ -11,29 +11,29 @@ function createImage(note) {
 
     var id = note.attr("id");
 
-    console.log(id);
+    //console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
 
-    console.log("build image", "width : ", width, "height : ", height);
-    console.log(note);
-    console.log("get the width and height after build : ", " width : ", note.css("width"), " height : ", note.css("height"));
+    //console.log("build image", "width : ", width, "height : ", height);
+    //console.log(note);
+    //console.log("get the width and height after build : ", " width : ", note.css("width"), " height : ", note.css("height"));
 
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
 
     if (["6220", "6219", "2288"].includes(image_id)) {
-        console.log("id in selection, ", image_id);
+        //console.log("id in selection, ", image_id);
         var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
-        console.log("id not in selection, ", image_id);
+        //console.log("id not in selection, ", image_id);
         var img_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
@@ -41,7 +41,7 @@ function createImage(note) {
 
     var name_div = "<div class='image_name'><div>" + name + "</div></div>"
 
-    console.log(img, x, y);
+    //console.log(img, x, y);
 
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
@@ -77,7 +77,7 @@ function createImage(note) {
 
 $('.image').each(function(){
     $(this).bind('click.select', function(){
-        console.log("hebe");
+        //console.log("hebe");
         selectImage($(this));
     });
 });
@@ -88,7 +88,7 @@ function selectImage(note){
 
     // COPY THE NOTE
     $(document).bind('copy', function() {
-        console.log("clicked to copy an image");
+        //console.log("clicked to copy an image");
         copyNote(note);
     });
 
@@ -106,8 +106,8 @@ function selectImage(note){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            console.log(id);
-            console.log(event.keyCode);
+            //console.log(id);
+            //console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
@@ -118,11 +118,15 @@ function selectImage(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -254,11 +258,15 @@ $(".image").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -294,11 +302,15 @@ $(".image").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 

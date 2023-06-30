@@ -10,10 +10,10 @@ function createNoteLink(note) {
 
     id = note.attr("id");
 
-    console.log(id);
+    //console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
@@ -23,7 +23,7 @@ function createNoteLink(note) {
 
     var link_div = "<div class='noteLink_link' ><div>" + link + "</div></div>"
 
-    console.log(content, x, y);
+    //console.log(content, x, y);
 
     //console.log("print elmnt");
     //console.log(elmnt);
@@ -72,7 +72,7 @@ function selectNoteLink(note){
         copyNote(note);
     });
 
-    console.log("selected a note link");
+    //console.log("selected a note link");
 
     note.css({"border-color":"green"});
 
@@ -94,8 +94,8 @@ function selectNoteLink(note){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            console.log(id);
-            console.log(event.keyCode);
+            //console.log(id);
+            //console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
@@ -106,11 +106,15 @@ function selectNoteLink(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -258,11 +262,15 @@ $(".noteLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -290,7 +298,7 @@ $(".noteLink").bind('contextmenu', function(event) {
 
         if (value != null) {
 
-            console.log("sending css");
+            //console.log("sending css");
 
             $.ajax({
                 url: '/add_css/'+pageID + '/' + user_id,
@@ -302,11 +310,15 @@ $(".noteLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
@@ -431,9 +443,9 @@ $(function() {
 
 function writeNoteLink(note){
 
-    console.log(note);
+    //console.log(note);
 
-    console.log("write in note link");
+    //console.log("write in note link");
 
     note.unbind('mousedown.drag');
 
@@ -453,7 +465,7 @@ function writeNoteLink(note){
 
             $(document).unbind('click.clickout');
 
-            console.log("click out of noteLink");
+            //console.log("click out of noteLink");
 
             note.bind('click.select', function(){
                 selectNoteLink($(this));
@@ -461,7 +473,7 @@ function writeNoteLink(note){
 
             content = note.html();
 
-            console.log(content);
+            //console.log(content);
 
             id = note.attr('id')
 

@@ -88,23 +88,23 @@ function myZoomFunction(event) {
 
 $("#plusZoom").bind("click.zoomIn", function() {
 
-    console.log("zoom in");
+    //console.log("zoom in");
 
     zoomLevel = $('body').css("zoom");
-    console.log("zoom level ", zoomLevel);
-    console.log(typeof(zoomLevel));
+    //console.log("zoom level ", zoomLevel);
+    //console.log(typeof(zoomLevel));
     zoomLevel = parseFloat(zoomLevel);
-    console.log("zoom level ", zoomLevel);
-    console.log(typeof(zoomLevel));
+    //console.log("zoom level ", zoomLevel);
+    //console.log(typeof(zoomLevel));
     newZoomLevel = zoomLevel + 0.05;
 
-    console.log(2+3);
+    //console.log(2+3);
 
-    console.log("new zoom level ", newZoomLevel);
+    //console.log("new zoom level ", newZoomLevel);
 
 
     if (zoomLevel < 0.96) {
-        console.log("should zoom in");
+        //console.log("should zoom in");
         $('body').css("zoom", newZoomLevel);
         defineDrag();
     }
@@ -114,10 +114,10 @@ $("#plusZoom").bind("click.zoomIn", function() {
 $("#minusZoom").bind("click.zoomOut", function() {
 
     zoomLevel = $('body').css("zoom");
-    console.log("zoom level ", zoomLevel);
-    console.log(typeof(zoomLevel));
+    //console.log("zoom level ", zoomLevel);
+    //console.log(typeof(zoomLevel));
     newZoomLevel = zoomLevel - 0.05;
-    console.log("new zoom level ", newZoomLevel);
+    //console.log("new zoom level ", newZoomLevel);
 
     if (zoomLevel > 0.1) {
         $('body').css("zoom", newZoomLevel);
@@ -128,5 +128,5 @@ $("#minusZoom").bind("click.zoomOut", function() {
 
 
 $("#zoomButton").bind("click", function() {
-    console.log("murder in the first degree");
+    //console.log("murder in the first degree");
 });

@@ -11,12 +11,12 @@ $('#title_title').html(title);
 noteTitle = $("#title");
 
 var XMLnote = xmlDoc.getElementById("title");
-console.log(XMLnote);
+//console.log(XMLnote);
 var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
 var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
-console.log(x,y);
-console.log(noteTitle);
+//console.log(x,y);
+//console.log(noteTitle);
 
 noteTitle.css("top",y.concat("px"));
 noteTitle.css("left",x.concat("px"));
@@ -58,7 +58,7 @@ $('#title_title').bind('click.select', function(){
 
 function selectTitle(note){
 
-    console.log("selected the title");
+    //console.log("selected the title");
 
     note.css({"border-color":"green"});
 
@@ -164,7 +164,7 @@ $(function() {
 
 function writeTitle(note){
 
-    console.log("function: writeTitle")
+    //console.log("function: writeTitle")
 
     note.unbind('click.select');
 
@@ -279,12 +279,12 @@ function showParents(){
     $(document).bind('click.hideParents', function(){
         $(document).bind('click.hideParents2', function(){
 
-            console.log(event.target.classList);
+            //console.log(event.target.classList);
 
             // if click outside of parent space
             if (!$("#title_parents").is(event.target) && $("#title_parents").has(event.target).length === 0){
-                console.log(event.target);
-                console.log("clicked outside of parent space");
+                //console.log(event.target);
+                //console.log("clicked outside of parent space");
                 $("#title_parents").hide();
 
                 $(document).unbind('click.hideParents2');
@@ -313,8 +313,8 @@ function showParents(){
             // if click in parent space
             } else {
 
-                console.log("clicked in parent space");
-                console.log(event.target);
+                //console.log("clicked in parent space");
+                //console.log(event.target);
             }
         });
     });

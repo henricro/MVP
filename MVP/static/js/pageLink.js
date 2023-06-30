@@ -13,11 +13,11 @@ function createPageLink(note) {
 
     var pageTitle = note.attr("pageTitle");
 
-    console.log("pagetitle");
-    console.log(id,pageTitle);
+    //console.log("pagetitle");
+    //console.log(id,pageTitle);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
@@ -60,17 +60,17 @@ $(document).bind('contextmenu.newPage', function(event) {
 
     event.preventDefault();
 
-    console.log("event target");
-    console.log(event.target);
+    //console.log("event target");
+    //console.log(event.target);
 
     if ($(event.target).is("html")) {
 
-        console.log("happy go lucky");
+        //console.log("happy go lucky");
 
         new_x = event.pageX;
         new_y = event.pageY;
 
-        console.log(x, y);
+        //console.log(x, y);
 
         $("#pageRCBox").css("left", new_x);
         $("#pageRCBox").css("top", new_y);
@@ -105,11 +105,14 @@ $(document).bind('contextmenu.newPage', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
-                },
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;                },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         });
@@ -161,11 +164,15 @@ $(document).bind('contextmenu.newPage', function(event) {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
                         console.log("problem");
-                        window.location.href='/open_page/'+ pageID + '/' + user_id;
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
             });
@@ -303,11 +310,15 @@ function selectPageLink(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -320,7 +331,7 @@ function selectPageLink(note){
 
         $(document).unbind('keyup.delete');
 
-        window.open('/open_page/'+ pageLinkID + '/' + user_id , '_blank');
+        window.open('/open_page/'+ pageLinkID + '/' + user_id + "/0" , '_blank');
 
     });
 
@@ -406,7 +417,7 @@ $(".pageLink").bind('contextmenu', function(event) {
            $(document).bind('click.second' , function() {
 
                if (event.target.classList.contains('drop-area')) {
-                  console.log('clicked the drop area');
+                  //console.log('clicked the drop area');
                }
                else {
                    modalPageLink.hide();
@@ -441,11 +452,15 @@ $(".pageLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
@@ -571,9 +586,9 @@ $(function() {
 
 function writePageLink(note){
 
-    console.log(note);
+    //console.log(note);
 
-    console.log("write in page link");
+    //console.log("write in page link");
 
     note.unbind('mousedown.drag');
 
@@ -589,7 +604,7 @@ function writePageLink(note){
 
             $(document).unbind('click.clickout');
 
-            console.log("click out of pageLink");
+            //console.log("click out of pageLink");
 
             note.bind('click.select', function(){
                 selectPageLink($(this));
@@ -597,7 +612,7 @@ function writePageLink(note){
 
             content = note.html();
 
-            console.log(content);
+            //console.log(content);
 
             id = note.attr('id');
 
@@ -644,7 +659,7 @@ function writePageLink(note){
 
 $("#plusSign").bind("click", function(){
 
-    console.log("forever young");
+    //console.log("forever young");
 
     new_x = event.pageX;
     new_y = event.pageY;
@@ -660,7 +675,7 @@ $("#plusSign").bind("click", function(){
         $(document).bind('click.pageRCPlusBox2', function(){
             if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
 
-                console.log("mother of all mothers");
+                //console.log("mother of all mothers");
                 $("#pageRCPlusBox").hide();
                 $(document).unbind('click.pageRCPlusBox2');
                 $(document).unbind('click.pageRCPlusBox2');

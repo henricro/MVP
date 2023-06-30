@@ -74,19 +74,19 @@ function dragNote(note, noteX, noteY) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            console.log("event target : ", $(event.target));
+            //console.log("event target : ", $(event.target));
 
-            console.log("parent : ", $(event.target).parent() );
+            //console.log("parent : ", $(event.target).parent() );
 
-            console.log( $(event.target).parent().hasClass("imagePageLink_name") );
+            //console.log( $(event.target).parent().hasClass("imagePageLink_name") );
 
             if ( !( $(event.target).attr("id") == id || $(event.target).parent().attr("id") == id || $(event.target).parent().parent().attr("id") == id ) ){
 
-                console.log("not same id");
+                //console.log("not same id");
 
                 if ( event.target.classList.contains('pageLink') ){
 
-                    console.log("moved an object into another page");
+                    //console.log("moved an object into another page");
 
                     note_id = note.attr("id");
 
@@ -103,24 +103,28 @@ function dragNote(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
 
                     });
 
                 } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
 
-                    console.log("moved an object into another page (imagePageLink");
+                    //console.log("moved an object into another page (imagePageLink");
 
                     note_id = note.attr("id");
 
                     page_id = $(event.target).parent().parent().attr("pageid");
 
-                    console.log("destination page id : ", page_id)
+                    //console.log("destination page id : ", page_id)
 
                     $.ajax({
 
@@ -133,11 +137,15 @@ function dragNote(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
 
                     });
@@ -157,11 +165,15 @@ function dragNote(note, noteX, noteY) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
 
                     });
@@ -170,7 +182,7 @@ function dragNote(note, noteX, noteY) {
 
                 else {
 
-                    console.log("moved an object");
+                    //console.log("moved an object");
 
                     // ajax call with id x and y postion if element has moved
                     $.ajax({
@@ -221,7 +233,7 @@ function dragNote(note, noteX, noteY) {
             }
 
         } else {
-            console.log("object did not move");
+            //console.log("object did not move");
         }
 
 
@@ -240,7 +252,7 @@ $(document).bind('mousedown.multipleSelect', function(){
     startX = event.pageX;
     startY = event.pageY;
 
-    console.log(startX, startY)
+    //console.log(startX, startY)
 
     selectBox = "<div id='selectBox' style='position:absolute; background-color:blue; opacity:0.1;'></div>"
 
@@ -331,8 +343,8 @@ function createSelect() {
 
         });
 
-        console.log(selection.length);
-        console.log(selection);
+        //console.log(selection.length);
+        //console.log(selection);
 
         if (selection.length == 0){
 
@@ -341,7 +353,7 @@ function createSelect() {
         } else {
 
             $(document).bind('copy.copySelection', function() {
-                console.log("clicked to copy selection");
+                //console.log("clicked to copy selection");
                 copySelection(selection);
                 $(document).unbind('copy.copySelection');
             });
@@ -362,11 +374,15 @@ function createSelect() {
                         success: function (data) {
 
                             console.log(data);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
@@ -385,13 +401,13 @@ function createSelect() {
 
                 event.preventDefault();
 
-                console.log("print this");
+                //console.log("print this");
 
-                console.log(event.target);
+                //console.log(event.target);
 
                 //if ($("#selectBox").is(event.target)){
 
-                    console.log("heeeey :)");
+                    //console.log("heeeey :)");
 
                     new_x = event.pageX;
                     new_y = event.pageY;
@@ -424,8 +440,8 @@ function createSelect() {
                     100
                 )
 
-                console.log("mousedown on selectBox");
-                console.log(selection);
+                //console.log("mousedown on selectBox");
+                //console.log(selection);
 
                 mouseX = event.pageX;
                 mouseY = event.pageY;
@@ -536,23 +552,23 @@ function dragNotes(selection) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            console.log("event target : ", $(event.target));
+            //console.log("event target : ", $(event.target));
 
-            console.log($(event.target).attr("id"));
+            //console.log($(event.target).attr("id"));
 
-            console.log("parent : ", $(event.target).parent() );
+            //console.log("parent : ", $(event.target).parent() );
 
-            console.log(selection);
+            //console.log(selection);
 
-            console.log(selection.includes($(event.target).attr("id")));
+            //console.log(selection.includes($(event.target).attr("id")));
 
-            console.log( $(event.target).parent().hasClass("imagePageLink_name") );
+            //console.log( $(event.target).parent().hasClass("imagePageLink_name") );
 
             if ( !( selection.includes($(event.target).attr("id"))  || selection.includes($(event.target).parent().attr("id")) || selection.includes($(event.target).parent().parent().attr("id")) ) ){
 
                 if ( event.target.classList.contains('pageLink') ){
 
-                    console.log("moved a selection into another page");
+                    //console.log("moved a selection into another page");
 
                     page_id = $(event.target).attr("pageid");
 
@@ -567,18 +583,22 @@ function dragNotes(selection) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
 
                     });
 
                 } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
 
-                    console.log("moved a selection into another page");
+                    //console.log("moved a selection into another page");
 
                     page_id = $(event.target).parent().parent().attr("pageid");
 
@@ -593,11 +613,15 @@ function dragNotes(selection) {
                         contentType: "application/json",
                         success: function (data) {
                             console.log(data);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
-                            window.location.href='/open_page/'+ pageID + '/' + user_id;
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
 
                     });
@@ -606,7 +630,7 @@ function dragNotes(selection) {
 
                 else {
 
-                    console.log("moved a selection");
+                    //console.log("moved a selection");
 
                     positions = [];
 
@@ -687,7 +711,7 @@ function dragNotes(selection) {
                 }
 
         } else {
-            console.log("object did not move");
+            //console.log("object did not move");
         }
 
     }

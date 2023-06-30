@@ -13,10 +13,10 @@ function createImagePageLink(note) {
 
     var pageTitle = note.attr("pageTitle");
 
-    console.log(note);
+    //console.log(note);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var type = XMLnote.getAttribute("type");
@@ -36,7 +36,7 @@ function createImagePageLink(note) {
 
     var content_div = "<div class='imagePageLink_name'><div>" + content + "</div></div>"
 
-    console.log(img, x, y);
+    //console.log(img, x, y);
 
     //console.log("print elmnt");
     //console.log(elmnt);
@@ -101,7 +101,7 @@ function selectImagePageLink(note){
         copyNote(note);
     });
 
-    console.log("selected an imageeeePageLink");
+    //console.log("selected an imageeeePageLink");
 
     pageLinkID= note.attr("pageID");
 
@@ -120,8 +120,8 @@ function selectImagePageLink(note){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            console.log(id);
-            console.log(event.keyCode);
+            //console.log(id);
+            //console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
@@ -132,11 +132,15 @@ function selectImagePageLink(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
@@ -148,12 +152,12 @@ function selectImagePageLink(note){
 
         var left  = event.pageX;
         var top   = event.pageY;
-        console.log(left, top);
+        //console.log(left, top);
 
         $(this).bind('mouseup.gotopage', function(){
             console.log(event.pageX, event.pageY);
             if (!(left != event.pageX || top != event.pageY)) {
-                window.open('/open_page/'+ pageLinkID + '/' + user_id, '_blank');
+                window.open('/open_page/'+ pageLinkID + '/' + user_id + '/0', '_blank');
             }
         });
 
@@ -296,7 +300,7 @@ $(".imagePageLink").bind('contextmenu', function(event) {
            $(document).bind('click.second' , function() {
 
                if (event.target.classList.contains('drop-area')) {
-                  console.log('clicked the drop area');
+                  //console.log('clicked the drop area');
                }
                else {
                     modalImagePageLink.hide();
@@ -310,7 +314,7 @@ $(".imagePageLink").bind('contextmenu', function(event) {
 
     // Style
     $('#imagePageLinkRC_3').bind('click', function() {
-        console.log($(this));
+        //console.log($(this));
         if (css_text){
             var value = prompt("CSS", css_text);
         } else {
@@ -319,7 +323,7 @@ $(".imagePageLink").bind('contextmenu', function(event) {
 
         if (value != null) {
 
-            console.log("sending css");
+            //console.log("sending css");
 
             $.ajax({
                 url: '/add_css_text_ipl/'+pageID + '/' + user_id,
@@ -331,11 +335,15 @@ $(".imagePageLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
@@ -343,7 +351,7 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     });
 
     $('#imagePageLinkRC_4').bind('click', function() {
-        console.log($(this));
+        //console.log($(this));
         if (css_image){
             var value = prompt("CSS", css_image);
         } else {
@@ -364,11 +372,15 @@ $(".imagePageLink").bind('contextmenu', function(event) {
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
@@ -444,9 +456,8 @@ $(function() {
 
 function writeImagePageLink(note){
 
-    console.log("bdbd");
-
-    console.log(note);
+    //console.log("bdbd");
+    //console.log(note);
 
     note.unbind('click.select');
     note.unbind('mousedown.drag');
@@ -465,7 +476,7 @@ function writeImagePageLink(note){
 
                     content = note.html();
 
-                    console.log(content);
+                    //console.log(content);
 
                     $(document).unbind('click.update_content');
 

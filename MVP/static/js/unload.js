@@ -19,13 +19,13 @@ function save_sizes(){
     var sizes = []
 
     $(".image, .imagePageLink, .imageLink, .pdf").each(function(){
-        console.log($(this));
+        //console.log($(this));
         var id = $(this).attr("id");
-        console.log(id);
+        //console.log(id);
         var width = $(this).css("width").slice(0,-2);
-        console.log(width);
+        //console.log(width);
         var height = $(this).css("height").slice(0,-2);
-        console.log(height);
+        //console.log(height);
         var info = {id:id, width:width, height:height};
         sizes.push(info);
     })
