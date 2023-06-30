@@ -74,7 +74,7 @@ function dragNote(note, noteX, noteY) {
 
         if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-            //console.log("event target : ", $(event.target));
+            console.log("event target : ", $(event.target));
 
             //console.log("parent : ", $(event.target).parent() );
 
@@ -82,7 +82,7 @@ function dragNote(note, noteX, noteY) {
 
             if ( !( $(event.target).attr("id") == id || $(event.target).parent().attr("id") == id || $(event.target).parent().parent().attr("id") == id ) ){
 
-                //console.log("not same id");
+                console.log("not same id");
 
                 if ( event.target.classList.contains('pageLink') ){
 
