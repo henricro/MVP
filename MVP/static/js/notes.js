@@ -262,21 +262,31 @@ function writeNote(note){
 
             id = note.attr('id')
 
-            $.ajax({
-                url: '/update_content/'+pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    id: id,
-                    content: content
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (error) {
-                    console.log("problem");
-                }
-            });
+            if (content == "") {
+
+                current_y = document.documentElement.scrollTop;
+                console.log("current y :", current_y);
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+
+            } else {
+
+                $.ajax({
+                    url: '/update_content/'+pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        id: id,
+                        content: content
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                    }
+                });
+
+            }
 
             note.attr("contenteditable", "false");
 

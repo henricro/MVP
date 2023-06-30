@@ -372,14 +372,15 @@ function createSelect() {
                         }),
                         contentType: "application/json",
                         success: function (data) {
-
                             console.log(data);
+                            console.log("whenever");
                             current_y = document.documentElement.scrollTop;
                             console.log("current y :", current_y);
                             window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
+                            console.log("wherever");
                             current_y = document.documentElement.scrollTop;
                             console.log("current y :", current_y);
                             window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
