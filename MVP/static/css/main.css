@@ -623,3 +623,11 @@ body {
 #zoomLevel {
     display: none;
 }
+
+#space-down {
+    display: block;
+    width: 40px;
+    margin : 0 auto;
+    opacity: 0;
+    cursor: pointer;
+}

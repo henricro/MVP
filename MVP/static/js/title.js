@@ -72,6 +72,13 @@ function selectTitle(note){
 
     });*/
 
+    // show arrow to add space
+    $('#space-down').css("opacity", 1);
+
+    $('#space-down').bind("click.down-space", function(){
+        sendAllDown();
+    });
+
     // SECOND CLICK
     note.bind('click.parents', function(){
 
@@ -93,10 +100,42 @@ function selectTitle(note){
                 selectTitle($(this));
             });
 
+            $('#space-down').css("opacity", 0);
+
         }
     });
 
+
 }
+
+
+////////////////////////////////////
+////   function sendAllDown   ///////
+////////////////////////////////////
+
+function sendAllDown() {
+
+    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink').each(function(){
+
+        element = $(this);
+        y_pos = element.css("top");
+        console.log(y_pos);
+
+        y_pos = y_pos.slice(0, -2);
+        y_pos = parseInt(y_pos);
+        new_y_pos = y_pos + 20;
+        new_y_pos = new_y_pos.toString();
+        new_y_pos = new_y_pos + "px";
+
+        console.log(new_y_pos);
+
+        element.css("top", new_y_pos);
+
+    });
+
+};
+
+
 
 ///////////////////////////////////////////////////
 ///////////////// RIGHT CLICK TITLE ///////////////
@@ -321,7 +360,9 @@ function showParents(){
 
 }
 
-
+////////////////////////////////////////
+/////   more space under title /////////
+////////////////////////////////////////
 
 
 
