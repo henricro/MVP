@@ -51,18 +51,50 @@ $('#title_title').bind('dblclick.write', function(){
 ///////////////////////////////////////////////////
 
 
-$('#title_title').bind('click.select', function(){
-    selectTitle($(this));
+$('#title').bind('click.select', function(){
+
+    title = $(this);
+    title_title = $("#title_title");
+    title_parents = $("#title_parents");
+
+    selectTitle(title);
+
+    event.stopPropagation();
+
+    $(document).bind('click', function(){
+
+        console.log("whatever");
+
+        if (!title.is(event.target) && title.has(event.target).length === 0){
+
+            title.css({"border-color":""});
+
+            title.unbind('click.parents');
+
+            title.bind('click.select', function(){
+                selectTitle($(this));
+            });
+
+            $('#space-down').css("display", "none");
+
+            $('#space-down').unbind("click.down-space");
+
+            title_title.unbind('click.parents');
+
+        }
+
+    });
+
 });
 
 
-function selectTitle(note){
+function selectTitle(title){
 
-    //console.log("selected the title");
+    console.log("selected the title");
 
-    note.css({"border-color":"green"});
+    title.css({"border-color":"green"});
 
-    note.unbind('click.select');
+    title.unbind('click.select');
 
     /*note.bind('dblclick.write', function(){
 
@@ -73,45 +105,41 @@ function selectTitle(note){
     });*/
 
     // show arrow to add space
-    $('#space-down').css("opacity", 1);
+    $('#space-down').css("display", "block");
 
     $('#space-down').bind("click.down-space", function(){
+
         sendAllDown();
+
+        $.ajax({
+
+            url: '/send_all_down/' + pageID + '/' + user_id,
+            type: "POST",
+            contentType: "application/json",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (error) {
+                console.log("problem");
+            }
+
+        });
+
     });
 
+
+
     // SECOND CLICK
-    note.bind('click.parents', function(){
+    title_title.bind('click.parents', function(){
 
         showParents();
 
     });
 
-    $(document).click(function(){
 
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            note.css({"border-color":""});
-
-            /*note.unbind('dblclick.write');*/
-
-            note.unbind('click.parents');
-
-            note.bind('click.select', function(){
-                selectTitle($(this));
-            });
-
-            $('#space-down').css("opacity", 0);
-
-        }
-    });
 
 
 }
-
-
-////////////////////////////////////
-////   function sendAllDown   ///////
-////////////////////////////////////
 
 function sendAllDown() {
 
@@ -123,13 +151,17 @@ function sendAllDown() {
 
         y_pos = y_pos.slice(0, -2);
         y_pos = parseInt(y_pos);
-        new_y_pos = y_pos + 20;
+        new_y_pos = y_pos + 40;
         new_y_pos = new_y_pos.toString();
         new_y_pos = new_y_pos + "px";
 
         console.log(new_y_pos);
 
         element.css("top", new_y_pos);
+
+        //id = element.attr("id");
+        //x = element.css("left");
+        //y = new_y_pos
 
     });
 

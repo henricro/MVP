@@ -625,9 +625,8 @@ body {
 }
 
 #space-down {
-    display: block;
+    display: none;
     width: 40px;
     margin : 0 auto;
-    opacity: 0;
     cursor: pointer;
 }
