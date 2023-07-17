@@ -50,10 +50,29 @@ function copySelection(selection){
 $(document).bind('paste', function(e) {
 
     var data = e.originalEvent.clipboardData.getData('Text');
+    //var data = e.originalEvent.clipboardData;
     //IE9 Equivalent ==> window.clipboardData.getData("Text");
 
-    //console.log("data");
-    //console.log(data);
+    var items = e.originalEvent.clipboardData.items;
+
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          var file = items[i].getAsFile();
+          var reader = new FileReader();
+
+          reader.onload = function(event) {
+            var imageData = event.target.result;
+            // Process the image data here
+            console.log(imageData);
+          };
+
+          reader.readAsDataURL(file);
+          break;
+        }
+      }
+
+    console.log("data");
+    console.log(data);
 
     if (data.includes("paste_note")) {
 
@@ -119,8 +138,38 @@ $(document).bind('paste', function(e) {
             }
         });
 
-    } else {
-        //console.log("is not clear");
+    } else if (data.includes("https://")  || data.includes("http://") ) {
+
+        if( $('#mouse_position').find('#x_pos').html() ){
+            x = $('#mouse_position').find('#x_pos').html();
+            y = $('#mouse_position').find('#y_pos').html();
+        } else {
+            x = "500";
+            y = "500";
+        }
+
+        $.ajax({
+            url: '/paste_note_link/' + pageID + '/' + user_id,
+            type: "POST",
+            data: JSON.stringify({
+                data : data,
+                x : x ,
+                y : y
+            }),
+            contentType: "application/json",
+            success: function (data) {
+                console.log(data);
+                current_y = document.documentElement.scrollTop;
+                //console.log("current y :", current_y);
+                window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+            },
+            error: function (error) {
+                console.log("problem");
+                current_y = document.documentElement.scrollTop;
+                //console.log("current y :", current_y);
+            }
+        });
+
     }
 
 });

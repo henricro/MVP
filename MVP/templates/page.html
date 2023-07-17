@@ -259,20 +259,19 @@
 
 
 var title = '{{title}}';
-console.log("print title");
-console.log(title);
+//console.log("print title");
+//console.log(title);
 
 var pages = {{pages|safe}};
 
-
 var xml = '{{xml_string|safe}}';
-console.log("print xml");
-console.log(xml);
+//console.log("print xml");
+//console.log(xml);
 
 var xmlDoc = $.parseXML(xml);
-console.log(xmlDoc);
+//console.log(xmlDoc);
 var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
-console.log(biggest);
+//console.log(biggest);
 
 var pageID = '{{pageID|safe}}';
 

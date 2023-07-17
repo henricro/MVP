@@ -8,32 +8,45 @@ $('.noteLink').each(function(){
 
 function createNoteLink(note) {
 
+    console.log("function create notelink");
+
     id = note.attr("id");
 
     //console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
     //console.log(XMLnote);
+
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
+    var content_div = "<div class='noteLink_content' contenteditable='false'>" + content + "</div>";
+    var link_div = "<div class='noteLink_link' ><div>" + link + "</div></div>";
 
-    var content_div = "<div class='noteLink_content' contenteditable='false'>" + content + "</div>"
+    note.css("top", y.concat("px"));
+    note.css("left", x.concat("px"));
+    note.attr("link", link);
+    note.attr("title", "link to ".concat(link))
+    note.append(content_div);
+    note.append(link_div);
 
-    var link_div = "<div class='noteLink_link' ><div>" + link + "</div></div>"
+    if (XMLnote.getElementsByTagName("favicon")[0]){
+
+        var favicon = XMLnote.getElementsByTagName("favicon")[0].childNodes[0].nodeValue;
+        var user_uploads_path = "/static/user_data/users/" + user_id + "/uploads/";
+        var favicon_div = "<img class='noteLink_favicon' src= '" + user_uploads_path + favicon + "'/>"
+        note.append(favicon_div);
+
+    }
+//    "/static/user_data/users/" + 1 + "/uploads/" + name;
 
     //console.log(content, x, y);
 
     //console.log("print elmnt");
     //console.log(elmnt);
 
-    note.css("top",y.concat("px"));
-    note.css("left",x.concat("px"));
-    note.attr("link", link);
-    note.attr("title", "link to ".concat(link))
-    note.append(content_div);
-    note.append(link_div);
+
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
 
@@ -98,7 +111,7 @@ function selectNoteLink(note){
             //console.log(event.keyCode);
 
             $.ajax({
-                url: '/delete_note/'+pageID + '/' + user_id,
+                url: '/delete_note/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -131,6 +144,8 @@ function selectNoteLink(note){
     note.bind('click.gotolink', function(){
 
         $(document).unbind('keyup.delete');
+
+        console.log(link);
 
         window.open(link, '_blank');
 

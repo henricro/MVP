@@ -17,17 +17,15 @@ def upload_pdf(pageID, user_id):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("upload pdf route", "yoyoyoyo")
-
-    ### add the pdf to uploads
+    print("upload pdf route")
 
     Request = request.form
-    print(Request, "yoyoyoyo")
+    #print(Request)
 
     x = Request.get('x')
     y = Request.get('y')
     file = request.files.get('file')
-    print(x, y, file, "yoyoyoyo")
+    # print(x, y, file, "yoyoyoyo")
     # print(type(file))
     # print(dict(file))
 
@@ -46,11 +44,10 @@ def upload_pdf(pageID, user_id):
                    {'name': file.filename})
 
     pdf_id = engine.execute("SELECT id FROM Pdfs ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("pdf_id", "yoyoyoyo")
-    print(pdf_id, "yoyoyoyo")
+    print(pdf_id)
 
-    engine.execute("insert into pages_pdfs (page_id, pdf_id) VALUES ( %(page_id)s, %(pdf_id)s )",
-                   {'page_id': pageID, 'pdf_id': pdf_id})
+#    engine.execute("insert into pages_pdfs (page_id, pdf_id) VALUES ( %(page_id)s, %(pdf_id)s )",
+ #                  {'page_id': pageID, 'pdf_id': pdf_id})
 
     ### add a note in the XML with the x, y positions and the name of the file
 
@@ -66,17 +63,17 @@ def upload_pdf(pageID, user_id):
 
     # save the first page as jpeg in DB
 
-    engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-                   {'name': filename + ".first_page.jpg", 'type': ".jpg"})
+    #engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
+     #              {'name': filename + ".first_page.jpg", 'type': ".jpg"})
 
     # save relationship between pdf and first page image in DB
 
-    image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id", "yoyoyoyo")
-    print(image_id, "yoyoyoyo")
+    #image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
+    #print("image_id", "yoyoyoyo")
+    #print(image_id, "yoyoyoyo")
 
-    engine.execute("insert into pdfs_images (pdf_id, image_id) VALUES ( %(pdf_id)s, %(image_id)s )",
-                   {'pdf_id': pdf_id, 'image_id': image_id})
+    #engine.execute("insert into pdfs_images (pdf_id, image_id) VALUES ( %(pdf_id)s, %(image_id)s )",
+    #               {'pdf_id': pdf_id, 'image_id': image_id})
 
     # get the biggest id in the xml and increment the value
     id = tree.xpath("/canvas/meta/biggest_id")[0].text

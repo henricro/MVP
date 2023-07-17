@@ -54,11 +54,13 @@ $('*:not("div")').on(
 $('*:not("div")').on(
     'drop',
     function(e){
+
         if(e.originalEvent.dataTransfer){
             if(e.originalEvent.dataTransfer.files.length) {
+
                 e.preventDefault();
                 e.stopPropagation();
-                //console.log("dropped a file");
+                //console.log("dropped something");
 
                 file = e.originalEvent.dataTransfer.files[0];
 
@@ -67,7 +69,7 @@ $('*:not("div")').on(
 
                 //console.log(file);
                 var type = file['name'].slice(-4);
-                //console.log(type);
+                console.log("type" + type);
 
                 var form_data = new FormData();
                 form_data.append('file', file);
@@ -80,82 +82,82 @@ $('*:not("div")').on(
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_image/'+pageID + '/' + user_id,
+                        url:  '/upload_image/' + pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            console.log("success");
+                            //console.log("success");
                             current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            //console.log("current y :", current_y);
+                            window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
-                            console.log("problem");
+                            //console.log("problem");
                             current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            //console.log("current y :", current_y);
+                            window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
                 }
 
-                if (file['name'].includes('Screenshot')) {
+                else if (file['name'].includes('Screenshot')) {
 
-                    console.log("upload image ajax")
+                     //console.log("upload image ajax")
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_image/'+pageID + '/' + user_id,
+                        url:  '/upload_image/' + pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            console.log("success");
+                            //console.log("success");
                             current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            //console.log("current y :", current_y);
+                            window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
-                            console.log("problem");
+                            //console.log("problem");
                             current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            //console.log("current y :", current_y);
+                            window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
                 }
 
-                if (type ==".pdf") {
+                else if (type ==".pdf") {
 
                     console.log("upload pdf ajax")
 
                     $.ajax({
                         type: 'POST',
-                        url:  '/upload_pdf/'+pageID + '/' + user_id,
+                        url:  '/upload_pdf/' + pageID + '/' + user_id,
                         data: form_data,
                         contentType: false,
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            console.log("success");
+                            //console.log("success");
                             current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            //console.log("current y :", current_y);
+                            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
-                            console.log("problem");
+                            //console.log("problem");
                             current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            //console.log("current y :", current_y);
+                            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
                 }
 
-                if (type =="xlsx") {
+                else if (type =="xlsx") {
 
                     //console.log("upload xlsx ajax")
 
@@ -170,17 +172,20 @@ $('*:not("div")').on(
                             console.log("success");
                             current_y = document.documentElement.scrollTop;
                             console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             console.log("problem");
                             current_y = document.documentElement.scrollTop;
                             console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 
                 }
+
+                else {console.log("hehe");}
+
             }
         }
     }
@@ -228,7 +233,7 @@ $('.modal.forPageLink .drop-area').on(
 
                 $.ajax({
                     type: 'POST',
-                    url:  '/add_image_to_pageLink/'+pageID + '/' + user_id,
+                    url:  '/add_image_to_pageLink/' + pageID + '/' + user_id,
                     data: form_data,
                     contentType: false,
                     cache: false,
@@ -237,13 +242,13 @@ $('.modal.forPageLink .drop-area').on(
                         console.log("success");
                         current_y = document.documentElement.scrollTop;
                         console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;;
+                        window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;;
                     },
                     error: function (error) {
                         console.log("problem");
                         current_y = document.documentElement.scrollTop;
                         console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 
@@ -281,22 +286,22 @@ $('.modal.forImagePageLink .drop-area').on(
 
                 $.ajax({
                     type: 'POST',
-                    url:  '/change_image_imagePageLink/'+pageID + '/' + user_id,
+                    url:  '/change_image_imagePageLink/' + pageID + '/' + user_id,
                     data: form_data,
                     contentType: false,
                     cache: false,
                     processData: false,
                     success: function (data) {
-                        console.log("success");
+                        //console.log("success");
                         current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        //console.log("current y :", current_y);
+                        window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
-                        console.log("problem");
+                        //console.log("problem");
                         current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        //console.log("current y :", current_y);
+                        window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 
@@ -335,22 +340,22 @@ $('.modal.forImageLink .drop-area').on(
 
                 $.ajax({
                     type: 'POST',
-                    url:  '/change_image_imageLink/'+pageID + '/' + user_id,
+                    url:  '/change_image_imageLink/' +pageID + '/' + user_id,
                     data: form_data,
                     contentType: false,
                     cache: false,
                     processData: false,
                     success: function (data) {
-                        console.log("success");
+                        //console.log("success");
                         current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        //console.log("current y :", current_y);
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
-                        console.log("problem");
+                        //console.log("problem");
                         current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        //console.log("current y :", current_y);
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     }
                 });
 

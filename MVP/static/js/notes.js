@@ -331,10 +331,9 @@ $(".note").bind('contextmenu', function(event) {
     new_x = event.pageX;
     new_y = event.pageY;
 
-    var note= $(this);
+    var note = $(this);
 
     id = note.attr("id");
-    //console.log("note id : ", id);
     css = $(this).attr('added_css');
 
     $("#noteRCBox").css("left", new_x);
@@ -359,7 +358,7 @@ $(".note").bind('contextmenu', function(event) {
         if (value != null) {
 
             $.ajax({
-                url: '/add_link_note/'+pageID + '/' + user_id,
+                url: '/add_link_to_note/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     link : value,
@@ -367,16 +366,16 @@ $(".note").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    //console.log("current y :", current_y);
+                    window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
+                    //console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    //console.log("current y :", current_y);
+                    window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
