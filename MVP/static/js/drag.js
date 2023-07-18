@@ -246,6 +246,7 @@ function createSelect() {
     $(document).bind('mouseup.multipleSelect', function(){
         //console.log("mouse up");
         stopSelect();
+        $(document).unbind('mouseup.multipleSelect');
     });
 
 }
@@ -380,6 +381,8 @@ function stopSelect() {
         // if right click on selection box
         $("#selectBox").bind('contextmenu', function(event){
 
+            console.log("right click on selection box");
+
             event.preventDefault();
 
             //console.log("print this");
@@ -389,14 +392,18 @@ function stopSelect() {
             $("#selectionRCBox").css("top", event.pageY);
             $("#selectionRCBox").show();
 
+            // if you click outside of the box
             $(document).click(function(){
-                if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0){
-                    $("#selectionRCBox").hide();
-                    newPage();
+                if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0 && !$("#selectBox").is(event.target)){
+                     $("#selectionRCBox").hide();
+                     console.log("clicked outside selection box");
+                     console.log(event.target);
                 }
             });
 
             $('#selectionRC_1').bind('click', function() {
+                console.log("clicked on align items");
+                event.stopPropagation();
                 alignItems(selection);
             });
 
@@ -407,20 +414,25 @@ function stopSelect() {
         // if drag selection
         $('#selectBox').bind('mousedown.drag', function(){
 
-            $(document).unbind('keyup.delete');
+            if (event.which == 3) { console.log("right click"); } else {
 
-            setTimeout(
-                function() {$('#selectBox').hide();},
-                100
-            )
+                $(document).unbind('keyup.delete');
 
-            //console.log("mousedown on selectBox");
-            //console.log(selection);
+                setTimeout(
+                    function() {$('#selectBox').hide();},
+                    100
+                )
 
-            mouseX = event.pageX;
-            mouseY = event.pageY;
+                //console.log("mousedown on selectBox");
+                //console.log(selection);
 
-            dragNotes(selection);
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+
+                console.log("drag Selection");
+                dragNotes(selection);
+
+            }
 
         });
 
@@ -474,6 +486,9 @@ function unSelect(selection) {
             } else if (clasis == "pdf"){
                 note.css({"border":"1px solid grey"});
                 note.css({"border-radius":"5px"});
+            } else if (clasis == "image"){
+                note.css({"border":"1px solid transparent"});
+                note.css({"border-radius":"5px"});
             } else {}
         }
 
@@ -489,52 +504,61 @@ function unSelect(selection) {
 
 function alignItems(selection){
 
+    $("#selectionRCBox").hide();
+
     console.log("align items");
     console.log(selection);
 
-    base_x = $("#" + selection[0]).css("left");
+    base_x = parseInt($("#" + selection[0]).css("left").slice(0, -2));
+
+    new_positions = []
 
     for (let i = 0; i < selection.length - 1; i++){
 
         id = selection[i];
         note = $('#' + id);
 
-        note.css("left", base_x);
+        note.css("left", base_x.toString().concat("px"));
         height = note.css("height");
 
         next_id = selection[i+1]
         next_note = $('#' + next_id);
+        next_note.css("transition", "left 1s, top 1s");
         next_note.css("left", base_x);
         next_note_top = parseInt(note.css("top").slice(0, -2)) + parseInt(note.css("height").slice(0, -2)) +  10
         next_note.css("top", next_note_top.toString().concat("px"));
 
+        next_note.css("transition", "top 0s, left 0s");
+
+        new_positions.push([id, base_x.toString(), note.css("top").slice(0, -2)]);
+
     }
 
-    console.log("ajax call");
+    new_positions.push([selection[selection.length - 1], base_x.toString(), next_note_top.toString()])
 
+    console.log("ajax call");
+    console.log(selection);
+
+    console.log(new_positions);
+
+    // ajax call with id x and y postion if element has moved
     $.ajax({
 
-        url: '/move_notes/' + pageID + '/' + user_id,
+        url: '/update_positions/' + pageID + '/' + user_id,
         type: "POST",
         data: JSON.stringify({
-            selection: selection,
-            page_id: pageID
+            positions : new_positions
         }),
         contentType: "application/json",
         success: function (data) {
             console.log(data);
-            current_y = document.documentElement.scrollTop;
-            console.log("current y :", current_y);
-            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
         },
         error: function (error) {
             console.log("problem");
-            current_y = document.documentElement.scrollTop;
-            console.log("current y :", current_y);
-            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
         }
 
     });
+
 
 
 }

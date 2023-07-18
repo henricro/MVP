@@ -42,16 +42,14 @@ def update_position(pageID, user_id):
 @application.route("/update_positions/<pageID>/<user_id>", methods=['POST'])
 def update_positions(pageID, user_id):
 
-    print("route : update positions", "yoyoyoyo")
+    print("route : update positions")
 
     request_data = request.get_json()
     positions = request_data.get('positions')
-    print(positions, "yoyoyoyo")
+    print(positions)
 
     pageID = str(pageID)
-    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
-    print(pageName, "yoyoyoyo")
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
@@ -60,16 +58,12 @@ def update_positions(pageID, user_id):
 
     for note in positions:
 
-        print(note, "yoyoyoyo")
-
         id = note[0]
         x = str(note[1])
         y = str(note[2])
 
         tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
         tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
-
-        #print(etree.tostring(root, pretty_print=True))
 
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))

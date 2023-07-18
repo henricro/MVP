@@ -91,7 +91,7 @@ function selectNoteLink(note){
     noteLink_link.css("font-size", "20px");
 
     var content = note.find('.noteLink_content');
-    content.css("opacity", 0.3);
+    content.css("opacity", 0.15);
 
     var favicon = note.find('.noteLink_favicon');
     console.log("favicon : ", favicon);
