@@ -41,7 +41,7 @@ function createNotes() {
             var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
-            //console.log(id, pageID,title);
+            console.log(id, pageID,title);
 
             elem = '<div class="pageLink" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
             $('body').append(elem);

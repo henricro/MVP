@@ -150,3 +150,18 @@ def update_content(pageID, user_id):
 
     return "yo"
 
+
+
+@application.route("/edit_title/<pageID>/<user_id>", methods=['POST'])
+def edit_title(pageID, user_id):
+
+    request_data = request.get_json()
+    value = str(request_data.get('value'))
+
+    pageID = str(pageID)
+
+    engine.execute("Update Pages set title = %(value)s where id= %(pageID)s ",
+                       {'value': value, 'pageID': pageID})
+
+    return "yo"
+

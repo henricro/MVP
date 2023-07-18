@@ -126,7 +126,6 @@ function selectTitle(title){
     });
 
 
-
     // SECOND CLICK
     title_title.bind('click.parents', function(){
 
@@ -173,6 +172,9 @@ $("#title").bind('contextmenu', function(event) {
 
     event.preventDefault();
 
+    title = $("#title_title").html();
+    console.log(title);
+
     new_x = event.pageX;
     new_y = event.pageY;
 
@@ -192,7 +194,42 @@ $("#title").bind('contextmenu', function(event) {
 
     });
 
-    writeTitle($(this));
+    // Edit Title
+    $('#titleRC_1').bind('click', function() {
+
+        var value = prompt("Title", title);
+
+        if (value != null && value!="") {
+
+            $.ajax({
+                url: '/edit_title/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    value : value
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    //console.log(data);
+                    current_y = document.documentElement.scrollTop;
+                    //console.log("current y :", current_y);
+                    window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                },
+                error: function (error) {
+                    //console.log("problem");
+                    current_y = document.documentElement.scrollTop;
+                    //console.log("current y :", current_y);
+                    window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                }
+            });
+
+        } else {
+            current_y = document.documentElement.scrollTop;
+            //console.log("current y :", current_y);
+            window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+        }
+
+    });
+
 
 });
 

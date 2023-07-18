@@ -24,10 +24,10 @@ function createPageLink(note) {
 
     //console.log("print elmnt");
     //console.log(elmnt);
-    note.css("top",y.concat("px"));
-    note.css("left",x.concat("px"));
+    note.css("top", y.concat("px"));
+    note.css("left", x.concat("px"));
     note.attr("title", "go to page ".concat(pageTitle));
-    note.html(content);
+    note.html(pageTitle);
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
 
