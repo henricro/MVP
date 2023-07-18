@@ -190,7 +190,7 @@ function selectNoteLink(note){
 
     });
 
-    $(document).click(function(){
+    $(document).bind('click.outsideNoteLink', function(){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
@@ -231,6 +231,8 @@ function selectNoteLink(note){
                 dragNote(note, noteX, noteY);
 
             });
+
+            $(document).unbind('click.outsideNoteLink');
 
         }
     });

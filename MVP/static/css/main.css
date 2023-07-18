@@ -78,6 +78,7 @@
   justify-content:center;
   font-size:12px;
   text-decoration: underline;
+  cursor: pointer;
 
   /* transition effect. not necessary */
   transition: opacity .2s, font-size .2s, color .2s;
@@ -279,17 +280,10 @@
     border-right : 2px solid #F68C57;
 }
 
-.child.pageLink{
+.pageLink{
     background-color : rgb(200, 240, 149, 0.2);
 }
 
-.parent.pageLink{
-    background-color : rgb(52, 190, 121, 0.5);
-}
-
-.visitor.pageLink{
-    background-color : rgb(233, 227, 97, 0.5);
-}
 
 .input{
   display:none;

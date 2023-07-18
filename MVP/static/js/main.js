@@ -43,18 +43,9 @@ function createNotes() {
             var title = pages[pageID];
             //console.log(id, pageID,title);
 
-            if (type === "child"){
-                elem = '<div class="pageLink child" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
-                $('body').append(elem);
-            } else if (type ==="parent"){
-                //console.log("we have a parent !!");
-                elem = '<div class="pageLink parent" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
-                $('#parents').append(elem);
-            } else if (type ==="visitor"){
-                //console.log("we have a parent !!");
-                elem = '<div class="pageLink visitor" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
-                $('body').append(elem);
-            }
+            elem = '<div class="pageLink" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
+            $('body').append(elem);
+
 
         }
 
