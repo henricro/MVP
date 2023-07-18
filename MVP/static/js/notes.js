@@ -121,14 +121,16 @@ $('*:not("div")').dblclick(function(){
 ///////////////////////////////////////////////////
 
 $('.note').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).bind('click.selectNote', function(){
+        console.log("hhaa", $(this));
         selectNote($(this));
     });
 });
 
 
-
 function selectNote(note){
+
+    event.stopPropagation();
 
     id = note.attr("id");
 
@@ -138,9 +140,9 @@ function selectNote(note){
         copyNote(note);
     });
 
-    //console.log("select note");
+    console.log("select note");
 
-    note.css({"border-color":"green"});
+    note.css({"border":"1px solid green"});
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -173,10 +175,12 @@ function selectNote(note){
         }
     });
 
-    note.unbind('click.select');
+    note.unbind('click.selectNote');
 
     // SECOND CLICK
     note.bind('click.write', function(){
+
+        console.log("click to write in note");
 
         $(document).unbind('keyup.delete')
 
@@ -190,8 +194,6 @@ function selectNote(note){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border-color":""});
-
             $(document).unbind('keyup.delete');
 
             note.unbind('click.write');
@@ -208,11 +210,15 @@ function selectNote(note){
 
     });
 
-    $(document).click(function(){
+    event.stopPropagation();
+
+    $(document).bind('click.outsideNote', function(){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border-color":""});
+            console.log("click outside of note");
+
+            note.css({"border":"1px solid rgb(0,0,0,0)"});
 
             $(document).unbind('keyup.delete');
 
@@ -226,7 +232,10 @@ function selectNote(note){
 
             $(document).unbind('copy');
 
+            $(document).unbind('click.outsideNote');
+
         }
+
     });
 
 }

@@ -94,7 +94,7 @@ function selectImage(note){
 
     console.log("selected an image");
 
-    note.css({"border-color":"green"});
+    note.css({"border":"1px solid green"});
 
     var image_img = note.find('.image_img');
 
@@ -138,11 +138,11 @@ function selectImage(note){
 
     note.unbind('click.select');
 
-    $(document).click(function(){
+    $(document).bind('click.outsideImage', function(){
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border-color":""});
+            note.css({"border":"1px solid transparent"});
 
             image_img.css("opacity", 1);
 
@@ -167,6 +167,8 @@ function selectImage(note){
                 dragNote(note, noteX, noteY);
 
             });
+
+            $(document).unbind('click.outsideImage');
 
         }
 

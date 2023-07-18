@@ -36,10 +36,6 @@ noteParents.css("left",x.concat("px"));
 noteParents.css("width",width.concat("px"));
 noteParents.css("height",height.concat("px"));
 
-$('#title_title').bind('click.select', function(){
-    selectNote($(this));
-});
-
 $('#title_title').bind('dblclick.write', function(){
     writeNote($(this));
 });
@@ -51,7 +47,9 @@ $('#title_title').bind('dblclick.write', function(){
 ///////////////////////////////////////////////////
 
 
-$('#title').bind('click.select', function(){
+$('#title').bind('click.selectTitle', function(){
+
+    console.log("clicked on title");
 
     title = $(this);
     title_title = $("#title_title");
@@ -71,7 +69,7 @@ $('#title').bind('click.select', function(){
 
             title.unbind('click.parents');
 
-            title.bind('click.select', function(){
+            title.bind('click.selectTitle', function(){
                 selectTitle($(this));
             });
 
@@ -94,7 +92,7 @@ function selectTitle(title){
 
     title.css({"border-color":"green"});
 
-    title.unbind('click.select');
+    title.unbind('click.selectTitle');
 
     /*note.bind('dblclick.write', function(){
 
@@ -135,8 +133,6 @@ function selectTitle(title){
         showParents();
 
     });
-
-
 
 
 }

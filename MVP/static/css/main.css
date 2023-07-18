@@ -61,7 +61,6 @@
   border-radius : 8px;
   text-align: center;
   background-color : rgb(186, 222, 219, 0.15 );
-  cursor : pointer;
 }
 
 .noteLink_link {
@@ -304,6 +303,7 @@
 #title{
     position: absolute;
     z-index: 10;
+    cursor: pointer;
 }
 
 #title_title{

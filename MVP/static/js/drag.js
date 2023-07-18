@@ -230,6 +230,7 @@ $(document).bind('mousedown.multipleSelect', function(){
     if (event.target.nodeName === 'HTML'){
         //event.stopPropagation();
         console.log("wonka");
+        //event.stopPropagation();
         createSelect();
     }
 
@@ -323,7 +324,7 @@ function stopSelect() {
     for (i in selection){
         id = selection[i]
         note = $("#" + id);
-        note.css({"border":"blue 2px solid"});
+        note.css({"border":"2px solid blue"});
         note.css({"border-radius":"6px"});
     }
 
