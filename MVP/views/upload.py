@@ -33,8 +33,7 @@ def upload_pdf(pageID, user_id):
 
     filename = file.filename
     filename = filename.replace(' ', '_')
-
-    filename = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+    print(filename)
 
     file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
 

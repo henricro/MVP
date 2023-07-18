@@ -98,8 +98,15 @@ function selectNoteLink(note){
     noteLink_link.css("font-size", "20px");
 
     var content = note.find('.noteLink_content');
-
     content.css("opacity", 0.3);
+
+    var favicon = note.find('.noteLink_favicon');
+    console.log("favicon : ", favicon);
+    favicon.css("opacity", 1);
+    favicon.css("width", "40px");
+    favicon.css("height", "40px");
+    favicon.css("top", "-32px");
+    favicon.css("left", "-32px");
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -198,6 +205,13 @@ function selectNoteLink(note){
 
             noteLink_link.css("opacity", 0);
             noteLink_link.css("font-size", "15px");
+
+            console.log("what up ?");
+            favicon.css("opacity", 0.7);
+            favicon.css("width", "23px");
+            favicon.css("height", "23px");
+            favicon.css("top", "-15px");
+            favicon.css("left", "-15px");
 
             content.css("opacity", 1);
 

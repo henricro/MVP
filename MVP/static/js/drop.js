@@ -145,13 +145,13 @@ $('*:not("div")').on(
                             //console.log("success");
                             current_y = document.documentElement.scrollTop;
                             //console.log("current y :", current_y);
-                            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         },
                         error: function (error) {
                             //console.log("problem");
                             current_y = document.documentElement.scrollTop;
                             //console.log("current y :", current_y);
-                            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                         }
                     });
 

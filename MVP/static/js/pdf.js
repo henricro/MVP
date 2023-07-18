@@ -44,6 +44,7 @@ function createPDF(note) {
     note.css("position", "absolute");
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
+    note.append(name_div);
     note.append(img);
     //note.append(name_div);
 
@@ -108,7 +109,7 @@ function selectPDF(note){
             console.log(event.keyCode);
 
             $.ajax({
-                url: '/delete_note/'+pageID + '/' + user_id,
+                url: '/delete_note/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -116,11 +117,15 @@ function selectPDF(note){
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    //console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
                     console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    //console.log("current y :", current_y);
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }

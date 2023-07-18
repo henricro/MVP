@@ -167,6 +167,8 @@ $(document).bind('paste', function(e) {
                 console.log("problem");
                 current_y = document.documentElement.scrollTop;
                 //console.log("current y :", current_y);
+                window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+
             }
         });
 
