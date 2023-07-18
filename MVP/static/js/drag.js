@@ -218,7 +218,8 @@ $(document).bind('mousedown.multipleSelect', function(){
     startX = event.pageX;
     startY = event.pageY;
 
-    //console.log(startX, startY)
+    console.log(event);
+    console.log(startX, startY)
 
     selectBox = "<div id='selectBox' style='position:absolute; background-color:blue; opacity:0.1;'></div>"
 
@@ -227,201 +228,260 @@ $(document).bind('mousedown.multipleSelect', function(){
     var selectBox = $('#selectBox');
 
     if (event.target.nodeName === 'HTML'){
+        //event.stopPropagation();
+        console.log("wonka");
         createSelect();
     }
 
 });
 
 
-
 function createSelect() {
 
     $(document).bind('mousemove.multipleSelect', function(){
+        console.log("moving mouse");
         moveSelect();
     });
 
     $(document).bind('mouseup.multipleSelect', function(){
+        //console.log("mouse up");
         stopSelect();
     });
 
-    function moveSelect() {
+}
 
-        event.preventDefault();
+function moveSelect() {
 
-        height = Math.abs(event.pageY - startY) ;
-        width = Math.abs(event.pageX - startX) ;
+    event.preventDefault();
 
-        //console.log(height, width)
+    height = Math.abs(event.pageY - startY) ;
+    width = Math.abs(event.pageX - startX) ;
 
-        $('#selectBox').css('width', width);
-        $('#selectBox').css('height', height);
+    //console.log(height, width)
 
-        if (event.pageX > startX && event.pageY > startY){
-            $('#selectBox').css('top', startY);
-            $('#selectBox').css('left', startX);
-        }
+    $('#selectBox').show();
 
-        else if (event.pageX > startX && event.pageY < startY){
-            $('#selectBox').css('top', startY-(startY-event.pageY));
-            $('#selectBox').css('left', startX);
-        }
+    $('#selectBox').css('width', width);
+    $('#selectBox').css('height', height);
 
-        else if (event.pageX < startX && event.pageY < startY){
-            $('#selectBox').css('top', startY-(startY-event.pageY));
-            $('#selectBox').css('left', startX-(startX-event.pageX));
-        }
-
-        else if (event.pageX < startX && event.pageY > startY){
-            $('#selectBox').css('top', startY);
-            $('#selectBox').css('left', startX-(startX-event.pageX));
-        }
-
+    if (event.pageX > startX && event.pageY > startY){
+        $('#selectBox').css('top', startY);
+        $('#selectBox').css('left', startX);
     }
 
-    function stopSelect() {
+    else if (event.pageX > startX && event.pageY < startY){
+        $('#selectBox').css('top', startY-(startY-event.pageY));
+        $('#selectBox').css('left', startX);
+    }
 
-        $(document).unbind('mousemove.multipleSelect');
+    else if (event.pageX < startX && event.pageY < startY){
+        $('#selectBox').css('top', startY-(startY-event.pageY));
+        $('#selectBox').css('left', startX-(startX-event.pageX));
+    }
 
-        endX = event.pageX;
-        endY = event.pageY;
+    else if (event.pageX < startX && event.pageY > startY){
+        $('#selectBox').css('top', startY);
+        $('#selectBox').css('left', startX-(startX-event.pageX));
+    }
 
-        console.log(endX, endY);
+}
 
-        // collect all the elements in the selection
-        var selection = [];
 
-        $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink").each(function(){
+function stopSelect() {
 
-            note = $(this);
+    $(document).unbind('mousemove.multipleSelect');
 
-            id = note.attr("id");
+    endX = event.pageX;
+    endY = event.pageY;
+    //console.log(endX, endY);
 
-            noteX = parseInt(note.css("left").slice(0, -2));
-            noteY = parseInt(note.css("top").slice(0, -2));
+    // collect all the elements in the selection
+    var selection = [];
+    $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink").each(function(){
 
-            if ( (startX < noteX && noteX < endX && startY < noteY && noteY < endY) ||
-                 (startX > noteX && noteX > endX && startY > noteY && noteY > endY) ||
-                 (startX < noteX && noteX < endX && startY > noteY && noteY > endY) ||
-                 (startX > noteX && noteX > endX && startY < noteY && noteY < endY) )
-                 {
-                selection.push(id);
+        // feed the selection
+        note = $(this);
+        id = note.attr("id");
+        noteY = parseInt(note.css("top").slice(0, -2));
+        noteX = parseInt(note.css("left").slice(0, -2));
+
+        if ( (startX < noteX && noteX < endX && startY < noteY && noteY < endY) ||
+             (startX > noteX && noteX > endX && startY > noteY && noteY > endY) ||
+             (startX < noteX && noteX < endX && startY > noteY && noteY > endY) ||
+             (startX > noteX && noteX > endX && startY < noteY && noteY < endY) )
+             {
+            selection.push([id, noteY]);
+        }
+
+    });
+
+    selection = selection.sort((a, b) => a[1] - b[1]).map(arr => arr[0]);
+    console.log(selection);
+
+    // color selected elements with blue border
+    for (i in selection){
+        id = selection[i]
+        note = $("#" + id);
+        note.css({"border":"blue 2px solid"});
+        note.css({"border-radius":"6px"});
+    }
+
+
+    //console.log(selection.length);
+    //console.log(selection);
+
+    if (selection.length == 0){
+
+        $('#selectBox').remove();
+
+    } else {
+
+        // if cmd + c --> copy selection
+        $(document).bind('copy.copySelection', function() {
+            //console.log("clicked to copy selection");
+            copySelection(selection);
+            $(document).unbind('copy.copySelection');
+        });
+
+        // if key:delete --> delete all elements in selection
+        $(document).bind('keyup.delete', function(){
+
+            if (event.keyCode == 8){
+
+                selectionString = selection.toString();
+
+                $.ajax({
+                    url: '/delete_notes/'+pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        selection: selectionString
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                        console.log("whenever");
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                        console.log("wherever");
+                        current_y = document.documentElement.scrollTop;
+                        console.log("current y :", current_y);
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    }
+                });
+
             }
 
         });
 
-        //console.log(selection.length);
-        //console.log(selection);
+        // if right click on selection box
+        $("#selectBox").bind('contextmenu', function(event){
 
-        if (selection.length == 0){
+            event.preventDefault();
 
-            $('#selectBox').remove();
+            //console.log("print this");
+            //console.log(event.target);
 
-        } else {
+            $("#selectionRCBox").css("left", event.pageX);
+            $("#selectionRCBox").css("top", event.pageY);
+            $("#selectionRCBox").show();
 
-            $(document).bind('copy.copySelection', function() {
-                //console.log("clicked to copy selection");
-                copySelection(selection);
-                $(document).unbind('copy.copySelection');
+            $(document).click(function(){
+                if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0){
+                    $("#selectionRCBox").hide();
+                    newPage();
+                }
             });
 
-            $(document).bind('keyup.delete', function(){
+            $('#selectionRC_1').bind('click', function() {
+                alignItems(selection);
+            });
 
-                if (event.keyCode == 8){
+            //}
 
-                    selectionString = selection.toString();
+        });
 
-                    $.ajax({
-                        url: '/delete_notes/'+pageID + '/' + user_id,
-                        type: "POST",
-                        data: JSON.stringify({
-                            selection: selectionString
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            console.log(data);
-                            console.log("whenever");
-                            current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                        },
-                        error: function (error) {
-                            console.log("problem");
-                            console.log("wherever");
-                            current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                        }
-                    });
+        // if drag selection
+        $('#selectBox').bind('mousedown.drag', function(){
+
+            $(document).unbind('keyup.delete');
+
+            setTimeout(
+                function() {$('#selectBox').hide();},
+                100
+            )
+
+            //console.log("mousedown on selectBox");
+            //console.log(selection);
+
+            mouseX = event.pageX;
+            mouseY = event.pageY;
+
+            dragNotes(selection);
+
+        });
+
+        // if you click outside the box
+        $(document).bind('mousedown.outsideSelect1', function(){
+
+            //event.stopPropagation();
+            //$(document).bind('mousedown.outsideSelect2', function(){
+
+                if (!$("#selectBox").is(event.target) && $("#selectBox").has(event.target).length === 0){
+
+                    console.log("iuhdiudahiuadh");
+                    $("#selectBox").hide();
+
+                    unSelect(selection);
+
+                    $(document).unbind("mousedown.outsideSelect1");
+                    //$(document).unbind("mousedown.outsideSelect2");
 
                 }
 
-            });
+            //});
 
-
-
-
-/////////////////////////
-
-            //$(document).unbind('contextmenu.newPage');
-
-            $("#selectBox").bind('contextmenu', function(event){
-
-                event.preventDefault();
-
-                //console.log("print this");
-
-                //console.log(event.target);
-
-                //if ($("#selectBox").is(event.target)){
-
-                    //console.log("heeeey :)");
-
-                    new_x = event.pageX;
-                    new_y = event.pageY;
-
-                    $("#selectionRCBox").css("left", new_x);
-                    $("#selectionRCBox").css("top", new_y);
-                    $("#selectionRCBox").show();
-
-                    $(document).click(function(){
-                        if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0){
-                            $("#selectionRCBox").hide();
-                            newPage();
-                        }
-                    });
-
-                    $('#selectionRC_1').bind('click', function() {
-                        alignItems(selection);
-                    });
-
-                //}
-
-            });
-
-            $('#selectBox').bind('mousedown.drag', function(){
-
-                $(document).unbind('keyup.delete');
-
-                setTimeout(
-                    function() {$('#selectBox').hide();},
-                    100
-                )
-
-                //console.log("mousedown on selectBox");
-                //console.log(selection);
-
-                originalClickX = event.pageX;
-                originalClickY = event.pageY;
-
-                dragNotes(selection);
-
-            });
-
-        }
+        });
 
     }
 
+
 }
+
+function unSelect(selection) {
+
+    for (i in selection){
+
+        id = selection[i];
+        note = $("#" + id);
+
+        var clasis = note.attr("class");
+            if (clasis == "note"){
+                note.css({"border":"1px solid rgb(0, 0, 0, 0)"});
+                note.css({"border-radius":"5px"});
+            } else if (clasis == "noteLink"){
+                note.css({"border":"none"});
+                note.css({"border-radius":"8px"});
+            } else if (clasis == "imageLink" || clasis == "imagePageLink"){
+                note.css({"border":"1px solid #d3d3d3"});
+                note.css({"border-radius":"5px"});
+            } else if (clasis == "pageLink"){
+                note.css({"border":"1px solid rgb(200, 240, 149, 0.3)"});
+                note.css({"border-radius":"5px"});
+            } else if (clasis == "pdf"){
+                note.css({"border":"1px solid grey"});
+                note.css({"border-radius":"5px"});
+            } else {}
+        }
+
+}
+
+
+
+
 
 /////////////////////////////////////
 //////////   ALIGN ITEMS  /////////////
@@ -429,34 +489,53 @@ function createSelect() {
 
 function alignItems(selection){
 
-    noteXs = [];
+    console.log("align items");
+    console.log(selection);
 
-    for (i in selection){
+    base_x = $("#" + selection[0]).css("left");
 
-        id = selection[i];
-        note = $('#' + id);
-
-        noteX = parseInt(note.css("left").slice(0, -2));
-        noteY = parseInt(note.css("top").slice(0, -2));
-
-        noteXs.push(noteX);
-
-    }
-
-    console.log(noteXs);
-
-    var min = Math.min.apply(null, noteXs)
-
-    console.log(min);
-
-    for (i in selection){
+    for (let i = 0; i < selection.length - 1; i++){
 
         id = selection[i];
         note = $('#' + id);
 
-        note.css("left", min);
+        note.css("left", base_x);
+        height = note.css("height");
+
+        next_id = selection[i+1]
+        next_note = $('#' + next_id);
+        next_note.css("left", base_x);
+        next_note_top = parseInt(note.css("top").slice(0, -2)) + parseInt(note.css("height").slice(0, -2)) +  10
+        next_note.css("top", next_note_top.toString().concat("px"));
 
     }
+
+    console.log("ajax call");
+
+    $.ajax({
+
+        url: '/move_notes/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            selection: selection,
+            page_id: pageID
+        }),
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+            current_y = document.documentElement.scrollTop;
+            console.log("current y :", current_y);
+            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+        },
+        error: function (error) {
+            console.log("problem");
+            current_y = document.documentElement.scrollTop;
+            console.log("current y :", current_y);
+            //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+        }
+
+    });
+
 
 }
 
@@ -506,6 +585,8 @@ function dragNotes(selection) {
 
         //$('#selectBox').remove();
         mouseUpNotes(selection);
+
+        unSelect(selection);
 
     });
 

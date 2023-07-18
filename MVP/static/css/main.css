@@ -56,12 +56,13 @@
 
 .noteLink {
   position: absolute;
-  padding: 3px;
+  padding: 5px;
   /*border: 1px solid #d3d3d3;*/
   border-radius : 8px;
   text-align: center;
   text-decoration: underline;
   background-color : rgb(186, 222, 219, 0.5 );
+  cursor : pointer;
 }
 
 .noteLink_link {
@@ -94,11 +95,11 @@
 }
 
 .noteLink_favicon{
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width:23px;
-    height: 23px;
+    position : absolute;
+    bottom : -7px;
+    right : -10px;
+    width : 23px;
+    height : 23px;
     opacity : 0.7;
 
     transition: opacity .2s, left .2s, top .2s, width .2s, height .2s;
@@ -343,7 +344,7 @@
   }
 
 .resizable img {
-  width: 100%;
+  width: 100%;s
   height: 100%;
 }
 

@@ -13,6 +13,16 @@ function copyText(note){
 
 }
 
+// bind a copy-note function to every note on the page
+$(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink, .criteria, .category, iframe").each(function(){
+
+    note = $(this);
+    note.bind('copy', function() {
+        copyNote(note);
+    });
+
+});
+
 
 function copyNote(note){
 

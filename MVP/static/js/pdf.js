@@ -86,20 +86,17 @@ $('.pdf').each(function(){
 
 function selectPDF(note){
 
-    // COPY THE NOTE
-    note.bind('copy', function() {
-        copyNote(note);
-    });
-
     console.log("selected a pdf");
-
-    note.css({"border-color":"green"});
 
     var pdf = note.attr("pdf");
 
+    note.css({"border-color":"green"});
     note.css({"cursor":"pointer"});
+    note.addClass("resizable");
+    note.unbind('mousedown.drag');
+    note.unbind('click.select');
 
-    // DELETE NOTE
+    // delete the pdf
     $(document).bind('keyup.delete', function(){
 
         if (event.keyCode == 8){
@@ -131,8 +128,7 @@ function selectPDF(note){
         }
     });
 
-    // SECOND CLICK
-
+    // SECOND CLICK on PDF
     note.bind('mousedown.gotopdf', function(){
 
         var left  = event.pageX;
@@ -147,12 +143,6 @@ function selectPDF(note){
         });
 
     });
-
-    note.addClass("resizable");
-
-    note.unbind('mousedown.drag');
-
-    note.unbind('click.select');
 
     $(document).click(function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){

@@ -80,13 +80,6 @@ $('.noteLink').each(function(){
 
 function selectNoteLink(note){
 
-    // COPY THE NOTE
-    note.bind('copy', function() {
-        copyNote(note);
-    });
-
-    //console.log("selected a note link");
-
     note.css({"border-color":"green"});
 
     link = note.attr("link");
@@ -105,8 +98,8 @@ function selectNoteLink(note){
     favicon.css("opacity", 1);
     favicon.css("width", "40px");
     favicon.css("height", "40px");
-    favicon.css("top", "-32px");
-    favicon.css("left", "-32px");
+    favicon.css("bottom", "32px");
+    favicon.css("right", "-32px");
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -140,8 +133,6 @@ function selectNoteLink(note){
         }
 
     });
-
-    note.css({"cursor":"pointer"});
 
     note.unbind('mousedown.drag');
 
@@ -210,8 +201,8 @@ function selectNoteLink(note){
             favicon.css("opacity", 0.7);
             favicon.css("width", "23px");
             favicon.css("height", "23px");
-            favicon.css("top", "-15px");
-            favicon.css("left", "-15px");
+            favicon.css("bottom", "-7px");
+            favicon.css("right", "-10px");
 
             content.css("opacity", 1);
 
