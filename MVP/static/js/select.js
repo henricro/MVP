@@ -35,7 +35,7 @@ function createSelect() {
     });
 
     $(document).bind('mouseup.multipleSelect', function(){
-        //console.log("mouse up");
+        console.log("mouse up");
         stopSelect();
         $(document).unbind('mouseup.multipleSelect');
     });

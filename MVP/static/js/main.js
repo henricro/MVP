@@ -87,6 +87,12 @@ function createNotes() {
                 $('body').append(elem);
             }
         }
+
+        // build the list divs
+        else if (clasis === "to-do-list"){
+            elem = "<div class='to-do-list' id='" + id + "'></div>"
+            $('body').append(elem);
+        }
         /*
         else if (clasis === "criteria") {
             elem = '<div class="criteria" id="' + id + '" contenteditable="false"></div>';

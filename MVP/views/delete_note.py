@@ -15,7 +15,6 @@ def delete_note(pageID, user_id):
     # get the data for new note
     request_data = request.get_json()
     id = str(request_data.get('id'))
-    print(id, "yoyoyoyo")
 
     pageID = str(pageID)
     print(pageID, "yoyoyoyo")
@@ -28,7 +27,7 @@ def delete_note(pageID, user_id):
 
     noteClass = note.get("class")
 
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+    #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     note.getparent().remove(note)
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -63,40 +62,7 @@ def delete_note(pageID, user_id):
             f.write(etree.tostring(root, pretty_print=True))
             f.close()
 
-    if noteClass == "pageLink" or noteClass  =="imagePageLink" :
-
-        type = note.get("type")
-        destPageID = note.get("pageID")
-        destPageName = 'Page_' + destPageID
-
-        if type =="child" :
-
-            destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
-            destRoot = destTree.getroot()
-            note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
-            note.getparent().remove(note)
-            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
-            f.write(etree.tostring(destRoot, pretty_print=True))
-            f.close()
-            # engine.execute("delete from parents where parent_page_id = %(pageID)s and child_page_id = %(destPageID)s ",
-             #              {'pageID': pageID, 'destPageID': destPageID})
-        if type =="parent" :
-
-            destTree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
-            destRoot = destTree.getroot()
-            note = destRoot.find("notes").find("note[@pageID='" + pageID + "']")
-            note.getparent().remove(note)
-            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
-            f.write(etree.tostring(destRoot, pretty_print=True))
-            f.close()
-            # engine.execute("delete from parents where parent_page_id = %(destPageID)s and child_page_id = %(pageID)s ",
-             #              {'pageID': pageID, 'destPageID': destPageID})
-        if type =="visitor" :
-            return "yo"
-            # engine.execute("delete from visitors where visitor_page_id = %(destPageID)s and visited_page_id = %(pageID)s ",
-             #              {'pageID': pageID, 'destPageID': destPageID})
-
-
+    return "yo"
 
 
 @application.route("/delete_notes/<pageID>/<user_id>", methods=['POST'])

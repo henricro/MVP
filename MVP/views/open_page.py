@@ -87,6 +87,15 @@ def open_page(pageID, user_id, y_position):
     type = tree.xpath("/canvas/meta/type")[0].text
 
 
+
+    ### build the file path to home
+
+
+
+
+
+
+
     return render_template('/page.html', xml_string=xml_string, pageID=pageID,
                            user_id=user_id, pages=pages, title=title, y_position = y_position)
 

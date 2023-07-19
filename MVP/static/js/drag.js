@@ -4,7 +4,7 @@
 
 function defineDrag() {
 
-    $(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .criteria, .category, iframe").each(function(){
+    $(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .to-do-list, .criteria, .category, iframe").each(function(){
 
         $(this).bind('mousedown.drag', function(){
 

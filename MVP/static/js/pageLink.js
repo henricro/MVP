@@ -63,9 +63,11 @@ $(document).bind('contextmenu.newPage', function(event) {
     //console.log("event target");
     //console.log(event.target);
 
+    console.log("right click on page");
+
     if ($(event.target).is("html")) {
 
-        //console.log("happy go lucky");
+        console.log("happy go lucky");
 
         new_x = event.pageX;
         new_y = event.pageY;
@@ -91,11 +93,13 @@ $(document).bind('contextmenu.newPage', function(event) {
 
         $('#pageRC_1').bind('click', function() {
 
+            console.log("ihe");
             $('#pageRC_1').unbind('click');
             var title = prompt("Name", "");
+            console.log("hehe");
 
             $.ajax({
-                url: '/new_page/'+pageID + '/' + user_id,
+                url: '/new_page/' +pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     new_x : new_x,
@@ -117,22 +121,21 @@ $(document).bind('contextmenu.newPage', function(event) {
             });
         });
 
-        $('#pageRC_2').bind('click', function(event) {
+        $('#plusSign').bind('click', function(event) {
 
-            $('#pageRC_2').unbind('click');
             console.log("show second box");
 
             event.preventDefault();
-            $("#pageRCBox").hide();
+            //$("#pageRCBox").hide();
 
-            new_x = event.pageX;
-            new_y = event.pageY;
+            x = event.pageX;
+            y = event.pageY;
 
             console.log(x, y);
 
             $("#pageRCPlusBox").css("left", new_x);
             $("#pageRCPlusBox").css("top", new_y);
-            $("#pageRCPlusBox").show();
+            //$("#pageRCPlusBox").show();
 
             $(document).bind('click.pageRCPlusBox', function(){
                 $(document).bind('click.pageRCPlusBox2', function(event){
@@ -151,15 +154,15 @@ $(document).bind('contextmenu.newPage', function(event) {
 
             $('#pageRCPlus_1').bind('click', function() {
                 $('#pageRCPlus_1').unbind('click');
-                var criteria = prompt("Criteria", "");
+
+                console.log("hye");
 
                 $.ajax({
-                    url: '/new_criteria/'+pageID + '/' + user_id,
+                    url: '/new_to_do_list/' + pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
-                        new_x : new_x,
-                        new_y : new_y,
-                        criteria : criteria
+                        x : x,
+                        y : y
                     }),
                     contentType: "application/json",
                     success: function (data) {
