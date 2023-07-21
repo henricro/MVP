@@ -19,11 +19,11 @@ function createImagePageLink(note) {
     //console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-    var type = XMLnote.getAttribute("type");
+    //var type = XMLnote.getAttribute("type");
 
     note.attr("title", "go to page ".concat(pageTitle));
 
-    note.addClass(type)
+    //note.addClass(type)
 
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
