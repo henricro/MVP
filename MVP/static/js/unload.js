@@ -16,6 +16,8 @@ $(window).on('beforeunload', function(){
 
 function save_sizes(){
 
+    console.log("unload function");
+
     var sizes = []
 
     $(".image, .imagePageLink, .imageLink, .pdf").each(function(){
