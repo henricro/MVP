@@ -650,3 +650,8 @@ body {
     margin : 0 auto;
     cursor: pointer;
 }
+
+
+ul {
+    padding-inline-start: 10px;
+}

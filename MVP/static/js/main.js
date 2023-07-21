@@ -74,18 +74,9 @@ function createNotes() {
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
 
-            if (type === "child"){
-                elem = '<div class="imagePageLink child" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
-                $('body').append(elem);
-            } else if (type ==="parent"){
-                //console.log("we have a parent !!");
-                elem = '<div class="imagePageLink parent" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
-                $('#parents').append(elem);
-            } else if (type ==="visitor"){
-                //console.log("we have a parent !!");
-                elem = '<div class="imagePageLink visitor" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
-                $('body').append(elem);
-            }
+            elem = '<div class="imagePageLink" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+            $('body').append(elem);
+
         }
 
         // build the list divs

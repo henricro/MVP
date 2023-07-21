@@ -89,7 +89,7 @@ function stopSelect() {
 
     // collect all the elements in the selection
     var selection = [];
-    $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink").each(function(){
+    $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink, .to-do-list").each(function(){
 
         // feed the selection
         note = $(this);
@@ -291,6 +291,9 @@ function unSelect(selection) {
             } else if (clasis == "image"){
                 note.css({"border":"1px solid transparent"});
                 note.css({"border-radius":"5px"});
+            } else if (clasis == "to-do-list"){
+                note.css({"border":""});
+                note.css({"border-radius":""});
             } else {}
         }
 
