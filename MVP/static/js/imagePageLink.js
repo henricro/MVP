@@ -30,7 +30,7 @@ function createImagePageLink(note) {
 
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
     var src = "/static/user_data/users/" + user_id + "/uploads/" + image
-    var img = "<img class='imagePageLink_img' draggable='false' src=" + src + " />";
+    var img_div = "<img class='imagePageLink_img' draggable='false' src=" + src + " />";
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
 
@@ -42,10 +42,13 @@ function createImagePageLink(note) {
     //console.log(elmnt);
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
-    note.append(img);
+    note.append(img_div);
     note.append(content_div);
     note.css("width", width);
     note.css("height", height);
+
+    console.log("build an imagePageLink");
+    console.log(height, width)
 
     if ( XMLnote.getElementsByTagName("css_image")[0] ){
 

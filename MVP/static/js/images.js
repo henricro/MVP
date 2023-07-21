@@ -38,6 +38,7 @@ function createImage(note) {
     }
 
     var img = "<img class='image_img' draggable='false' src=" + img_src + " />";
+    console.log(img);
 
     var name_div = "<div class='image_name'><div>" + name + "</div></div>"
 
