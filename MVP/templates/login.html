@@ -26,93 +26,106 @@ form{
 
 <body>
 
+<div style="width:300px; margin-top: 50px;">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+     {% for category, message in messages %}
+       <div class="alert alert-{{category}}">
+         {{ message }}
+       </div>
+     {% endfor %}
+   {% endif  %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</div>
 
+<div style="display:flex; flex-direction: row; align-items:flex-start; margin-top: 100px; width: 100%; justify-content: flex-start;">
 
+    <div style="display:flex; flex-direction: column; width: 25%; align-items: flex-start; padding-left: 50px; margin-top: 200px; ">
 
-<div style="display:flex; flex-direction:column; align-items:center; margin-top: 100px; font-family: 'Quicksand', sans-serif; ">
+        <div style="font-size: 30px; text-decoration: underline;">Code Updates</div>
+        <div style=" margin-top: 10px;">20/07/2023 : select items on page to align</div>
+        <div style=" margin-top: 10px;">19/07/2023 : paste a link anywhere (fetches icon)</div>
+        <div style=" margin-top: 10px;">18/07/2023 : right-click edit page title</div>
+        <div style=" margin-top: 10px;">15/07/2023 : drop PDF</div>
+        <div style=" margin-top: 10px;">11/07/2023 : click on title and arrow to add space underneath</div>
+        <div style=" margin-top: 10px;">30/06/2023 : page refreshes at same y position.</div>
 
-    <div style="width:300px; margin-top: 50px;">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-       {% if messages %}
-         {% for category, message in messages %}
-           <div class="alert alert-{{category}}">
-             {{ message }}
-           </div>
-         {% endfor %}
-       {% endif  %}
-      {% endwith %}
-      {% block content %}{% endblock %}
     </div>
 
-    <div>
-        <img src="static/logos/gyst_login.png" style="width: 200px; margin-bottom: 30px;"/>
+    <!-- Logo and login form -->
+    <div style="display:flex; flex-direction:column; width: 50%; align-items:center; font-family: 'Quicksand', sans-serif; ">
+
+        <div>
+            <img src="static/logos/gyst_login.png" style="width: 200px; margin-bottom: 30px;"/>
+        </div>
+
+        <form method="POST" action="" >
+            {{ form.hidden_tag() }}
+
+                <div style="margin-bottom:10px;">
+                    {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.password.label(class="form-control-label") }}
+
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                    <div style=" margin-top:10px; text-decoration: underline;">
+                        <a href="/forgot_password" >Forgot password ?</a>
+                    </div>
+                    <div>
+                        {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
+                    </div>
+                </div>
+                <div style="text-decoration: underline;">
+                <a href="/reset_password"  >Change password</a>
+                </div>
+
+                <div style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 40px;">
+                    <div>
+                        Don't have an account ?
+                    </div>
+                    <div>
+                        <a href="/sign_up"   style=" margin-top:10px;">Sign up</a>
+                    </div>
+                </div>
+
+        </form>
+
     </div>
-
-    <form method="POST" action="" >
-        {{ form.hidden_tag() }}
-
-            <div style="margin-bottom:10px;">
-                {{ form.email.label(class="form-control-label") }}
-
-                {% if form.email.errors %}
-                    {{ form.email(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                    {% for error in form.email.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.email(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-
-            <div>
-                {{ form.password.label(class="form-control-label") }}
-
-                {% if form.password.errors %}
-                    {{ form.password(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                    {% for error in form.password.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-            <div style="display:flex; flex-direction:row; justify-content:space-between;">
-                <div style=" margin-top:10px; text-decoration: underline;">
-                    <a href="/forgot_password" >Forgot password ?</a>
-                </div>
-                <div>
-                    {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
-                </div>
-            </div>
-            <div style="text-decoration: underline;">
-            <a href="/reset_password"  >Change password</a>
-            </div>
-
-            <div style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 40px;">
-                <div>
-                    Don't have an account ?
-                </div>
-                <div>
-                    <a href="/sign_up"   style=" margin-top:10px;">Sign up</a>
-                </div>
-            </div>
-
-
-    </form>
-
-    <div style=" margin-top: 10px;">code update 11/07/2023 : click on title and arrow to add space underneath</div>
-    <div style=" margin-top: 50px;">code update 30/06/2023 : page refreshes at same y position.</div>
-    <div style=" margin-top: 10px;">code update 18/07/2023 : edit page title</div>
-    <div style=" margin-top: 10px;">code update 20/07/2023 : select items on page to align</div>
-
-    <div style=" margin-bottom: 100px;"></div>
 
 
 </div>
+
+
+
+
+
+
+
 
 
 
