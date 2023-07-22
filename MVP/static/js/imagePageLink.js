@@ -4,12 +4,13 @@
 ////////////////////////////////////////////////
 
 $('.imagePageLink').each(function(){
-    createImagePageLink($(this));
+    buildImagePageLink($(this));
 });
 
-function createImagePageLink(note) {
+function buildImagePageLink(note) {
 
     id = note.attr("id");
+    console.log("create imagePageLink, id :", id);
 
     var pageTitle = note.attr("pageTitle");
 
@@ -44,10 +45,9 @@ function createImagePageLink(note) {
     note.css("left", x.concat("px"));
     note.append(img_div);
     note.append(content_div);
-    note.css("width", width);
-    note.css("height", height);
+    note.css("width", width.concat("px"));
+    note.css("height", height.concat("px"));
 
-    console.log("build an imagePageLink");
     console.log(height, width)
 
     if ( XMLnote.getElementsByTagName("css_image")[0] ){
@@ -87,9 +87,9 @@ function createImagePageLink(note) {
 
 
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 ////////////////    SELECT IMAGE-PAGE-LINK   /////////////////////
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 $('.imagePageLink').each(function(){
     $(this).bind('click.select', function(){
