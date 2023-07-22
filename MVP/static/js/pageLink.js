@@ -63,11 +63,11 @@ $(document).bind('contextmenu.newPage', function(event) {
     //console.log("event target");
     //console.log(event.target);
 
-    console.log("right click on page");
+    //console.log("right click on page");
 
     if ($(event.target).is("html")) {
 
-        console.log("happy go lucky");
+        //console.log("happy go lucky");
 
         new_x = event.pageX;
         new_y = event.pageY;
@@ -93,10 +93,9 @@ $(document).bind('contextmenu.newPage', function(event) {
 
         $('#pageRC_1').bind('click', function() {
 
-            console.log("ihe");
+            //console.log("ihe");
             $('#pageRC_1').unbind('click');
             var title = prompt("Name", "");
-            console.log("hehe");
 
             $.ajax({
                 url: '/new_page/' +pageID + '/' + user_id,
@@ -108,7 +107,7 @@ $(document).bind('contextmenu.newPage', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
                     console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;                },
@@ -123,7 +122,7 @@ $(document).bind('contextmenu.newPage', function(event) {
 
         $('#plusSign').bind('click', function(event) {
 
-            console.log("show second box");
+            //console.log("show second box");
 
             event.preventDefault();
             //$("#pageRCBox").hide();
@@ -131,7 +130,7 @@ $(document).bind('contextmenu.newPage', function(event) {
             x = event.pageX;
             y = event.pageY;
 
-            console.log(x, y);
+            //console.log(x, y);
 
             $("#pageRCPlusBox").css("left", new_x);
             $("#pageRCPlusBox").css("top", new_y);
@@ -140,7 +139,7 @@ $(document).bind('contextmenu.newPage', function(event) {
             $(document).bind('click.pageRCPlusBox', function(){
                 $(document).bind('click.pageRCPlusBox2', function(event){
 
-                    console.log("hohohohohohoho");
+                    //console.log("hohohohohohoho");
                     if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
 
                         $("#pageRCPlusBox").hide();
@@ -155,7 +154,7 @@ $(document).bind('contextmenu.newPage', function(event) {
             $('#pageRCPlus_1').bind('click', function() {
                 $('#pageRCPlus_1').unbind('click');
 
-                console.log("hye");
+                //console.log("hye");
 
                 $.ajax({
                     url: '/new_to_do_list/' + pageID + '/' + user_id,
@@ -166,7 +165,7 @@ $(document).bind('contextmenu.newPage', function(event) {
                     }),
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         current_y = document.documentElement.scrollTop;
                         console.log("current y :", current_y);
                         window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
@@ -278,7 +277,7 @@ function selectPageLink(note){
         copyNote(note);
     });
 
-    console.log("selected page link");
+    //console.log("selected page link");
 
     //note.css({"border":"1px solid #60A835"});
 
@@ -293,7 +292,7 @@ function selectPageLink(note){
 
     pageLinkID= note.attr("pageID");
 
-    console.log(pageID);
+    //console.log(pageID);
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
@@ -301,8 +300,8 @@ function selectPageLink(note){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            console.log(id);
-            console.log(event.keyCode);
+            //console.log(id);
+            //console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
@@ -312,7 +311,7 @@ function selectPageLink(note){
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
                     console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
@@ -443,7 +442,7 @@ $(".pageLink").bind('contextmenu', function(event) {
 
         if (value != null) {
 
-            console.log("sending css");
+            //console.log("sending css");
 
             $.ajax({
                 url: '/add_css/'+pageID + '/' + user_id,
@@ -454,7 +453,7 @@ $(".pageLink").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
                     console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;

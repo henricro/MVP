@@ -10,7 +10,7 @@ $('.imagePageLink').each(function(){
 function buildImagePageLink(note) {
 
     id = note.attr("id");
-    console.log("create imagePageLink, id :", id);
+    //console.log("create imagePageLink, id :", id);
 
     var pageTitle = note.attr("pageTitle");
 
@@ -48,8 +48,9 @@ function buildImagePageLink(note) {
     note.css("width", width.concat("px"));
     note.css("height", height.concat("px"));
 
-    console.log(height, width)
+    //console.log(height, width)
 
+    // css for image if there is some
     if ( XMLnote.getElementsByTagName("css_image")[0] ){
 
         if ( XMLnote.getElementsByTagName("css_image")[0].childNodes[0] ){
@@ -66,7 +67,7 @@ function buildImagePageLink(note) {
 
     }
 
-
+    // css for text if there is some
     if ( XMLnote.getElementsByTagName("css_text")[0] ){
 
         if ( XMLnote.getElementsByTagName("css_text")[0].childNodes[0] ){
@@ -158,7 +159,7 @@ function selectImagePageLink(note){
         //console.log(left, top);
 
         $(this).bind('mouseup.gotopage', function(){
-            console.log(event.pageX, event.pageY);
+            //console.log(event.pageX, event.pageY);
             if (!(left != event.pageX || top != event.pageY)) {
                 window.open('/open_page/'+ pageLinkID + '/' + user_id + '/0', '_blank');
             }

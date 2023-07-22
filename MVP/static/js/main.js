@@ -41,8 +41,8 @@ function createNotes() {
             var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
-            console.log(id, pageID,title);
-            console.log("build a pageLink");
+            //console.log(id, pageID,title);
+            //console.log("build a pageLink");
 
             elem = '<div class="pageLink" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
             $('body').append(elem);
@@ -79,7 +79,7 @@ function createNotes() {
 
         }
 
-        // build the list divs
+        // build the to-do-list divs
         else if (clasis === "to-do-list"){
             elem = "<div class='to-do-list' id='" + id + "'></div>"
             $('body').append(elem);
