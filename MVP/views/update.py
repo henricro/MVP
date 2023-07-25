@@ -8,14 +8,13 @@ from lxml import etree
 
 @application.route("/update_position/<pageID>/<user_id>", methods=['POST'])
 def update_position(pageID, user_id):
-    print("update position", "yoyoyoyo")
+
+    print("update position route")
 
     request_data = request.get_json()
     _id = str(request_data.get('id'))
-    print(type(_id))
     new_x = str(request_data.get('x'))[:-2]
     new_y = str(request_data.get('y'))[:-2]
-    print(_id, new_x, new_y, "yoyoyoyo")
 
     pageID = str(pageID)
     print(pageID, "yoyoyoyo")

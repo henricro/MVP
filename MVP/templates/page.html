@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-
+    <link rel="stylesheet" type="text/css" href="/static/css/pageLink.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/imagePageLink.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/right-click.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/select.css">
     <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
 
     <!-- fontAwesome -->
@@ -148,16 +151,9 @@
     </div>
 </div>
 
-<div id="pageRCBox">
-    <div class="choiceBox">
-           <div id="pageRC_1" class="choiceButton choiceLOrange"> New Page</div>
-           <!--<div id="pageRC_2" style="display: flex; flex-direction: row; width: 100%; justify-content: space-evenly;">
-               <div class="choiceButtonSmall choiceLGreen"><a href="/zoom_in"><i class="fa fa-plus"></i></a></div>
-               <div class="choiceButtonSmall choiceLYellow"><a href="/zoom_out"><i class="fa fa-minus"></i></a></div>
-           </div>-->
-    </div>
-    <img id="plusSign"  src="/static/images/icons/more.png" />
-    <!--<i style="border:2px solid blue; color: blue; border-radius: 5px;" class="fa fa-plus"></i>-->
+<div id="pageRCBox" class="choiceBoxHoriz">
+    <img id="pageRC_1" class="buttonIcon" src="/static/images/icons/new-page.png" style="height: 100%;"/>
+    <img id="pageRC_2" class="buttonIcon" src="/static/images/icons/more.png" style="height: 100%;"/>
 </div>
 
 
@@ -213,22 +209,18 @@
     </div>
 </div>
 
-<div id="pageLinkRCBox">
-    <div class="choiceBox">
-        <div id="pageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit</div>
-        <div id="pageLinkRC_2" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Add Image</div>
-        <div id="pageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
-    </div>
+<div id="pageLinkRCBox" class="choiceBoxHoriz">
+    <img id="pageLinkRC_1" class="buttonIcon" src="/static/images/icons/picture.png" style="height: 100%;"/>
+    <img id="pageLinkRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
 </div>
 
-<div id="imagePageLinkRCBox">
-    <div class="choiceBox">
-        <div id="imagePageLinkRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Change Text</div>
-        <div id="imagePageLinkRC_2" class="choiceButton choiceLGreen"><i class="fa fa-copy"></i> Change Image</div>
-        <div id="imagePageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Style Text</div>
-        <div id="imagePageLinkRC_4" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Style Image</div>
-    </div>
+<div id="imagePageLinkRCBox" class="choiceBoxHoriz">
+    <img id="imagePageLinkRC_2" class="buttonIcon" src="/static/images/icons/picture.png" style="height: 100%;"/>
+    <!--<div id="imagePageLinkRC_3" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Style Title</div>-->
+    <!--<div id="imagePageLinkRC_4" class="choiceButton choiceYellow"><i class="fa fa-images"></i> Style Image</div>-->
 </div>
+
+<div id="follower"></div>
 
 <div id="criteriaRCBox">
     <div class="choiceBox">
@@ -242,11 +234,10 @@
     </div>
 </div>
 
-<div id="selectionRCBox">
-    <div class="choiceBox">
-        <div id="selectionRC_1" class="choiceButton choiceLOrange"><i class="fa fa-link"></i> Align vertical</div>
-        <div id="selectionRC_2" class="choiceButton choiceLBlue"><i class="fa fa-link"></i> Align horizontal</div>
-    </div>
+
+<div id="selectionRCBox" class="choiceBoxHoriz">
+    <img id="selectionRC_1" class="buttonIcon" src="/static/images/icons/align-top.jpg" style="height: 100%;"/>
+    <img id="selectionRC_2" class="buttonIcon" src="/static/images/icons/align-left.jpg" style="height: 100%;"/>
 </div>
 
 

@@ -4,48 +4,38 @@
 
 
 $('.pageLink').each(function(){
-    createPageLink($(this));
+    buildPageLink($(this));
 });
 
-function createPageLink(note) {
+function buildPageLink(note) {
 
     var id = note.attr("id");
-
-    var pageTitle = note.attr("pageTitle");
-
-    //console.log("pagetitle");
-    //console.log(id,pageTitle);
+    var pagetitle = note.attr("pagetitle");
 
     var XMLnote = xmlDoc.getElementById(id);
-    //console.log(XMLnote);
+
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
-    //console.log("print elmnt");
-    //console.log(elmnt);
+
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
-    note.attr("title", "go to page ".concat(pageTitle));
-    note.html(pageTitle);
+    note.html(pagetitle);
 
+    // css if any
     if ( XMLnote.getElementsByTagName("css")[0] ){
-
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
 
             var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
-
             var style = note.attr('style'); //it will return string
 
             style += css;
             note.attr('style', style);
-
             note.attr('added_css', css);
 
         }
-
     }
-
 }
 
 
@@ -56,90 +46,64 @@ function createPageLink(note) {
 
 function newPage() {
 
-$(document).bind('contextmenu.newPage', function(event) {
+    $(document).bind('contextmenu.newPage', function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    //console.log("event target");
-    //console.log(event.target);
+        if ($(event.target).is("html")) {
 
-    //console.log("right click on page");
+            new_x = event.pageX;
+            new_y = event.pageY;
 
-    if ($(event.target).is("html")) {
+            $("#pageRCBox").css("left", new_x);
+            $("#pageRCBox").css("top", new_y);
+            $("#pageRCBox").show();
 
-        //console.log("happy go lucky");
+            $(document).bind('click.pageRCBox', function(event){
 
-        new_x = event.pageX;
-        new_y = event.pageY;
-
-        //console.log(x, y);
-
-        $("#pageRCBox").css("left", new_x);
-        $("#pageRCBox").css("top", new_y);
-        $("#pageRCBox").css("display", "flex");
-
-        $("#plusSign").show();
-
-        $(document).bind('click.pageRCBox', function(event){
-
-            if (!$("#pageRCBox").is(event.target) && $("#pageRCBox").has(event.target).length === 0){
-
-                $("#pageRCBox").hide();
-                $(document).unbind('click.pageRCBox');
-
-            }
-
-        });
-
-        $('#pageRC_1').bind('click', function() {
-
-            //console.log("ihe");
-            $('#pageRC_1').unbind('click');
-            var title = prompt("Name", "");
-
-            $.ajax({
-                url: '/new_page/' +pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    new_x : new_x,
-                    new_y : new_y,
-                    title : title
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    //console.log(data);
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;                },
-                error: function (error) {
-                    console.log("problem");
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                if (!$("#pageRCBox").is(event.target) && $("#pageRCBox").has(event.target).length === 0){
+                    $("#pageRCBox").hide();
+                    $(document).unbind('click.pageRCBox');
                 }
+
             });
-        });
 
-        $('#plusSign').bind('click', function(event) {
+            $('#pageRC_1').bind('click', function() {
 
-            //console.log("show second box");
+                $('#pageRC_1').unbind('click');
+                var title = prompt("Name", "");
 
-            event.preventDefault();
-            //$("#pageRCBox").hide();
+                $.ajax({
+                    url: '/new_page/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        new_x : new_x,
+                        new_y : new_y,
+                        title : title
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;                },
+                    error: function (error) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    }
+                });
+            });
 
-            x = event.pageX;
-            y = event.pageY;
+            $('#pageRC_1').bind('click', function(event) {
 
-            //console.log(x, y);
+                event.preventDefault();
 
-            $("#pageRCPlusBox").css("left", new_x);
-            $("#pageRCPlusBox").css("top", new_y);
-            //$("#pageRCPlusBox").show();
+                x = event.pageX;
+                y = event.pageY;
 
-            $(document).bind('click.pageRCPlusBox', function(){
-                $(document).bind('click.pageRCPlusBox2', function(event){
+                $("#pageRCPlusBox").css("left", new_x);
+                $("#pageRCPlusBox").css("top", new_y);
+                $("#pageRCPlusBox").show();
 
-                    //console.log("hohohohohohoho");
+                $(document).bind('click.pageRCPlusBox', function(){
                     if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
 
                         $("#pageRCPlusBox").hide();
@@ -147,44 +111,42 @@ $(document).bind('contextmenu.newPage', function(event) {
                         $(document).unbind('click.pageRCPlusBox2');
 
                     }
-
                 });
+
+                $('#pageRCPlus_1').bind('click', function() {
+                    $('#pageRCPlus_1').unbind('click');
+
+                    //console.log("hye");
+
+                    $.ajax({
+                        url: '/new_to_do_list/' + pageID + '/' + user_id,
+                        type: "POST",
+                        data: JSON.stringify({
+                            x : x,
+                            y : y
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            //console.log(data);
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        },
+                        error: function (error) {
+                            console.log("problem");
+                            current_y = document.documentElement.scrollTop;
+                            console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        }
+                    });
+                });
+
+
             });
 
-            $('#pageRCPlus_1').bind('click', function() {
-                $('#pageRCPlus_1').unbind('click');
+        }
 
-                //console.log("hye");
-
-                $.ajax({
-                    url: '/new_to_do_list/' + pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        x : x,
-                        y : y
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        //console.log(data);
-                        current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                        current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    }
-                });
-            });
-
-
-        });
-
-    }
-
-});
+    });
 
 }
 
@@ -395,54 +357,29 @@ $(".pageLink").bind('contextmenu', function(event) {
 
     });
 
-    // Edit
-    $('#pageLinkRC_1').bind('click', function() {
 
-        $(document).bind('click.writePageLink', function() {
+    // Change Image
+    $('#pageLinkRC_1').bind('click', function(event) {
 
-            writePageLink(note);
-
-        });
-
-    });
-
-    // Edit Image
-    $('#pageLinkRC_2').bind('click', function() {
+        event.stopPropagation();
 
         modalPageLink.show();
-
         modalPageLink.find('.drop-area').attr("pageLink_id", id);
-        //console.log(modal);
 
-        // When the user clicks anywhere outside of the modal, close it
-        $(document).bind('click.first' , function() {
-           $(document).bind('click.second' , function() {
-
-               if (event.target.classList.contains('drop-area')) {
-                  //console.log('clicked the drop area');
-               }
-               else {
-                   modalPageLink.hide();
-                   $(document).unbind('click.first');
-                   $(document).unbind('click.second');
-               }
-
-           });
+        $(document).bind('click.drop' , function() {
+            if (!event.target.classList.contains('drop-area')) {
+                 modalPageLink.hide();
+                 $(document).unbind('click.drop');
+            }
         });
 
     });
 
     // Style
-    $('#pageLinkRC_3').bind('click', function() {
-        if (css){
-            var value = prompt("CSS", css);
-        } else {
-            var value = prompt("CSS", "");
-        }
+    $('#pageLinkRC_2').bind('click', function() {
 
+        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
         if (value != null) {
-
-            //console.log("sending css");
 
             $.ajax({
                 url: '/add_css/'+pageID + '/' + user_id,
@@ -687,21 +624,20 @@ $("#plusSign").bind("click", function(){
 
 });
 
-/*
-$(".pageLink").bind("mouseover", function(){
-    x = event.pageX;
-    y = event.pageY;
-    pageid = $(this).attr("pageid");
-    setTimeout(function(){
-        console.log("iuzehizeuhiuezh");
-        $("iframe").css('top', y);
-        $("iframe").css('left', x);
-        $("iframe").attr("src", "/open_page/" + pageid + "/1")
-        $("iframe").show();
-    }, 2000)
+$("#pageLinkRC_1").on('mouseover', function() {
+    follower.html("add an image");
+    follower.show();
+});
+$("#pageLinkRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
 });
 
-$("iframe").bind("mouseleave", function(){
-    $("iframe").hide();
+$("#pageLinkRC_2").on('mouseover', function() {
+    follower.html("style title");
+    follower.show();
 });
-*/
+$("#pageLinkRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});

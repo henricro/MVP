@@ -73,10 +73,10 @@ function createNotes() {
             var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
+            console.log("build div imagePageLink");
 
-            elem = '<div class="imagePageLink" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '" contenteditable="false"></div>';
+            elem = '<div class="imagePageLink" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '"></div>';
             $('body').append(elem);
-
         }
 
         // build the to-do-list divs
@@ -128,4 +128,25 @@ $(document).click(function(){
 
 $(window).scrollTop(y_position);
 
+var follower = $('#follower');
+$("#follower").hide();
+
+
+$("#pageRC_1").on('mouseover', function() {
+    follower.html("new page");
+    follower.show();
+});
+$("#pageRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#pageRC_2").on('mouseover', function() {
+    follower.html("more");
+    follower.show();
+});
+$("#pageRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
 

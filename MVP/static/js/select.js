@@ -18,9 +18,6 @@ $(document).bind('mousedown.multipleSelect', function(){
     var selectBox = $('#selectBox');
 
     if (event.target.nodeName === 'HTML'){
-        //event.stopPropagation();
-        console.log("wonka");
-        //event.stopPropagation();
         createSelect();
     }
 
@@ -29,13 +26,14 @@ $(document).bind('mousedown.multipleSelect', function(){
 
 function createSelect() {
 
+    // when moving mouse to create selection box
     $(document).bind('mousemove.multipleSelect', function(){
         console.log("moving mouse");
         moveSelect();
     });
 
+    // when finish creating selection box
     $(document).bind('mouseup.multipleSelect', function(){
-        console.log("mouse up");
         stopSelect();
         $(document).unbind('mouseup.multipleSelect');
     });
@@ -49,10 +47,7 @@ function moveSelect() {
     height = Math.abs(event.pageY - startY) ;
     width = Math.abs(event.pageX - startX) ;
 
-    //console.log(height, width)
-
     $('#selectBox').show();
-
     $('#selectBox').css('width', width);
     $('#selectBox').css('height', height);
 
@@ -85,7 +80,6 @@ function stopSelect() {
 
     endX = event.pageX;
     endY = event.pageY;
-    //console.log(endX, endY);
 
     // collect all the elements in the selection
     var selection = [];
@@ -110,26 +104,20 @@ function stopSelect() {
     selectionY = selection.sort((a, b) => a[1] - b[1]).map(arr => arr[0]);
     selectionX = selection.sort((a, b) => a[2] - b[2]).map(arr => arr[0]);
     selection = selection.map(arr => arr[0]);
-    console.log(selection);
-    console.log(selectionY);
-    console.log(selectionX);
 
     // color selected elements with blue border
     for (i in selection){
+
         id = selection[i]
         note = $("#" + id);
-        note.css({"border":"2px solid blue"});
         note.css({"border-radius":"6px"});
+        note.css({"border":"2px solid blue"});
+
     }
 
-
-    //console.log(selection.length);
-    //console.log(selection);
-
+    // if selected no element
     if (selection.length == 0){
-
         $('#selectBox').remove();
-
     } else {
 
         // if cmd + c --> copy selection
@@ -176,8 +164,6 @@ function stopSelect() {
         // if right click on selection box
         $("#selectBox").bind('contextmenu', function(event){
 
-            console.log("right click on selection box");
-
             event.preventDefault();
 
             //console.log("print this");
@@ -197,15 +183,15 @@ function stopSelect() {
             });
 
             $('#selectionRC_1').bind('click', function() {
-                console.log("clicked on align items");
+                console.log("clicked on align items top down");
                 event.stopPropagation();
-                alignItemsVertical(selectionY);
+                alignTopDown(selectionY);
             });
 
             $('#selectionRC_2').bind('click', function() {
-                console.log("clicked on align items");
+                console.log("clicked on align items left right");
                 event.stopPropagation();
-                alignItemsHorizontal(selectionX);
+                alignLeftRight(selectionX);
             });
 
             //}
@@ -279,8 +265,14 @@ function unSelect(selection) {
             } else if (clasis == "noteLink"){
                 note.css({"border":"none"});
                 note.css({"border-radius":"8px"});
-            } else if (clasis == "imageLink" || clasis == "imagePageLink"){
+            } else if (clasis == "imageLink"){
                 note.css({"border":"1px solid #d3d3d3"});
+                note.css({"border-radius":"5px"});
+            } else if (clasis == "imagePageLink"){
+                note.css({"border-top":"1px solid #d3d3d3"});
+                note.css({"border-right":"1px solid #F68C57"});
+                note.css({"border-bottom":"1px solid #F68C57"});
+                note.css({"border-left":"1px solid #d3d3d3"});
                 note.css({"border-radius":"5px"});
             } else if (clasis == "pageLink"){
                 note.css({"border":"1px solid rgb(200, 240, 149, 0.3)"});
@@ -307,44 +299,115 @@ function unSelect(selection) {
 //////////   ALIGN ITEMS  /////////////
 /////////////////////////////////////
 
-function alignItemsVertical(selection){
+function alignTopDown(selection){
 
     $("#selectionRCBox").hide();
 
-    console.log("align items vertical");
-    console.log(selection);
+    // get the 'left' and 'top' style attributes of the highest note in selection :
+    base_x = $("#" + selection[0]).css("left").slice(0, -2); // a number as a string : '234'
+    base_y = $("#" + selection[0]).css("top").slice(0, -2); // a number as a string : '234'
 
-    base_x = parseInt($("#" + selection[0]).css("left").slice(0, -2));
-
-    new_positions = []
-
-    for (let i = 0; i < selection.length - 1; i++){
-
+    // get the heights of the elements as list of strings
+    heights = []
+    for (let i = 0; i < selection.length; i++){
         id = selection[i];
-        note = $('#' + id);
+        note = $("#" + id);
+        height = note.css('height').slice(0,-2);
+        heights.push(height);
+    }
 
-        note.css("left", base_x.toString().concat("px"));
-        height = note.css("height");
+    // set all the new 'top' style attributes :
+    tops = [base_y]; // first one
+    for (let i = 0; i < selection.length-1; i++){
+        top_of_prev = parseInt(tops[tops.length - 1]);
+        height_of_prev = parseInt(heights[i]);
+        new_top = top_of_prev + height_of_prev + 10;
+        new_top_str = new_top.toString();
+        tops.push(new_top_str);
+    }
 
-        next_id = selection[i+1]
-        next_note = $('#' + next_id);
-        next_note.css("transition", "left 1s, top 1s");
-        next_note.css("left", base_x.toString().concat("px"));
-        next_note_top = parseInt(note.css("top").slice(0, -2)) + parseInt(note.css("height").slice(0, -2)) +  10
-        next_note.css("top", next_note_top.toString().concat("px"));
+    lefts = Array.from({ length: selection.length }, () => base_x);
 
-        next_note.css("transition", "top 0s, left 0s");
+    new_positions = selection.map((element, index) => [selection[index], lefts[index], tops[index]]);
 
-        new_positions.push([id, base_x.toString(), note.css("top").slice(0, -2)]);
+    // replace the elements with animation
+    for (let i = 0; i < new_positions.length; i++){
+
+        var id = new_positions[i][0];
+        var new_left = new_positions[i][1];
+        var new_top = new_positions[i][2];
+        note = $("#" + id);
+        note.animate({
+            top: new_top.concat("px"),
+            left: new_left.concat("px")
+        }, 1000);
 
     }
 
-    new_positions.push([selection[selection.length - 1], base_x.toString(), next_note_top.toString()])
+    // ajax call with id x and y postion if element has moved
+    $.ajax({
 
-    console.log("ajax call");
-    console.log(selection);
+        url: '/update_positions/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            positions : new_positions
+        }),
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (error) {
+            console.log("problem");
+        }
 
-    console.log(new_positions);
+    });
+
+}
+
+function alignLeftRight(selection){
+
+    $("#selectionRCBox").hide();
+
+    // get the 'left' and 'top' style attributes of the highest note in selection :
+    base_x = $("#" + selection[0]).css("left").slice(0, -2); // a number as a string : '234'
+    base_y = $("#" + selection[0]).css("top").slice(0, -2); // a number as a string : '234'
+
+    // get the heights of the elements as list of strings
+    widths = []
+    for (let i = 0; i < selection.length; i++){
+        id = selection[i];
+        note = $("#" + id);
+        width = note.css('width').slice(0,-2);
+        widths.push(width);
+    }
+
+    // set all the new 'left' style attributes :
+    lefts = [base_x]; // first one
+    for (let i = 0; i < selection.length-1; i++){
+        left_of_prev = parseInt(lefts[lefts.length - 1]);
+        width_of_prev = parseInt(widths[i]);
+        new_left = left_of_prev + width_of_prev + 10;
+        new_left_str = new_left.toString();
+        lefts.push(new_left_str);
+    }
+
+    tops = Array.from({ length: selection.length }, () => base_y);
+
+    new_positions = selection.map((element, index) => [selection[index], lefts[index], tops[index]]);
+
+    // replace the elements with animation
+    for (let i = 0; i < new_positions.length; i++){
+
+        var id = new_positions[i][0];
+        var new_left = new_positions[i][1];
+        var new_top = new_positions[i][2];
+        note = $("#" + id);
+        note.animate({
+            top: new_top.concat("px"),
+            left: new_left.concat("px")
+        }, 1000);
+
+    }
 
     // ajax call with id x and y postion if element has moved
     $.ajax({
@@ -367,61 +430,20 @@ function alignItemsVertical(selection){
 }
 
 
-function alignItemsHorizontal(selection){
+$("#selectionRC_1").on('mouseover', function() {
+    follower.html("align top-down");
+    follower.show();
+});
+$("#selectionRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
 
-    $("#selectionRCBox").hide();
-
-    console.log("align items horizontal");
-    console.log(selection);
-
-    base_y = parseInt($("#" + selection[0]).css("top").slice(0, -2));
-
-    new_positions = []
-
-    for (let i = 0; i < selection.length - 1; i++){
-
-        id = selection[i];
-        note = $('#' + id);
-
-        note.css("top", base_y.toString().concat("px"));
-        width = note.css("width");
-
-        next_id = selection[i+1]
-        next_note = $('#' + next_id);
-        next_note.css("transition", "left 1s, top 1s");
-        next_note.css("top", base_y.toString().concat("px"));
-        next_note_left = parseInt(note.css("left").slice(0, -2)) + parseInt(note.css("width").slice(0, -2)) +  10
-        next_note.css("left", next_note_left.toString().concat("px"));
-
-        next_note.css("transition", "top 0s, left 0s");
-
-        new_positions.push([id, base_y.toString(), note.css("left").slice(0, -2)]);
-
-    }
-
-    new_positions.push([selection[selection.length - 1], base_y.toString(), next_note_left.toString()])
-
-    console.log("ajax call");
-    console.log(selection);
-
-    console.log(new_positions);
-
-    // ajax call with id x and y postion if element has moved
-    $.ajax({
-
-        url: '/update_positions/' + pageID + '/' + user_id,
-        type: "POST",
-        data: JSON.stringify({
-            positions : new_positions
-        }),
-        contentType: "application/json",
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (error) {
-            console.log("problem");
-        }
-
-    });
-
-}
+$("#selectionRC_2").on('mouseover', function() {
+    follower.html("align left-right");
+    follower.show();
+});
+$("#selectionRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});

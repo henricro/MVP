@@ -49,16 +49,14 @@ def add_css(pageID, user_id):
 
 ## add css to the text of an imagePageLink
 
-@application.route("/add_css_text_ipl/<pageID>/<user_id>", methods=['POST'])
+@application.route("/add_css_title_ipl/<pageID>/<user_id>", methods=['POST'])
 def add_css_text_ipl(pageID, user_id):
 
-    print("route : add css", "yoyoyoyo")
+    print("route : add css imagePageLink title")
 
     request_data = request.get_json()
     id = str(request_data.get('id'))
     css = str(request_data.get('css'))
-
-    print(id, css, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -67,21 +65,12 @@ def add_css_text_ipl(pageID, user_id):
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
+    css_title = note.find("css_text")
 
-    hehe = note.find("css_text")
-    print(hehe, "yoyoyoyo")
-
-    if hehe is not None:
-
-        print("already was css", "yoyoyoyo")
+    if css_title is not None:
         note.find("css_text").text = css
-
     else :
-
-        print("had to create css_text", "yoyoyoyo")
         etree.SubElement(note, "css_text").text = css
-
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -96,13 +85,11 @@ def add_css_text_ipl(pageID, user_id):
 @application.route("/add_css_image_ipl/<pageID>/<user_id>", methods=['POST'])
 def add_css_image_ipl(pageID, user_id):
 
-    print("route : add css", "yoyoyoyo")
+    print("route : add css imagePageLink image")
 
     request_data = request.get_json()
     id = str(request_data.get('id'))
     css = str(request_data.get('css'))
-
-    print(id, css, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -113,16 +100,10 @@ def add_css_image_ipl(pageID, user_id):
     note = root.find("notes").find("note[@id='" + id + "']")
 
     hehe = note.find("css_image")
-    print(hehe, "yoyoyoyo")
 
     if hehe is not None:
-
-        print("already was css", "yoyoyoyo")
         note.find("css_image").text = css
-
     else :
-
-        print("had to create css_text", "yoyoyoyo")
         etree.SubElement(note, "css_image").text = css
 
     print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
