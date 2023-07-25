@@ -4,70 +4,50 @@
 ////////////////////////////////////////////////
 
 $('.image').each(function(){
-    createImage($(this));
+    buildImage($(this));
 });
 
-function createImage(note) {
+function buildImage(note) {
 
     var id = note.attr("id");
 
-    //console.log(id);
-
     var XMLnote = xmlDoc.getElementById(id);
-    //console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
-
-    //console.log("build image", "width : ", width, "height : ", height);
-    //console.log(note);
-    //console.log("get the width and height after build : ", " width : ", note.css("width"), " height : ", note.css("height"));
-
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
-
     var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
 
+    // for the login page
     if (["6220", "6219", "2288"].includes(image_id)) {
-        //console.log("id in selection, ", image_id);
         var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
     } else {
-        //console.log("id not in selection, ", image_id);
         var img_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
-    var img = "<img class='image_img' draggable='false' src=" + img_src + " />";
-    console.log(img);
-
+    var img_div = "<img class='image_img' draggable='false' src=" + img_src + " />";
     var name_div = "<div class='image_name'><div>" + name + "</div></div>"
-
-    //console.log(img, x, y);
 
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
-    note.append(img);
-    //note.append(name_div);
     note.css("width", width);
     note.css("height", height);
+    note.append(img_div);
 
+    // css if any
     if ( XMLnote.getElementsByTagName("css")[0] ){
-
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
 
             var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
-
             var style = note.attr('style'); //it will return string
 
             style += css;
             note.attr('style', style);
-
             note.attr('added_css', css);
 
         }
-
     }
-
 }
 
 
@@ -78,7 +58,6 @@ function createImage(note) {
 
 $('.image').each(function(){
     $(this).bind('click.select', function(){
-        //console.log("hebe");
         selectImage($(this));
     });
 });
@@ -89,62 +68,46 @@ function selectImage(note){
 
     // COPY THE NOTE
     $(document).bind('copy', function() {
-        //console.log("clicked to copy an image");
         copyNote(note);
     });
 
-    console.log("selected an image");
-
+    // change style after click
     note.css({"border":"1px solid green"});
-
     var image_img = note.find('.image_img');
-
     image_img.css("opacity", 0.3);
+    note.addClass("resizable");
+
+    note.unbind('mousedown.drag');
+    note.unbind('click.select');
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
-
         if (event.keyCode == 8){
 
-            id = note.attr("id");
-            //console.log(id);
-            //console.log(event.keyCode);
-
             $.ajax({
-                url: '/delete_note/'+pageID + '/' + user_id,
+                url: '/delete_note/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }
     });
 
-    note.addClass("resizable");
-
-    note.unbind('mousedown.drag');
-
-    note.unbind('click.select');
-
+    // if click outside
     $(document).bind('click.outsideImage', function(){
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             note.css({"border":"1px solid transparent"});
-
             image_img.css("opacity", 1);
 
             $(document).unbind('copy');

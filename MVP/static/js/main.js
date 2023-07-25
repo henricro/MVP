@@ -5,23 +5,17 @@
 ///////////////////////////////////////////////////////
 
 
-createNotes();
+buildNotes();
 
-function createNotes() {
+function buildNotes() {
 
     var notes = xmlDoc.getElementsByTagName("note");
-
-    //console.log(pages);
-    //console.log(pages[43]);
 
     for (i = 0; i < notes.length; i++) {
 
         var note = notes[i];
         var id = note.getAttribute("id");
         var clasis = note.getAttribute("class");
-        //console.log(id, clasis);
-
-        //var link = note.getElementsByTagName("link");
 
         // build the noteLink divs
         if (clasis === "noteLink"){
@@ -41,8 +35,6 @@ function createNotes() {
             var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
-            //console.log(id, pageID,title);
-            //console.log("build a pageLink");
 
             elem = '<div class="pageLink" ' + ' id="' + id + '" pageID=' + pageID + ' pageTitle="' + title + '" contenteditable="false"></div>';
             $('body').append(elem);
@@ -73,7 +65,6 @@ function createNotes() {
             var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
-            console.log("build div imagePageLink");
 
             elem = '<div class="imagePageLink" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '"></div>';
             $('body').append(elem);
@@ -84,18 +75,8 @@ function createNotes() {
             elem = "<div class='to-do-list' id='" + id + "'></div>"
             $('body').append(elem);
         }
-        /*
-        else if (clasis === "criteria") {
-            elem = '<div class="criteria" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
-        }
-        else if (clasis === "category") {
-            elem = '<div class="category" id="' + id + '" contenteditable="false"></div>';
-            $('body').append(elem);
-        }
-        */
-    }
 
+    }
 }
 
 
@@ -103,12 +84,9 @@ function createNotes() {
 //////  KEEP INFO OF LAST PLACE USER CLICKED //////////
 ///////////////////////////////////////////////////////
 
-$(document).click(function(){
-
+$(document).bind('click', function(){
 
     if (event.target.nodeName === 'HTML'){
-
-        //console.log("clicked on page");
 
         x = event.pageX.toString();
         y = event.pageY.toString();
@@ -130,6 +108,113 @@ $(window).scrollTop(y_position);
 
 var follower = $('#follower');
 $("#follower").hide();
+
+
+
+
+////////////////////////////////////////////////
+/////////   RIGHT CLICK ON PAGE  ///////////////
+////////////////////////////////////////////////
+
+function refreshPage(pageID, user_id, current_y) {
+    window.location.href = '/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+}
+
+// if right click on page (white space)
+$(document).bind('contextmenu.newPage', function(event) {
+    event.preventDefault();
+
+    if ($(event.target).is("html")) {
+
+        new_x = event.pageX;
+        new_y = event.pageY;
+
+        $("#pageRCBox").css("left", new_x);
+        $("#pageRCBox").css("top", new_y);
+        $("#pageRCBox").show();
+
+        // if click outside RCbox
+        $(document).bind('click.pageRCBox', function(event){
+            if (!$("#pageRCBox").is(event.target) && $("#pageRCBox").has(event.target).length === 0){
+                $("#pageRCBox").hide();
+                $(document).unbind('click.pageRCBox');
+            }
+        });
+
+        // if click on first button
+        $('#pageRC_1').bind('click', function() {
+
+            $("#pageRCBox").hide();
+            var title = prompt("Name", "");
+
+            $.ajax({
+                url: '/new_page/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    new_x : new_x,
+                    new_y : new_y,
+                    title : title
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                    setTimeout(
+                        refreshPage(pageID, user_id, current_y),
+                        1000
+                    )
+                }
+            });
+        });
+
+        // if click on second button
+        $('#pageRC_2').bind('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            x = event.pageX;
+            y = event.pageY;
+
+            // show new options
+            $("#pageRCPlusBox").css("left", new_x);
+            $("#pageRCPlusBox").css("top", new_y);
+            $("#pageRCPlusBox").show();
+
+            // if click outside RCPlusBox
+            $(document).bind('click.pageRCPlusBox', function(event){
+                if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
+                    $("#pageRCPlusBox").hide();
+                    $(document).unbind('click.pageRCPlusBox');
+                }
+            });
+
+            // if click on first option (to-do-list)
+            $('#pageRCPlus_1').bind('click', function() {
+                $('#pageRCPlus_1').unbind('click');
+
+                $.ajax({
+                    url: '/new_to_do_list/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        x : x,
+                        y : y
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    },
+                    error: function (error) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    }
+                });
+            });
+        });
+    }
+});
 
 
 $("#pageRC_1").on('mouseover', function() {
