@@ -41,7 +41,7 @@ function buildPageLink(note) {
 
 
 ///////////////////////////////////////////////////////
-/////////////    SELECT PAGELINK   ////////////////////
+/////////////    CLICK ON PAGELINK   ////////////////////
 ///////////////////////////////////////////////////////
 
 $('.pageLink').each(function(){
@@ -50,6 +50,19 @@ $('.pageLink').each(function(){
     });
 });
 
+function styleClickPageLink(note){
+    note.css({"border-color":"rgb(96, 168, 53) rgb(246, 140, 87) rgb(246, 140, 87) rgb(96, 168, 53)"});
+    note.css({"text-decoration": "underline"});
+    note.css({"text-decoration-color": "#F68C57"});
+    note.css({"cursor":"pointer"});
+}
+
+function defaultStylePageLink(note){
+    note.css({"border-color":"rgb(200, 240, 149, 0.3) rgb(246, 140, 87) rgb(246, 140, 87) rgb(200, 240, 149, 0.3)"});
+    note.css({"text-decoration": ""});
+    note.css({"cursor":"default"});
+}
+
 function selectPageLink(note){
 
     // COPY THE NOTE
@@ -57,28 +70,15 @@ function selectPageLink(note){
         copyNote(note);
     });
 
-    note.css({"border-top":"1px solid #60A835"});
-    note.css({"border-left":"1px solid #60A835"});
-    note.css({"border-bottom":"1px solid #F68C57"});
-    note.css({"border-right":"1px solid #F68C57"});
-    note.css({"text-decoration": "underline"});
-    note.css({"text-decoration-color": "#F68C57"});
-
-    note.css({"cursor":"pointer"});
+    styleClickPageLink(note);
 
     pageLinkID= note.attr("pageID");
 
-    //console.log(pageID);
-
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
-
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            //console.log(id);
-            //console.log(event.keyCode);
-
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
                 type: "POST",
@@ -87,15 +87,11 @@ function selectPageLink(note){
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -104,38 +100,27 @@ function selectPageLink(note){
 
     note.unbind('click.select');
 
-    // SECOND CLICK
+    // second click : go to page
     note.bind('click.gotopage', function(){
-
         $(document).unbind('keyup.delete');
-
         window.open('/open_page/'+ pageLinkID + '/' + user_id + "/0" , '_blank');
-
     });
 
+    // if click outside pageLink
     $(document).click(function(){
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border-color":""});
-            note.css({"cursor":""});
-            note.css({"border":""});
-            note.css({"text-decoration":""});
+            defaultStylePageLink(note)
 
             note.unbind('copy');
-
             $(document).unbind('keyup.delete');
-
             note.unbind('click.gotopage');
 
             note.bind('click.select', function(){
                 selectPageLink($(this));
             });
-
         }
-
     });
-
 }
 
 

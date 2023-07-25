@@ -111,7 +111,9 @@ function stopSelect() {
         id = selection[i]
         note = $("#" + id);
         note.css({"border-radius":"6px"});
-        note.css({"border":"2px solid blue"});
+        note.css({"border-width":"2px"});
+        note.css({"border-style":"solid"});
+        note.css({"border-color":"blue blue blue blue"});
 
     }
 

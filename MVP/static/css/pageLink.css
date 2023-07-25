@@ -6,20 +6,23 @@
   position: absolute;
   padding : 3px;
   border: 1px solid rgb(200, 240, 149, 0.3);
+  border-style: solid;
+  border-width: 1px;
+  border-color : rgb(200, 240, 149, 0.3) rgb(246, 140, 87) rgb(246, 140, 87) rgb(200, 240, 149, 0.3);
   border-radius : 5px;
   text-align: center;
-  border-bottom: 1px solid #F68C57;
-  border-right: 1px solid #F68C57;
   background-color : rgb(200, 240, 149, 0.2);
 
 }
 
 .pageLink:hover {
+
     font-size: 15px;
     cursor: default;
     font-weight: 450;
     border-bottom : 2px solid #F68C57;
     border-right : 2px solid #F68C57;
+
 }
 
 
