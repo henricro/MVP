@@ -8,8 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/title.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/note.css">
     <link rel="stylesheet" type="text/css" href="/static/css/pageLink.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/images.css">
     <link rel="stylesheet" type="text/css" href="/static/css/imagePageLink.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/pdf.css">
     <link rel="stylesheet" type="text/css" href="/static/css/right-click.css">
     <link rel="stylesheet" type="text/css" href="/static/css/select.css">
     <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
@@ -171,12 +175,11 @@
 
 </div>
 
-<div id="noteRCBox">
-    <div class="choiceBox">
-        <div id="noteRC_1" class="choiceButton choiceLOrange"><i class="fa fa-link"></i> Add Link</div>
-        <div id="noteRC_2" class="choiceButton choiceLGreen"><i class="fa fa-copy"></i> Copy Text</div>
-        <div id="noteRC_3" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
-    </div>
+
+<div id="noteRCBox" class="choiceBoxHoriz">
+    <img id="noteRC_1" class="buttonIcon" src="/static/images/icons/link.png" style="height: 100%;"/>
+    <img id="noteRC_2" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
+    <img id="noteRC_3" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
 </div>
 
 <div id="noteLinkRCBox">
@@ -189,8 +192,8 @@
 
 <div id="imageRCBox" class="choiceBoxHoriz">
     <img id="imageRC_1" class="buttonIcon" src="/static/images/icons/link.png" style="height: 100%;"/>
-    <img id="imageRC_2" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
     <img id="imageRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
+    <img id="imageRC_3" class="buttonIcon" src="/static/images/icons/download.png" style="height: 100%;"/>
 </div>
 
 
@@ -202,10 +205,8 @@
     </div>
 </div>
 
-<div id="pdfRCBox">
-    <div class="choiceBox">
-        <div id="pdfRC_1" class="choiceButton choiceYellow"><i class="fa fa-paint-brush"></i> Style</div>
-    </div>
+<div id="pdfRCBox" class="choiceBoxHoriz">
+    <img id="pdfRC_1" class="buttonIcon" src="/static/images/icons/download.png" style="height: 100%;"/>
 </div>
 
 <div id="pageLinkRCBox" class="choiceBoxHoriz">
@@ -227,18 +228,17 @@
     </div>
 </div>
 
-<div id="titleRCBox">
-    <div class="choiceBox">
-        <div id="titleRC_1" class="choiceButton choiceLOrange"><i class="fa fa-edit"></i> Edit Ttile</div>
-    </div>
+
+<div id="titleRCBox" class="choiceBoxHoriz">
+    <img id="titleRC_1" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
 </div>
 
 
 <div id="selectionRCBox" class="choiceBoxHoriz">
     <img id="selectionRC_1" class="buttonIcon" src="/static/images/icons/align-top.jpg" style="height: 100%;"/>
     <img id="selectionRC_2" class="buttonIcon" src="/static/images/icons/align-left.jpg" style="height: 100%;"/>
+    <img id="selectionRC_3" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
 </div>
-
 
 
 </body>
@@ -247,71 +247,38 @@
 
 <script>
 
-
 var title = '{{title}}';
-//console.log("print title");
-//console.log(title);
-
 var pages = {{pages|safe}};
-
 var xml = '{{xml_string|safe}}';
-//console.log("print xml");
-//console.log(xml);
-
 var xmlDoc = $.parseXML(xml);
-//console.log(xmlDoc);
 var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
-//console.log(biggest);
-
 var pageID = '{{pageID|safe}}';
-
 var user_id = '{{user_id|safe}}';
-
 var y_position = '{{y_position|safe}}';
-
-
 
 </script>
 
     <script type="text/javascript" src="/static/js/copy_paste.js" ></script>
-
     <script type="text/javascript" src="/static/js/main.js" ></script>
-
     <script type="text/javascript" src="/static/js/notes.js" ></script>
-
     <script type="text/javascript" src="/static/js/noteLinks.js" ></script>
-
     <script type="text/javascript" src="/static/js/drop.js" ></script>
-
     <script type="text/javascript" src="/static/js/images.js" ></script>
-
     <script type="text/javascript" src="/static/js/pdf.js" ></script>
-
     <script type="text/javascript" src="/static/js/pageLink.js" ></script>
-
     <script type="text/javascript" src="/static/js/drag.js" ></script>
-
     <script type="text/javascript" src="/static/js/title.js" ></script>
-
     <script type="text/javascript" src="/static/js/select.js" ></script>
-
     <script type="text/javascript" src="/static/js/imagePageLink.js" ></script>
-
     <script type="text/javascript" src="/static/js/imageLink.js" ></script>
-
     <script type="text/javascript" src="/static/js/unload.js" ></script>
-
     <script type="text/javascript" src="/static/js/lines.js" ></script>
-
     <script type="text/javascript" src="/static/js/zoom.js" ></script>
-
     <script type="text/javascript" src="/static/js/lists.js" ></script>
-
     <script type="text/javascript" src="/static/js/criteria.js" ></script>
-
     <script type="text/javascript" src="/static/js/categories.js" ></script>
-
     <script type="text/javascript" src="/static/js/zoom.js" ></script>
+    <script type="text/javascript" src="/static/js/resize.js" ></script>
 
     <script>
         $(window).scrollTop(y_position);

@@ -8,13 +8,8 @@ $(document).bind('mousedown.multipleSelect', function(){
     startX = event.pageX;
     startY = event.pageY;
 
-    console.log(event);
-    console.log(startX, startY);
-
     selectBox = "<div id='selectBox' style='position:absolute; background-color:blue; opacity:0.1;'></div>"
-
     $('body').append(selectBox);
-
     var selectBox = $('#selectBox');
 
     if (event.target.nodeName === 'HTML'){
@@ -124,7 +119,6 @@ function stopSelect() {
 
         // if cmd + c --> copy selection
         $(document).bind('copy.copySelection', function() {
-            //console.log("clicked to copy selection");
             copySelection(selection);
             $(document).unbind('copy.copySelection');
         });
@@ -145,16 +139,12 @@ function stopSelect() {
                     contentType: "application/json",
                     success: function (data) {
                         console.log(data);
-                        console.log("whenever");
                         current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
                         window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
                         console.log("problem");
-                        console.log("wherever");
                         current_y = document.documentElement.scrollTop;
-                        console.log("current y :", current_y);
                         window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                     }
                 });
@@ -168,9 +158,6 @@ function stopSelect() {
 
             event.preventDefault();
 
-            //console.log("print this");
-            //console.log(event.target);
-
             $("#selectionRCBox").css("left", event.pageX);
             $("#selectionRCBox").css("top", event.pageY);
             $("#selectionRCBox").show();
@@ -179,8 +166,6 @@ function stopSelect() {
             $(document).click(function(){
                 if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0 && !$("#selectBox").is(event.target)){
                      $("#selectionRCBox").hide();
-                     console.log("clicked outside selection box");
-                     console.log(event.target);
                 }
             });
 
@@ -191,12 +176,14 @@ function stopSelect() {
             });
 
             $('#selectionRC_2').bind('click', function() {
-                console.log("clicked on align items left right");
                 event.stopPropagation();
                 alignLeftRight(selectionX);
             });
 
-            //}
+            $('#selectionRC_3').bind('click', function() {
+                $("#selectionRCBox").hide();
+                copySelection(selection);
+            });
 
         });
 
@@ -228,29 +215,18 @@ function stopSelect() {
         // if you click outside the box
         $(document).bind('mousedown.outsideSelect1', function(){
 
-            //event.stopPropagation();
-            //$(document).bind('mousedown.outsideSelect2', function(){
-
             if (!$("#selectBox").is(event.target) && $("#selectBox").has(event.target).length === 0){
 
-                console.log("iuhdiudahiuadh");
                 $("#selectBox").hide();
-
                 unSelect(selection);
-
                 $(document).unbind("mousedown.outsideSelect1");
-                //$(document).unbind("mousedown.outsideSelect2");
 
             }
 
-            //});
-
         });
-
     }
-
-
 }
+
 
 function unSelect(selection) {
 
@@ -290,10 +266,7 @@ function unSelect(selection) {
                 note.css({"border-radius":""});
             } else {}
         }
-
 }
-
-
 
 
 
@@ -446,6 +419,15 @@ $("#selectionRC_2").on('mouseover', function() {
     follower.show();
 });
 $("#selectionRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#selectionRC_3").on('mouseover', function() {
+    follower.html("copy selection");
+    follower.show();
+});
+$("#selectionRC_3").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });

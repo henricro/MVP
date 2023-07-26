@@ -113,6 +113,7 @@ function selectImage(note){
             $(document).unbind('copy');
 
             note.removeClass("resizable");
+            note.removeClass("homothetic-resizable");
 
             $(document).unbind('keyup.delete');
 
@@ -199,13 +200,9 @@ $(".image").bind('contextmenu', function(event) {
     $("#imageRCBox").show();
 
     $(document).click(function(){
-
         if (!$("#imageRCBox").is(event.target) && $("#imageRCBox").has(event.target).length === 0){
-
             $("#imageRCBox").hide();
-
         }
-
     });
 
     // Add Link
@@ -223,15 +220,11 @@ $(".image").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -239,27 +232,14 @@ $(".image").bind('contextmenu', function(event) {
 
     });
 
-    // Copy Image
+    //Style
     $('#imageRC_2').bind('click', function() {
 
-        copyNote(note);
-
-    });
-
-    //Style
-    $('#imageRC_3').bind('click', function() {
-        if (css){
-            var value = prompt("CSS", css);
-        } else {
-            var value = prompt("CSS", "");
-        }
-
+        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
         if (value != null) {
-
-            console.log("sending css");
-
+            console.log("added css");
             $.ajax({
-                url: '/add_css/'+pageID + '/' + user_id,
+                url: '/add_css/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
@@ -267,20 +247,48 @@ $(".image").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
-
         }
     });
 
+    // Copy Image
+    $('#imageRC_2').bind('click', function() {
+        copyNote(note);
+    });
+
+});
+
+
+$("#imageRC_1").on('mouseover', function() {
+    follower.html("add a link");
+    follower.show();
+});
+$("#imageRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#imageRC_2").on('mouseover', function() {
+    follower.html("style image");
+    follower.show();
+});
+$("#imageRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#imageRC_3").on('mouseover', function() {
+    follower.html("download image");
+    follower.show();
+});
+$("#imageRC_3").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
 });

@@ -64,6 +64,7 @@
   position: absolute;
   top:30px;
   border-radius: 5px;
-  padding:3px;
+  padding:4px;
   font-size: 18px;
+  border: 1px solid black;
 }

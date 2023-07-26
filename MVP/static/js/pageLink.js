@@ -147,15 +147,10 @@ $(".pageLink").bind('contextmenu', function(event) {
     $("#pageLinkRCBox").show();
 
     $(document).click(function(){
-
         if (!$("#pageLinkRCBox").is(event.target) && $("#pageLinkRCBox").has(event.target).length === 0){
-
             $("#pageLinkRCBox").hide();
-
         }
-
     });
-
 
     // Change Image
     $('#pageLinkRC_1').bind('click', function(event) {

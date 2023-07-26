@@ -40,15 +40,12 @@ function copyNote(note){
 }
 
 
-
-
 function copySelection(selection){
 
-    //console.log("function copySelection");
-    //console.log(selection);
+    console.log(selection);
+    console.log("copy selection");
     yolk = "paste_selection; " + pageID + "; " + selection ;
-    //console.log("yolk");
-    //console.log(yolk);
+    console.log(yolk);
     $('#myClipboard').show().attr("value", yolk);
     $('#myClipboard').select();
     $(document).execCommand("copy");

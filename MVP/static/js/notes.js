@@ -6,26 +6,18 @@
 
 
 $('.note').each(function(){
-    createNote($(this));
+    buildNote($(this));
 });
 
 
-function createNote(note) {
+function buildNote(note) {
 
     id = note.attr("id");
 
-    //console.log(id);
-
     var XMLnote = xmlDoc.getElementById(id);
-    //console.log(XMLnote);
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-
-    //console.log(content, x, y);
-
-    //console.log("print elmnt");
-    //console.log(elmnt);
 
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
@@ -33,23 +25,17 @@ function createNote(note) {
 
     // added CSS if there is some
     if ( XMLnote.getElementsByTagName("css")[0] ){
-
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
 
             var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
-
             var style = note.attr('style'); //it will return string
 
             style += css;
             note.attr('style', style);
-
             note.attr('added_css', css);
 
         }
-
     }
-
-
 }
 
 
@@ -60,36 +46,16 @@ function createNote(note) {
 
 $('*:not("div")').dblclick(function(){
 
-    //console.log(event.target.nodeName);
-
-    //console.log("double clicked on page");
-
+    console.log("fefefefe");
     id = biggest + 1;
-    //console.log(id);
 
     if (event.target.nodeName === 'HTML'){
         x = event.pageX.toString();
         y = event.pageY.toString();
 
         // CREATE HTML NOTE
-
-        //console.log(x, y);
-
-        //elem = '<div class="note"><input type="text" class="input" value=""/><div class="content"></div></div>';
-        //$('body').append(elem);
-
-        //var elmnt = $(".note:last");
-        //console.log("print elmnt");
-        //console.log(elmnt);
-        //elmnt.css("position","absolute");
-        //elmnt.css("top",y.concat("px"));
-        //elmnt.css("left",x.concat("px"));
-        //elmnt.attr("id",id);
-        //elmnt.find('.content').text("new content");
-
-
         $.ajax({
-            url: '/create_note/'+pageID + '/' + user_id,
+            url: '/create_note/' + pageID + '/' + user_id,
             type: "POST",
             data: JSON.stringify({
                 x : x,
@@ -97,22 +63,16 @@ $('*:not("div")').dblclick(function(){
             }),
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
                 current_y = document.documentElement.scrollTop;
-                console.log("current y :", current_y);
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-
             },
             error: function (error) {
-                //console.log("problem");
                 current_y = document.documentElement.scrollTop;
-                console.log("current y :", current_y);
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             }
         });
 
     }
-
 
 });
 
@@ -122,7 +82,6 @@ $('*:not("div")').dblclick(function(){
 
 $('.note').each(function(){
     $(this).bind('click.selectNote', function(){
-        console.log("hhaa", $(this));
         selectNote($(this));
     });
 });
@@ -131,16 +90,12 @@ $('.note').each(function(){
 function selectNote(note){
 
     event.stopPropagation();
-
     id = note.attr("id");
 
     // COPY THE NOTE
     note.bind('copy', function() {
-        //console.log("clicked to copy note");
         copyNote(note);
     });
-
-    console.log("select note");
 
     note.css({"border":"1px solid green"});
 
@@ -149,26 +104,19 @@ function selectNote(note){
 
         if (event.keyCode == 8){
 
-            //console.log(id);
-            //console.log(event.keyCode);
-
             $.ajax({
-                url: '/delete_note/'+pageID + '/' + user_id,
+                url: '/delete_note/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -179,27 +127,18 @@ function selectNote(note){
 
     // SECOND CLICK
     note.bind('click.write', function(){
-
-        console.log("click to write in note");
-
         $(document).unbind('keyup.delete')
-
         writeNote($(this));
-
     });
 
     $(document).bind('contextmenu', function(event) {
-
         event.preventDefault();
 
         if (!note.is(event.target) && note.has(event.target).length === 0){
-
             $(document).unbind('keyup.delete');
 
             note.unbind('click.write');
-
             note.unbind('copy');
-
             note.bind('click.select', function(){
                 selectNote($(this));
             });
@@ -207,39 +146,27 @@ function selectNote(note){
             $(document).unbind('copy');
 
         }
-
     });
 
     event.stopPropagation();
 
+    // if click outside
     $(document).bind('click.outsideNote', function(){
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            console.log("click outside of note");
-
             note.css({"border":"1px solid rgb(0,0,0,0)"});
-
             $(document).unbind('keyup.delete');
-
             note.unbind('click.write');
-
             note.unbind('copy');
-
             note.bind('click.select', function(){
                 selectNote($(this));
             });
-
             $(document).unbind('copy');
-
             $(document).unbind('click.outsideNote');
 
         }
-
     });
-
 }
-
 
 
 
@@ -257,7 +184,6 @@ $('.note').each(function(){
 
 function writeNote(note){
 
-
     note.unbind('click.select');
     note.unbind('dblclick.write');
     note.unbind('mousedown.drag');
@@ -266,21 +192,15 @@ function writeNote(note){
     note.attr("contenteditable", "true");
 
     $(document).bind('click.update_content', function() {
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             content = note.html();
-
             $(document).unbind('click.update_content');
-
             id = note.attr('id')
 
             if (content == "") {
-
                 current_y = document.documentElement.scrollTop;
-                console.log("current y :", current_y);
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-
             } else {
 
                 $.ajax({
@@ -312,20 +232,15 @@ function writeNote(note){
             });
 
             note.bind('mousedown.drag', function(){
-
                 mouseX = event.pageX;
                 mouseY = event.pageY;
-
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
-
                 dragNote(note, noteX, noteY);
             });
 
         }
-
     });
-
 }
 
 
@@ -341,7 +256,6 @@ $(".note").bind('contextmenu', function(event) {
     new_y = event.pageY;
 
     var note = $(this);
-
     id = note.attr("id");
     css = $(this).attr('added_css');
 
@@ -350,20 +264,15 @@ $(".note").bind('contextmenu', function(event) {
     $("#noteRCBox").show();
 
     $(document).click(function(){
-
         if (!$("#noteRCBox").is(event.target) && $("#noteRCBox").has(event.target).length === 0){
-
             $("#noteRCBox").hide();
-
         }
-
     });
 
     // Add Link
     $('#noteRC_1').bind('click', function() {
 
         var value = prompt("Lien", "");
-
         if (value != null) {
 
             $.ajax({
@@ -375,21 +284,15 @@ $(".note").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    //console.log("current y :", current_y);
                     window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    //console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    //console.log("current y :", current_y);
                     window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                 }
             });
-
         }
-
     });
 
     // Copy Note
@@ -399,15 +302,8 @@ $(".note").bind('contextmenu', function(event) {
 
     // Style
     $('#noteRC_3').bind('click', function() {
-        if (css){
-            var value = prompt("CSS", css);
-        } else {
-            var value = prompt("CSS", "");
-        }
-
+        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
         if (value != null) {
-
-            //console.log("sending css");
 
             $.ajax({
                 url: '/add_css/'+pageID + '/' + user_id,
@@ -418,15 +314,11 @@ $(".note").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -436,3 +328,29 @@ $(".note").bind('contextmenu', function(event) {
 
 });
 
+$("#noteRC_1").on('mouseover', function() {
+    follower.html("add a link");
+    follower.show();
+});
+$("#noteRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteRC_2").on('mouseover', function() {
+    follower.html("copy text");
+    follower.show();
+});
+$("#noteRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#imageRC_3").on('mouseover', function() {
+    follower.html("style note");
+    follower.show();
+});
+$("#imageRC_3").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});

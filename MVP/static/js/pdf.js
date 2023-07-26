@@ -250,33 +250,11 @@ $(".pdf").bind('contextmenu', function(event) {
 });
 
 
-/*
-$(function() {
-
-      "use strict";
-
-      $.contextMenu({
-        selector: '.pdf div',
-        callback: function(key, options) {
-        var pdf = $(this).parent().attr("pdf");
-
-           if (key === 'open') {
-             console.log($(this).parent());
-             console.log("open pdf");
-             console.log(pdf);
-             window.open(pdf, '_blank');
-           }
-        },
-
-        items: {
-          'open': {
-            name: "Open",
-            icon: "fa-book-open"
-          }
-        }
-
-      });
-
+$("#pdfRC_1").on('mouseover', function() {
+    follower.html("download PDF");
+    follower.show();
 });
-
-*/
+$("#pdfRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});

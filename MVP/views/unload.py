@@ -4,7 +4,6 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 
-#import sys
 
 @application.route("/unload/<pageID>/<user_id>", methods=['GET', 'POST'])
 def unload(pageID, user_id):
@@ -13,13 +12,14 @@ def unload(pageID, user_id):
 
     request_data = request.get_json()
     data = request_data.get('data')
+    print(data)
 
-    parents_x = str(request_data.get('parents_x'))
-    parents_y = str(request_data.get('parents_y'))
-    parents_width = str(request_data.get('parents_width'))
-    parents_height = str(request_data.get('parents_height'))
+#    parents_x = str(request_data.get('parents_x'))
+#    parents_y = str(request_data.get('parents_y'))
+#    parents_width = str(request_data.get('parents_width'))
+#    parents_height = str(request_data.get('parents_height'))
 
-    print(parents_x, parents_y, parents_width, parents_height, "yoyoyoyo")
+#    print(parents_x, parents_y, parents_width, parents_height, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -27,12 +27,10 @@ def unload(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-
-    tree.xpath("/canvas/notes/note[@id='parents']/x")[0].text = parents_x
-    tree.xpath("/canvas/notes/note[@id='parents']/y")[0].text = parents_y
-    tree.xpath("/canvas/notes/note[@id='parents']/width")[0].text = parents_width
-    tree.xpath("/canvas/notes/note[@id='parents']/height")[0].text = parents_height
-
+#    tree.xpath("/canvas/notes/note[@id='parents']/x")[0].text = parents_x
+#    tree.xpath("/canvas/notes/note[@id='parents']/y")[0].text = parents_y
+#    tree.xpath("/canvas/notes/note[@id='parents']/width")[0].text = parents_width
+#    tree.xpath("/canvas/notes/note[@id='parents']/height")[0].text = parents_height
 
     for i in range(len(data)):
 

@@ -173,7 +173,6 @@ $("#title").bind('contextmenu', function(event) {
     event.preventDefault();
 
     title = $("#title_title").html();
-    console.log(title);
 
     new_x = event.pageX;
     new_y = event.pageY;
@@ -184,21 +183,17 @@ $("#title").bind('contextmenu', function(event) {
     $("#titleRCBox").css("top", new_y);
     $("#titleRCBox").show();
 
+    // if click outside
     $(document).click(function(){
-
         if (!$("#titleRCBox").is(event.target) && $("#titleRCBox").has(event.target).length === 0){
-
             $("#titleRCBox").hide();
-
         }
-
     });
 
     // Edit Title
     $('#titleRC_1').bind('click', function() {
 
         var value = prompt("Title", title);
-
         if (value != null && value!="") {
 
             $.ajax({
@@ -209,22 +204,17 @@ $("#title").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    //console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    //console.log("current y :", current_y);
                     window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    //console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    //console.log("current y :", current_y);
                     window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                 }
             });
 
         } else {
             current_y = document.documentElement.scrollTop;
-            //console.log("current y :", current_y);
             window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
         }
 
@@ -233,105 +223,17 @@ $("#title").bind('contextmenu', function(event) {
 
 });
 
+$("#titleRC_1").on('mouseover', function() {
+    follower.html("change title");
+    follower.show();
+});
+$("#titleRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
 
 /*
-$(function() {
-      "use strict";
-
-      $.contextMenu({
-        selector: '#title_title',
-        callback: function(key, options) {
-
-          if (key === 'edit') {
-
-            console.log("clicked edit");
-
-            writeTitle($(this));
-
-          }
-        },
-        items: {
-          'edit': {
-            name: "Edit",
-            icon: "fa-edit"
-          }
-        }
-
-      });
-
-    });
-*/
-
-//////////////////////////////////////////////////////
-/////////////    WRITE IN TITLE   ////////////////////
-//////////////////////////////////////////////////////
-
-function writeTitle(note){
-
-    //console.log("function: writeTitle")
-
-    note.unbind('click.select');
-
-    $('#title').unbind('mousedown.drag');
-
-    note.attr("contenteditable", "true");
-
-    $(document).bind('click.update_content', function() {
-        $(document).bind('click.update_content2', function() {
-
-            if (!note.is(event.target) && note.has(event.target).length === 0){
-
-                content = note.html();
-
-                $(document).unbind('click.update_content');
-                $(document).unbind('click.update_content2');
-
-                $.ajax({
-                    url: '/update_content/'+pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        id: 'title',
-                        content: content
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                    }
-                });
-
-                note.attr("contenteditable", "false");
-
-                note.bind('click.select', function() {
-                    selectTitle($(this));
-                });
-
-                $('#title').bind('mousedown.drag', function(){
-
-                    note = $(this);
-
-                    mouseX = event.pageX;
-                    mouseY = event.pageY;
-
-                    noteX = parseInt(note.css("left").slice(0, -2));
-                    noteY = parseInt(note.css("top").slice(0, -2));
-
-                    dragNote(note, noteX, noteY);
-                });
-
-            }
-
-        });
-
-    });
-
-}
-
-
-
-
 ///////////////////////////////
 /////// SHOW PARENTS  /////////
 ///////////////////////////////
@@ -425,10 +327,5 @@ function showParents(){
 
 }
 
-////////////////////////////////////////
-/////   more space under title /////////
-////////////////////////////////////////
-
-
-
+*/
 
