@@ -33,10 +33,9 @@ class User(db.Model):
 
 class Page (db.Model):
 
-    global_id = db.Column(db.Integer, primary_key=True)
+    global_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(128))
-    type = db.Column(db.String(128))
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
 
     __tablename__ = "Pages"

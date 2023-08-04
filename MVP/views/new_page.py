@@ -18,19 +18,22 @@ def new_page(page_id, user_id):
     title = str(request_data.get('title'))
     title = title.replace("'", "\\'")
 
+    print(title)
+
     # create new page in DB
-    engine.execute("insert into Pages (user_id, title) VALUES (%s, %s)", (user_id, title))
-    # get the newly created id
-    new_page_id = Page.query.all()[-1].id
-    print("new page id : ", new_page_id)
+    new_page_id = get_next_page_id_for_user(user_id)
+    new_global_id = get_next_global_id(user_id)
+
+    engine.execute("insert into Pages (global_id, user_id, title, id) VALUES (%s, %s, %s, %s)",
+                   (new_global_id, user_id, title, new_page_id))
 
     # ajouter relation parent-enfant dans la DB
-    engine.execute(
-        "insert into parents "
-        "(parent_page_id, child_page_id) "
-        "VALUES ( %(page_id)s, %(new_page_id)s )",
-        {'page_id': page_id, 'new_page_id': new_page_id}
-    )
+    #engine.execute(
+    #    "insert into parents "
+    #    "(parent_page_id, child_page_id) "
+    #    "VALUES ( %(page_id)s, %(new_page_global_id)s )",
+    #    {'page_id': page_id, 'new_page_global_id': new_page_global_id}
+    #)
 
     # create new xml page
     newPageName = 'Page_' + str(new_page_id)
@@ -82,3 +85,12 @@ def new_page(page_id, user_id):
 
     return "yo"
 
+
+
+def get_next_page_id_for_user(user_id):
+    max_page_id = db.session.query(db.func.max(Page.id)).filter(Page.user_id == user_id).scalar()
+    return (max_page_id or 0) + 1
+
+def get_next_global_id(user_id):
+    max_page_id = db.session.query(db.func.max(Page.id)).scalar()
+    return (max_page_id or 0) + 1

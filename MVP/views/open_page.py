@@ -53,8 +53,8 @@ def open_page(pageID, user_id, y_position):
     user_id = str(user_id)
 
     # get the parents of the page
-    parents = engine.execute("select * from parents where child_page_id= %(pageID)s", {'pageID':pageID}).fetchall()
-    parents=dict(parents)
+#    parents = engine.execute("select * from parents where child_page_id= %(pageID)s", {'pageID':pageID}).fetchall()
+#    parents=dict(parents)
 
     pages = engine.execute("select id, title from Pages where user_id = %(user_id)s", {'user_id':user_id}).fetchall()
     pages = dict(pages)
