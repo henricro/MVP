@@ -118,36 +118,57 @@ def send_all_down(pageID, user_id):
 
 @application.route("/update_content/<pageID>/<user_id>", methods=['POST'])
 def update_content(pageID, user_id):
-    print("update content", "yoyoyoyo")
+
+    print("update content")
+    print(pageID)
 
     request_data = request.get_json()
     _id = str(request_data.get('id'))
     content = str(request_data.get('content'))
     content = content.replace("'", "\\'")
 
-    print(content, _id, "yoyoyoyo")
+    print(content, _id)
 
     pageID = str(pageID)
+    pageName = 'Page_' + pageID
 
-    # change title in DB if the note changed is the title.
-    if _id == 'title':
-        print("change title", "yoyoyoyo")
-        engine.execute("Update Pages set title = %(content)s where id= %(pageID)s ",
-                       {'content': content, 'pageID': pageID})
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+    root = tree.getroot()
 
-    else:
-        pageName = 'Page_' + pageID
+    tree.xpath(f"//note[@id='{_id}']")[0].text = content
 
-        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-        root = tree.getroot()
-
-        tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
-
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+    f.write(etree.tostring(root, pretty_print=True))
+    f.close()
 
     return "yo"
+
+
+
+@application.route("/update_content_list/<pageID>/<user_id>", methods=['POST'])
+def update_content_list(pageID, user_id):
+
+    print("update content list")
+
+    request_data = request.get_json()
+    _id = str(request_data.get('id'))
+    content = str(request_data.get('content'))
+    content = content.replace("'", "\\'")
+
+    pageID = str(pageID)
+    pageName = 'Page_' + pageID
+
+    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+    root = tree.getroot()
+
+    tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
+
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+    f.write(etree.tostring(root, pretty_print=True))
+    f.close()
+
+    return "yo"
+
 
 
 

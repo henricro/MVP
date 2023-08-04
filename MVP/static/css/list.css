@@ -1,0 +1,90 @@
+
+/**********   List   ***********/
+
+.list {
+    position: absolute;
+    padding: 5px 12px 7px 8px;
+    border-style: solid;
+    border-width : 1px;
+    border-color : rgb(0, 0, 0, 0);
+    border-radius : 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.list:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/**********   To Do List   ***********/
+.to-do-list {
+    position: absolute;
+    padding: 5px 12px 7px 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0, 0);
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.to-do-list:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+ul {
+    padding-inline-start: 0px;
+    margin-bottom: 0px !important;
+}
+
+.to-do {
+    color: black;
+}
+
+.done {
+    color: #4aa83e;
+}
+
+
+.check-icon {
+    /* Add the styles for the icon */
+    /* Adjust the styles for the icon size, position, etc. as needed */
+    position: absolute;
+    display: inline-block;
+    width: 16px; /* Adjust the width of the icon */
+    height: 16px; /* Adjust the height of the icon */
+    background-size: cover;
+    vertical-align: middle; /* Align the icon vertically with the text */
+    margin-right: 10px; /* Add spacing between the icon and the text */
+    left: -5px;
+    top: 1px;
+    z-index:15;
+}
+
+.to-do .check-icon {
+    /* Add specific styles for the .check-icon inside .done elements */
+    background-image: url('/static/images/icons/uncheck.png'); /* Replace with the actual path to your icon image */
+    cursor: pointer;
+}
+
+.done .check-icon {
+    /* Add specific styles for the .check-icon inside .done elements */
+    background-image: url('/static/images/icons/check.png'); /* Replace with the actual path to your icon image */
+    cursor: pointer;
+}
+
+/* Adjust the position of the text to make space for the icon and the bullet point */
+.to-do-list li {
+    position: relative;
+    padding-left: 25px; /* Add some padding to make space for the icon and the bullet point */
+    list-style-type: none; /* Remove default bullet point style */
+}
+
+/* Add bullet point using pseudo-element ::before */
+.to-do-list li:before {
+    content: "•";
+    position: absolute;
+    left: 15px; /* Adjust the position of the bullet point */
+    top: 50%; /* Position the bullet point vertically in the middle */
+    transform: translateY(-50%); /* Adjust to center the bullet point */
+    color: black; /* Change the color of the bullet point if needed */
+}

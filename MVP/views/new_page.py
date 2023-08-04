@@ -53,7 +53,7 @@ def new_page(page_id, user_id):
 
     # Extract ids and find the biggest id
     note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
-    biggest_id = -1
+    biggest_id = 0
     for note in note_elements:
         id_attribute = note.get('id')
         print(id_attribute)
@@ -61,7 +61,7 @@ def new_page(page_id, user_id):
             current_id = int(id_attribute)
             biggest_id = max(biggest_id, current_id)
 
-    print("biggest id", biggest_id)
+    id = str(biggest_id+1)
 
     # add a note
     notes = root.find("notes")
@@ -69,7 +69,7 @@ def new_page(page_id, user_id):
     new_note = notes[-1]
 
     # set the note's x, y and content = "title" (for now)
-    new_note.set("id", str(biggest_id+1))
+    new_note.set("id", id)
     new_note.set("class", "pageLink")
     new_note.set("pageID", str(new_page_id))
     etree.SubElement(new_note, "x").text = x

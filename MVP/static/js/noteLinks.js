@@ -21,7 +21,13 @@ function createNoteLink(note) {
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
-    var content_div = "<div class='noteLink_content' contenteditable='false'>" + content + "</div>";
+    var link_length = link.length
+    console.log(link_length);
+    if (link_length > 40) {
+        var content_div = "<div class='noteLink_content' contenteditable='false'>" + link.slice(0,40) + "..." + "</div>";
+    } else {
+        var content_div = "<div class='noteLink_content' contenteditable='false'>" + link.slice(0,40) + "</div>";
+    }
     var link_div = "<div class='noteLink_link' ><div>" + link + "</div></div>";
 
     note.css("top", y.concat("px"));

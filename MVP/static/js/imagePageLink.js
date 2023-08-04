@@ -87,11 +87,7 @@ function selectImagePageLink(note){
     });
 
     // style the element when clicked on
-    note.css({"border-top-color":"#60A835"});
-    note.css({"border-left-color":"#60A835"});
-    note.find(".imagePageLink_name").css({"text-decoration": "underline"});
-    note.find(".imagePageLink_name").css({"text-decoration-color": "#F68C57"});
-    note.css({"cursor":"pointer"});
+    styleSelect(note);
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){

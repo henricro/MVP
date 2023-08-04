@@ -14,8 +14,6 @@ import dotenv
 
 import sys
 
-#sys.stdout = open('%logstart', 'w')
-
 dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '../.env'))
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -24,7 +22,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 def create_application():
 
     application = Flask(__name__)
-
 
     return application
 
@@ -57,6 +54,7 @@ application.config['MAIL_DEFAULT_SENDER'] = 'gyst.webapp@gmail.com'
 #correct one
 application.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLDATABASE_URI', 'mysql+pymysql://root:ohL0RDjesus!@127.0.0.1:3306/gystdb')
 
+application.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
 
 
 #### LOCAL GYST DB

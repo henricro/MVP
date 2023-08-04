@@ -3,18 +3,14 @@
 ////////////////////////////////////////////////
 
 $('.pdf').each(function(){
-    createPDF($(this));
-    console.log("create PDF");
+    buildPDF($(this));
 });
 
-function createPDF(note) {
+function buildPDF(note) {
 
     id = note.attr("id");
 
-    console.log(note);
-
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
@@ -31,43 +27,29 @@ function createPDF(note) {
     var img_src = "/static/user_data/users/" + user_id + "/uploads/" + image
     var img = "<img class='pdf_img' draggable='false' src=" + img_src + " />";
     var pdf_id = XMLnote.getElementsByTagName("pdf_id")[0].childNodes[0].nodeValue;
-
     var name_div = "<div class='pdf_name'><div>" + name + "</div></div>"
 
-    console.log(img, x, y);
-
     pdf_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
-    note.attr("pdf",pdf_src );
-
-    //console.log("print elmnt");
-    //console.log(elmnt);
+    note.attr("pdf", pdf_src );
     note.css("position", "absolute");
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
+
     note.append(name_div);
     note.append(img);
-    //note.append(name_div);
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
-
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
 
             var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
-
             var style = note.attr('style'); //it will return string
-
             style += css;
-
             note.find(".pdf_img").attr('style', css);
-
             note.attr('style', style);
-
             note.attr('added_css', css);
 
         }
-
     }
-
 }
 
 
@@ -79,31 +61,30 @@ function createPDF(note) {
 ///////////////////////////////////////////////////////
 
 $('.pdf').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).on('click.selectPDF', function(){
         selectPDF($(this));
     });
 });
 
 function selectPDF(note){
 
-    console.log("selected a pdf");
+    $(document).on('copy', function() {
+        console.log("fefefefefe");
+        copyNote(note);
+    });
 
     var pdf = note.attr("pdf");
 
-    note.css({"border-color":"green"});
-    note.css({"cursor":"pointer"});
+    styleSelect(note);
     note.addClass("resizable");
-    note.unbind('mousedown.drag');
-    note.unbind('click.select');
+    note.off('mousedown.drag');
+    note.off('click.select');
 
     // delete the pdf
-    $(document).bind('keyup.delete', function(){
-
+    $(document).on('keyup.delete', function(){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            console.log(id);
-            console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/' + pageID + '/' + user_id,
@@ -113,15 +94,11 @@ function selectPDF(note){
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    //console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    //console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -129,14 +106,12 @@ function selectPDF(note){
     });
 
     // SECOND CLICK on PDF
-    note.bind('mousedown.gotopdf', function(){
+    note.on('mousedown.gotopdf', function(){
 
         var left  = event.pageX;
         var top   = event.pageY;
-        console.log(left, top);
 
-        $(this).bind('mouseup.gotopdf', function(){
-            console.log(event.pageX, event.pageY);
+        $(this).on('mouseup.gotopdf', function(){
             if (!(left != event.pageX || top != event.pageY)) {
                 window.open(pdf, '_blank');
             }
@@ -144,43 +119,33 @@ function selectPDF(note){
 
     });
 
-    $(document).click(function(){
+    $(document).on('click.outsidePDF', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"cursor":""});
+            styleDefault(note);
 
-            note.unbind('mousedown.gotopdf');
-
-            note.unbind('mouseup.gotopdf');
-
-            note.unbind('copy');
-
-            note.css({"border-color":""});
-
+            note.off('mousedown.gotopdf');
+            note.off('mouseup.gotopdf');
+            $(document).off('copy');
             note.removeClass("resizable");
+            $(document).off('keyup.delete');
+            $(document).off('click.outsidePDF');
 
-            $(document).unbind('keyup.delete');
-
-            note.bind('click.select', function(){
+            note.on('click.selectPDF', function(){
                 selectPDF($(this));
             });
 
-            note.bind('mousedown.drag', function(){
+            note.on('mousedown.drag', function(){
 
                 mouseX = event.pageX;
                 mouseY = event.pageY;
-
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
-
                 dragNote(note, noteX, noteY);
 
             });
-
-
         }
     });
-
 }
 
 
@@ -190,7 +155,7 @@ function selectPDF(note){
 /////////////////////////////////////////////////
 
 
-$(".pdf").bind('contextmenu', function(event) {
+$(".pdf").on('contextmenu', function(event) {
 
     event.preventDefault();
 
@@ -204,27 +169,18 @@ $(".pdf").bind('contextmenu', function(event) {
     $("#pdfRCBox").css("top", new_y);
     $("#pdfRCBox").show();
 
-    $(document).click(function(){
-
+    //click outside
+    $(document).on('click.outside', function(){
         if (!$("#pdfRCBox").is(event.target) && $("#pdfRCBox").has(event.target).length === 0){
-
             $("#pdfRCBox").hide();
-
         }
-
     });
 
     //Style
-    $('#pdfRC_1').bind('click', function() {
-        if (css){
-            var value = prompt("CSS", css);
-        } else {
-            var value = prompt("CSS", "");
-        }
+    $('#pdfRC_1').on('click', function() {
+        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
 
-        if (value != null) {
-
-            console.log("sending css");
+        if (value == null) {} else {
 
             $.ajax({
                 url: '/add_css/'+pageID + '/' + user_id,
@@ -243,7 +199,6 @@ $(".pdf").bind('contextmenu', function(event) {
                     window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
-
         }
     });
 
@@ -258,3 +213,24 @@ $("#pdfRC_1").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });
+
+
+
+function downloadAsPDF() {
+
+  console.log("here we are");
+  // Get the HTML content that you want to convert to PDF
+  const element = document.documentElement;
+
+  // Options for the PDF generation
+  const options = {
+    margin: 10,
+    filename: 'pdfName',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  // Generate PDF
+  html2pdf().set(options).from(element).save();
+}

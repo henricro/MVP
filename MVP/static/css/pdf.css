@@ -2,28 +2,31 @@
 /**********   PDF  ***********/
 
 .pdf {
-  position: absolute;
-  border: 1px solid grey;
-  border-radius : 5px;
+    position: absolute;
+    border-color: rgb(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 0px;
+    border-radius : 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
-.pdf_name{
-  position: absolute;
-  top:0;
-  right: 0;
-  width:100%;
-  height:100%;
-  display:flex;
-  width:100%;
-  color: #fff;
-  opacity: 0.5;
-  align-items:center;
-  justify-content:center;
-  font-size:15px;
-  text-align:center;
 
-  /* transition effect. not necessary */
-  transition: opacity .2s, font-size .2s, color .2s;
+.pdf_name{
+    position: absolute;
+    top:0;
+    right: 0;
+    width:100%;
+    height:100%;
+    display:flex;
+    opacity: 0.5;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    text-align:center;
+
+    /* transition effect. not necessary */
+    transition: opacity .5s, font-size .5s, color .5s;
 }
 
 .pdf_img{
@@ -32,15 +35,21 @@
     height:100%;
 }
 
+
+.pdf:hover {
+    opacity: 1;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
 .pdf:hover .pdf_name {
-  opacity: 1;
-  font-size:20px;
-  color : purple;
+    opacity: 1;
+    font-size: 20px;
 }
 
 .pdf:hover .pdf_img {
   opacity: 0.3;
 }
+
 
 
 #pdfRCBox{

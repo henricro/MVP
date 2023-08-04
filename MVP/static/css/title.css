@@ -26,3 +26,11 @@
     top: 300px;
     left: 300px;
 }
+
+
+#space-down {
+    display: none;
+    width: 40px;
+    margin : 0 auto;
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
-from MVP import db
+from MVP import db, application
+
 
 class User(db.Model):
 
@@ -36,6 +37,37 @@ class Page (db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
 
     __tablename__ = "Pages"
+
+'''
+def get_page_table_name(user_id):
+    return f"Pages_User_{user_id}"
+
+
+def create_user_page_table(user_id):
+    table_name = get_page_table_name(user_id)
+
+    # Create a new MetaData object
+    new_metadata = db.MetaData()
+
+    # Reflect the existing table definitions into the new MetaData
+    new_metadata.reflect(bind=db.engine)
+
+    # Create a new table using the separate MetaData and Engine
+    user_page_table = db.Table(
+        table_name,
+        new_metadata,
+        db.Column('id', db.Integer, primary_key=True),
+        db.Column('title', db.String(255)),
+        db.Column('user_id', db.Integer, db.ForeignKey('Users.id')),
+        # Add other page-related fields as needed
+    )
+
+    # Create the new table in the database
+    user_page_table.create(db.engine)
+
+    return user_page_table
+
+'''
 
 class Image (db.Model):
 

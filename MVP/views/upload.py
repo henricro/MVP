@@ -74,11 +74,16 @@ def upload_pdf(pageID, user_id):
     #engine.execute("insert into pdfs_images (pdf_id, image_id) VALUES ( %(pdf_id)s, %(image_id)s )",
     #               {'pdf_id': pdf_id, 'image_id': image_id})
 
-    # get the biggest id in the xml and increment the value
-    id = tree.xpath("/canvas/meta/biggest_id")[0].text
-    id = int(id) + 1
-    id = str(id)
-    tree.xpath("/canvas/meta/biggest_id")[0].text = id
+    # Extract ids and find the biggest id
+    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+    biggest_id = 0
+    for note in note_elements:
+        id_attribute = note.get('id')
+        if id_attribute is not None:
+            current_id = int(id_attribute)
+            biggest_id = max(biggest_id, current_id)
+
+    id = str(biggest_id + 1)
 
     # add a note
     notes = root.find("notes")

@@ -45,11 +45,11 @@ function buildPageLink(note) {
 ///////////////////////////////////////////////////////
 
 $('.pageLink').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).on('click.selectPageLink', function(){
         selectPageLink($(this));
     });
 });
-
+/*
 function styleClickPageLink(note){
     note.css({"border-color":"rgb(96, 168, 53) rgb(246, 140, 87) rgb(246, 140, 87) rgb(96, 168, 53)"});
     note.css({"text-decoration": "underline"});
@@ -62,20 +62,20 @@ function defaultStylePageLink(note){
     note.css({"text-decoration": ""});
     note.css({"cursor":"default"});
 }
-
+*/
 function selectPageLink(note){
 
     // COPY THE NOTE
-    note.bind('copy', function() {
+    note.on('copy', function() {
         copyNote(note);
     });
 
-    styleClickPageLink(note);
+    styleSelect(note);
 
     pageLinkID= note.attr("pageID");
 
     // DELETE NOTE
-    $(document).bind('keyup.delete', function(){
+    $(document).on('keyup.delete', function(){
         if (event.keyCode == 8){
 
             id = note.attr("id");
@@ -98,19 +98,19 @@ function selectPageLink(note){
         }
     });
 
-    note.unbind('click.select');
+    note.off('click.select');
 
     // second click : go to page
-    note.bind('click.gotopage', function(){
-        $(document).unbind('keyup.delete');
+    note.on('click.gotopage', function(){
+        $(document).off('keyup.delete');
         window.open('/open_page/'+ pageLinkID + '/' + user_id + "/0" , '_blank');
     });
 
     // if click outside pageLink
-    $(document).click(function(){
+    $(document).on('click', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            defaultStylePageLink(note)
+            styleDefault(note);
 
             note.unbind('copy');
             $(document).unbind('keyup.delete');
@@ -200,6 +200,11 @@ $(".pageLink").bind('contextmenu', function(event) {
         }
     });
 
+    // Style
+    $('#pageLinkRC_3').bind('click', function() {
+        window.open("https://www.canva.com", '_blank');
+    });
+
 });
 
 
@@ -245,6 +250,15 @@ $("#pageLinkRC_2").on('mouseover', function() {
     follower.show();
 });
 $("#pageLinkRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#pageLinkRC_3").on('mouseover', function() {
+    follower.html("open Canva");
+    follower.show();
+});
+$("#pageLinkRC_3").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });

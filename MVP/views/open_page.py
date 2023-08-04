@@ -52,48 +52,23 @@ def open_page(pageID, user_id, y_position):
 
     user_id = str(user_id)
 
-    #print("opening page", "yoyoyoyo")
-    #print(pageID, "yoyoyoyo")
-    #print(y_position)
-
     # get the parents of the page
     parents = engine.execute("select * from parents where child_page_id= %(pageID)s", {'pageID':pageID}).fetchall()
     parents=dict(parents)
-    #print(parents, "yoyoyoyo")
 
     pages = engine.execute("select id, title from Pages where user_id = %(user_id)s", {'user_id':user_id}).fetchall()
     pages = dict(pages)
 
-    #print("open page", "yoyoyoyo")
-
     request_data = request.get_json()
     pageID = str(pageID)
-
     pageName = 'Page_' + pageID
 
-    #print(pageName, "yoyoyoyo")
-
     title = Page.query.filter_by(id=pageID).first().title
-
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    #print(root, "yoyoyoyo")
-
     xml_string = etree.tostring(root).decode('utf-8')
-
     xml_string = xml_string.replace("\n", "")
-
-    type = tree.xpath("/canvas/meta/type")[0].text
-
-
-
-    ### build the file path to home
-
-
-
-
-
 
 
     return render_template('/page.html', xml_string=xml_string, pageID=pageID,

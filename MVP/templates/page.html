@@ -12,12 +12,17 @@
     <link rel="stylesheet" type="text/css" href="/static/css/note.css">
     <link rel="stylesheet" type="text/css" href="/static/css/noteLink.css">
     <link rel="stylesheet" type="text/css" href="/static/css/pageLink.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/list.css">
     <link rel="stylesheet" type="text/css" href="/static/css/images.css">
     <link rel="stylesheet" type="text/css" href="/static/css/imagePageLink.css">
     <link rel="stylesheet" type="text/css" href="/static/css/pdf.css">
     <link rel="stylesheet" type="text/css" href="/static/css/right-click.css">
     <link rel="stylesheet" type="text/css" href="/static/css/select.css">
     <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
+
+
+    <script type="text/javascript" src="/static/libraries/jspdf.umd.min.js"></script>
+
 
     <!-- fontAwesome -->
 
@@ -72,9 +77,15 @@
         <script type="text/javascript" src="/static/libraries/dropzone.js" ></script>
         <link rel="stylesheet" type="text/css" href="/static/libraries/dropzone.css">
 
+
+
 </head>
 
 <body>
+
+<div id="content">
+    Pinch-to-zoom this content using two fingers! Add more content here...
+</div>
 
 <!--
 <div onwheel="myFunction(event)" style="width:100px;height:100px;background-color:Tomato"></div>
@@ -147,6 +158,7 @@
     </div>
 </div>
 
+
 <div id="pasteBox">
     <div class="choiceBox">
         <div id="pasteAs">Paste as :</div>
@@ -161,9 +173,8 @@
     <img id="pageRC_2" class="buttonIcon" src="/static/images/icons/more.png" style="height: 100%;"/>
 </div>
 
-
+<!--
 <div id="pageRCPlusBox">
-
     <div class="choiceBox">
            <div id="zoomButton" class="choiceLOrange">
                <img id="minusZoom"  src="/static/images/icons/minus.png" />
@@ -173,12 +184,17 @@
            <div id="pageRCPlus_1" class="choiceButton choiceLOrange"><i class="fa fa-plus"></i> To-Do list</div>
            <div id="pageRCPlus_2" class="choiceButton choiceLGreen"><i class="fa fa-print"></i> Export page as PDF</div>
     </div>
+</div>
+-->
 
+<div id="pageRCPlusBox" class="choiceBoxHoriz">
+    <img id="pageRCPlus_1" class="buttonIcon" src="/static/images/icons/list.png" style="height: 100%;"/>
+    <img id="pageRCPlus_2" class="buttonIcon" src="/static/images/icons/to-do-list.png" style="height: 100%;"/>
+    <img id="pageRCPlus_3" class="buttonIcon" src="/static/images/icons/pdf.png" style="height: 100%;"/>
 </div>
 
 
 <div id="noteRCBox" class="choiceBoxHoriz">
-    <img id="noteRC_1" class="buttonIcon" src="/static/images/icons/link.png" style="height: 100%;"/>
     <img id="noteRC_2" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
     <img id="noteRC_3" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
 </div>
@@ -213,6 +229,7 @@
 <div id="pageLinkRCBox" class="choiceBoxHoriz">
     <img id="pageLinkRC_1" class="buttonIcon" src="/static/images/icons/picture.png" style="height: 100%;"/>
     <img id="pageLinkRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
+    <img id="pageLinkRC_3" class="buttonIcon" src="/static/images/icons/canva.png" style="height: 100%;"/>
 </div>
 
 <div id="imagePageLinkRCBox" class="choiceBoxHoriz">
@@ -252,12 +269,14 @@ var title = '{{title}}';
 var pages = {{pages|safe}};
 var xml = '{{xml_string|safe}}';
 var xmlDoc = $.parseXML(xml);
-var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
+//var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;
 var pageID = '{{pageID|safe}}';
 var user_id = '{{user_id|safe}}';
 var y_position = '{{y_position|safe}}';
 
 </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <script type="text/javascript" src="/static/js/copy_paste.js" ></script>
     <script type="text/javascript" src="/static/js/main.js" ></script>
@@ -280,6 +299,8 @@ var y_position = '{{y_position|safe}}';
     <script type="text/javascript" src="/static/js/categories.js" ></script>
     <script type="text/javascript" src="/static/js/zoom.js" ></script>
     <script type="text/javascript" src="/static/js/resize.js" ></script>
+    <script type="text/javascript" src="/static/js/style.js" ></script>
+
 
     <script>
         $(window).scrollTop(y_position);

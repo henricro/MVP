@@ -5,23 +5,23 @@
 
   position: absolute;
   padding : 3px;
-  border: 1px solid rgb(200, 240, 149, 0.3);
   border-style: solid;
   border-width: 1px;
-  border-color : rgb(200, 240, 149, 0.3) rgb(246, 140, 87) rgb(246, 140, 87) rgb(200, 240, 149, 0.3);
+  /*border-color : rgb(200, 240, 149, 0.3) rgb(246, 140, 87) rgb(246, 140, 87) rgb(200, 240, 149, 0.3);*/
+  border-color : rgb(0, 0, 0, 0);
   border-radius : 5px;
   text-align: center;
   background-color : rgb(200, 240, 149, 0.2);
+  box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
 
 }
 
 .pageLink:hover {
 
     font-size: 15px;
-    cursor: default;
+    cursor: pointer;
     font-weight: 450;
-    border-bottom : 2px solid #F68C57;
-    border-right : 2px solid #F68C57;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.3);
 
 }
 

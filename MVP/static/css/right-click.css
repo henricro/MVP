@@ -10,15 +10,15 @@
 }
 
 .choiceBoxHoriz{
-    border : 1px solid rgb(173, 209, 220);
-    border-radius : 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color:white;
-    padding:8px;
-    height:60px;
+    border-radius : 12px;
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : space-evenly;
+    background-color : rgb(252, 252, 252, 0.98);
+    padding : 8px;
+    height : 60px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .buttonIcon {
@@ -60,11 +60,10 @@
 #follower {
   z-index:10;
   background-color: white;
-  opacity: .95;
   position: absolute;
   top:30px;
   border-radius: 5px;
-  padding:4px;
+  padding:6px;
   font-size: 18px;
-  border: 1px solid black;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }

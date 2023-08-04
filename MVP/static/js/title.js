@@ -138,7 +138,7 @@ function selectTitle(title){
 
 function sendAllDown() {
 
-    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink, .to-do-list').each(function(){
+    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink, .to-do-list, .pdf').each(function(){
 
         element = $(this);
         y_pos = element.css("top");

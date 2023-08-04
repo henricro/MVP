@@ -8,11 +8,11 @@ from lxml import etree
 
 @application.route("/create_note/<pageID>/<user_id>", methods=['POST'])
 def create_note(pageID, user_id):
+
     # get the data for new note
     request_data = request.get_json()
     new_x = str(request_data.get('x'))
     new_y = str(request_data.get('y'))
-    print(new_x, new_y, "yoyoyoyo")
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -20,11 +20,16 @@ def create_note(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    # get the biggest id in the xml and increment the value
-    id = tree.xpath("/canvas/meta/biggest_id")[0].text
-    id = int(id) + 1
-    id = str(id)
-    tree.xpath("/canvas/meta/biggest_id")[0].text = id
+    # Extract ids and find the biggest id
+    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+    biggest_id = 0
+    for note in note_elements:
+        id_attribute = note.get('id')
+        if id_attribute is not None:
+            current_id = int(id_attribute)
+            biggest_id = max(biggest_id, current_id)
+
+    id = str(biggest_id+1)
 
     # add a note
     notes = root.find("notes")
@@ -37,8 +42,6 @@ def create_note(pageID, user_id):
     etree.SubElement(new_note, "x").text = new_x
     etree.SubElement(new_note, "y").text = new_y
     etree.SubElement(new_note, "content").text = "new content"
-
-    #print(etree.tostring(root, pretty_print=True))
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

@@ -8,25 +8,21 @@ from lxml import etree
 @application.route("/move_note/<pageID>/<user_id>", methods=['POST'])
 def move_note(pageID, user_id):
 
+    print("route : move note to other page")
+
     # get the data of note to move and page to move to
     request_data = request.get_json()
     note_id = str(request_data.get('note_id'))
     page_id = str(request_data.get('page_id'))
 
-    print(page_id, note_id, "yoyoyoyo")
-
     pageID = str(pageID)
-    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    note = root.find("notes").find("note[@id='" + note_id + "']")
-
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
-
-    note.getparent().remove(note)
+    note_to_move = tree.xpath(f"//note[@id='{note_id}']")[0]
+    note_to_move.getparent().remove(note_to_move)
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -37,18 +33,27 @@ def move_note(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
     root = tree.getroot()
 
-    # get the biggest id in the xml and increment the value
-    id = tree.xpath("/canvas/meta/biggest_id")[0].text
-    id = int(id) + 1
-    id = str(id)
-    tree.xpath("/canvas/meta/biggest_id")[0].text = id
+    # Extract ids and find the biggest id
+    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+    biggest_id = 0
+    for note in note_elements:
+        id_attribute = note.get('id')
+        if id_attribute is not None:
+            current_id = int(id_attribute)
+            biggest_id = max(biggest_id, current_id)
 
-    # add a note
+    id = str(biggest_id + 1)
+
+    copied_note = etree.Element(note_to_move.tag, attrib=note_to_move.attrib)
+    for child_element in note_to_move.iterchildren():
+        new_element = etree.Element(child_element.tag, attrib=child_element.attrib)
+        new_element.text = child_element.text
+        copied_note.append(new_element)
+
+    copied_note.set("id", id)
+
     notes = root.find("notes")
-    notes.append(note)
-
-    # set the note's x, y and content = "new note"
-    note.set("id", id)
+    notes.append(copied_note)
 
     #print(etree.tostring(root, pretty_print=True))
 
@@ -64,36 +69,23 @@ def move_note(pageID, user_id):
 @application.route("/move_notes/<pageID>/<user_id>", methods=['POST'])
 def move_notes(pageID, user_id):
 
-    print("route : move notes", "yoyoyoyo")
-
-    # get the data of notes to move and page to move to
+    print("route : move selection to another page")
 
     request_data = request.get_json()
     selection = request_data.get('selection')
     page_id = str(request_data.get('page_id'))
 
-    print(page_id, selection)
-
     pageID = str(pageID)
-    print(pageID, "yoyoyoyo")
     pageName = 'Page_' + pageID
-
     destPageName = 'Page_' + page_id
-
 
     for note_id in selection :
 
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
         root = tree.getroot()
 
-        note_id = str(note_id)
-        print(note_id, "yoyoyoyo")
-
-        note = root.find("notes").find("note[@id='" + note_id + "']")
-
-        print(note, "yoyoyoyo")
-
-        note.getparent().remove(note)
+        note_to_move = tree.xpath(f"//note[@id='{note_id}']")[0]
+        note_to_move.getparent().remove(note_to_move)
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -103,20 +95,29 @@ def move_notes(pageID, user_id):
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml")
         root = tree.getroot()
 
-        # get the biggest id in the xml and increment the value
-        id = tree.xpath("/canvas/meta/biggest_id")[0].text
-        id = int(id) + 1
-        id = str(id)
-        tree.xpath("/canvas/meta/biggest_id")[0].text = id
+        # Extract ids and find the biggest id
+        note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+        biggest_id = 0
+        for note in note_elements:
+            id_attribute = note.get('id')
+            if id_attribute is not None:
+                current_id = int(id_attribute)
+                biggest_id = max(biggest_id, current_id)
 
-        # add a note
+        id = str(biggest_id + 1)
+
+        copied_note = etree.Element(note_to_move.tag, attrib=note_to_move.attrib)
+        for child_element in note_to_move.iterchildren():
+            new_element = etree.Element(child_element.tag, attrib=child_element.attrib)
+            new_element.text = child_element.text
+            copied_note.append(new_element)
+        if note_to_move.text:
+            copied_note.text = note_to_move.text
+
+        copied_note.set("id", id)
+
         notes = root.find("notes")
-        notes.append(note)
-
-        # set the note's x, y and content = "new note"
-        note.set("id", id)
-
-        #print(etree.tostring(root, pretty_print=True))
+        notes.append(copied_note)
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')

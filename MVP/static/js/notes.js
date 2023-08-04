@@ -36,6 +36,7 @@ function buildNote(note) {
 
         }
     }
+
 }
 
 
@@ -46,14 +47,10 @@ function buildNote(note) {
 
 $('*:not("div")').dblclick(function(){
 
-    console.log("fefefefe");
-    id = biggest + 1;
-
     if (event.target.nodeName === 'HTML'){
         x = event.pageX.toString();
         y = event.pageY.toString();
 
-        // CREATE HTML NOTE
         $.ajax({
             url: '/create_note/' + pageID + '/' + user_id,
             type: "POST",
@@ -65,6 +62,7 @@ $('*:not("div")').dblclick(function(){
             success: function (data) {
                 current_y = document.documentElement.scrollTop;
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+
             },
             error: function (error) {
                 current_y = document.documentElement.scrollTop;
@@ -81,7 +79,7 @@ $('*:not("div")').dblclick(function(){
 ///////////////////////////////////////////////////
 
 $('.note').each(function(){
-    $(this).bind('click.selectNote', function(){
+    $(this).on('click.selectNote', function(){
         selectNote($(this));
     });
 });
@@ -93,19 +91,18 @@ function selectNote(note){
     id = note.attr("id");
 
     // COPY THE NOTE
-    note.bind('copy', function() {
+    $(document).on('copy', function() {
         copyNote(note);
     });
 
-    note.css({"border":"1px solid green"});
+    styleSelect(note);
 
     // DELETE NOTE
-    $(document).bind('keyup.delete', function(){
-
+    $(document).on('keyup.delete', function(){
         if (event.keyCode == 8){
 
             $.ajax({
-                url: '/delete_note/' + pageID + '/' + user_id,
+                url: '/delete_note/'+pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     id: id
@@ -123,46 +120,40 @@ function selectNote(note){
         }
     });
 
-    note.unbind('click.selectNote');
+    note.off('click.selectNote');
 
     // SECOND CLICK
-    note.bind('click.write', function(){
-        $(document).unbind('keyup.delete')
+    note.on('click.write', function(){
+        $(document).off('keyup.delete')
         writeNote($(this));
     });
 
-    $(document).bind('contextmenu', function(event) {
+    $(document).on('contextmenu', function(event) {
+
         event.preventDefault();
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
-            $(document).unbind('keyup.delete');
 
-            note.unbind('click.write');
-            note.unbind('copy');
-            note.bind('click.select', function(){
+            $(document).off('keyup.delete');
+            note.off('click.write');
+            note.on('click.selectNote', function(){
                 selectNote($(this));
             });
-
-            $(document).unbind('copy');
+            $(document).off('copy');
 
         }
     });
 
-    event.stopPropagation();
-
-    // if click outside
-    $(document).bind('click.outsideNote', function(){
+    $(document).on('click.outsideNote', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border":"1px solid rgb(0,0,0,0)"});
-            $(document).unbind('keyup.delete');
-            note.unbind('click.write');
-            note.unbind('copy');
-            note.bind('click.select', function(){
+            styleDefault(note);
+            $(document).off('keyup.delete');
+            note.off('click.write');
+            $(document).off('copy');
+            note.on('click.selectNote', function(){
                 selectNote($(this));
             });
-            $(document).unbind('copy');
-            $(document).unbind('click.outsideNote');
+            $(document).off('click.outsideNote');
 
         }
     });
@@ -176,26 +167,24 @@ function selectNote(note){
 
 
 $('.note').each(function(){
-    $(this).bind('dblclick.write', function(){
-        //console.log("double clicked on note");
+    $(this).on('dblclick.write', function(){
         writeNote($(this));
     });
 });
 
 function writeNote(note){
 
-    note.unbind('click.select');
-    note.unbind('dblclick.write');
-    note.unbind('mousedown.drag');
-    note.unbind('copy');
-
+    note.off('click.selectNote');
+    note.off('dblclick.write');
+    note.off('mousedown.drag');
+    note.off('copy');
     note.attr("contenteditable", "true");
 
-    $(document).bind('click.update_content', function() {
+    $(document).on('click.update_content', function() {
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             content = note.html();
-            $(document).unbind('click.update_content');
+            $(document).off('click.update_content');
             id = note.attr('id')
 
             if (content == "") {
@@ -204,7 +193,7 @@ function writeNote(note){
             } else {
 
                 $.ajax({
-                    url: '/update_content/'+pageID + '/' + user_id,
+                    url: '/update_content/' + pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         id: id,
@@ -218,29 +207,26 @@ function writeNote(note){
                         console.log("problem");
                     }
                 });
-
             }
 
             note.attr("contenteditable", "false");
 
-            note.bind('click.select', function() {
+            note.on('click.selectNote', function() {
                 selectNote($(this));
             });
 
-            note.bind('dblclick.write', function(){
+            note.on('dblclick.write', function(){
                 writeNote($(this));
             });
 
-            note.bind('mousedown.drag', function(){
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-                dragNote(note, noteX, noteY);
+            note.on('mousedown.drag', function(){
+                dragNote(note);
             });
 
         }
+
     });
+
 }
 
 
@@ -248,10 +234,9 @@ function writeNote(note){
 ///////////////// RIGHT CLICK NOTE ///////////////
 //////////////////////////////////////////////////
 
-$(".note").bind('contextmenu', function(event) {
+$(".note").on('contextmenu', function(event) {
 
     event.preventDefault();
-
     new_x = event.pageX;
     new_y = event.pageY;
 
@@ -263,6 +248,7 @@ $(".note").bind('contextmenu', function(event) {
     $("#noteRCBox").css("top", new_y);
     $("#noteRCBox").show();
 
+    // click outside
     $(document).click(function(){
         if (!$("#noteRCBox").is(event.target) && $("#noteRCBox").has(event.target).length === 0){
             $("#noteRCBox").hide();
@@ -270,10 +256,10 @@ $(".note").bind('contextmenu', function(event) {
     });
 
     // Add Link
-    $('#noteRC_1').bind('click', function() {
+    $('#noteRC_1').on('click', function() {
 
         var value = prompt("Lien", "");
-        if (value != null) {
+        if (value == null){} else {
 
             $.ajax({
                 url: '/add_link_to_note/' + pageID + '/' + user_id,
@@ -296,17 +282,19 @@ $(".note").bind('contextmenu', function(event) {
     });
 
     // Copy Note
-    $('#noteRC_2').bind('click', function() {
+    $('#noteRC_2').on('click.copyNote', function() {
+        console.log("copy note");
         copyNote(note);
     });
 
     // Style
     $('#noteRC_3').bind('click', function() {
+
         if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
-        if (value != null) {
+        if (value == null) {} else {
 
             $.ajax({
-                url: '/add_css/'+pageID + '/' + user_id,
+                url: '/add_css/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
@@ -325,8 +313,8 @@ $(".note").bind('contextmenu', function(event) {
 
         }
     });
-
 });
+
 
 $("#noteRC_1").on('mouseover', function() {
     follower.html("add a link");
@@ -338,7 +326,7 @@ $("#noteRC_1").on('mouseout', function() {
 });
 
 $("#noteRC_2").on('mouseover', function() {
-    follower.html("copy text");
+    follower.html("copy note");
     follower.show();
 });
 $("#noteRC_2").on('mouseout', function() {
@@ -346,11 +334,11 @@ $("#noteRC_2").on('mouseout', function() {
     follower.hide();
 });
 
-$("#imageRC_3").on('mouseover', function() {
+$("#noteRC_3").on('mouseover', function() {
     follower.html("style note");
     follower.show();
 });
-$("#imageRC_3").on('mouseout', function() {
+$("#noteRC_3").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });

@@ -9,25 +9,16 @@ import os
 
 @application.route("/upload_image/<pageID>/<user_id>", methods=['POST'])
 def upload_image(pageID, user_id):
+
+    print("upload image route")
+
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("upload image route", "yoyoyoyo")
-
-    ### add the image to uploads
-
     Request = request.form
-    print(Request, "yoyoyoyo")
-
     x = Request.get('x')
     y = Request.get('y')
     file = request.files.get('file')
-    print(x, y, file, "yoyoyoyo")
-    # print(type(file))
-    # print(dict(file))
-
-    print(file.content_length, "yoyoyoyo")
-
     filename = file.filename
     filename = filename.replace(' ', '_')
 
@@ -40,32 +31,30 @@ def upload_image(pageID, user_id):
     else :
         filename = filename + '.png'
 
-    print(filename, "yoyoyoyo")
-
     file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
-
-    ### keep the information that this file is in this page in the 'tags' many to many SQL table
 
     engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
                    {'name': filename, 'type': type})
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id", "yoyoyoyo")
-    print(image_id, "yoyoyoyo")
 
     engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
                    {'page_id': pageID, 'image_id': image_id})
 
-    ### add a note in the XML with the x, y positions and the name of the file
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    # get the biggest id in the xml and increment the value
-    id = tree.xpath("/canvas/meta/biggest_id")[0].text
-    id = int(id) + 1
-    id = str(id)
-    tree.xpath("/canvas/meta/biggest_id")[0].text = id
+    # Extract ids and find the biggest id
+    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+    biggest_id = 0
+    for note in note_elements:
+        id_attribute = note.get('id')
+        if id_attribute is not None:
+            current_id = int(id_attribute)
+            biggest_id = max(biggest_id, current_id)
+
+    id = str(biggest_id+1)
 
     # add a note
     notes = root.find("notes")

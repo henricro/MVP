@@ -2,179 +2,123 @@
 /////////////    DRAG ELEMENTS   //////////////////
 ///////////////////////////////////////////////////
 
-function defineDrag() {
+var isDragging = false;
 
-    $(".note, .pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .to-do-list, .criteria, .category, iframe").each(function(){
-
-        $(this).bind('mousedown.drag', function(){
-
-            note = $(this);
-
-            zoomLevel = $("body").css("zoom");
-            zoomLevel = parseFloat(zoomLevel);
-            zoomCoeff = 1/zoomLevel;
-
-            // get the x and y positions of the click
-            mouseX = event.pageX;
-            mouseY = event.pageY;
-
-            // get the x and y posititons of the note
-            noteX = parseInt(note.css("left").slice(0, -2));
-            noteY = parseInt(note.css("top").slice(0, -2));
-
-            dragNote(note, noteX, noteY);
-
-        });
-
+$(".pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
+    $(this).bind('mousedown.drag', function(event){
+        dragNote($(this));
     });
+});
 
-}
-
-defineDrag();
-
-function dragNote(note, noteX, noteY) {
-
-    $(document).bind('mousemove.drag', function(){
-        mouseMove(note);
+$(".note").each(function(){
+    $(this).on('mousedown.dragNote', function(){
+        dragNote($(this));
     });
+});
 
-    $(document).bind('mouseup.stopDrag', function(){
-        mouseUp(note);
-    });
+function dragNote(note) {
 
-    function mouseMove(note) {
+    zoomLevel = $("body").css("zoom");
+    zoomLevel = parseFloat(zoomLevel);
+    zoomCoeff = 1/zoomLevel;
+    noteX = parseFloat(note.css("left"));
+    noteY = parseFloat(note.css("top"));
+    mouseX = event.pageX;
+    mouseY = event.pageY;
 
+    $(document).on('mousemove.drag', function(){
+        event.preventDefault()
+        isDragging = true;
         new_top = noteY + zoomCoeff*event.pageY - zoomCoeff*mouseY ;
         new_left = noteX + zoomCoeff*event.pageX - zoomCoeff*mouseX ;
-
-        //new_top = noteY + event.pageY - mouseY ;
-        //new_left = noteX + event.pageX - mouseX ;
-
-        //console.log(new_top, new_left);
         note.css({ top : new_top + "px", left : new_left + "px" });
         note.css("z-index", "-1");
+    });
 
-        event.preventDefault();
+    $(document).on('mouseup.stopDrag', function(){
+        console.log(isDragging);
+        setTimeout(() => {isDragging=false;}, 100);
+        mouseUp(note);
+    });
+}
 
-    }
+function mouseUp(note) {
 
-    function mouseUp(note) {
+    note.css("z-index", "0");
+    $(document).off('mousemove.drag');
+    $(document).off('mouseup.stopDrag');
 
-        note.css("z-index", "0");
+    id = note.attr("id");
+    x = note.css("left");
+    y = note.css("top");
 
-        $(document).unbind('mousemove.drag');
-        //console.log("stoping");
+    // if the mouse has moved
+    if (!(mouseX == event.pageX && mouseY == event.pageY)){
 
-        //console.log(event.pageX, event.pageY);
-        $(document).unbind('mouseup.stopDrag');
+        // if it's dropped on smthg with other id
+        if ( !( $(event.target).attr("id") == id || $(event.target).parent().attr("id") == id || $(event.target).parent().parent().attr("id") == id ) ){
 
-        id = note.attr("id");
-        x = note.css("left");
-        y = note.css("top");
+            // if you drop in pageLink
+            if ( event.target.classList.contains('pageLink')  ||
+                 $(event.target).parent().hasClass('imagePageLink_name')) {
 
-        // if the mouse has moved
-        if (!(mouseX == event.pageX && mouseY == event.pageY)){
+                note_id = note.attr("id");
+                page_id = $(event.target).attr("pageid");
 
-            //console.log("event target : ", $(event.target));
-            //console.log("parent : ", $(event.target).parent() );
-            //console.log( $(event.target).parent().hasClass("imagePageLink_name") );
+                $.ajax({
 
-            // if it's dropped on smthg with other id
-            if ( !( $(event.target).attr("id") == id || $(event.target).parent().attr("id") == id || $(event.target).parent().parent().attr("id") == id ) ){
+                    url: '/move_note/'+ pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        note_id: note_id,
+                        page_id: page_id
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        //console.log(data);
+                        current_y = document.documentElement.scrollTop;
+                        //console.log("current y :", current_y);
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                    },
+                    error: function (error) {
+                        //console.log("problem");
+                        current_y = document.documentElement.scrollTop;
+                        //console.log("current y :", current_y);
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                    }
 
-                //console.log("not same id");
+                });
 
-                // if you drop in pageLink
-                if ( event.target.classList.contains('pageLink')  ||
-                     $(event.target).parent().hasClass('imagePageLink_name')) {
+            // if you drop on note
+            }   else if ( event.target.classList.contains('note') ){
 
-                    //console.log("moved an object into another page");
+                $.ajax({
 
-                    note_id = note.attr("id");
-                    page_id = $(event.target).attr("pageid");
+                    url: '/link_notes/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        id_1 : $(event.target).attr("id"),
+                        id_2 : note.attr("id")
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        //console.log(data);
+                        current_y = document.documentElement.scrollTop;
+                        //console.log("current y :", current_y);
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                    },
+                    error: function (error) {
+                        //console.log("problem");
+                        current_y = document.documentElement.scrollTop;
+                        //console.log("current y :", current_y);
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                    }
 
-                    $.ajax({
+                });
 
-                        url: '/move_note/'+ pageID + '/' + user_id,
-                        type: "POST",
-                        data: JSON.stringify({
-                            note_id: note_id,
-                            page_id: page_id
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            //console.log(data);
-                            current_y = document.documentElement.scrollTop;
-                            //console.log("current y :", current_y);
-                            window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
-                        },
-                        error: function (error) {
-                            //console.log("problem");
-                            current_y = document.documentElement.scrollTop;
-                            //console.log("current y :", current_y);
-                            window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
-                        }
+            }
 
-                    });
-
-                // if you drop on note
-                }   else if ( event.target.classList.contains('note') ){
-
-                    $.ajax({
-
-                        url: '/link_notes/' + pageID + '/' + user_id,
-                        type: "POST",
-                        data: JSON.stringify({
-                            id_1 : $(event.target).attr("id"),
-                            id_2 : note.attr("id")
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            //console.log(data);
-                            current_y = document.documentElement.scrollTop;
-                            //console.log("current y :", current_y);
-                            window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
-                        },
-                        error: function (error) {
-                            //console.log("problem");
-                            current_y = document.documentElement.scrollTop;
-                            //console.log("current y :", current_y);
-                            window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
-                        }
-
-                    });
-
-                }
-
-                else {
-
-                    //console.log("moved an object");
-
-                    // ajax call with id x and y postion if element has moved
-                    $.ajax({
-
-                        url: '/update_position/' + pageID + '/' + user_id,
-                        type: "POST",
-                        data: JSON.stringify({
-                            id: id,
-                            x: x,
-                            y: y
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            console.log(data);
-                        },
-                        error: function (error) {
-                            console.log("problem");
-                        }
-
-                    });
-
-                }
-
-            } else {
-
-                // console.log("moved an object");
+            else {
 
                 // ajax call with id x and y postion if element has moved
                 $.ajax({
@@ -199,11 +143,35 @@ function dragNote(note, noteX, noteY) {
             }
 
         } else {
-            //console.log("object did not move");
+
+            // console.log("moved an object");
+
+            // ajax call with id x and y postion if element has moved
+            $.ajax({
+
+                url: '/update_position/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    id: id,
+                    x: x,
+                    y: y
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log("problem");
+                }
+
+            });
+
         }
 
-
+    } else {
+        //console.log("object did not move");
     }
+
 
 }
 

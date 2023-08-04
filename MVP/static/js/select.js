@@ -78,7 +78,7 @@ function stopSelect() {
 
     // collect all the elements in the selection
     var selection = [];
-    $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink, .to-do-list").each(function(){
+    $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
 
         // feed the selection
         note = $(this);
@@ -102,14 +102,9 @@ function stopSelect() {
 
     // color selected elements with blue border
     for (i in selection){
-
         id = selection[i]
         note = $("#" + id);
-        note.css({"border-radius":"6px"});
-        note.css({"border-width":"2px"});
-        note.css({"border-style":"solid"});
-        note.css({"border-color":"blue blue blue blue"});
-
+        styleSelect(note);
     }
 
     // if selected no element
@@ -231,42 +226,13 @@ function stopSelect() {
 function unSelect(selection) {
 
     for (i in selection){
-
         id = selection[i];
         note = $("#" + id);
-        console.log(note);
+        styleDefault(note);
+    }
 
-        var clasis = note.attr("class");
-            if (clasis == "note"){
-                note.css({"border":"1px solid rgb(0, 0, 0, 0)"});
-                note.css({"border-radius":"5px"});
-            } else if (clasis == "noteLink"){
-                note.css({"border":"none"});
-                note.css({"border-radius":"8px"});
-            } else if (clasis == "imageLink"){
-                note.css({"border":"1px solid #d3d3d3"});
-                note.css({"border-radius":"5px"});
-            } else if (clasis == "imagePageLink"){
-                note.css({"border-top":"1px solid #d3d3d3"});
-                note.css({"border-right":"1px solid #F68C57"});
-                note.css({"border-bottom":"1px solid #F68C57"});
-                note.css({"border-left":"1px solid #d3d3d3"});
-                note.css({"border-radius":"5px"});
-            } else if (clasis == "pageLink"){
-                note.css({"border":"1px solid rgb(200, 240, 149, 0.3)"});
-                note.css({"border-radius":"5px"});
-            } else if (clasis == "pdf"){
-                note.css({"border":"1px solid grey"});
-                note.css({"border-radius":"5px"});
-            } else if (clasis == "image"){
-                note.css({"border":"1px solid transparent"});
-                note.css({"border-radius":"5px"});
-            } else if (clasis == "to-do-list"){
-                note.css({"border":""});
-                note.css({"border-radius":""});
-            } else {}
-        }
 }
+
 
 
 

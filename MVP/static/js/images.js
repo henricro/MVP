@@ -57,7 +57,7 @@ function buildImage(note) {
 ///////////////////////////////////////////////////////
 
 $('.image').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).on('click.selectImage', function(){
         selectImage($(this));
     });
 });
@@ -66,22 +66,21 @@ function selectImage(note){
 
     id = note.attr("id");
 
-    // COPY THE NOTE
-    $(document).bind('copy', function() {
+    // COPY THE IMAGE
+    $(document).on('copy', function() {
         copyNote(note);
     });
 
     // change style after click
-    note.css({"border":"1px solid green"});
+    styleSelect(note);
     var image_img = note.find('.image_img');
-    image_img.css("opacity", 0.3);
     note.addClass("resizable");
 
-    note.unbind('mousedown.drag');
-    note.unbind('click.select');
+    note.off('mousedown.drag');
+    note.off('click.selectImage');
 
     // DELETE NOTE
-    $(document).bind('keyup.delete', function(){
+    $(document).on('keyup.delete', function(){
         if (event.keyCode == 8){
 
             $.ajax({
@@ -104,77 +103,52 @@ function selectImage(note){
     });
 
     // if click outside
-    $(document).bind('click.outsideImage', function(){
+    $(document).on('click.outsideImage', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
             note.css({"border":"1px solid transparent"});
             image_img.css("opacity", 1);
 
-            $(document).unbind('copy');
-
+            $(document).off('copy');
             note.removeClass("resizable");
             note.removeClass("homothetic-resizable");
-
-            $(document).unbind('keyup.delete');
-
-            note.bind('click.select', function(){
+            $(document).off('keyup.delete');
+            note.on('click.selectImage', function(){
                 selectImage($(this));
             });
-
-            note.bind('mousedown.drag', function(){
-
+            note.on('mousedown.drag', function(){
                 mouseX = event.pageX;
                 mouseY = event.pageY;
-
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
-
                 dragNote(note, noteX, noteY);
-
             });
-
-            $(document).unbind('click.outsideImage');
+            $(document).off('click.outsideImage');
 
         }
-
     });
 
-    $(document).bind('contextmenu', function(event) {
-
+    $(document).on('contextmenu', function(event) {
         event.preventDefault();
-
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border-color":""});
+            styleDefault(note);
 
-            image_img.css("opacity", 1);
-
-            $(document).unbind('copy');
-
+            $(document).off('copy');
             note.removeClass("resizable");
-
-            $(document).unbind('keyup.delete');
-
-            note.bind('click.select', function(){
+            $(document).off('keyup.delete');
+            note.on('click.select', function(){
                 selectImage($(this));
             });
-
-            note.bind('mousedown.drag', function(){
-
+            note.on('mousedown.drag', function(){
                 mouseX = event.pageX;
                 mouseY = event.pageY;
-
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
-
-                dragNote(note, noteX, noteY);
-
+                dragNote(note);
             });
-
         }
-
     });
-
 }
 
 
@@ -183,7 +157,7 @@ function selectImage(note){
 ///////////////// RIGHT CLICK IMAGE ///////////////
 //////////////////////////////////////////////////
 
-$(".image").bind('contextmenu', function(event) {
+$(".image").on('contextmenu', function(event) {
 
     event.preventDefault();
 
@@ -206,11 +180,10 @@ $(".image").bind('contextmenu', function(event) {
     });
 
     // Add Link
-    $('#imageRC_1').bind('click', function() {
+    $('#imageRC_1').on('click.addLink', function() {
 
         var value = prompt("Link", "");
-
-        if (value != null) {
+        if (value == null){} else {
             $.ajax({
                 url: '/add_link_image/'+pageID + '/' + user_id,
                 type: "POST",
@@ -233,10 +206,10 @@ $(".image").bind('contextmenu', function(event) {
     });
 
     //Style
-    $('#imageRC_2').bind('click', function() {
+    $('#imageRC_2').on('click.style', function() {
 
         if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
-        if (value != null) {
+        if (value == null){} else {
             console.log("added css");
             $.ajax({
                 url: '/add_css/' + pageID + '/' + user_id,
@@ -259,7 +232,7 @@ $(".image").bind('contextmenu', function(event) {
     });
 
     // Copy Image
-    $('#imageRC_2').bind('click', function() {
+    $('#imageRC_2').on('click', function() {
         copyNote(note);
     });
 

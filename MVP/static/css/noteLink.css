@@ -5,7 +5,9 @@
 .noteLink {
   position: absolute;
   padding: 5px 8px 5px 8px;
-  /*border: 1px solid #d3d3d3;*/
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0, 0);
   border-radius : 8px;
   text-align: center;
   background-color : rgb(186, 222, 219, 0.15 );
@@ -19,7 +21,7 @@
   width:100%;
   height:100%;
   display:flex;
-  width:100%;
+  width:200%;
   color: #049FD5;
   opacity: 0;
   align-items:center;
@@ -48,6 +50,16 @@
     width : 23px;
     height : 23px;
     opacity : 0.7;
+    border-radius: 4px;
 
     transition: opacity .5s, bottom .5s, right .5s, width .5s, height .5s;
+}
+
+
+#noteLinkRCBox{
+    z-index: 15;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
 }
