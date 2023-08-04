@@ -84,7 +84,7 @@ def new_list(pageID, user_id):
     notes.append(etree.Element("note"))
     new_note = notes[-1]
 
-    list_text = "<ul><li>hey</li><li>ho</li><li>lets go</li></ul>"
+    list_text = '<li>hey</li><li><i>ho</i></li>'
     new_note.text = list_text
 
     # set the note's x, y and first elements

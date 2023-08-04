@@ -234,35 +234,58 @@ $(".to-do-list").on("keydown", function(event) {
 });
 */
 
+$(document).on("click", ".to-do-list", function() {
+      var cursorPosition = getCursorPosition();
+      console.log("Current Cursor Position:", cursorPosition);
+    });
+
+function getCursorPosition() {
+      var selection = document.getSelection();
+      if (selection.rangeCount > 0) {
+        var range = selection.getRangeAt(0);
+        var currentNode = range.commonAncestorContainer;
+        var listElement = $(currentNode).closest("li");
+        var cursorPosition = listElement.index() + 1;
+        return cursorPosition;
+      }
+      return null;
+    }
+
+
 $(".to-do-list").on("keydown", function(event) {
     if (event.keyCode === 13) {
+        console.log("gdddkkooouuieheue");
         event.preventDefault(); // Prevent the default behavior of the Enter key
-        var newTask = $("<li>").addClass("to-do").append('<i class="icon"></i>' + "bloup");
+        var newTask = $("<li>").addClass("to-do");
+        var icon = $("<li>").addClass("icon");
+        var text = "hhygguue";
+        newTask.append(icon).append(text);
+        console.log(newTask);
 
-        var currentLi = findFocusedLi();
-        console.log(currentLi);
-        if (currentLi) {
-        currentLi.after(newTask);
-        } else {
-        // If no li is focused, add the new task at the end of the ul
-        $(this).append(newTask);
+        var cursorPosition = getCursorPosition();
+        if (cursorPosition !== null) {
+            console.log($(this));
+            var listItems = $(this).find('li');
+            console.log(listItems);
+            console.log("here", cursorPosition, listItems.length);
+            if (cursorPosition <= listItems.length) {
+                console.log("inferior");
+                console.log(cursorPosition, typeof(cursorPosition));
+                current_list_item = listItems.eq(cursorPosition);
+                console.log(current_list_item);
+                current_list_item.after(newTask);
+            } else {
+              $(".to-do-list").append(newTask);
+            }
         }
+
+        console.log(newTask);
+        $(this).append(newTask);
+        // Set focus on the new task and select its contents
+
+        newTask.focus().select();
     }
 });
-
-var currentLi = null; // Variable to track the currently focused li element
-
-function findFocusedLi() {
-
-    var lis = $(".to-do-list li");
-    for (var i = 0; i < lis.length; i++) {
-        if ($(lis[i]).is(":focus")) {
-            return $(lis[i]);
-        }
-    }
-    return null; // If no li is focused, return null
-
-}
 
 
 

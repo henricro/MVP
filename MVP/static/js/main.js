@@ -116,7 +116,64 @@ var follower = $('#follower');
 $("#follower").hide();
 
 
+let lastClickPosition = {};
 
+$(document).on('click', function(event) {
+  lastClickPosition.x = event.pageX;
+  lastClickPosition.y = event.pageY;
+});
+
+$(document).on('keydown', function(event) {
+
+  if (event.originalEvent.metaKey && event.key === 'l') {
+    event.preventDefault();
+    console.log('CMD+L pressed!');
+    console.log('Last click position: ', lastClickPosition);
+
+    $.ajax({
+        url: '/new_list/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            x : lastClickPosition.x,
+            y : lastClickPosition.y
+        }),
+        contentType: "application/json",
+        success: function (data) {
+            current_y = document.documentElement.scrollTop;
+            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+        },
+        error: function (error) {
+            current_y = document.documentElement.scrollTop;
+            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+        }
+    });
+
+  } else if (event.originalEvent.metaKey && event.key === 'd') {
+    event.preventDefault();
+    console.log('CMD+T pressed!');
+    console.log('Last click position: ', lastClickPosition);
+
+    $.ajax({
+        url: '/new_to_do_list/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            x : lastClickPosition.x,
+            y : lastClickPosition.y
+        }),
+        contentType: "application/json",
+        success: function (data) {
+            current_y = document.documentElement.scrollTop;
+            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+        },
+        error: function (error) {
+            current_y = document.documentElement.scrollTop;
+            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+        }
+    });
+
+  }
+
+});
 
 ////////////////////////////////////////////////
 /////////   RIGHT CLICK ON PAGE  ///////////////
@@ -286,7 +343,7 @@ $("#pageRC_2").on('mouseout', function() {
 });
 
 $("#pageRCPlus_1").on('mouseover', function() {
-    follower.html("list");
+    follower.html("list (cmd+L)");
     follower.show();
 });
 $("#pageRCPlus_1").on('mouseout', function() {
@@ -295,7 +352,7 @@ $("#pageRCPlus_1").on('mouseout', function() {
 });
 
 $("#pageRCPlus_2").on('mouseover', function() {
-    follower.html("to-do-list");
+    follower.html("to-do-list (cmd+k)");
     follower.show();
 });
 $("#pageRCPlus_2").on('mouseout', function() {
