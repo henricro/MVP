@@ -4,7 +4,7 @@
 
 function styleSelect(note) {
 
-    note.css({"border-color" : "green"});
+    note.css({"border-color" : "#66bfcb"});
 
     note_class = note.attr("class");
     console.log("styling something", note_class);

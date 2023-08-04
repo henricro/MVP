@@ -2,60 +2,6 @@
     font-family: Geneva;
 }
 
-.noteLink, .imageLink, .imagePageLink,  {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-
-
-/**********  Image Link   ***********/
-
-.imageLink {
-  position: absolute;
-  border: 1px solid #d3d3d3;
-  border-radius : 5px;
-  overflow: hidden;
-}
-
-.imageLink_link {
-  position: absolute;
-  top:0;
-  right: 0;
-  width:100%;
-  height:100%;
-  display:flex;
-  width:100%;
-  color: rgb(136, 114, 217);
-  opacity: 0.1;
-  align-items:center;
-  justify-content:center;
-  font-size:15px;
-  text-decoration: underline;
-  text-align: center;
-
-  /* transition effect. not necessary */
-  transition: opacity .2s, font-size .2s, color .2s;
-}
-
-.imageLink_img{
-    opacity :1;
-    width:100%;
-    height:100%;
-}
-
-.imageLink:hover{
-    overflow:visible;
-}
-
-.imageLink:hover .imageLink_link {
-  opacity: 1;
-  font-size:20px;
-  color : #049FD5 ;
-}
-
-.imageLink:hover .imageLink_img {
-  opacity: 0.3;
-}
 
 
 .input{
@@ -284,6 +230,7 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 */
+
 #plusZoom {
     height:20px;
     cursor: pointer;

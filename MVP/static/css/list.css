@@ -17,74 +17,63 @@
 
 
 /**********   To Do List   ***********/
+
+
+/* Add bullet point using pseudo-element ::before */
+.to-do-list li {
+  position: relative;
+  padding-left: 10px; /* Adjust this value to create space for the bullet point */
+}
+
+.to-do-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 50%; /* Position the bullet point vertically in the middle */
+  transform: translateY(-50%); /* Adjust to center the bullet point */
+  color: black; /* Change the color of the bullet point if needed */
+}
+
+/* Add a border around the list container */
 .to-do-list {
-    position: absolute;
-    padding: 5px 12px 7px 8px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(0, 0, 0, 0);
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  list-style-type: none; /* Remove default bullet points */
+  padding: 5px 12px 7px 5px; /* Adjust this value to create space for the icon and bullet point */
+  position: absolute; /* Maintain absolute positioning for dragging */
+  border-style: solid;
+  border-width : 1px;
+  border-color : rgb(0, 0, 0, 0);
+  border-radius : 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  max-width: 220px; /* Adjust the maximum width as needed */
 }
 
 .to-do-list:hover {
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-ul {
-    padding-inline-start: 0px;
-    margin-bottom: 0px !important;
+/* Style the small icon */
+.to-do-list .icon {
+  position: absolute;
+  left: -25px; /* Adjust this value to control the distance between the icon and the list container */
+  top: 50%; /* Position the icon vertically centered */
+  transform: translateY(-50%); /* Adjust to vertically center the icon perfectly */
+  width: 14px; /* Adjust the width and height of the icon as needed */
+  height: 14px;
+  background-size: cover; /* Adjust how the icon is displayed */
+  /* You can also use other background properties to customize the appearance */
+  cursor:pointer;
 }
 
-.to-do {
-    color: black;
+/* Style the small icon for "to-do" items */
+.to-do .icon {
+  background-image: url('/static/images/icons/uncheck.png'); /* Replace 'icon-todo.png' with the path to your icon image for to-do items */
+}
+
+/* Style the small icon for "done" items */
+.done .icon {
+  background-image: url('/static/images/icons/check.png'); /* Replace 'icon-done.png' with the path to your icon image for done items */
 }
 
 .done {
-    color: #4aa83e;
-}
-
-
-.check-icon {
-    /* Add the styles for the icon */
-    /* Adjust the styles for the icon size, position, etc. as needed */
-    position: absolute;
-    display: inline-block;
-    width: 16px; /* Adjust the width of the icon */
-    height: 16px; /* Adjust the height of the icon */
-    background-size: cover;
-    vertical-align: middle; /* Align the icon vertically with the text */
-    margin-right: 10px; /* Add spacing between the icon and the text */
-    left: -5px;
-    top: 1px;
-    z-index:15;
-}
-
-.to-do .check-icon {
-    /* Add specific styles for the .check-icon inside .done elements */
-    background-image: url('/static/images/icons/uncheck.png'); /* Replace with the actual path to your icon image */
-    cursor: pointer;
-}
-
-.done .check-icon {
-    /* Add specific styles for the .check-icon inside .done elements */
-    background-image: url('/static/images/icons/check.png'); /* Replace with the actual path to your icon image */
-    cursor: pointer;
-}
-
-/* Adjust the position of the text to make space for the icon and the bullet point */
-.to-do-list li {
-    position: relative;
-    padding-left: 25px; /* Add some padding to make space for the icon and the bullet point */
-    list-style-type: none; /* Remove default bullet point style */
-}
-
-/* Add bullet point using pseudo-element ::before */
-.to-do-list li:before {
-    content: "•";
-    position: absolute;
-    left: 15px; /* Adjust the position of the bullet point */
-    top: 50%; /* Position the bullet point vertically in the middle */
-    transform: translateY(-50%); /* Adjust to center the bullet point */
-    color: black; /* Change the color of the bullet point if needed */
+  color: #5e8f51;
 }

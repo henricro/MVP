@@ -22,10 +22,6 @@ function buildList(note) {
 
 }
 
-$(document).ready(function() {
-    // Select all span elements that are direct children of li elements
-    $('li > span').addClass('check');
-});
 
 
 ////////////////////////////////////////////////
@@ -218,7 +214,7 @@ function writeList(note){
 
 
 // When clicking on the check-icon span inside a 'done' li, toggle its class between 'done' and 'to-do'
-$(".check-icon").on("click", function() {
+$(".icon").on("click", function() {
     console.log($(this));
     $(this).parent().toggleClass("done to-do");
 });
@@ -241,7 +237,7 @@ $(".to-do-list").on("keydown", function(event) {
 $(".to-do-list").on("keydown", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault(); // Prevent the default behavior of the Enter key
-        var newTask = $("<li>").addClass("to-do").append('<span class="check-icon"></span>' + "bloup");
+        var newTask = $("<li>").addClass("to-do").append('<i class="icon"></i>' + "bloup");
 
         var currentLi = findFocusedLi();
         console.log(currentLi);

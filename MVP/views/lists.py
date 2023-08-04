@@ -42,7 +42,7 @@ def new_to_do_list(pageID, user_id):
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
 
-    list_text = '<li class="to-do"><span class="check-icon"></span>do this</li><li class="done"><span class="check-icon"></span>do that</li>'
+    list_text = '<li class="to-do"><i class="icon"></i>do this</li><li class="done"><i class="icon"></i>do that</li>'
     new_note.text = list_text
 
     # save the changes in the xml
