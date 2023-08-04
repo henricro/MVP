@@ -1,4 +1,6 @@
 from MVP import db, application
+from sqlalchemy import UniqueConstraint
+
 
 
 class User(db.Model):
@@ -31,12 +33,18 @@ class User(db.Model):
 
 class Page (db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)
+    global_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(128))
     type = db.Column(db.String(128))
-    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
 
     __tablename__ = "Pages"
+
+    __table_args__ = (
+        UniqueConstraint('user_id', 'id', name='uix_user_id_id'),
+    )
+
 
 '''
 def get_page_table_name(user_id):

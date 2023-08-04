@@ -261,7 +261,7 @@ function findFocusedLi() {
     var lis = $(".to-do-list li");
     for (var i = 0; i < lis.length; i++) {
         if ($(lis[i]).is(":focus")) {
-        return $(lis[i]);
+            return $(lis[i]);
         }
     }
     return null; // If no li is focused, return null
