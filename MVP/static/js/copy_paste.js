@@ -172,6 +172,7 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
         type: "POST",
 
         data: JSON.stringify({
+            note_class : noteClass,
             originPageID : originPageID,
             note_id : note_id,
             x : x,

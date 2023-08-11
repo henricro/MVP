@@ -17,6 +17,7 @@ def paste_note(pageID, user_id):
     note_id = str(request_data.get('note_id'))
     x = request_data.get('x')
     y = request_data.get('y')
+    note_class = request_data.get('note_class')
 
     ## Get the note in the xml from the page where it was copied from
     originPageName = 'Page_' + originPageID
@@ -24,7 +25,24 @@ def paste_note(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + originPageName + ".xml")
     root = tree.getroot()
 
-    note_to_copy = tree.xpath(f"//note[@id='{note_id}']")[0]
+    note_to_copy = root.find("notes").find("note[@id='" + note_id + "']")
+    print(note_to_copy)
+
+    if note_class == "pageLink" or note_class == "imagePageLink" :
+
+        destPage_id = note_to_copy.get('pageID')
+
+        parent_id = Page.query.filter_by(id = pageID, user_id=user_id).first().global_id
+        child_id = Page.query.filter_by(id = destPage_id, user_id=user_id).first().global_id
+
+        #ajouter relation parent-enfant dans la DB
+        engine.execute(
+            "insert into page_links "
+            "(parent_id, child_id) "
+            "VALUES ( %(parent_id)s, %(child_id)s )",
+            {'parent_id': parent_id, 'child_id': child_id}
+        )
+
 
     ## Copy that note in the current page
 
