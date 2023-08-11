@@ -38,8 +38,8 @@ def upload_image(pageID, user_id):
 
     image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
 
-    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
-                   {'page_id': pageID, 'image_id': image_id})
+#    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
+#                   {'page_id': pageID, 'image_id': image_id})
 
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")

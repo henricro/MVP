@@ -76,11 +76,13 @@ function buildNotes() {
             $('body').append(elem);
         }
 
+
         // build the to-do-list divs
         else if (clasis === "to-do-list"){
-            elem = "<ul class='to-do-list' id='" + id + "'></ul>"
+            elem = "<div class='to-do-list' id='" + id + "'></div>"
             $('body').append(elem);
         }
+
 
     }
 }

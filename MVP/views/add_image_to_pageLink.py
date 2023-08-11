@@ -48,8 +48,8 @@ def add_image_to_pageLink(pageID, user_id):
     print("image_id", "yoyoyoyo")
     print(image_id, "yoyoyoyo")
 
-    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
-                   {'page_id': pageID, 'image_id': image_id})
+#    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
+#                   {'page_id': pageID, 'image_id': image_id})
 
     ### open the XML
 

@@ -32,23 +32,92 @@ $('.to-do-list').each(function(){
     buildToDoList($(this));
 });
 
-function buildToDoList(note) {
+function buildToDoList(tdl_div) {
 
-    id = note.attr("id");
+    id = tdl_div.attr("id");
 
     var XMLnote = xmlDoc.getElementById(id);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-    note.css("top", y.concat("px"));
-    note.css("left", x.concat("px"));
     var list = XMLnote.childNodes[0].nodeValue;
-    console.log("list", list);
 
-    note.append(list);
+    tdl_div.css("top", y.concat("px"));
+    tdl_div.css("left", x.concat("px"));
+
+    var tdl_list = $('<ul>').addClass('to-do-list-list').append(list);
+    var length_li = tdl_list.find("li").length;
+
+    console.log(tdl_list);
+    console.log("nb elements in list", length_li);
+
+    tdl_div.append(tdl_list);
+
+    // for each li in a to-do-list,
+
+    // build an icon element to put on the body
+    // give it it's position based on the li
+    // give it the same class as li
+    // make it so that if the li is removed from dom, so is the icon
+
+
+    //get the list as <li class='done'>uhfz</li><li class='to-do'>diuhdz</li>
+    //get the nb of elements in list
+    //give the <li>s ids
+    //for each id build an icon with that id and same class as li
+    //for each icon go and place it to the right of the li with same id
+/*
+    for (var i = 0; i < length_li; i++){
+
+        tdl_list.find("li").eq(i).attr("id", i.toString());
+        li_class = tdl_list.find("li").eq(i).attr("class");
+        icon =$('<i>').addClass("icon").addClass(li_class).attr("id", i.toString());
+        console.log(icon);
+        checks.append(icon);
+
+    }
+
+    $(".icon").each(function(){
+        icon = $(this);
+        id = icon.attr("id");
+        li = icon.parent().parent().find('li#' + id);
+        icon.on('click', function() {
+            li.toggleClass("done to-do");
+            $(this).toggleClass("done to-do");
+        });
+    });
+*/
+    console.log(length_li);
+    console.log(list, x, y);
+    console.log(tdl_list);
+    //console.log(checks);
 
 }
 
+function generateRandomString(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters.charAt(randomIndex);
+    }
+    return result;
+}
 
+console.log("ECMAScript version: " + new Date().toDateString());
+
+
+// for each line in a to-do list
+$(".to-do-list-list li").each(function(){
+
+    // generate an id for that line
+    li =$(this);
+    id =generateRandomString(4);
+    li.attr("id", id);
+
+    //create an icon, give it the same id
+    icon = $('i').addClass()
+
+});
 
 
 ///////////////////////////////////////////////////
@@ -212,13 +281,13 @@ function writeList(note){
 
 }
 
-
+/*
 // When clicking on the check-icon span inside a 'done' li, toggle its class between 'done' and 'to-do'
 $(".icon").on("click", function() {
     console.log($(this));
     $(this).parent().toggleClass("done to-do");
 });
-
+*/
 
 
 /*
@@ -233,7 +302,7 @@ $(".to-do-list").on("keydown", function(event) {
     }
 });
 */
-
+/*
 $(document).on("click", ".to-do-list", function() {
       var cursorPosition = getCursorPosition();
       console.log("Current Cursor Position:", cursorPosition);
@@ -287,8 +356,28 @@ $(".to-do-list").on("keydown", function(event) {
     }
 });
 
+*/
 
 
+
+
+$(".myDiv").on("click", function(e) {
+    // Calculate the click position within .myDiv
+    var clickX = e.clientX - $(this).offset().left;
+    var clickY = e.clientY - $(this).offset().top;
+
+    // Define the range for the spot
+    var spotStartX = $(this).width() - 30; // Adjust as needed
+    var spotEndX = $(this).width() - 10;   // Adjust as needed
+    var spotStartY = 0;
+    var spotEndY = $(this).height();
+
+    // Check if the click is within the spot range
+    if (clickX >= spotStartX && clickX <= spotEndX && clickY >= spotStartY && clickY <= spotEndY) {
+        // Code to run when the spot is clicked
+        alert("Spot clicked!");
+    }
+});
 
 
 

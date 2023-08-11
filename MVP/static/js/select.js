@@ -224,13 +224,11 @@ function stopSelect() {
 
 
 function unSelect(selection) {
-
     for (i in selection){
         id = selection[i];
         note = $("#" + id);
         styleDefault(note);
     }
-
 }
 
 

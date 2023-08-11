@@ -101,19 +101,24 @@ def confirm(verification_token):
     os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/pages/')
     os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/uploads/')
 
-    engine.execute("insert into Pages (user_id, title) VALUES (%s, %s)", (user_id, 'GYST'))
-
-    pageID = engine.execute("SELECT id FROM Pages ORDER BY id DESC LIMIT 1").fetchall()[0][0]
-    pageID = str(pageID)
-
-    pageName = 'Page_' + pageID
+    # create new HOME page in DB
+    engine.execute("insert into Pages (user_id, title, id) VALUES (%s, %s, %s)",
+                   (user_id, 'GYST', 1))
 
     tree = etree.parse(application.config['TEMPLATES_PATH'] + 'startPage.xml')
     root = tree.getroot()
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/Page_1.xml', 'wb')
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
     return redirect(url_for('home', user_id=user_id))
 
+
+def get_next_page_id_for_user(user_id):
+    max_page_id = db.session.query(db.func.max(Page.id)).filter(Page.user_id == user_id).scalar()
+    return (max_page_id or 0) + 1
+
+def get_next_global_id():
+    max_page_id = db.session.query(db.func.max(Page.global_id)).scalar()
+    return (max_page_id or 0) + 1

@@ -22,7 +22,7 @@ def new_page(page_id, user_id):
 
     # create new page in DB
     new_page_id = get_next_page_id_for_user(user_id)
-    new_global_id = get_next_global_id(user_id)
+    new_global_id = get_next_global_id()
 
     engine.execute("insert into Pages (global_id, user_id, title, id) VALUES (%s, %s, %s, %s)",
                    (new_global_id, user_id, title, new_page_id))
@@ -91,6 +91,6 @@ def get_next_page_id_for_user(user_id):
     max_page_id = db.session.query(db.func.max(Page.id)).filter(Page.user_id == user_id).scalar()
     return (max_page_id or 0) + 1
 
-def get_next_global_id(user_id):
-    max_page_id = db.session.query(db.func.max(Page.id)).scalar()
+def get_next_global_id():
+    max_page_id = db.session.query(db.func.max(Page.global_id)).scalar()
     return (max_page_id or 0) + 1

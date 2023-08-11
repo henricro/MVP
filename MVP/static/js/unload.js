@@ -50,3 +50,15 @@ function save_sizes(){
         }
     });
 }
+
+
+$(document).on("keydown", function(event) {
+
+  if ((event.metaKey || event.ctrlKey) && event.key === "r") {
+
+    event.preventDefault();
+    console.log("Refresh prevented");
+
+  }
+
+});
