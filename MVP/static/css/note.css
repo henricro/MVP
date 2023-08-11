@@ -7,7 +7,7 @@
   border-color : rgb(0, 0, 0, 0);
   border-radius : 5px;
   text-align: left;
-  /*background: inherit;*/
+  box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
 
 }
 

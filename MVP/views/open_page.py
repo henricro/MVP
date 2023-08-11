@@ -16,6 +16,8 @@ def home(user_id):
         return redirect(url_for('login'))
 
     user_id = str(user_id)
+    user = User.query.filter_by(id=user_id).first()
+    email = user.email
 
     print("route : open home page", "yoyoyoyo")
 
@@ -38,7 +40,8 @@ def home(user_id):
 
     xml_string = xml_string.replace("\n", "")
 
-    return render_template('/page.html', xml_string=xml_string, pageID = PageID, pages=pages, title=title, user_id=user_id)
+    return render_template('/page.html', xml_string=xml_string, pageID = PageID, email=email,
+                           pages=pages, title=title, user_id=user_id, lineage=[])
 
 
 
@@ -51,10 +54,8 @@ def open_page(pageID, user_id, y_position):
         return redirect(url_for('login'))
 
     user_id = str(user_id)
-
-    # get the parents of the page
-#    parents = engine.execute("select * from parents where child_page_id= %(pageID)s", {'pageID':pageID}).fetchall()
-#    parents=dict(parents)
+    user = User.query.filter_by(id=user_id).first()
+    email = user.email
 
     pages = engine.execute("select id, title from Pages where user_id = %(user_id)s", {'user_id':user_id}).fetchall()
     pages = dict(pages)
@@ -70,7 +71,26 @@ def open_page(pageID, user_id, y_position):
     xml_string = etree.tostring(root).decode('utf-8')
     xml_string = xml_string.replace("\n", "")
 
+    page = Page.query.filter_by(id=pageID, user_id=user_id).first()
+    parent_id = page.official_parent_id
+    print("parent id", parent_id)
+
+    if parent_id :
+        lineage = []
+
+        while parent_id :
+            parent = Page.query.filter_by(global_id=parent_id).first()
+            parent_title = parent.title
+            lineage.append([parent.id, parent_title])
+            parent_id = parent.official_parent_id
+            print(parent_id)
+
+    else :
+        lineage =[]
+
+    print(lineage)
 
     return render_template('/page.html', xml_string=xml_string, pageID=pageID,
-                           user_id=user_id, pages=pages, title=title, y_position = y_position)
+                           user_id=user_id, pages=pages, title=title, y_position = y_position,
+                           email = email, lineage=lineage)
 

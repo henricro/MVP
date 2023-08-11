@@ -19,17 +19,7 @@ noteTitle.css("top", y.concat("px"));
 noteTitle.css("left", x.concat("px"));
 
 
-noteTitle.on('dblclick', function(){
 
-    showTitleBox();
-
-    $(document).on('click', function(){
-        if ($("titleDbClick").is(event.target) && title.has(event.target).length === 0){
-            hideTitleBox();
-        }
-    });
-
-});
 
 
 
@@ -341,4 +331,36 @@ function showParents(){
 }
 
 */
+
+/////////////////////////////////
+/////////   title box  /////////////
+/////////////////////////////////
+
+
+noteTitle.on('dblclick', function(){
+    showTitleBox();
+    $(document).on('click', function(){
+        if ($("titleDbClick").is(event.target) && title.has(event.target).length === 0){
+            hideTitleBox();
+        }
+    });
+});
+
+$('#tdb_title').html("Page info");
+
+if (lineage ==[]) {
+
+    $("#tdb_path").append("thisi s the home page");
+
+} else {
+
+    $("#tdb_path").append("<span>Path : </span>");
+    for (var i = lineage.length-1; i > -1 ; i--){
+        page = "<a href = /open_page/" + lineage[i][0] + "/" + user_id + "/0 target='_blank'>" + lineage[i][1] + " / " + "</a>";
+        $("#tdb_path").append(page);
+    }
+
+}
+
+console.log(lineage);
 

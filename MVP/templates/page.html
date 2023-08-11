@@ -156,7 +156,9 @@
 </div>
 
 <div id="titleDbClick">
-
+    <div id="tdb_title"></div>
+    <div id="tdb_user_email">User : {{email}}</div>
+    <div id="tdb_path"></div>
 </div>
 
 
@@ -269,6 +271,7 @@
 
 var title = '{{title}}';
 var pages = {{pages|safe}};
+var lineage = {{lineage|safe}};
 var xml = '{{xml_string|safe}}';
 var xmlDoc = $.parseXML(xml);
 //var biggest = xmlDoc.getElementsByTagName("biggest_id")[0].childNodes[0].nodeValue;

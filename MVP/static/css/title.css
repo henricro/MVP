@@ -38,8 +38,8 @@
 
 #titleDbClick {
     border-radius: 5px;
-    background-color : rgb(252, 252, 252, 0.98);
-    padding : 8px;
+    background-color : rgb(252, 252, 252);
+    padding : 14px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     display: none;
     position: absolute;
@@ -47,4 +47,13 @@
     height: 200px;
     flex-direction: column;
     align-items: flex-start;
+    z-index: 19;
+    font-size: 17px;
 }
+
+#tdb_title {
+    align-self: center;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
