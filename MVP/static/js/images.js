@@ -17,12 +17,12 @@ function buildImage(note) {
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
-    var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
 
-    // for the login page
-    if (["6220", "6219", "2288"].includes(image_id)) {
-        var img_src = "/static/user_data/users/" + 1 + "/uploads/" + name;
+    if (note.hasClass('global')) {
+        console.log("is global");
+        var img_src = "/static/images/welcome_page/" + name;
     } else {
+        console.log("is not global");
         var img_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 

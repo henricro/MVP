@@ -22,7 +22,10 @@ def upload_image(pageID, user_id):
     filename = file.filename
     filename = filename.replace(' ', '_')
 
-    filename = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+
+    print(filename)
+    print(storage_name)
 
     type = file.filename[-4:]
 
@@ -31,16 +34,7 @@ def upload_image(pageID, user_id):
     else :
         filename = filename + '.png'
 
-    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
-
-    engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-                   {'name': filename, 'type': type})
-
-    image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-
-#    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
-#                   {'page_id': pageID, 'image_id': image_id})
-
+    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
@@ -64,12 +58,13 @@ def upload_image(pageID, user_id):
     # set the note's x, y and content = "title" (for now)
     new_note.set("id", id)
     new_note.set("class", "image")
+    new_note.set("global", "0")
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
     etree.SubElement(new_note, "width").text = "300"
     etree.SubElement(new_note, "height").text = "200"
-    etree.SubElement(new_note, "name").text = str(filename)
-    etree.SubElement(new_note, "image_id").text = str(image_id)
+    etree.SubElement(new_note, "file_name").text = str(filename)
+    etree.SubElement(new_note, "name").text = str(storage_name)
 
 
     #print(etree.tostring(root, pretty_print=True))

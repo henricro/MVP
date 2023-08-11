@@ -26,13 +26,6 @@ function save_sizes(){
         sizes.push(info);
     })
 
-/*
-    var parents = $("#title_parents");
-    var parents_x = parents.css("left").slice(0,-2);
-    var parents_y = parents.css("top").slice(0,-2);
-    var parents_width = parents.css("width").slice(0,-2);
-    var parents_height = parents.css("height").slice(0,-2);
-*/
     $.ajax({
         url: '/unload/' + pageID + '/' + user_id,
         type: "POST",
@@ -42,11 +35,9 @@ function save_sizes(){
         contentType: "application/json",
         success: function (data) {
             console.log(data);
-            //window.location.href='/open_page/'+pageID;
         },
         error: function (error) {
             console.log("problem");
-            //window.location.href='/open_page/'+pageID;
         }
     });
 }
@@ -54,11 +45,30 @@ function save_sizes(){
 
 $(document).on("keydown", function(event) {
 
-  if ((event.metaKey || event.ctrlKey) && event.key === "r") {
+    if ((event.metaKey || event.ctrlKey) && event.key === "r") {
 
-    event.preventDefault();
-    console.log("Refresh prevented");
+        event.preventDefault();
+        refreshPage();
 
-  }
+    }
 
 });
+
+$(document).on('keydown', function(event) {
+
+    // Check if Cmd (Mac) or Ctrl (Windows) key is pressed
+    var cmdPressed = event.metaKey || event.ctrlKey;
+
+    if (cmdPressed && event.shiftKey && event.key === 'r') {
+
+        console.log('Cmd + Shift + R pressed');
+        event.preventDefault();
+        refreshPage();
+
+    }
+
+});
+
+function refreshPage(){
+    save_sizes();
+}

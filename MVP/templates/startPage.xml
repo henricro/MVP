@@ -9,10 +9,10 @@
     </note>
 
     <note id="2" class="note"><x>636</x><y>147</y><content>Hi there :)&lt;div&gt;&lt;br&gt;&lt;div&gt;welcome to GYST&lt;/div&gt;&lt;/div&gt;</content><css>font-size: 20px; text-align: center; </css></note>
-    <note id="3" class="image"><x>537</x><y>281</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>
-    <note id="4" class="imageLink"><x>739</x><y>333</y><width>238</width><height>161</height><name>youtube-NMX_MoZ1ljM.jpg</name><image_id>6220</image_id><link>https://www.youtube.com/watch?v=NMX_MoZ1ljM</link></note>
+    <note id="3" class="image global"><x>537</x><y>281</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>
+    <note id="4" class="imageLink global" global="1"><x>739</x><y>333</y><width>238</width><height>161</height><name>youtube-NMX_MoZ1ljM.jpg</name><image_id>6220</image_id><link>https://www.youtube.com/watch?v=NMX_MoZ1ljM</link></note>
     <note id="5" class="note"><x>424</x><y>459</y><content>here\'s a little video showing&amp;nbsp;&lt;div&gt;what the main features are&lt;/div&gt;</content><css>font-size: 17px; transform:rotate(12deg); </css></note>
-    <note id="6" class="image"><x>687</x><y>1196</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
+    <note id="6" class="image global"><x>687</x><y>1196</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
     <note id="7" class="note"><x>587</x><y>610</y><content>but basically :&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- double click anywhere to write&lt;/div&gt;&lt;div&gt;- write click anywhere to create a new page&lt;/div&gt;&lt;div&gt;- drop an image anywhere&lt;/div&gt;&lt;div&gt;- right-click an image to add a link&lt;/div&gt;&lt;div&gt;- right-click a link to page to add an image&lt;/div&gt;&lt;div&gt;- copy-paste anything anywhere&lt;/div&gt;&lt;div&gt;- move and resize anything&lt;/div&gt;&lt;div&gt;- right click on text to add CSS style (ex : font-size:23px; color:blue;)&lt;/div&gt;</content><css>font-size: 17px;</css></note>
     <note id="8" class="note"><x>654</x><y>977</y><content>hope you like it !</content><css>font-size: 17px;</css></note>
 

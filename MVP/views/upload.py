@@ -35,18 +35,9 @@ def upload_pdf(pageID, user_id):
     filename = filename.replace(' ', '_')
     print(filename)
 
-    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
+    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-    ### keep the information that this file is in this page in the 'tags' many to many SQL table
-
-    engine.execute("insert into Pdfs (name) VALUES ( %(name)s )",
-                   {'name': file.filename})
-
-    pdf_id = engine.execute("SELECT id FROM Pdfs ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print(pdf_id)
-
-#    engine.execute("insert into pages_pdfs (page_id, pdf_id) VALUES ( %(page_id)s, %(pdf_id)s )",
- #                  {'page_id': pageID, 'pdf_id': pdf_id})
+    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
 
     ### add a note in the XML with the x, y positions and the name of the file
 
@@ -95,9 +86,9 @@ def upload_pdf(pageID, user_id):
     new_note.set("class", "pdf")
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(filename)
+    etree.SubElement(new_note, "name").text = str(storage_name)
+    etree.SubElement(new_note, "file_name").text = str(filename)
     etree.SubElement(new_note, "image").text = str(filename + ".first_page.jpg")
-    etree.SubElement(new_note, "pdf_id").text = str(pdf_id)
     etree.SubElement(new_note, "width").text = "100"
     etree.SubElement(new_note, "height").text = "150"
 

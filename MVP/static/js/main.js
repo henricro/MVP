@@ -17,6 +17,8 @@ function buildNotes() {
         var id = note.getAttribute("id");
         var clasis = note.getAttribute("class");
 
+        console.log(clasis);
+
         // build the noteLink divs
         if (clasis === "noteLink"){
             elem = '<div class="noteLink" id="' + id + '" ></div>';
@@ -46,10 +48,20 @@ function buildNotes() {
             elem = "<div class='image' id='" + id + "'></div>"
             $('body').append(elem);
         }
+        // build the image divs (global)
+        else if (clasis === "image global"){
+            elem = "<div class='image global' id='" + id + "'></div>"
+            $('body').append(elem);
+        }
 
         // build the imageLink divs
         else if (clasis === "imageLink"){
             elem = '<div class="imageLink" id="' + id + '" ></div>';
+            $('body').append(elem);
+        }
+        // build the imageLink divs
+        else if (clasis === "imageLink global"){
+            elem = '<div class="imageLink global" id="' + id + '" ></div>';
             $('body').append(elem);
         }
 
