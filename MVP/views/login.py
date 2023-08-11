@@ -40,6 +40,7 @@ def login():
             if encrypted_password==user.password:
                 user_id = str(user.id)
                 login_user(user)
+                print(user, type(user))
                 return redirect(url_for('home', user_id=user_id))
             else :
                 flash("Wrong password :/", 'danger')

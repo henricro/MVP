@@ -7,7 +7,6 @@ from datetime import timedelta, datetime
 from flask import request, redirect
 from sqlalchemy import or_
 
-from flask_login import login_user
 from MVP.views.celery_view import send_email2
 from MVP.views.passwords import get_hashed_password
 
@@ -16,11 +15,17 @@ import uuid
 from MVP.models import *
 
 from MVP import application, db, login_manager, engine, user_required
+from flask_login import login_user, logout_user, current_user
 
 import os
 
 from lxml import etree
 #import sys
+
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(id)
+
 
 
 ### SIGN UP
@@ -84,18 +89,15 @@ def sign_up():
 @application.route('/confirm/<verification_token>', methods=['GET','POST'])
 def confirm(verification_token):
 
-    user=User.query.filter_by(verification_token=verification_token).first()
+    user = User.query.filter_by(verification_token=verification_token).first()
     print(user, "yoyoyoyo")
-    email=user.email
 
     engine.execute("update Users set is_active = True where verification_token = %(verification_token)s;",
                            {'verification_token': verification_token})
 
     user_id = str(user.id)
 
-    user = User.query.filter_by(id=user_id).first()
-
-    login_user(user)
+    db.session.commit()
 
     os.mkdir(application.config['USER_DATA_PATH'] + user_id)
     os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/pages/')
@@ -112,7 +114,14 @@ def confirm(verification_token):
     f.write(etree.tostring(root, pretty_print=True))
     f.close()
 
+    print("login user")
+
+    user = User.query.filter_by(id=user_id).first()
+    login_user(user)
+
+
     return redirect(url_for('home', user_id=user_id))
+
 
 
 def get_next_page_id_for_user(user_id):
