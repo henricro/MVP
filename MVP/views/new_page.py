@@ -24,16 +24,18 @@ def new_page(page_id, user_id):
     new_page_id = get_next_page_id_for_user(user_id)
     new_global_id = get_next_global_id()
 
-    engine.execute("insert into Pages (global_id, user_id, title, id) VALUES (%s, %s, %s, %s)",
-                   (new_global_id, user_id, title, new_page_id))
+    official_parent_id = Page.query.filter_by(id = page_id, user_id=user_id).first().global_id
 
-    # ajouter relation parent-enfant dans la DB
-    #engine.execute(
-    #    "insert into parents "
-    #    "(parent_page_id, child_page_id) "
-    #    "VALUES ( %(page_id)s, %(new_page_global_id)s )",
-    #    {'page_id': page_id, 'new_page_global_id': new_page_global_id}
-    #)
+    engine.execute("insert into Pages (global_id, user_id, title, id, official_parent_id) VALUES (%s, %s, %s, %s, %s)",
+                   (new_global_id, user_id, title, new_page_id, official_parent_id))
+
+    #ajouter relation parent-enfant dans la DB
+    engine.execute(
+        "insert into page_links "
+        "(parent_id, child_id) "
+        "VALUES ( %(parent_id)s, %(child_id)s )",
+        {'parent_id': official_parent_id, 'child_id': new_global_id}
+    )
 
     # create new xml page
     newPageName = 'Page_' + str(new_page_id)

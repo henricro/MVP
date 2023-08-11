@@ -11,19 +11,24 @@ $('#title_title').html(title);
 noteTitle = $("#title");
 
 var XMLnote = xmlDoc.getElementById("title");
-//console.log(XMLnote);
 var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
 var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
-//console.log(x,y);
-//console.log(noteTitle);
 
-noteTitle.css("top",y.concat("px"));
-noteTitle.css("left",x.concat("px"));
+noteTitle.css("top", y.concat("px"));
+noteTitle.css("left", x.concat("px"));
 
 
-$('#title_title').bind('dblclick.write', function(){
-    writeNote($(this));
+noteTitle.on('dblclick', function(){
+
+    showTitleBox();
+
+    $(document).on('click', function(){
+        if ($("titleDbClick").is(event.target) && title.has(event.target).length === 0){
+            hideTitleBox();
+        }
+    });
+
 });
 
 
@@ -44,6 +49,14 @@ $('#title').bind('click.selectTitle', function(){
     selectTitle(title);
 
     event.stopPropagation();
+
+    $(document).on('click', function(){
+        console.log("no reason");
+        if (!$("titleDbClick").is(event.target) && $("titleDbClick").has(event.target).length === 0){
+            console.log(event.target);
+            hideTitleBox();
+        }
+    });
 
     $(document).bind('click', function(){
 
@@ -75,18 +88,9 @@ $('#title').bind('click.selectTitle', function(){
 function selectTitle(title){
 
     console.log("selected the title");
-
     title.css({"border-color":"green"});
-
     title.unbind('click.selectTitle');
 
-    /*note.bind('dblclick.write', function(){
-
-        console.log("double clicked on title");
-
-        writeTitle(note);
-
-    });*/
 
     // show arrow to add space
     $('#space-down').css("display", "block");
@@ -115,7 +119,7 @@ function selectTitle(title){
     // SECOND CLICK
     title_title.bind('click.parents', function(){
 
-        showParents();
+        showTitleBox();
 
     });
 
@@ -148,6 +152,29 @@ function sendAllDown() {
 
 };
 
+
+
+function showTitleBox(){
+
+    title_x = noteTitle.offset().left;
+    title_y = noteTitle.offset().top;
+    width_title = noteTitle.css("width");
+    console.log(title_x, title_y, width_title);
+
+    x = (title_x + parseInt(width_title.slice(0,-2)) + 10).toString() + "px";
+    y = (title_y + 10).toString() + "px"
+
+    $("#titleDbClick").css("left", x);
+    $("#titleDbClick").css("top", y);
+    $("#titleDbClick").css("display", "flex");
+
+}
+
+
+function hideTitleBox(){
+    console.log("udhuhe");
+    $("#titleDbClick").css("display", "none");
+}
 
 
 ///////////////////////////////////////////////////

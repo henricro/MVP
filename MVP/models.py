@@ -30,6 +30,11 @@ class User(db.Model):
     __table_args__ = {'extend_existing': True}
 
 
+page_links = db.Table('page_links',
+    db.Column('parent_id', db.Integer, db.ForeignKey('Pages.global_id')),
+    db.Column('child_id', db.Integer, db.ForeignKey('Pages.global_id'))
+)
+
 
 class Page (db.Model):
 
@@ -37,9 +42,13 @@ class Page (db.Model):
     id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(128))
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
+    official_parent_id = db.Column(db.Integer, db.ForeignKey('Pages.global_id'))
+
 
     __tablename__ = "Pages"
 
     __table_args__ = (
         UniqueConstraint('user_id', 'id', name='uix_user_id_id'),
     )
+
+
