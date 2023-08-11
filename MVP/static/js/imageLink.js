@@ -76,7 +76,7 @@ function createImageLink(note) {
 /////////////////////////////////////////////////////////
 
 $('.imageLink').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).bind('click.selectImageLink', function(){
         //console.log("hobo");
         selectImageLink($(this));
     });
@@ -84,27 +84,26 @@ $('.imageLink').each(function(){
 
 function selectImageLink(note){
 
+    id = note.attr("id");
+    orWidth = note.css("width");
+    orHeight = note.css("height");
+    console.log(id, orWidth, orHeight);
+
     // COPY THE NOTE
     note.bind('copy', function() {
-        //console.log("clicked to copy an imageLink");
         copyNote(note);
     });
 
-    //console.log("select image link");
 
-    note.css({"border-color":"green"});
+    styleSelect(note);
 
     link = note.attr("link");
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
-
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            //console.log(id);
-            //console.log(event.keyCode);
-
             $.ajax({
                 url: '/delete_note/'+pageID + '/' + user_id,
                 type: "POST",
@@ -113,15 +112,11 @@ function selectImageLink(note){
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -130,114 +125,50 @@ function selectImageLink(note){
 
     note.addClass("resizable");
 
-    note.css("overflow", "auto")
-
-    note.unbind('mousedown.drag');
-
-    note.css({"cursor":"pointer"});
-
-    note.unbind('click.select');
+    note.off('mousedown.drag');
+    note.off('click.selectImageLink');
 
     // SECOND CLICK
 
-    note.bind('mousedown.gotolink', function(){
-
+    note.on('mousedown.gotolink', function(){
         var left  = event.pageX;
         var top   = event.pageY;
-        //console.log(left, top);
 
         $(this).bind('mouseup.gotolink', function(){
-            //console.log(event.pageX, event.pageY);
             if (!(left != event.pageX || top != event.pageY)) {
                 window.open(link, '_blank');
             }
         });
-
     });
 
-    $(document).bind('contextmenu', function(event) {
-
-        event.preventDefault();
-
+    $(document).on('click.outside', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border-color":""});
+            id = note.attr("id");
+            width = note.css("width");
+            height = note.css("height");
 
-            note.css({"cursor":""});
+            if (orHeight!=height || orWidth!=width) {
+                saveSizes(id, width.slice(0,-2), height.slice(0,-2));
+            }
 
+            styleDefault(note);
+
+            $(document).off('copy');
             note.removeClass("resizable");
-
-            note.css("overflow", "hidden")
-
-            $(document).unbind('keyup.delete');
-
-            note.unbind('copy');
-
-            note.unbind('mousedown.gotolink');
-
-            note.unbind('mouseup.gotolink');
-
-            note.bind('click.select', function(){
+            $(document).off('keyup.delete');
+            note.on('click.selectImageLink', function(){
                 selectImageLink($(this));
             });
-
-            //console.log("monkeeeey");
-
-            note.bind('mousedown.drag', function(){
-
+            note.on('mousedown.drag', function(){
                 mouseX = event.pageX;
                 mouseY = event.pageY;
-
                 noteX = parseInt(note.css("left").slice(0, -2));
                 noteY = parseInt(note.css("top").slice(0, -2));
-
                 dragNote(note, noteX, noteY);
-
             });
-
-        }
-
-
-    });
-
-
-    $(document).click(function(){
-
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            note.css({"border-color":""});
-
-            note.css({"cursor":""});
-
-            note.removeClass("resizable");
-
-            note.css("overflow", "hidden")
-
-            $(document).unbind('keyup.delete');
-
-            note.unbind('copy');
-
-            note.unbind('mousedown.gotolink');
-
-            note.unbind('mouseup.gotolink');
-
-            note.bind('click.select', function(){
-                selectImageLink($(this));
-            });
-
-            //console.log("monkeeeey");
-
-            note.bind('mousedown.drag', function(){
-
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-
-                dragNote(note, noteX, noteY);
-
-            });
+            $(document).off('click.outside');
+            note.off('mousedown.gotolink');
 
         }
 

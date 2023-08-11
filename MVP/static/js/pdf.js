@@ -69,23 +69,27 @@ $('.pdf').each(function(){
 
 function selectPDF(note){
 
+    id = note.attr("id");
+    orWidth = note.css("width");
+    orHeight = note.css("height");
+
     $(document).on('copy', function() {
         console.log("fefefefefe");
         copyNote(note);
     });
+
+    console.log(id, orHeight, orWidth);
 
     var pdf = note.attr("pdf");
 
     styleSelect(note);
     note.addClass("resizable");
     note.off('mousedown.drag');
-    note.off('click.select');
+    note.off('click.selectPDF');
 
     // delete the pdf
     $(document).on('keyup.delete', function(){
         if (event.keyCode == 8){
-
-            id = note.attr("id");
 
             $.ajax({
                 url: '/delete_note/' + pageID + '/' + user_id,
@@ -122,6 +126,14 @@ function selectPDF(note){
 
     $(document).on('click.outsidePDF', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            id = note.attr("id");
+            width = note.css("width");
+            height = note.css("height");
+
+            if (orHeight!=height || orWidth!=width) {
+                saveSizes(id, width.slice(0,-2), height.slice(0, -2));
+            }
 
             styleDefault(note);
 
@@ -192,12 +204,12 @@ $(".pdf").on('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
-                    window.location.href='/open_page/'+ pageID + '/' + user_id;
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
         }

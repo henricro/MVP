@@ -65,6 +65,10 @@ $('.image').each(function(){
 function selectImage(note){
 
     id = note.attr("id");
+    orWidth = note.css("width");
+    orHeight = note.css("height");
+    console.log(id, orWidth, orHeight);
+
 
     // COPY THE IMAGE
     $(document).on('copy', function() {
@@ -102,16 +106,24 @@ function selectImage(note){
         }
     });
 
+    console.log("id", id);
+
     // if click outside
     $(document).on('click.outsideImage', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            note.css({"border":"1px solid transparent"});
-            image_img.css("opacity", 1);
+            id = note.attr("id");
+            width = note.css("width");
+            height = note.css("height");
+
+            if (orHeight!=height || orWidth!=width) {
+                saveSizes(id, width.slice(0,-2), height.slice(0,-2));
+            }
+
+            styleDefault(note);
 
             $(document).off('copy');
             note.removeClass("resizable");
-            note.removeClass("homothetic-resizable");
             $(document).off('keyup.delete');
             note.on('click.selectImage', function(){
                 selectImage($(this));
@@ -128,27 +140,6 @@ function selectImage(note){
         }
     });
 
-    $(document).on('contextmenu', function(event) {
-        event.preventDefault();
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            styleDefault(note);
-
-            $(document).off('copy');
-            note.removeClass("resizable");
-            $(document).off('keyup.delete');
-            note.on('click.select', function(){
-                selectImage($(this));
-            });
-            note.on('mousedown.drag', function(){
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-                dragNote(note);
-            });
-        }
-    });
 }
 
 

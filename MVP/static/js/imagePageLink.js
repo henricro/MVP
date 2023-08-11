@@ -21,7 +21,6 @@ function buildImagePageLink(note) {
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
 
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
-//    var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
 
     var src = "/static/user_data/users/" + user_id + "/uploads/" + image
@@ -79,12 +78,18 @@ $('.imagePageLink').each(function(){
 function selectImagePageLink(note){
 
     id = note.attr("id");
+    orWidth = note.css("width");
+    orHeight = note.css("height");
     imagePageLink_id= note.attr("pageID");
+
+    console.log(id, orWidth, orHeight);
 
     // COPY THE NOTE
     note.bind('copy', function() {
         copyNote(note);
     });
+
+    console.log("select image page link");
 
     // style the element when clicked on
     styleSelect(note);
@@ -131,46 +136,25 @@ function selectImagePageLink(note){
     note.unbind('mousedown.drag');
     note.unbind('click.select');
 
-    $(document).bind('contextmenu', function(event) {
-        event.preventDefault();
 
+    $(document).on('click.oustide', function(){
         if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            id = note.attr("id");
+            width = note.css("width");
+            height = note.css("height");
+
+            console.log(id, width, height, orWidth, orHeight)
+
+            if (orHeight!=height || orWidth!=width) {
+                saveSizes(id, width.slice(0,-2), height.slice(0,-2));
+            }
+
+            styleDefault(note);
 
             note.unbind('mousedown.gotopage');
             note.unbind('mouseup.gotopage');
-            note.unbind('copy');
-            note.removeClass("resizable");
-            $(document).unbind('keyup.delete');
-
-            note.bind('click.select', function(){
-                selectImagePageLink($(this));
-            });
-
-            note.bind('mousedown.drag', function(){
-
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-
-                dragNote(note, noteX, noteY);
-
-            });
-        }
-    });
-
-    $(document).click(function(){
-
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            note.css({"border-color":""});
-            note.css({"cursor":""});
-            note.css({"border":""});
-            note.find(".imagePageLink_name").css({"text-decoration":""});
-
-            note.unbind('mousedown.gotopage');
-            note.unbind('mouseup.gotopage');
-            note.unbind('copy');
+            $(document).unbind('copy');
             note.removeClass("resizable");
             $(document).unbind('keyup.delete');
 

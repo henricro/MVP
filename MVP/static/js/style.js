@@ -18,7 +18,6 @@ function styleSelect(note) {
         note.find(".imagePageLink_name").css({"text-decoration-color" : "green"});
     }
     if (note_class == "image") {
-        note.css({"border-style" : "solid"});
         note.css({"border-width" : "1px"});
         note.find(".image_img").css({"opacity": "0.5"});
     }
@@ -27,6 +26,11 @@ function styleSelect(note) {
         note.css({"border-style" : "solid"});
         note.css({"border-width" : "1px"});
         note.find(".pdf_img").css({"opacity": "0.5"});
+    }
+    if (note_class == "imageLink") {
+        note.css({"border-style" : "solid"});
+        note.css({"border-width" : "1px"});
+        note.find(".imageLink_img").css({"opacity": "1"});
     }
 
 }
@@ -42,7 +46,7 @@ function styleDefault(note) {
         note.css({"text-decoration" : "none"});
     }
     if (note_class == "pageLink") {
-        note.find("imagePageLink_name").css({"text-decoration" : "none"});
+        note.find("pageLink_name").css({"text-decoration" : "none"});
     }
     if (note_class == "image") {
         note.css({"border-width" : "0px"});
@@ -52,6 +56,13 @@ function styleDefault(note) {
         console.log("style pdf");
         note.css({"border-width" : "Opx"});
         note.find(".pdf_img").css({"opacity": "1"});
+    }
+    if (note_class == "imagePageLink") {
+        note.find("imagePageLink_name").css({"text-decoration" : "none"});
+    }
+    if (note_class == "imageLink") {
+        note.css({"border-width" : "0px"});
+        note.find(".imageLink_img").css({"opacity": "0.5"});
     }
 
 }

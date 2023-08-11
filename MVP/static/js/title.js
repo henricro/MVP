@@ -21,20 +21,6 @@ var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 noteTitle.css("top",y.concat("px"));
 noteTitle.css("left",x.concat("px"));
 
-///////////  the parents  //////////
-
-noteParents = $("#title_parents");
-
-var XMLnote = xmlDoc.getElementById("parents");
-var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
-var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
-var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
-var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
-
-noteParents.css("top",y.concat("px"));
-noteParents.css("left",x.concat("px"));
-noteParents.css("width",width.concat("px"));
-noteParents.css("height",height.concat("px"));
 
 $('#title_title').bind('dblclick.write', function(){
     writeNote($(this));

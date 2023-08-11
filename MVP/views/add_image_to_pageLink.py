@@ -23,10 +23,6 @@ def add_image_to_pageLink(pageID, user_id):
 
     pageLink_id = Request.get('pageLink_id')
     file = request.files.get('file')
-    print("printing the file", "yoyoyoyo")
-    print(pageLink_id, file, "yoyoyoyo")
-    # print(type(file))
-    # print(dict(file))
 
     ### save the image
 
@@ -35,21 +31,9 @@ def add_image_to_pageLink(pageID, user_id):
     filename = file.filename
     filename = filename.replace(' ', '_')
 
-    filename = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename)
-
-    ### keep the information that this image is in this page in the 'tags' many to many SQL table
-
-    engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-                   {'name': filename, 'type': type})
-
-    image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    print("image_id", "yoyoyoyo")
-    print(image_id, "yoyoyoyo")
-
-#    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
-#                   {'page_id': pageID, 'image_id': image_id})
+    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
 
     ### open the XML
 
@@ -61,10 +45,9 @@ def add_image_to_pageLink(pageID, user_id):
 
     # set the note's x, y and content = "title" (for now)
     note.set("class", "imagePageLink")
-    etree.SubElement(note, "image").text = str(filename)
-    etree.SubElement(note, "image_id").text = str(image_id)
-    etree.SubElement(note, "width").text = "100"
-    etree.SubElement(note, "height").text = "50"
+    etree.SubElement(note, "image").text = str(storage_name)
+    etree.SubElement(note, "width").text = "150"
+    etree.SubElement(note, "height").text = "150"
 
     #print(etree.tostring(root, pretty_print=True))
 

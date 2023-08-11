@@ -6,6 +6,7 @@
     border-color: rgb(0, 0, 0, 0);
     border-style: solid;
     border-width: 0px;
+    border-radius: 8px;
 }
 
 .image_name {

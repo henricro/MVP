@@ -5,14 +5,17 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 
-@application.route("/unload/<pageID>/<user_id>", methods=['GET', 'POST'])
-def unload(pageID, user_id):
+@application.route("/save_sizes/<pageID>/<user_id>", methods=['GET', 'POST'])
+def save_sizes(pageID, user_id):
 
-    print("route : unloading")
+    print("route : save sizes")
 
     request_data = request.get_json()
-    data = request_data.get('data')
-    print(data)
+    id = str(request_data.get('id'))
+    width = str(request_data.get('width'))
+    height = str(request_data.get('height'))
+
+    print(id, width, height)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -20,16 +23,8 @@ def unload(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    for i in range(len(data)):
-
-        id = str(data[i]["id"])
-        width = str(data[i]["width"])
-        height = str(data[i]["height"])
-
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height
-
-        #print(etree.tostring(root, pretty_print=True))
+    tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
+    tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))
