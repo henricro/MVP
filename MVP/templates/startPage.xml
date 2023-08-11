@@ -8,13 +8,6 @@
         <y>49</y>
     </note>
 
-    <note id="parents">
-        <x>-150</x>
-        <y>-100</y>
-        <width>300</width>
-        <height>200</height>
-    </note>
-
     <note id="1" class="pageLink" pageID="3389" type="parent"><x>0</x><y>0</y><content>GYST</content></note>
     <note id="2" class="note"><x>636</x><y>147</y><content>Hi there :)&lt;div&gt;&lt;br&gt;&lt;div&gt;welcome to GYST&lt;/div&gt;&lt;/div&gt;</content><css>font-size: 20px; text-align: center; </css></note>
     <note id="3" class="image"><x>537</x><y>281</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>

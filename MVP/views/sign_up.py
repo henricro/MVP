@@ -122,3 +122,4 @@ def get_next_page_id_for_user(user_id):
 def get_next_global_id():
     max_page_id = db.session.query(db.func.max(Page.global_id)).scalar()
     return (max_page_id or 0) + 1
+
