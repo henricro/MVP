@@ -19,9 +19,6 @@ function createImageLink(note) {
 
     var width = XMLnote.getElementsByTagName("width")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
-
-    var image_id = XMLnote.getElementsByTagName("image_id")[0].childNodes[0].nodeValue;
-
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
     if (note.hasClass('global')) {

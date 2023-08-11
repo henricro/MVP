@@ -22,14 +22,15 @@ function buildPDF(note) {
         var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
         note.css("height", height);
     }
+    var storage_name = XMLnote.getElementsByTagName("storage_name")[0].childNodes[0].nodeValue;
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+
     var image = XMLnote.getElementsByTagName("image")[0].childNodes[0].nodeValue;
     var img_src = "/static/user_data/users/" + user_id + "/uploads/" + image
     var img = "<img class='pdf_img' draggable='false' src=" + img_src + " />";
-    var pdf_id = XMLnote.getElementsByTagName("pdf_id")[0].childNodes[0].nodeValue;
     var name_div = "<div class='pdf_name'><div>" + name + "</div></div>"
 
-    pdf_src = "/static/user_data/users/" + user_id + "/uploads/" + name;
+    pdf_src = "/static/user_data/users/" + user_id + "/uploads/" + storage_name;
     note.attr("pdf", pdf_src );
     note.css("position", "absolute");
     note.css("top", y.concat("px"));

@@ -182,13 +182,10 @@ def add_link_image(pageID, user_id):
     root = tree.getroot()
 
     note = root.find("notes").find("note[@id='" + id + "']")
-
     note.set("class", "imageLink")
 
     print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
-
     etree.SubElement(note, "link").text = link
-
     print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     # save the changes in the xml

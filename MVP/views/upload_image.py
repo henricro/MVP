@@ -58,7 +58,6 @@ def upload_image(pageID, user_id):
     # set the note's x, y and content = "title" (for now)
     new_note.set("id", id)
     new_note.set("class", "image")
-    new_note.set("global", "0")
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
     etree.SubElement(new_note, "width").text = "300"

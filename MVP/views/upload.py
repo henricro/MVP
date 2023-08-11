@@ -39,6 +39,8 @@ def upload_pdf(pageID, user_id):
 
     file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
 
+    print(filename, storage_name)
+
     ### add a note in the XML with the x, y positions and the name of the file
 
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -46,9 +48,9 @@ def upload_pdf(pageID, user_id):
 
     ### get the first page of the pdf as an image
 
-    pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename, 500)
+    pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name, 500)
     first_page = pages[0]
-    first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + filename + ".first_page.jpg",
+    first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name + ".first_page.jpg",
                     'JPEG')
 
     # save the first page as jpeg in DB
@@ -86,9 +88,9 @@ def upload_pdf(pageID, user_id):
     new_note.set("class", "pdf")
     etree.SubElement(new_note, "x").text = x
     etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(storage_name)
-    etree.SubElement(new_note, "file_name").text = str(filename)
-    etree.SubElement(new_note, "image").text = str(filename + ".first_page.jpg")
+    etree.SubElement(new_note, "name").text = str(filename)
+    etree.SubElement(new_note, "storage_name").text = str(storage_name)
+    etree.SubElement(new_note, "image").text = str(storage_name + ".first_page.jpg")
     etree.SubElement(new_note, "width").text = "100"
     etree.SubElement(new_note, "height").text = "150"
 
