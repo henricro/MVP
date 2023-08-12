@@ -234,6 +234,8 @@ function writeNote(note){
 ///////////////// RIGHT CLICK NOTE ///////////////
 //////////////////////////////////////////////////
 
+var idToColor = "hher"
+
 $(".note").on('contextmenu', function(event) {
 
     event.preventDefault();
@@ -246,78 +248,139 @@ $(".note").on('contextmenu', function(event) {
 
     $("#noteRCBox").css("left", new_x);
     $("#noteRCBox").css("top", new_y);
-    $("#noteRCBox").show();
+    $("#noteRCBox").css("display", "flex");
 
     // click outside
     $(document).click(function(){
         if (!$("#noteRCBox").is(event.target) && $("#noteRCBox").has(event.target).length === 0){
-            $("#noteRCBox").hide();
+            $("#noteRCBox").css("display", "none");
         }
     });
 
-    // Add Link
-    $('#noteRC_1').on('click', function() {
-
-        var value = prompt("Lien", "");
-        if (value == null){} else {
-
-            $.ajax({
-                url: '/add_link_to_note/' + pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    link : value,
-                    id : id
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-        }
-    });
-
-    // Copy Note
-    $('#noteRC_2').on('click.copyNote', function() {
+    // copy Note
+    $('#noteRC_1').on('click.copyNote', function() {
         console.log("copy note");
         copyNote(note);
     });
 
-    // Style
-    $('#noteRC_3').bind('click', function() {
+    console.log("id of note selected/ to color : ", idToColor);
 
-        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
-        if (value == null) {} else {
+    // style note
+    $('#noteRC_2').on('click', function(event) {
 
-            $.ajax({
-                url: '/add_css/' + pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
+        event.stopPropagation();
+        idToColor = id;
 
-        }
+        $("#noteRCBox").css("display", "none");
+
+        event.preventDefault();
+        new_x = event.pageX;
+        new_y = event.pageY;
+
+        $("#noteStyleBox").css("left", new_x);
+        $("#noteStyleBox").css("top", new_y);
+        $("#noteStyleBox").css("display", "flex");
+
+        // click outside
+        $(document).click(function(event){
+            console.log(event.target);
+            console.log($(".pcr-app").is(event.target));
+            if (!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0){
+
+                // remove the choice Box
+                $("#noteStyleBox").css("display", "none");
+
+                // send the new css
+                css = note.attr("style");
+                $.ajax({
+                    url: '/add_css/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        css : css,
+                        id : id,
+                        type: "regular"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        current_y = document.documentElement.scrollTop;
+                    },
+                    error: function (error) {
+                        current_y = document.documentElement.scrollTop;
+                    }
+                });
+
+            }
+        });
+
+
+        $('#noteStyleBox_1').on('click.copyNote', function() {
+        });
+
+        $('#noteStyleBox_3').on('click', function() {
+            underline = (note.css('text-decoration').includes('underline'));
+            if (underline) {
+                console.log("underline already")
+                note.css('text-decoration','none');
+            } else {
+                console.log("not underlined");
+                note.css('text-decoration','underline');
+            }
+        });
+
+        $('#noteStyleBox_4').on('click', function() {
+            linethrough = (note.css('text-decoration').includes('line-through'));
+            if (linethrough) {
+                console.log("line through already");
+                note.css('text-decoration','none');
+            } else {
+                console.log("not line through");
+                note.css('text-decoration','line-through');
+            }
+        });
+
+        $('#noteStyleBox_5').on('click.copyNote', function() {
+            italic = (note.css('font-style') === 'italic');
+            console.log(italic);
+            note.css('font-style', italic ? 'normal' : 'italic');
+        });
+
+        $('#noteStyleBox_6').bind('click', function() {
+
+            if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
+            if (value == null) {} else {
+
+                $.ajax({
+                    url: '/add_css/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        css : value,
+                        id : id,
+                        type: "regular"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    },
+                    error: function (error) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    }
+                });
+
+            }
+
+        });
+
+
+
     });
+
 });
 
 
 $("#noteRC_1").on('mouseover', function() {
-    follower.html("add a link");
+    follower.html("copy note");
     follower.show();
 });
 $("#noteRC_1").on('mouseout', function() {
@@ -326,7 +389,7 @@ $("#noteRC_1").on('mouseout', function() {
 });
 
 $("#noteRC_2").on('mouseover', function() {
-    follower.html("copy note");
+    follower.html("style note");
     follower.show();
 });
 $("#noteRC_2").on('mouseout', function() {
@@ -334,11 +397,56 @@ $("#noteRC_2").on('mouseout', function() {
     follower.hide();
 });
 
-$("#noteRC_3").on('mouseover', function() {
-    follower.html("style note");
+$("#noteStyleBox_1").on('mouseover', function() {
+    follower.html("size");
     follower.show();
 });
-$("#noteRC_3").on('mouseout', function() {
+$("#noteStyleBox_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#pickr").on('mouseover', function() {
+    follower.html("color");
+    follower.show();
+});
+$("#pickr").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_3").on('mouseover', function() {
+    follower.html("underline");
+    follower.show();
+});
+$("#noteStyleBox_3").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_4").on('mouseover', function() {
+    follower.html("cross");
+    follower.show();
+});
+$("#noteStyleBox_4").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_5").on('mouseover', function() {
+    follower.html("italic");
+    follower.show();
+});
+$("#noteStyleBox_5").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_6").on('mouseover', function() {
+    follower.html("CSS");
+    follower.show();
+});
+$("#noteStyleBox_6").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });

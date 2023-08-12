@@ -253,87 +253,63 @@ $(document).bind('contextmenu.newPage', function(event) {
             }
         });
 
-        // if click on second button
-        $('#pageRC_2').bind('click', function(event) {
-            event.preventDefault();
-            event.stopPropagation();
+        // if click on first option (list)
+        $('#pageRC_2').bind('click', function() {
+            $('#pageRC_2').unbind('click');
 
-            x = event.pageX;
-            y = event.pageY;
-
-            // show new options
-            $("#pageRCPlusBox").css("left", (new_x + 20).toString().concat("px"));
-            $("#pageRCPlusBox").css("top", (new_y + 20).toString().concat("px"));
-            $("#pageRCPlusBox").show();
-            $("#pageRCBox").hide();
-
-
-            // if click outside RCPlusBox
-            $(document).bind('click.pageRCPlusBox', function(event){
-                if (!$("#pageRCPlusBox").is(event.target) && $("#pageRCPlusBox").has(event.target).length === 0){
-                    $("#pageRCPlusBox").hide();
-                    $(document).unbind('click.pageRCPlusBox');
+            $.ajax({
+                url: '/new_list/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    x : x,
+                    y : y
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
+        });
 
-            // if click on first option (list)
-            $('#pageRCPlus_1').bind('click', function() {
-                $('#pageRCPlus_1').unbind('click');
+        // if click on second option (to-do-list)
+        $('#pageRC_3').bind('click', function() {
+            $('#pageRC_3').unbind('click');
 
-                $.ajax({
-                    url: '/new_list/' + pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        x : x,
-                        y : y
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        current_y = document.documentElement.scrollTop;
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    },
-                    error: function (error) {
-                        current_y = document.documentElement.scrollTop;
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    }
-                });
-            });
-
-            // if click on second option (to-do-list)
-            $('#pageRCPlus_2').bind('click', function() {
-                $('#pageRCPlus_2').unbind('click');
-
-                $.ajax({
-                    url: '/new_to_do_list/' + pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        x : x,
-                        y : y
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        current_y = document.documentElement.scrollTop;
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    },
-                    error: function (error) {
-                        current_y = document.documentElement.scrollTop;
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    }
-                });
-            });
-
-            // if click on second option (to-do-list)
-            $('#pageRCPlus_3').bind('click', function() {
-                $('#pageRCPlus_3').unbind('click');
-
-                var value = prompt("export name", "");
-                if (value != null) {
-                    downloadAsPDF(value);
+            $.ajax({
+                url: '/new_to_do_list/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    x : x,
+                    y : y
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
-
             });
+        });
+
+        // if click on second option (to-do-list)
+        $('#pageRC_4').bind('click', function() {
+            $('#pageRC_4').unbind('click');
+
+            var value = prompt("export name", "");
+            if (value != null) {
+                downloadAsPDF(value);
+            }
 
         });
+
     }
 });
 
@@ -348,7 +324,7 @@ $("#pageRC_1").on('mouseout', function() {
 });
 
 $("#pageRC_2").on('mouseover', function() {
-    follower.html("more");
+    follower.html("list (cmd+L)");
     follower.show();
 });
 $("#pageRC_2").on('mouseout', function() {
@@ -356,29 +332,21 @@ $("#pageRC_2").on('mouseout', function() {
     follower.hide();
 });
 
-$("#pageRCPlus_1").on('mouseover', function() {
-    follower.html("list (cmd+L)");
+$("#pageRC_3").on('mouseover', function() {
+    follower.html("to-do-list (cmd+T)");
     follower.show();
 });
-$("#pageRCPlus_1").on('mouseout', function() {
+$("#pageRC_3").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });
 
-$("#pageRCPlus_2").on('mouseover', function() {
-    follower.html("to-do-list (cmd+k)");
+$("#pageRC_4").on('mouseover', function() {
+    follower.html("download page as PDF");
     follower.show();
 });
-$("#pageRCPlus_2").on('mouseout', function() {
+$("#pageRC_4").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });
 
-$("#pageRCPlus_3").on('mouseover', function() {
-    follower.html("download page as pdf");
-    follower.show();
-});
-$("#pageRCPlus_3").on('mouseout', function() {
-    follower.html("");
-    follower.hide();
-});

@@ -207,7 +207,8 @@ $(".image").on('contextmenu', function(event) {
                 type: "POST",
                 data: JSON.stringify({
                     css : value,
-                    id : id
+                    id : id,
+                    type: "regular"
                 }),
                 contentType: "application/json",
                 success: function (data) {

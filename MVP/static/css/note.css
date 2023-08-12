@@ -23,3 +23,26 @@
     display : none;
     position: absolute;
 }
+
+
+#noteStyleBox{
+    z-index: 8;
+    display : none;
+    position: absolute;
+}
+
+#noteStyleColor{
+    z-index: 8;
+    display : none;
+    position: absolute;
+}
+
+.pickr {
+    width: 30px;
+    height: 30px;
+    /*position: absolute !important;*/
+    transform : none !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}

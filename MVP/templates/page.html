@@ -24,6 +24,8 @@
 
     <script type="text/javascript" src="/static/libraries/jspdf.umd.min.js"></script>
 
+    <!-- color picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr@latest/dist/themes/nano.min.css" />
 
     <!-- fontAwesome -->
 
@@ -173,7 +175,9 @@
 
 <div id="pageRCBox" class="choiceBoxHoriz">
     <img id="pageRC_1" class="buttonIcon" src="/static/images/icons/new-page.png" style="height: 100%;"/>
-    <img id="pageRC_2" class="buttonIcon" src="/static/images/icons/more.png" style="height: 100%;"/>
+    <img id="pageRC_2" class="buttonIcon" src="/static/images/icons/list.png" style="height: 100%;"/>
+    <img id="pageRC_3" class="buttonIcon" src="/static/images/icons/to-do-list.png" style="height: 100%;"/>
+    <img id="pageRC_4" class="buttonIcon" src="/static/images/icons/pdf.png" style="height: 100%;"/>
 </div>
 
 <!--
@@ -190,17 +194,24 @@
 </div>
 -->
 
-<div id="pageRCPlusBox" class="choiceBoxHoriz">
-    <img id="pageRCPlus_1" class="buttonIcon" src="/static/images/icons/list.png" style="height: 100%;"/>
-    <img id="pageRCPlus_2" class="buttonIcon" src="/static/images/icons/to-do-list.png" style="height: 100%;"/>
-    <img id="pageRCPlus_3" class="buttonIcon" src="/static/images/icons/pdf.png" style="height: 100%;"/>
-</div>
 
 
 <div id="noteRCBox" class="choiceBoxHoriz">
-    <img id="noteRC_2" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
-    <img id="noteRC_3" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
+    <img id="noteRC_1" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
+    <img id="noteRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
 </div>
+
+<div id="noteStyleBox" class="choiceBoxHoriz">
+    <img id="noteStyleBox_1" class="buttonIcon" src="/static/images/icons/text-size.png" style="height: 100%;"/>
+    <div id="noteStyleBox_2"></div>
+    <img id="noteStyleBox_3" class="buttonIcon" src="/static/images/icons/underline-text.png" style="height: 100%;"/>
+    <img id="noteStyleBox_4" class="buttonIcon" src="/static/images/icons/line.png" style="height: 100%;"/>
+    <img id="noteStyleBox_5" class="buttonIcon" src="/static/images/icons/italic.png" style="height: 100%;"/>
+    <img id="noteStyleBox_6" class="buttonIcon" src="/static/images/icons/css.png" style="height: 100%;"/>
+</div>
+
+
+
 
 <div id="noteLinkRCBox">
     <div class="choiceBox">
@@ -263,9 +274,6 @@
 
 <i style="position: absolute; top: 100px; left: 230px; background-size: cover; width:10px; height: 10px; background-image: url('/static/images/icons/uncheck.png');"></i>
 
-</body>
-
-
 
 <script>
 
@@ -282,6 +290,7 @@ var y_position = '{{y_position|safe}}';
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr@latest/dist/pickr.min.js"></script>
 
     <script type="text/javascript" src="/static/js/unload.js" ></script>
     <script type="text/javascript" src="/static/js/save.js" ></script>
@@ -306,11 +315,14 @@ var y_position = '{{y_position|safe}}';
     <script type="text/javascript" src="/static/js/zoom.js" ></script>
     <script type="text/javascript" src="/static/js/resize.js" ></script>
     <script type="text/javascript" src="/static/js/style.js" ></script>
+    <script type="text/javascript" src="/static/js/color.js" ></script>
 
 
     <script>
         $(window).scrollTop(y_position);
     </script>
+
+</body>
 
 </html>
 

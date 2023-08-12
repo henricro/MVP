@@ -5,18 +5,20 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 
 #import sys
+import re
 
 
 @application.route("/add_css/<pageID>/<user_id>", methods=['POST'])
 def add_css(pageID, user_id):
 
-    print("route : add css", "yoyoyoyo")
+    print("route : add css")
 
     request_data = request.get_json()
     id = str(request_data.get('id'))
     css = str(request_data.get('css'))
+    type = str(request_data.get('type'))
 
-    print(id, css, "yoyoyoyo")
+    print(id, css, type)
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
@@ -26,20 +28,40 @@ def add_css(pageID, user_id):
 
     note = root.find("notes").find("note[@id='" + id + "']")
 
-    hehe = note.find("css")
-    print(hehe, "yoyoyoyo")
+    existing_css = note.find("css")
+    print("existing css : ", existing_css)
+    print(existing_css.text)
 
-    if hehe is not None:
+    if existing_css is not None :
+        print('css already there')
 
-        print("already was css", "yoyoyoyo")
-        note.find("css").text = css
+        if type == "color":
+            print("changing the color through Pickr")
+            pattern = r'color\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            print(match)
+            print(bool(match))
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already color in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no color already in css")
+                note.find("css").text = existing_css + css
+
+
+        elif type == "regular" :
+
+            print("already was css", "yoyoyoyo")
+            note.find("css").text = css
 
     else :
 
-        print("had to create css", "yoyoyoyo")
+        print("had to create css")
         etree.SubElement(note, "css").text = css
 
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
