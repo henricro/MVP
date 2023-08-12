@@ -12,6 +12,8 @@ from MVP.views.passwords import get_hashed_password
 from MVP import application, db, login_manager, engine, user_required
 from MVP.models import *
 
+import os
+
 #import sys
 
 
@@ -41,11 +43,10 @@ def login():
                 user_id = str(user.id)
                 login_user(user)
                 print(user, type(user))
-                if request.remote_addr == '127.0.0.1':
+                if os.environ.get('FLASK_ENV') == 'development':
                     return redirect(url_for('home', user_id=user_id))
                 else:
                     return redirect(url_for('home', user_id=user_id, _external=True, _scheme='https'))
-
             else :
                 flash("Wrong password :/", 'danger')
 
