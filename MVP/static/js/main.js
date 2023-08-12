@@ -71,6 +71,18 @@ function buildNotes() {
             $('body').append(elem);
         }
 
+        // build the docx divs
+        else if (clasis === "docx"){
+            elem = "<div class='docx' id='" + id + "'></div>"
+            $('body').append(elem);
+        }
+
+        // build the xlsx divs
+        else if (clasis === "xlsx"){
+            elem = "<div class='xlsx' id='" + id + "'></div>"
+            $('body').append(elem);
+        }
+
         // build the imagePageLink divs
         else if (clasis === "imagePageLink"){
 

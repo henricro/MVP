@@ -78,7 +78,7 @@ function stopSelect() {
 
     // collect all the elements in the selection
     var selection = [];
-    $(".note, .pageLink, .noteLink, .image, .pdf, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
+    $(".note, .pageLink, .noteLink, .image, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
 
         // feed the selection
         note = $(this);
@@ -230,7 +230,7 @@ $(document).on("keydown", function(event) {
         event.preventDefault();
 
         var selection = [];
-        $(".note, .pageLink, .noteLink, .pdf, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").each(function(){
+        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").each(function(){
 
             // feed the selection
             note = $(this);
@@ -290,7 +290,7 @@ $(document).on("keydown", function(event) {
             });
 
             // if right click on any of the selected elements
-            $(".note, .pageLink, .noteLink, .pdf, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('contextmenu', function(event){
+            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('contextmenu', function(event){
 
                 event.preventDefault();
                 $("#selectionRCBox").css("left", event.pageX);
@@ -323,7 +323,7 @@ $(document).on("keydown", function(event) {
             });
 
             // if drag selection
-            $(".note, .pageLink, .noteLink, .pdf, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.drag', function(event){
+            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.drag', function(event){
                 if (event.which == 3) { console.log("right click"); } else {
 
                     $(document).unbind('keyup.delete');

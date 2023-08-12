@@ -1,0 +1,65 @@
+
+/**********   xlsx  ***********/
+
+.xlsx {
+    position: absolute;
+    border-color: rgb(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 0px;
+    border-radius : 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+.xlsx_name{
+    position: absolute;
+    top:0;
+    right: 0;
+    width:100%;
+    height:100%;
+    display:flex;
+    opacity: 0.8;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    text-align:center;
+
+    /* transition effect. not necessary */
+    transition: opacity .5s, font-size .5s, color .5s;
+}
+
+.xlsx_img{
+    opacity :1;
+    width:100%;
+    height:100%;
+}
+
+
+.xlsx:hover {
+    opacity: 1;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    overflow: visible;
+}
+
+.xlsx:hover .xlsx_name {
+    opacity: 1;
+    font-size: 20px;
+}
+
+.xlsx:hover .xlsx_img {
+  opacity: 0.3;
+}
+
+
+
+#xlsxRCBox{
+    z-index: 8;
+    display : none;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+

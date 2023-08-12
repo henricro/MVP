@@ -348,6 +348,7 @@ $(".note").on('contextmenu', function(event) {
 
         $('#noteStyleBox_6').bind('click', function() {
 
+            css = note.attr("style");
             if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
             if (value == null) {} else {
 

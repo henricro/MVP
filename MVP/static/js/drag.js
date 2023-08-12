@@ -4,7 +4,7 @@
 
 var isDragging = false;
 
-$(".pageLink, .noteLink, #title, .image, .pdf, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
+$(".pageLink, .noteLink, #title, .image, .pdf, .docx, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
     $(this).bind('mousedown.drag', function(event){
         dragNote($(this));
     });

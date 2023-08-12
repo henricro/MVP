@@ -8,6 +8,8 @@ from pdf2image import convert_from_path
 import uuid
 import os
 
+from docx import Document
+
 #import sys
 
 
@@ -108,12 +110,125 @@ def upload_pdf(pageID, user_id):
 
 
 
+@application.route("/upload_docx/<pageID>/<user_id>", methods=['POST'])
+def upload_docx(pageID, user_id):
+
+    pageID = str(pageID)
+    pageName = 'Page_' + pageID
+
+    print("upload docx route")
+
+    x = request.form.get('x')
+    y = request.form.get('y')
+    file = request.files.get('file')
+
+    filename = file.filename
+    filename = filename.replace(' ', '_')
+    print(filename)
+
+    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+
+    file.save(os.path.join(application.config['USER_DATA_PATH'], user_id, 'uploads', storage_name))
+
+    print(filename, storage_name)
+
+    # Create a note in the XML file
+    xml_path = os.path.join(application.config['USER_DATA_PATH'], user_id, 'pages', pageName + '.xml')
+    tree = etree.parse(xml_path)
+    root = tree.getroot()
+
+    # Extract ids and find the biggest id
+    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+    biggest_id = 0
+    for note in note_elements:
+        id_attribute = note.get('id')
+        if id_attribute is not None:
+            current_id = int(id_attribute)
+            biggest_id = max(biggest_id, current_id)
+
+    id = str(biggest_id + 1)
+
+    # Add a note
+    notes = root.find("notes")
+    notes.append(etree.Element("note"))
+    new_note = notes[-1]
+
+    # Set the note's x, y, and content
+    new_note.set("id", id)
+    new_note.set("class", "docx")
+    etree.SubElement(new_note, "x").text = x
+    etree.SubElement(new_note, "y").text = y
+    etree.SubElement(new_note, "name").text = str(filename)
+    etree.SubElement(new_note, "storage_name").text = str(storage_name)
+    etree.SubElement(new_note, "width").text = "100"
+    etree.SubElement(new_note, "height").text = "100"
+
+    # Save the changes in the XML
+    with open(xml_path, 'wb') as xml_file:
+        xml_file.write(etree.tostring(root, pretty_print=True))
+
+    return "yo"
+
+
+
+
+
 @application.route("/upload_xlsx/<pageID>/<user_id>", methods=['POST'])
 def upload_xlsx(pageID, user_id):
 
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    print("upload xlsx route", "yoyoyoyo")
+    print("upload xlsx route")
+
+    x = request.form.get('x')
+    y = request.form.get('y')
+    file = request.files.get('file')
+
+    filename = file.filename
+    filename = filename.replace(' ', '_')
+    print(filename)
+
+    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+
+    file.save(os.path.join(application.config['USER_DATA_PATH'], user_id, 'uploads', storage_name))
+
+    print(filename, storage_name)
+
+    # Create a note in the XML file
+    xml_path = os.path.join(application.config['USER_DATA_PATH'], user_id, 'pages', pageName + '.xml')
+    tree = etree.parse(xml_path)
+    root = tree.getroot()
+
+    # Extract ids and find the biggest id
+    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+    biggest_id = 0
+    for note in note_elements:
+        id_attribute = note.get('id')
+        if id_attribute is not None:
+            current_id = int(id_attribute)
+            biggest_id = max(biggest_id, current_id)
+
+    id = str(biggest_id + 1)
+
+    # Add a note
+    notes = root.find("notes")
+    notes.append(etree.Element("note"))
+    new_note = notes[-1]
+
+    # Set the note's x, y, and content
+    new_note.set("id", id)
+    new_note.set("class", "xlsx")
+    etree.SubElement(new_note, "x").text = x
+    etree.SubElement(new_note, "y").text = y
+    etree.SubElement(new_note, "name").text = str(filename)
+    etree.SubElement(new_note, "storage_name").text = str(storage_name)
+    etree.SubElement(new_note, "width").text = "100"
+    etree.SubElement(new_note, "height").text = "100"
+
+    # Save the changes in the XML
+    with open(xml_path, 'wb') as xml_file:
+        xml_file.write(etree.tostring(root, pretty_print=True))
 
     return "yo"
+

@@ -27,6 +27,18 @@ function styleSelect(note) {
         note.css({"border-width" : "1px"});
         note.find(".pdf_img").css({"opacity": "0.5"});
     }
+    if (note_class == "docx") {
+        console.log("style docx");
+        note.css({"border-style" : "solid"});
+        note.css({"border-width" : "1px"});
+        note.find(".docx_img").css({"opacity": "0.7"});
+    }
+    if (note_class == "xlsx") {
+        console.log("style xlsx");
+        note.css({"border-style" : "solid"});
+        note.css({"border-width" : "1px"});
+        note.find(".xlsx_img").css({"opacity": "0.7"});
+    }
     if (note_class == "imageLink") {
         note.css({"border-style" : "solid"});
         note.css({"border-width" : "1px"});
@@ -56,6 +68,16 @@ function styleDefault(note) {
         console.log("style pdf");
         note.css({"border-width" : "Opx"});
         note.find(".pdf_img").css({"opacity": "1"});
+    }
+    if (note_class == "docx") {
+        console.log("style docx");
+        note.css({"border-width" : "Opx"});
+        note.find(".docx_img").css({"opacity": "1"});
+    }
+    if (note_class == "xlsx") {
+        console.log("style xlsx");
+        note.css({"border-width" : "Opx"});
+        note.find(".docx_img").css({"opacity": "1"});
     }
     if (note_class == "imagePageLink") {
         note.find("imagePageLink_name").css({"text-decoration" : "none"});

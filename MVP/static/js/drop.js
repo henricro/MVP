@@ -157,6 +157,33 @@ $('*:not("div")').on(
 
                 }
 
+                else if (type =="docx") {
+
+                    console.log("upload docx ajax")
+
+                    $.ajax({
+                        type: 'POST',
+                        url:  '/upload_docx/' + pageID + '/' + user_id,
+                        data: form_data,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function (data) {
+                            //console.log("success");
+                            current_y = document.documentElement.scrollTop;
+                            //console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        },
+                        error: function (error) {
+                            //console.log("problem");
+                            current_y = document.documentElement.scrollTop;
+                            //console.log("current y :", current_y);
+                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                        }
+                    });
+
+                }
+
                 else if (type =="xlsx") {
 
                     //console.log("upload xlsx ajax")
