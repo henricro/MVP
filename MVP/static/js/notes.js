@@ -243,8 +243,7 @@ $(".note").on('contextmenu', function(event) {
     new_y = event.pageY;
 
     var note = $(this);
-    id = note.attr("id");
-    css = $(this).attr('added_css');
+    var id = note.attr("id");
 
     $("#noteRCBox").css("left", new_x);
     $("#noteRCBox").css("top", new_y);
@@ -271,7 +270,7 @@ $(".note").on('contextmenu', function(event) {
         event.stopPropagation();
         idToColor = id;
 
-        styleDefault(note);
+        //styleDefault(note);
 
         $("#noteRCBox").css("display", "none");
 
