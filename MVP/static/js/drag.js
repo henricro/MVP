@@ -184,6 +184,8 @@ function mouseUp(note) {
 
 function dragNotes(selection) {
 
+    console.log("dragNotes function js");
+
     selection2 = [];
 
     for (i in selection){
@@ -198,6 +200,8 @@ function dragNotes(selection) {
 
     }
 
+    console.log(selection2);
+
     $(document).bind('mousemove.dragNotes', function(){
 
         for (i in selection2){
@@ -208,7 +212,7 @@ function dragNotes(selection) {
 
             new_top = noteY + event.pageY - mouseY ;
             new_left = noteX + event.pageX - mouseX ;
-            //console.log(new_top, new_left);
+            console.log(new_top, new_left);
             note.css({ top : new_top + "px", left : new_left + "px" });
 
             note.css("z-index", "-1");
