@@ -41,7 +41,11 @@ def login():
                 user_id = str(user.id)
                 login_user(user)
                 print(user, type(user))
-                return redirect(url_for('home', user_id=user_id, _external=True, _scheme='https'))
+                if request.remote_addr == '127.0.0.1':
+                    return redirect(url_for('home', user_id=user_id))
+                else:
+                    return redirect(url_for('home', user_id=user_id, _external=True, _scheme='https'))
+
             else :
                 flash("Wrong password :/", 'danger')
 
