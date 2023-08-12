@@ -28,12 +28,12 @@ def add_css(pageID, user_id):
 
     note = root.find("notes").find("note[@id='" + id + "']")
 
+    print(note)
     existing_css = note.find("css")
     print("existing css : ", existing_css)
-    print(existing_css.text)
 
     if existing_css is not None :
-        print('css already there')
+        print('css already there ', existing_css.text)
 
         if type == "color":
             print("changing the color through Pickr")
@@ -61,7 +61,6 @@ def add_css(pageID, user_id):
 
         print("had to create css")
         etree.SubElement(note, "css").text = css
-
 
     # save the changes in the xml
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

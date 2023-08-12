@@ -271,6 +271,8 @@ $(".note").on('contextmenu', function(event) {
         event.stopPropagation();
         idToColor = id;
 
+        styleDefault(note);
+
         $("#noteRCBox").css("display", "none");
 
         event.preventDefault();
@@ -281,11 +283,12 @@ $(".note").on('contextmenu', function(event) {
         $("#noteStyleBox").css("top", new_y);
         $("#noteStyleBox").css("display", "flex");
 
-        // click outside
-        $(document).click(function(event){
-            console.log(event.target);
-            console.log($(".pcr-app").is(event.target));
+        // click outside note StyleBox
+        $(document).on('click', function(event){
+            console.log("dzuhudzh");
             if (!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0){
+
+                console.log("xouxou");
 
                 // remove the choice Box
                 $("#noteStyleBox").css("display", "none");
@@ -313,7 +316,7 @@ $(".note").on('contextmenu', function(event) {
         });
 
 
-        $('#noteStyleBox_1').on('click.copyNote', function() {
+        $('#noteStyleBox_1').on('click', function() {
         });
 
         $('#noteStyleBox_3').on('click', function() {

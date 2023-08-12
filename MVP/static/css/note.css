@@ -46,3 +46,11 @@
     display: flex;
     align-items: center;
 }
+
+.pcr-interaction {
+    display: none !important;
+}
+
+.pcr-app {
+    position: absolute !important;
+}
