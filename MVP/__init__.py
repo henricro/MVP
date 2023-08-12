@@ -66,7 +66,7 @@ application.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
 
 
 ### SERVER DOMAIN
-application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','http://gyst.fr:1234')
+application.config['SERVER_DOMAIN'] = os.environ.get('SERVER_DOMAIN','https://gyst.fr:1234')
 #application.config['SERVER_DOMAIN'] = 'http://0.0.0.0'
 
 
