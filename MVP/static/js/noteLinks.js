@@ -3,19 +3,16 @@
 ////////////////////////////////////////////////
 
 $('.noteLink').each(function(){
-    createNoteLink($(this));
+    buildNoteLink($(this));
 });
 
-function createNoteLink(note) {
+function buildNoteLink(note) {
 
-    console.log("function create notelink");
+    console.log("function build notelink");
 
     id = note.attr("id");
 
-    //console.log(id);
-
     var XMLnote = xmlDoc.getElementById(id);
-    //console.log(XMLnote);
 
     var content = XMLnote.getElementsByTagName("content")[0].childNodes[0].nodeValue;
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
@@ -45,32 +42,20 @@ function createNoteLink(note) {
         note.append(favicon_div);
 
     }
-//    "/static/user_data/users/" + 1 + "/uploads/" + name;
-
-    //console.log(content, x, y);
-
-    //console.log("print elmnt");
-    //console.log(elmnt);
-
 
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
-
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
 
             var css = XMLnote.getElementsByTagName("css")[0].childNodes[0].nodeValue;
-
             var style = note.attr('style'); //it will return string
 
             style += css;
             note.attr('style', style);
-
             note.attr('added_css', css);
 
         }
-
     }
-
 }
 
 
@@ -109,12 +94,9 @@ function selectNoteLink(note){
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
-
         if (event.keyCode == 8){
 
             id = note.attr("id");
-            //console.log(id);
-            //console.log(event.keyCode);
 
             $.ajax({
                 url: '/delete_note/' + pageID + '/' + user_id,
@@ -124,15 +106,11 @@ function selectNoteLink(note){
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -141,16 +119,13 @@ function selectNoteLink(note){
     });
 
     note.unbind('mousedown.drag');
-
     note.unbind('click.select');
 
     // SECOND CLICK
     note.bind('click.gotolink', function(){
 
         $(document).unbind('keyup.delete');
-
         console.log(link);
-
         window.open(link, '_blank');
 
     });
@@ -265,94 +240,19 @@ $(".noteLink").bind('contextmenu', function(event) {
     $("#noteLinkRCBox").show();
 
     $(document).click(function(){
-
         if (!$("#noteLinkRCBox").is(event.target) && $("#noteLinkRCBox").has(event.target).length === 0){
-
             $("#noteLinkRCBox").hide();
-
         }
-
     });
 
-    // Change Link
-    $('#noteLinkRC_1').bind('click', function() {
-
-        var value = prompt("Link", link);
-
-        if (value != null) {
-            $.ajax({
-                url: '/change_link/'+pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    link : value,
-                    id : id
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    console.log("problem");
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-        }
-
-    });
 
     // Edit
-    $('#noteLinkRC_2').bind('click', function() {
+    $('#noteLinkRC_1').bind('click', function() {
 
-        note = $(this);
-
-        $(document).bind('click.writeNoteLink', function() {
-            writeNoteLink(note);
-        });
+        copyToClipboard(link);
 
     });
 
-    //Style
-    $('#noteLinkRC_3').bind('click', function() {
-        if ($(this).attr('added_css')){
-            var value = prompt("CSS", $(this).attr('added_css'));
-        } else {
-            var value = prompt("CSS", "");
-        }
-
-        if (value != null) {
-
-            //console.log("sending css");
-
-            $.ajax({
-                url: '/add_css/'+pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id,
-                    type: "regular"
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    console.log("problem");
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-
-        }
-    });
 
 });
 
@@ -547,3 +447,13 @@ function writeNoteLink(note){
     });
 
 }
+
+$("#noteLinkRC_1").on('mouseover', function() {
+    follower.html("Copy link");
+    follower.show();
+});
+$("#noteLinkRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+

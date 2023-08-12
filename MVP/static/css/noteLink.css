@@ -62,7 +62,7 @@
 
 
 #noteLinkRCBox{
-    z-index: 15;
+    z-index: 8;
     display : none;
     position: absolute;
     top: 300px;
