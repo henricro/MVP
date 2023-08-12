@@ -41,7 +41,7 @@ def login():
                 user_id = str(user.id)
                 login_user(user)
                 print(user, type(user))
-                return redirect(url_for('home', user_id=user_id))
+                return redirect(url_for('home', user_id=user_id, _scheme='https'))
             else :
                 flash("Wrong password :/", 'danger')
 
