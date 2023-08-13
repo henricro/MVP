@@ -1,4 +1,4 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
@@ -7,6 +7,7 @@ from pdf2image import convert_from_path
 
 import uuid
 import os
+from flask_login import LoginManager, UserMixin, current_user
 
 from docx import Document
 
@@ -14,221 +15,230 @@ from docx import Document
 
 
 @application.route("/upload_pdf/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def upload_pdf(pageID, user_id):
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+    if str(current_user.id) == user_id:
 
-    print("upload pdf route")
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    Request = request.form
-    #print(Request)
+        print("upload pdf route")
 
-    x = Request.get('x')
-    y = Request.get('y')
-    file = request.files.get('file')
-    # print(x, y, file, "yoyoyoyo")
-    # print(type(file))
-    # print(dict(file))
+        Request = request.form
+        #print(Request)
 
-    type = file.filename[-4:]
+        x = Request.get('x')
+        y = Request.get('y')
+        file = request.files.get('file')
+        # print(x, y, file, "yoyoyoyo")
+        # print(type(file))
+        # print(dict(file))
 
-    filename = file.filename
-    filename = filename.replace(' ', '_')
-    print(filename)
+        type = file.filename[-4:]
 
-    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+        filename = file.filename
+        filename = filename.replace(' ', '_')
+        print(filename)
 
-    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
+        storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-    print(filename, storage_name)
+        file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
 
-    ### add a note in the XML with the x, y positions and the name of the file
+        print(filename, storage_name)
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        ### add a note in the XML with the x, y positions and the name of the file
 
-    ### get the first page of the pdf as an image
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name, 500)
-    first_page = pages[0]
-    first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name + ".first_page.jpg",
-                    'JPEG')
+        ### get the first page of the pdf as an image
 
-    # save the first page as jpeg in DB
+        pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name, 500)
+        first_page = pages[0]
+        first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name + ".first_page.jpg",
+                        'JPEG')
 
-    #engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-     #              {'name': filename + ".first_page.jpg", 'type': ".jpg"})
+        # save the first page as jpeg in DB
 
-    # save relationship between pdf and first page image in DB
+        #engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
+         #              {'name': filename + ".first_page.jpg", 'type': ".jpg"})
 
-    #image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-    #print("image_id", "yoyoyoyo")
-    #print(image_id, "yoyoyoyo")
+        # save relationship between pdf and first page image in DB
 
-    #engine.execute("insert into pdfs_images (pdf_id, image_id) VALUES ( %(pdf_id)s, %(image_id)s )",
-    #               {'pdf_id': pdf_id, 'image_id': image_id})
+        #image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
+        #print("image_id", "yoyoyoyo")
+        #print(image_id, "yoyoyoyo")
 
-    # Extract ids and find the biggest id
-    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
-    biggest_id = 0
-    for note in note_elements:
-        id_attribute = note.get('id')
-        if id_attribute is not None:
-            current_id = int(id_attribute)
-            biggest_id = max(biggest_id, current_id)
+        #engine.execute("insert into pdfs_images (pdf_id, image_id) VALUES ( %(pdf_id)s, %(image_id)s )",
+        #               {'pdf_id': pdf_id, 'image_id': image_id})
 
-    id = str(biggest_id + 1)
+        # Extract ids and find the biggest id
+        note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+        biggest_id = 0
+        for note in note_elements:
+            id_attribute = note.get('id')
+            if id_attribute is not None:
+                current_id = int(id_attribute)
+                biggest_id = max(biggest_id, current_id)
 
-    # add a note
-    notes = root.find("notes")
-    notes.append(etree.Element("note"))
-    new_note = notes[-1]
+        id = str(biggest_id + 1)
 
-    # set the note's x, y and content = "title" (for now)
-    new_note.set("id", id)
-    new_note.set("class", "pdf")
-    etree.SubElement(new_note, "x").text = x
-    etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(filename)
-    etree.SubElement(new_note, "storage_name").text = str(storage_name)
-    etree.SubElement(new_note, "image").text = str(storage_name + ".first_page.jpg")
-    etree.SubElement(new_note, "width").text = "100"
-    etree.SubElement(new_note, "height").text = "150"
+        # add a note
+        notes = root.find("notes")
+        notes.append(etree.Element("note"))
+        new_note = notes[-1]
 
-    #print(etree.tostring(root, pretty_print=True))
+        # set the note's x, y and content = "title" (for now)
+        new_note.set("id", id)
+        new_note.set("class", "pdf")
+        etree.SubElement(new_note, "x").text = x
+        etree.SubElement(new_note, "y").text = y
+        etree.SubElement(new_note, "name").text = str(filename)
+        etree.SubElement(new_note, "storage_name").text = str(storage_name)
+        etree.SubElement(new_note, "image").text = str(storage_name + ".first_page.jpg")
+        etree.SubElement(new_note, "width").text = "100"
+        etree.SubElement(new_note, "height").text = "150"
 
-    # save the changes in the xml
+        #print(etree.tostring(root, pretty_print=True))
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+        # save the changes in the xml
 
-    return "yo"
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return "yo"
 
 
 
 
 
 @application.route("/upload_docx/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def upload_docx(pageID, user_id):
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+    if str(current_user.id) == user_id:
 
-    print("upload docx route")
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    x = request.form.get('x')
-    y = request.form.get('y')
-    file = request.files.get('file')
+        print("upload docx route")
 
-    filename = file.filename
-    filename = filename.replace(' ', '_')
-    print(filename)
+        x = request.form.get('x')
+        y = request.form.get('y')
+        file = request.files.get('file')
 
-    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+        filename = file.filename
+        filename = filename.replace(' ', '_')
+        print(filename)
 
-    file.save(os.path.join(application.config['USER_DATA_PATH'], user_id, 'uploads', storage_name))
+        storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-    print(filename, storage_name)
+        file.save(os.path.join(application.config['USER_DATA_PATH'], user_id, 'uploads', storage_name))
 
-    # Create a note in the XML file
-    xml_path = os.path.join(application.config['USER_DATA_PATH'], user_id, 'pages', pageName + '.xml')
-    tree = etree.parse(xml_path)
-    root = tree.getroot()
+        print(filename, storage_name)
 
-    # Extract ids and find the biggest id
-    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
-    biggest_id = 0
-    for note in note_elements:
-        id_attribute = note.get('id')
-        if id_attribute is not None:
-            current_id = int(id_attribute)
-            biggest_id = max(biggest_id, current_id)
+        # Create a note in the XML file
+        xml_path = os.path.join(application.config['USER_DATA_PATH'], user_id, 'pages', pageName + '.xml')
+        tree = etree.parse(xml_path)
+        root = tree.getroot()
 
-    id = str(biggest_id + 1)
+        # Extract ids and find the biggest id
+        note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+        biggest_id = 0
+        for note in note_elements:
+            id_attribute = note.get('id')
+            if id_attribute is not None:
+                current_id = int(id_attribute)
+                biggest_id = max(biggest_id, current_id)
 
-    # Add a note
-    notes = root.find("notes")
-    notes.append(etree.Element("note"))
-    new_note = notes[-1]
+        id = str(biggest_id + 1)
 
-    # Set the note's x, y, and content
-    new_note.set("id", id)
-    new_note.set("class", "docx")
-    etree.SubElement(new_note, "x").text = x
-    etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(filename)
-    etree.SubElement(new_note, "storage_name").text = str(storage_name)
-    etree.SubElement(new_note, "width").text = "100"
-    etree.SubElement(new_note, "height").text = "100"
+        # Add a note
+        notes = root.find("notes")
+        notes.append(etree.Element("note"))
+        new_note = notes[-1]
 
-    # Save the changes in the XML
-    with open(xml_path, 'wb') as xml_file:
-        xml_file.write(etree.tostring(root, pretty_print=True))
+        # Set the note's x, y, and content
+        new_note.set("id", id)
+        new_note.set("class", "docx")
+        etree.SubElement(new_note, "x").text = x
+        etree.SubElement(new_note, "y").text = y
+        etree.SubElement(new_note, "name").text = str(filename)
+        etree.SubElement(new_note, "storage_name").text = str(storage_name)
+        etree.SubElement(new_note, "width").text = "100"
+        etree.SubElement(new_note, "height").text = "100"
 
-    return "yo"
+        # Save the changes in the XML
+        with open(xml_path, 'wb') as xml_file:
+            xml_file.write(etree.tostring(root, pretty_print=True))
+
+        return "yo"
 
 
 
 
 
 @application.route("/upload_xlsx/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def upload_xlsx(pageID, user_id):
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+    if str(current_user.id) == user_id:
 
-    print("upload xlsx route")
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    x = request.form.get('x')
-    y = request.form.get('y')
-    file = request.files.get('file')
+        print("upload xlsx route")
 
-    filename = file.filename
-    filename = filename.replace(' ', '_')
-    print(filename)
+        x = request.form.get('x')
+        y = request.form.get('y')
+        file = request.files.get('file')
 
-    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+        filename = file.filename
+        filename = filename.replace(' ', '_')
+        print(filename)
 
-    file.save(os.path.join(application.config['USER_DATA_PATH'], user_id, 'uploads', storage_name))
+        storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-    print(filename, storage_name)
+        file.save(os.path.join(application.config['USER_DATA_PATH'], user_id, 'uploads', storage_name))
 
-    # Create a note in the XML file
-    xml_path = os.path.join(application.config['USER_DATA_PATH'], user_id, 'pages', pageName + '.xml')
-    tree = etree.parse(xml_path)
-    root = tree.getroot()
+        print(filename, storage_name)
 
-    # Extract ids and find the biggest id
-    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
-    biggest_id = 0
-    for note in note_elements:
-        id_attribute = note.get('id')
-        if id_attribute is not None:
-            current_id = int(id_attribute)
-            biggest_id = max(biggest_id, current_id)
+        # Create a note in the XML file
+        xml_path = os.path.join(application.config['USER_DATA_PATH'], user_id, 'pages', pageName + '.xml')
+        tree = etree.parse(xml_path)
+        root = tree.getroot()
 
-    id = str(biggest_id + 1)
+        # Extract ids and find the biggest id
+        note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+        biggest_id = 0
+        for note in note_elements:
+            id_attribute = note.get('id')
+            if id_attribute is not None:
+                current_id = int(id_attribute)
+                biggest_id = max(biggest_id, current_id)
 
-    # Add a note
-    notes = root.find("notes")
-    notes.append(etree.Element("note"))
-    new_note = notes[-1]
+        id = str(biggest_id + 1)
 
-    # Set the note's x, y, and content
-    new_note.set("id", id)
-    new_note.set("class", "xlsx")
-    etree.SubElement(new_note, "x").text = x
-    etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "name").text = str(filename)
-    etree.SubElement(new_note, "storage_name").text = str(storage_name)
-    etree.SubElement(new_note, "width").text = "100"
-    etree.SubElement(new_note, "height").text = "100"
+        # Add a note
+        notes = root.find("notes")
+        notes.append(etree.Element("note"))
+        new_note = notes[-1]
 
-    # Save the changes in the XML
-    with open(xml_path, 'wb') as xml_file:
-        xml_file.write(etree.tostring(root, pretty_print=True))
+        # Set the note's x, y, and content
+        new_note.set("id", id)
+        new_note.set("class", "xlsx")
+        etree.SubElement(new_note, "x").text = x
+        etree.SubElement(new_note, "y").text = y
+        etree.SubElement(new_note, "name").text = str(filename)
+        etree.SubElement(new_note, "storage_name").text = str(storage_name)
+        etree.SubElement(new_note, "width").text = "100"
+        etree.SubElement(new_note, "height").text = "100"
 
-    return "yo"
+        # Save the changes in the XML
+        with open(xml_path, 'wb') as xml_file:
+            xml_file.write(etree.tostring(root, pretty_print=True))
+
+        return "yo"
 

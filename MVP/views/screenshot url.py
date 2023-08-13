@@ -4,6 +4,7 @@ import random
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+from flask_login import LoginManager, UserMixin, current_user
 
 from selenium import webdriver
 

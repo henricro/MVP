@@ -1,5 +1,6 @@
 
 from MVP import application, db, login_manager, engine, user_required
+from flask_login import LoginManager, UserMixin, current_user
 
 
 

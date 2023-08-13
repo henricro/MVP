@@ -1,8 +1,9 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+from flask_login import LoginManager, UserMixin, current_user
 
 #import sys
 
@@ -24,88 +25,91 @@ def common_data(list1, list2):
 
 
 @application.route("/link_notes/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def link_notes(pageID, user_id):
 
-    print("route : link notes", "yoyoyoyo")
+    if str(current_user.id) == user_id:
 
-    # get the data for new note
-    request_data = request.get_json()
-    id_1 = str(request_data.get(
-        'id_1'))
-    id_2 = str(request_data.get('id_2'))
+        print("route : link notes", "yoyoyoyo")
 
-    print(id_1, id_2, "yoyoyoyo")
+        # get the data for new note
+        request_data = request.get_json()
+        id_1 = str(request_data.get(
+            'id_1'))
+        id_2 = str(request_data.get('id_2'))
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        print(id_1, id_2, "yoyoyoyo")
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    connexions = root.find("connexions")
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    if connexions is not None:
+        connexions = root.find("connexions")
 
-        test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_1 + "' and @id_2='" + id_2 + "' ] ")
-        test2 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_2 + "' and @id_2='" + id_1 + "' ] ")
+        if connexions is not None:
 
-        print("test1, test2", "yoyoyoyo")
-        print(test1, test2, "yoyoyoyo")
+            test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_1 + "' and @id_2='" + id_2 + "' ] ")
+            test2 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id_2 + "' and @id_2='" + id_1 + "' ] ")
 
-        if test1:
+            print("test1, test2", "yoyoyoyo")
+            print(test1, test2, "yoyoyoyo")
 
-            line = test1[0]
+            if test1:
 
-            print(line, "yoyoyoyo")
+                line = test1[0]
 
-            line.getparent().remove(line)
+                print(line, "yoyoyoyo")
 
-            # save the changes in the xml
-            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-            f.write(etree.tostring(root, pretty_print=True))
-            f.close()
-
-
-        elif test2:
-            line = test2[0]
-
-            print(line, "yoyoyoyo")
-
-            line.getparent().remove(line)
-
-            # save the changes in the xml
-            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-            f.write(etree.tostring(root, pretty_print=True))
-            f.close()
-
-        else :
-
-                print("tests unsuccessfull", "yoyoyoyo")
-                connexions.append(etree.Element("connexion"))
-                new_connexion = connexions[-1]
-                new_connexion.set("id_1", id_1)
-                new_connexion.set("id_2", id_2)
+                line.getparent().remove(line)
 
                 # save the changes in the xml
                 f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
                 f.write(etree.tostring(root, pretty_print=True))
                 f.close()
 
-    else:
 
-        root.append(etree.Element("connexions"))
-        connexions = root.find("connexions")
-        connexions.append(etree.Element("connexion"))
-        new_connexion = connexions[-1]
-        new_connexion.set("id_1", id_1)
-        new_connexion.set("id_2", id_2)
+            elif test2:
+                line = test2[0]
 
-        # save the changes in the xml
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
+                print(line, "yoyoyoyo")
 
-        return "yo"
+                line.getparent().remove(line)
+
+                # save the changes in the xml
+                f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+                f.write(etree.tostring(root, pretty_print=True))
+                f.close()
+
+            else :
+
+                    print("tests unsuccessfull", "yoyoyoyo")
+                    connexions.append(etree.Element("connexion"))
+                    new_connexion = connexions[-1]
+                    new_connexion.set("id_1", id_1)
+                    new_connexion.set("id_2", id_2)
+
+                    # save the changes in the xml
+                    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+                    f.write(etree.tostring(root, pretty_print=True))
+                    f.close()
+
+        else:
+
+            root.append(etree.Element("connexions"))
+            connexions = root.find("connexions")
+            connexions.append(etree.Element("connexion"))
+            new_connexion = connexions[-1]
+            new_connexion.set("id_1", id_1)
+            new_connexion.set("id_2", id_2)
+
+            # save the changes in the xml
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+            f.write(etree.tostring(root, pretty_print=True))
+            f.close()
+
+            return "yo"
 
 
 

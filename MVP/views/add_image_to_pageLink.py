@@ -1,62 +1,68 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 import uuid
 
+from flask_login import LoginManager, UserMixin, current_user
+
+
 #import sys
 
 
 @application.route("/add_image_to_pageLink/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def add_image_to_pageLink(pageID, user_id):
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+    if str(current_user.id) == user_id:
 
-    print("route : add image to pageLink", "yoyoyoyo")
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    ### add the image to uploads
+        print("route : add image to pageLink", "yoyoyoyo")
 
-    Request = request.form
-    print(Request, "yoyoyoyo")
+        ### add the image to uploads
 
-    pageLink_id = Request.get('pageLink_id')
-    file = request.files.get('file')
+        Request = request.form
+        print(Request, "yoyoyoyo")
 
-    ### save the image
+        pageLink_id = Request.get('pageLink_id')
+        file = request.files.get('file')
 
-    type = file.filename[-4:]
+        ### save the image
 
-    filename = file.filename
-    filename = filename.replace(' ', '_')
+        type = file.filename[-4:]
 
-    storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
+        filename = file.filename
+        filename = filename.replace(' ', '_')
 
-    file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
+        storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-    ### open the XML
+        file.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name)
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        ### open the XML
 
-    #find the note
-    note = root.find("notes").find("note[@id='" + pageLink_id + "']")
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    # set the note's x, y and content = "title" (for now)
-    note.set("class", "imagePageLink")
-    etree.SubElement(note, "image").text = str(storage_name)
-    etree.SubElement(note, "width").text = "150"
-    etree.SubElement(note, "height").text = "150"
+        #find the note
+        note = root.find("notes").find("note[@id='" + pageLink_id + "']")
 
-    #print(etree.tostring(root, pretty_print=True))
+        # set the note's x, y and content = "title" (for now)
+        note.set("class", "imagePageLink")
+        etree.SubElement(note, "image").text = str(storage_name)
+        etree.SubElement(note, "width").text = "150"
+        etree.SubElement(note, "height").text = "150"
 
-    # save the changes in the xml
+        #print(etree.tostring(root, pretty_print=True))
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+        # save the changes in the xml
 
-    return "yo"
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return "yo"
 
 

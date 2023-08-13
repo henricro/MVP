@@ -1,8 +1,9 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+from flask_login import LoginManager, UserMixin, current_user
 
 import requests
 from urllib3.exceptions import InsecureRequestWarning
@@ -58,173 +59,183 @@ def download_image(url, save_path):
 
 
 @application.route("/add_link_to_note/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def add_link_to_note(pageID, user_id):
 
-    request_data = request.get_json()
-    id = str(request_data.get('id'))
-    link = str(request_data.get('link'))
+    if str(current_user.id) == user_id:
 
-    #print(id, link, "yoyoyoyo")
+        request_data = request.get_json()
+        id = str(request_data.get('id'))
+        link = str(request_data.get('link'))
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        #print(id, link, "yoyoyoyo")
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    # change class to noteLink
-    note = root.find("notes").find("note[@id='" + id + "']")
-    note.set("class", "noteLink")
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        # change class to noteLink
+        note = root.find("notes").find("note[@id='" + id + "']")
+        note.set("class", "noteLink")
 
-    etree.SubElement(note, "link").text = link
+        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
-    #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        etree.SubElement(note, "link").text = link
 
-    # save the changes in the xml
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-    return "yo"
+        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
 
 
 @application.route("/paste_note_link/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def paste_note_link(pageID, user_id):
 
-    print("paste note link")
+    if str(current_user.id) == user_id:
 
-    request_data = request.get_json()
-    x = str(request_data.get('x'))
-    y = str(request_data.get('y'))
-    link = str(request_data.get('data'))
+        print("paste note link")
 
-    root_url = get_url_root(link)
-    favicon_url = root_url + "/favicon.ico"
+        request_data = request.get_json()
+        x = str(request_data.get('x'))
+        y = str(request_data.get('y'))
+        link = str(request_data.get('data'))
 
-
-    favicon = requests.get(favicon_url, verify=False)
-
-    favicon_name = 'favicon_' + root_url.replace("https://", "") + ".jpg"
-    print(favicon_name)
-
-    favicon_path = application.config['USER_DATA_PATH'] + user_id + '/uploads/' + favicon_name
-
-    if favicon.status_code == 200:
-
-        # Save the image to a file
-        with open(favicon_path, "wb") as file:
-            file.write(favicon.content)
-        print("Image downloaded successfully.")
-    else:
-        print("Failed to download the image:", favicon.status_code)
+        root_url = get_url_root(link)
+        favicon_url = root_url + "/favicon.ico"
 
 
-    #print(id, link, "yoyoyoyo")
+        favicon = requests.get(favicon_url, verify=False)
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        favicon_name = 'favicon_' + root_url.replace("https://", "") + ".jpg"
+        print(favicon_name)
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        favicon_path = application.config['USER_DATA_PATH'] + user_id + '/uploads/' + favicon_name
 
-    # Extract ids and find the biggest id
-    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
-    biggest_id = 0
-    for note in note_elements:
-        id_attribute = note.get('id')
-        if id_attribute is not None:
-            current_id = int(id_attribute)
-            biggest_id = max(biggest_id, current_id)
+        if favicon.status_code == 200:
 
-    id = str(biggest_id + 1)
+            # Save the image to a file
+            with open(favicon_path, "wb") as file:
+                file.write(favicon.content)
+            print("Image downloaded successfully.")
+        else:
+            print("Failed to download the image:", favicon.status_code)
 
-    # add a note
-    notes = root.find("notes")
-    notes.append(etree.Element("note"))
-    new_note = notes[-1]
 
-    # set the note's x, y and content = "new note"
-    new_note.set("id", id)
-    new_note.set("class", "noteLink")
-    etree.SubElement(new_note, "x").text = x
-    etree.SubElement(new_note, "y").text = y
-    etree.SubElement(new_note, "content").text = link
-    etree.SubElement(new_note, "link").text = link
-    etree.SubElement(new_note, "favicon").text = favicon_name
+        #print(id, link, "yoyoyoyo")
 
-    # print(etree.tostring(root, pretty_print=True))
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    # save the changes in the xml
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-    return "yo"
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
+
+        # Extract ids and find the biggest id
+        note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+        biggest_id = 0
+        for note in note_elements:
+            id_attribute = note.get('id')
+            if id_attribute is not None:
+                current_id = int(id_attribute)
+                biggest_id = max(biggest_id, current_id)
+
+        id = str(biggest_id + 1)
+
+        # add a note
+        notes = root.find("notes")
+        notes.append(etree.Element("note"))
+        new_note = notes[-1]
+
+        # set the note's x, y and content = "new note"
+        new_note.set("id", id)
+        new_note.set("class", "noteLink")
+        etree.SubElement(new_note, "x").text = x
+        etree.SubElement(new_note, "y").text = y
+        etree.SubElement(new_note, "content").text = link
+        etree.SubElement(new_note, "link").text = link
+        etree.SubElement(new_note, "favicon").text = favicon_name
+
+        # print(etree.tostring(root, pretty_print=True))
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
 
 
 
 
 @application.route("/add_link_image/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def add_link_image(pageID, user_id):
 
-    print("route : add link to image")
+    if str(current_user.id) == user_id:
 
-    request_data = request.get_json()
-    id = str(request_data.get('id'))
-    link = str(request_data.get('link'))
+        print("route : add link to image")
 
-    print(id, link, "yoyoyoyo")
+        request_data = request.get_json()
+        id = str(request_data.get('id'))
+        link = str(request_data.get('link'))
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        print(id, link, "yoyoyoyo")
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    note = root.find("notes").find("note[@id='" + id + "']")
-    note.set("class", "imageLink")
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
-    etree.SubElement(note, "link").text = link
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        note = root.find("notes").find("note[@id='" + id + "']")
+        note.set("class", "imageLink")
 
-    # save the changes in the xml
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-    return "yo"
+        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        etree.SubElement(note, "link").text = link
+        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
 
 
 
 @application.route("/change_link/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def change_link(pageID, user_id):
-    # get the data for new note
-    request_data = request.get_json()
-    id = str(request_data.get('id'))
-    link = str(request_data.get('link'))
+        # get the data for new note
+        request_data = request.get_json()
+        id = str(request_data.get('id'))
+        link = str(request_data.get('link'))
 
-    print(id, link, "yoyoyoyo")
+        print(id, link, "yoyoyoyo")
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    note = root.find("notes").find("note[@id='" + id + "']")
+        note = root.find("notes").find("note[@id='" + id + "']")
 
-    note.find("link").text = link
+        note.find("link").text = link
 
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
-    # etree.SubElement(note, "link").text = link
+        # etree.SubElement(note, "link").text = link
 
-    print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
-    # save the changes in the xml
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-    return "yo"
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
 
 

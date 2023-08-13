@@ -1,39 +1,43 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+from flask_login import LoginManager, UserMixin, current_user
 
 
 @application.route("/unload/<pageID>/<user_id>", methods=['GET', 'POST'])
+@user_required()
 def unload(pageID, user_id):
 
-    print("route : unloading")
+    if str(current_user.id) == user_id:
 
-    request_data = request.get_json()
-    data = request_data.get('data')
-    print(data)
+        print("route : unloading")
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        request_data = request.get_json()
+        data = request_data.get('data')
+        print(data)
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    for i in range(len(data)):
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-        id = str(data[i]["id"])
-        width = str(data[i]["width"])
-        height = str(data[i]["height"])
+        for i in range(len(data)):
 
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height
+            id = str(data[i]["id"])
+            width = str(data[i]["width"])
+            height = str(data[i]["height"])
 
-        #print(etree.tostring(root, pretty_print=True))
+            tree.xpath("/canvas/notes/note[@id='" + id + "']/width")[0].text = width
+            tree.xpath("/canvas/notes/note[@id='" + id + "']/height")[0].text = height
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+            #print(etree.tostring(root, pretty_print=True))
 
-    return "yo"
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return "yo"
 

@@ -23,6 +23,9 @@ noteTitle.css("left", x.concat("px"));
 ///////////////////////////////////////////////////
 /////////////    SELECT TITLE   ////////////////////
 ///////////////////////////////////////////////////
+ $('#title').on('dblclick', function(event){
+    event.preventDefault();
+});
 
 var titleBoxBool = false;
 
@@ -35,10 +38,12 @@ function selectTitle(title){
     title.off('click.selectTitle');
     title_title = $("#title_title");
     event.stopPropagation();
+
     //if click outside of title
     $(document).on('click.outsideTitle', function(){
         if (!title.is(event.target) && title.has(event.target).length === 0){
-            console.log("clicked outside title ", "titleBoxBool : ", titleBoxBool);
+
+            //console.log("clicked outside title ", "titleBoxBool : ", titleBoxBool);
             if (!titleBoxBool){
                 $('#space-down').css("display", "none");
                 $('#space-down').off("click.down-space");
@@ -68,8 +73,9 @@ function selectTitle(title){
     });
 
     // SECOND CLICK
-    title_title.on('click.', function(event){
+    title_title.on('click', function(event){
         //console.log("clicked second time on title");
+        event.preventDefault();
         showTitleBox();
     });
 

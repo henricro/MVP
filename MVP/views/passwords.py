@@ -7,6 +7,7 @@ from MVP.forms import  ChangePasswordForm, ForgotPasswordForm
 
 from flask_login import LoginManager, UserMixin, current_user
 from flask import g, request, redirect
+from flask_login import LoginManager, UserMixin, current_user
 
 from MVP.views.celery_view import send_email2
 

@@ -162,34 +162,6 @@ def update_content(pageID, user_id):
 
 
 
-@application.route("/update_content_list/<pageID>/<user_id>", methods=['POST'])
-@user_required()
-def update_content_list(pageID, user_id):
-
-    if str(current_user.id) == user_id:
-
-        print("update content list")
-
-        request_data = request.get_json()
-        _id = str(request_data.get('id'))
-        content = str(request_data.get('content'))
-        content = content.replace("'", "\\'")
-
-        pageID = str(pageID)
-        pageName = 'Page_' + pageID
-
-        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-        root = tree.getroot()
-
-        tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
-
-        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-        f.write(etree.tostring(root, pretty_print=True))
-        f.close()
-
-        return "yo"
-
-
 
 
 @application.route("/edit_title/<pageID>/<user_id>", methods=['POST'])

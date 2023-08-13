@@ -5,6 +5,8 @@ from flask import Flask, redirect, url_for, render_template, make_response, requ
 from lxml import etree
 from flask_login import LoginManager, UserMixin, current_user
 import os
+from flask_login import LoginManager, UserMixin, current_user
+
 #import sys
 
 @application.route("/home/<user_id>", methods=['GET', 'POST'])

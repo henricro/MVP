@@ -13,11 +13,12 @@ function buildList(note) {
     var XMLnote = xmlDoc.getElementById(id);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
+    var list = XMLnote.childNodes[0].nodeValue;
+
+    //console.log("list", list);
+
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
-    var list = XMLnote.childNodes[0].nodeValue;
-    console.log("list", list);
-
     note.append(list);
 
 }
@@ -60,32 +61,9 @@ function buildToDoList(tdl_div) {
         $(this).append(icon);
     });
 
-
-/*
-    for (var i = 0; i < length_li; i++){
-
-        tdl_list.find("li").eq(i).attr("id", i.toString());
-        li_class = tdl_list.find("li").eq(i).attr("class");
-        icon =$('<i>').addClass("icon").addClass(li_class).attr("id", i.toString());
-        console.log(icon);
-        checks.append(icon);
-
-    }
-
-    $(".icon").each(function(){
-        icon = $(this);
-        id = icon.attr("id");
-        li = icon.parent().parent().find('li#' + id);
-        icon.on('click', function() {
-            li.toggleClass("done to-do");
-            $(this).toggleClass("done to-do");
-        });
-    });
-*/
-    console.log(length_li);
-    console.log(list, x, y);
-    console.log(tdl_list);
-    //console.log(checks);
+    //console.log(length_li);
+    //console.log(list, x, y);
+    //console.log(tdl_list);
 
 }
 
@@ -118,24 +96,32 @@ $('.list').each(function(){
     });
 });
 
-$('.to-do-list').each(function(){
-    $(this).on('click.selectList', function(){
-        selectToDoList($(this));
-    });
-});
 
+function selectList(list){
 
-function selectList(note){
-
+    list.off('click.selectList');
     event.stopPropagation();
-    id = note.attr("id");
+    id = list.attr("id");
+
+    $(document).on('click.outsideList', function(){
+        if (!list.is(event.target) && list.has(event.target).length === 0){
+
+            styleDefault(list);
+            $(document).off('keyup.delete');
+            list.off('click.write');
+            $(document).off('copy');
+            list.on('click.selectList', function(){
+                selectList($(this));
+            });
+        }
+    });
+
+    styleSelect(list);
 
     // COPY THE NOTE
     $(document).on('copy', function() {
-        copyNote(note);
+        copyNote(list);
     });
-
-    styleSelect(note);
 
     // DELETE NOTE
     $(document).on('keyup.delete', function(){
@@ -160,46 +146,88 @@ function selectList(note){
         }
     });
 
-    note.off('click.selectList');
-
     // SECOND CLICK
-    note.on('click.write', function(){
-        $(document).off('keyup.delete')
+    list.on('click.write', function(){
+        $(document).off('keyup.delete');
         writeList($(this));
     });
 
-    $(document).on('contextmenu', function(event) {
-        event.preventDefault();
+}
 
-        if (!note.is(event.target) && note.has(event.target).length === 0){
 
-            $(document).off('keyup.delete');
-            note.off('click.write');
-            note.on('click.selectList', function(){
+/////////////////////////////////////////////////////
+/////////////    WRITE IN LIST   ////////////////////
+/////////////////////////////////////////////////////
+
+
+$('.list').each(function(){
+    $(this).on('dblclick.write', function(){
+        writeList($(this));
+    });
+});
+
+function writeList(list){
+
+    list.off('mousedown.drag');
+    list.off('copy');
+    list.attr("contenteditable", "true");
+
+    $(document).on('click.update_content', function() {
+        if (!list.is(event.target) && !list.has(event.target).length > 0){
+
+            content = note.html();
+            //console.log(content);
+            $(document).off('click.update_list');
+            id = list.attr('id')
+
+            if (content == "") {
+                current_y = document.documentElement.scrollTop;
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+            } else {
+                $.ajax({
+                    url: '/update_list/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        id: id,
+                        content: content
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                    }
+                });
+            }
+
+            list.attr("contenteditable", "false");
+            list.on('click.selectList', function() {
                 selectList($(this));
             });
-            $(document).off('copy');
-
-        }
-    });
-
-    $(document).on('click.outsideNote', function(){
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            styleDefault(note);
-            $(document).off('keyup.delete');
-            note.off('click.write');
-            $(document).off('copy');
-            note.on('click.selectNote', function(){
-                selectNote($(this));
+            list.on('mousedown.drag', function(){
+                dragNote(list);
             });
-            $(document).off('click.outsideNote');
 
         }
     });
 }
 
 
+
+
+
+
+
+
+
+
+
+$('.to-do-list').each(function(){
+    $(this).on('click.selectList', function(){
+        selectToDoList($(this));
+    });
+});
 
 function selectToDoList(note){
 
@@ -275,77 +303,6 @@ function selectToDoList(note){
             content = content.replace(/<i\s*class="icon"><\/i>/g, '');
             $(document).off('click.update_content');
             id = note.attr('id');
-
-            if (content == "") {
-                current_y = document.documentElement.scrollTop;
-                //window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-            } else {
-
-                $.ajax({
-                    url: '/update_content/' + pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        id: id,
-                        content: content
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (error) {
-                        console.log("problem");
-                    }
-                });
-            }
-
-            note.attr("contenteditable", "false");
-
-            note.on('click.selectList', function() {
-                selectList($(this));
-            });
-
-            note.on('dblclick.write', function(){
-                writeList($(this));
-            });
-
-            note.on('mousedown.drag', function(){
-                dragNote(note);
-            });
-
-        }
-
-    });
-
-}
-
-
-/////////////////////////////////////////////////////
-/////////////    WRITE IN LIST   ////////////////////
-/////////////////////////////////////////////////////
-
-
-$('.list').each(function(){
-    $(this).on('dblclick.write', function(){
-        writeList($(this));
-    });
-});
-
-function writeList(note){
-
-    note.off('click.selectList');
-    note.off('dblclick.write');
-    note.off('mousedown.drag');
-    note.off('copy');
-    note.attr("contenteditable", "true");
-
-    $(document).on('click.update_content', function() {
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            content = note.html();
-            console.log("content list");
-            console.log(content);
-            $(document).off('click.update_content');
-            id = note.attr('id')
 
             if (content == "") {
                 current_y = document.documentElement.scrollTop;

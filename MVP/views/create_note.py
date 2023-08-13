@@ -1,50 +1,54 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
+from flask_login import LoginManager, UserMixin, current_user
 
 #import sys
 
 @application.route("/create_note/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def create_note(pageID, user_id):
 
-    # get the data for new note
-    request_data = request.get_json()
-    new_x = str(request_data.get('x'))
-    new_y = str(request_data.get('y'))
+    if str(current_user.id) == user_id:
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        # get the data for new note
+        request_data = request.get_json()
+        new_x = str(request_data.get('x'))
+        new_y = str(request_data.get('y'))
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    # Extract ids and find the biggest id
-    note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
-    biggest_id = 0
-    for note in note_elements:
-        id_attribute = note.get('id')
-        if id_attribute is not None:
-            current_id = int(id_attribute)
-            biggest_id = max(biggest_id, current_id)
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    id = str(biggest_id+1)
+        # Extract ids and find the biggest id
+        note_elements = tree.xpath('//note[not(@id="title" or @id="parents")]')
+        biggest_id = 0
+        for note in note_elements:
+            id_attribute = note.get('id')
+            if id_attribute is not None:
+                current_id = int(id_attribute)
+                biggest_id = max(biggest_id, current_id)
 
-    # add a note
-    notes = root.find("notes")
-    notes.append(etree.Element("note"))
-    new_note = notes[-1]
+        id = str(biggest_id+1)
 
-    # set the note's x, y and content = "new note"
-    new_note.set("id", id)
-    new_note.set("class", "note")
-    etree.SubElement(new_note, "x").text = new_x
-    etree.SubElement(new_note, "y").text = new_y
-    etree.SubElement(new_note, "content").text = "new content"
+        # add a note
+        notes = root.find("notes")
+        notes.append(etree.Element("note"))
+        new_note = notes[-1]
 
-    # save the changes in the xml
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-    return "yo"
+        # set the note's x, y and content = "new note"
+        new_note.set("id", id)
+        new_note.set("class", "note")
+        etree.SubElement(new_note, "x").text = new_x
+        etree.SubElement(new_note, "y").text = new_y
+        etree.SubElement(new_note, "content").text = "new content"
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
