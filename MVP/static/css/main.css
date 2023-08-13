@@ -9,6 +9,11 @@
 }
 
 
+body  {
+    font-family: Geneva !important;
+}
+
+
 .input{
   display:none;
   border:0;
