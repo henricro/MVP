@@ -259,6 +259,8 @@ $(document).on("keydown", function(event) {
 
         } else {
 
+            console.log("selected bunch of stuff with cmd a");
+
             // if cmd + c --> copy selection
             $(document).bind('copy.copySelection', function() {
                 copySelection(selection);
@@ -266,12 +268,12 @@ $(document).on("keydown", function(event) {
             });
 
             // if key:delete --> delete all elements in selection
-            $(document).bind('keyup.delete', function(){
+            $(document).on('keyup.delete', function(event){
                 if (event.keyCode == 8){
-
+                    console.log("delete all");
                     selectionString = selection.toString();
                     $.ajax({
-                        url: '/delete_notes/'+pageID + '/' + user_id,
+                        url: '/delete_notes/' + pageID + '/' + user_id,
                         type: "POST",
                         data: JSON.stringify({
                             selection: selectionString

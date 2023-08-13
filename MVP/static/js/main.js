@@ -211,9 +211,8 @@ function refreshPage(pageID, user_id, current_y) {
 
 // if right click on page (white space)
 $(document).bind('contextmenu.newPage', function(event) {
+
     event.preventDefault();
-    console.log("dojdhudhd");
-    console.log(event.target);
     if ($(event.target).is("html")) {
 
         new_x = event.pageX;
@@ -273,8 +272,8 @@ $(document).bind('contextmenu.newPage', function(event) {
                 url: '/new_list/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
-                    x : x,
-                    y : y
+                    x : new_x,
+                    y : new_y
                 }),
                 contentType: "application/json",
                 success: function (data) {
@@ -296,8 +295,8 @@ $(document).bind('contextmenu.newPage', function(event) {
                 url: '/new_to_do_list/' + pageID + '/' + user_id,
                 type: "POST",
                 data: JSON.stringify({
-                    x : x,
-                    y : y
+                    x : new_x,
+                    y : new_y
                 }),
                 contentType: "application/json",
                 success: function (data) {

@@ -20,23 +20,23 @@
 /**********   To Do List   ***********/
 
 
-/*
+
 .to-do-list li {
-  position: absolute;
-  padding-left: 10px;
+  position: relative;
+  padding-left: 2px;
 }
-*/
+
 
 
 /* Add a border around the list container */
 
 .to-do-list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     list-style-type: none; /* Remove default bullet points */
-    padding: 5px 12px 7px 5px; /* Adjust this value to create space for the icon and bullet point */
+    padding: 5px 24px 3px 10px; /* Adjust this value to create space for the icon and bullet point */
     position: absolute; /* Maintain absolute positioning for dragging */
     border-style: solid;
     border-width : 1px;
@@ -51,7 +51,8 @@
 }
 
 .to-do-list-list {
-    padding-inline-start: 20px;
+    padding-inline-start: 14px;
+    margin-bottom: 2px;
 }
 
 
@@ -69,22 +70,37 @@
 .icon {
     width: 15px;
     height: 15px;
-    background-image: url('/static/images/icons/uncheck.png');
     background-size: cover;
     margin-bottom: 3px;
     margin-top: 2px;
     cursor: pointer;
+    position: absolute;
+    display :inline;
+    margin-left: 7px;
 }
 
-
-.done.icon {
+.done .icon {
     background-image: url('/static/images/icons/check.png');
 }
-.to-do.icon {
+.to-do .icon {
     background-image: url('/static/images/icons/uncheck.png');
 }
 
 
+.to-do-list:hover .plus-to-do{
+    display: flex;
+}
+
+.plus-to-do {
+    width: 15px;
+    height: 15px;
+    background-image: url('/static/images/icons/add.png');
+    background-size: cover;
+    margin-bottom: 3px;
+    margin-top: 2px;
+    cursor: pointer;
+    display: none;
+}
 
 .done {
   color: #5e8f51;
