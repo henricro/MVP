@@ -1,55 +1,77 @@
+
 ////////////////////////////////////////////////
-/////////// BUILD THE LISTS //////////////
+/////////// BUILD THE TO DO LISTS //////////////
 ////////////////////////////////////////////////
 
-$('.list').each(function(){
-    buildList($(this));
+$('.to-do-list').each(function(){
+    buildToDoList($(this));
 });
 
-function buildList(note) {
+function buildToDoList(tdl_div) {
 
-    id = note.attr("id");
+    id = tdl_div.attr("id");
 
     var XMLnote = xmlDoc.getElementById(id);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var list = XMLnote.childNodes[0].nodeValue;
 
-    //console.log("list", list);
+    tdl_div.css("top", y.concat("px"));
+    tdl_div.css("left", x.concat("px"));
 
-    note.css("top", y.concat("px"));
-    note.css("left", x.concat("px"));
-    note.append(list);
+    var tdl_list = $('<ul>').addClass('to-do-list-list').append(list);
+    var length_li = tdl_list.find("li").length;
+
+    tdl_div.append(tdl_list);
+
+    // for each <li> add an <i class='icon'> inside
+    tdl_list.find("li").each(function(){
+        icon = $("<i>").addClass("icon");
+        $(this).append(icon);
+    });
+
+    // plus sign to add lines
+    plus = $('<i>').addClass("plus-to-do");
+    tdl_div.append(plus);
 
 }
 
+// add to-do when click on + sign
+$(".plus-to-do").on('click', function() {
+    li = $('<li>').addClass("to-do").append("do this");
+    icon = $("<i>").addClass("icon");
+    li.append(icon);
+    ul = $(this).parent().find('ul');
+    ul.append(li);
+});
 
-
-///////////////////////////////////////////////////
-/////////////    SELECT LIST   ////////////////////
-///////////////////////////////////////////////////
-
-$('.list').each(function(){
-    $(this).on('click.selectList', function(){
-        selectList($(this));
-    });
+// change status when click on icon
+$('.icon').on('click', function() {
+    $(this).parent().toggleClass("done to-do");
 });
 
 
-function selectList(list){
 
-    list.off('click.selectList');
+$('.to-do-list').each(function(){
+    $(this).on('click.selectToDoList', function(){
+        selectToDoList($(this));
+    });
+});
+
+function selectToDoList(list){
+
+    list.off('click.selectToDoList');
     id = list.attr("id");
 
     $(document).on('click.outsideList', function(){
         if (!list.is(event.target) && !list.has(event.target).length > 0){
-            console.log("iejijeije")
+
             styleDefault(list);
             $(document).off('keyup.delete');
             list.off('click.write');
             $(document).off('copy');
-            list.on('click.selectList', function(){
-                selectList($(this));
+            list.on('click.selectToDoList', function(){
+                selectToDoList($(this));
             });
         }
     });
@@ -60,6 +82,7 @@ function selectList(list){
     $(document).on('copy', function() {
         copyNote(list);
     });
+
 
     // DELETE NOTE
     $(document).on('keyup.delete', function(){
@@ -87,29 +110,34 @@ function selectList(list){
     // SECOND CLICK
     list.on('click.write', function(){
         $(document).off('keyup.delete');
-        writeList($(this));
+        writeToDoList($(this));
     });
 
 }
 
-
 /////////////////////////////////////////////////////
-/////////////    WRITE IN LIST   ////////////////////
+/////////////    WRITE IN TO-DO-LIST   ////////////////////
 /////////////////////////////////////////////////////
 
 
+function writeToDoList(list){
 
-function writeList(list){
+    list.on('keydown', function(event) {
+        if (event.keyCode === 13) { // 13 is the keycode for the "Enter" key
+            event.preventDefault(); // Prevent the form from being submitted
+        }
+    });
 
     list.off('mousedown.drag');
     list.off('copy');
     list.attr("contenteditable", "true");
 
-    $(document).on('click.update_list', function() {
+    $(document).on('click.update_to_do_list', function() {
         if (!list.is(event.target) && !list.has(event.target).length > 0){
 
-            content = note.html();
-            $(document).off('click.update_list');
+            content = note.find('ul').html();
+            content = content.replace(/<i\s*class="icon"><\/i>/g, '');
+            $(document).off('click.update_to_do_list');
             id = list.attr('id')
 
             if (content == "") {
@@ -117,7 +145,7 @@ function writeList(list){
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             } else {
                 $.ajax({
-                    url: '/update_list/' + pageID + '/' + user_id,
+                    url: '/update_to_do_list/' + pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
                         id: id,
@@ -134,7 +162,7 @@ function writeList(list){
             }
 
             list.attr("contenteditable", "false");
-            list.on('click.selectList', function() {
+            list.on('click.selectToDoList', function() {
                 selectList($(this));
             });
             list.on('mousedown.drag', function(){
@@ -144,9 +172,4 @@ function writeList(list){
         }
     });
 }
-
-
-
-
-
 

@@ -6,14 +6,13 @@ from lxml import etree
 from flask_login import LoginManager, UserMixin, current_user
 
 
-
-@application.route("/new_list/<pageID>/<user_id>", methods=['POST'])
+@application.route("/new_to_do_list/<pageID>/<user_id>", methods=['POST'])
 @user_required()
-def new_list(pageID, user_id):
+def new_to_do_list(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("route create list")
+        print("route add to-do list")
 
         request_data = request.get_json()
         x = str(request_data.get('x'))
@@ -34,38 +33,38 @@ def new_list(pageID, user_id):
                 current_id = int(id_attribute)
                 biggest_id = max(biggest_id, current_id)
 
-        id = str(biggest_id+1)
+        id = str(biggest_id + 1)
 
         # add a note
         notes = root.find("notes")
         notes.append(etree.Element("note"))
         new_note = notes[-1]
 
-        list_text = '<li>hey</li><li>ho</li>'
-        new_note.text = list_text
-
         # set the note's x, y and first elements
         new_note.set("id", id)
-        new_note.set("class", "list")
+        new_note.set("class", "to-do-list")
         etree.SubElement(new_note, "x").text = x
         etree.SubElement(new_note, "y").text = y
+
+        list_text = '<li class="done">do this</li><li class="to-do">do that</li>'
+        new_note.text = list_text
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
-
         return "yo"
 
 
 
-@application.route("/update_list/<pageID>/<user_id>", methods=['POST'])
+
+@application.route("/update_to_do_list/<pageID>/<user_id>", methods=['POST'])
 @user_required()
-def update_list(pageID, user_id):
+def update_to_do_list(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("update list")
+        print("update to do list")
 
         request_data = request.get_json()
         _id = str(request_data.get('id'))
