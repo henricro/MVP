@@ -17,7 +17,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    list-style-type: none; /* Remove default bullet points */
     padding: 5px 24px 3px 10px; /* Adjust this value to create space for the icon and bullet point */
     position: absolute; /* Maintain absolute positioning for dragging */
     border-style: solid;
@@ -25,7 +24,6 @@
     border-color : rgb(0, 0, 0, 0);
     border-radius : 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    max-width: 220px; /* Adjust the maximum width as needed */
     background-color: white;
 }
 
@@ -34,19 +32,9 @@
 }
 
 .to-do-list-list {
+    list-style: disc;
     padding-inline-start: 14px;
     margin-bottom: 2px;
-}
-
-
-.checks {
-    position: absolute;
-    display: inline-block;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    right: -15px;
 }
 
 
@@ -69,6 +57,10 @@
     background-image: url('/static/images/icons/uncheck.png');
 }
 
+.ongoing .icon {
+    background-image: url('/static/images/icons/ongoing.png');
+}
+
 
 .to-do-list:hover .plus-to-do{
     display: flex;
@@ -84,6 +76,3 @@
     cursor: pointer;
     display: none;
 }
-
-.done {
-  color: #5e8f51;

@@ -45,9 +45,51 @@ $(".plus-to-do").on('click', function() {
     ul.append(li);
 });
 
+
+/*
 // change status when click on icon
-$('.icon').on('click', function() {
-    $(this).parent().toggleClass("done to-do");
+$('.done .icon').on('click.to-do', function() {
+    $(this).off('click.to-do');
+    $(this).parent().removeClass().addClass("to-do");
+    var clickEvent = new Event('click');
+    this.parent().dispatchEvent(clickEvent);
+});
+$('.to-do .icon').on('click.ongoing', function() {
+    $(this).off('click.ongoing');
+    $(this).parent().removeClass().addClass("ongoing");
+    var clickEvent = new Event('click');
+    this.parent().dispatchEvent(clickEvent);
+});
+$('.ongoing .icon').on('click.done', function() {
+    $(this).off('click.done');
+    $(this).parent().removeClass().addClass("done");
+    var clickEvent = new Event('click');
+    this.parent().dispatchEvent(clickEvent);
+});
+*/
+
+$('.to-do-list-list').on('click', '.icon', function() {
+    console.log("ijdjijd");
+});
+
+
+
+
+$('.to-do-list-list').on('click', '.icon', function() {
+
+    writeToDoList($(this).closest('.to-do-list'));
+    console.log("clicked icon");
+    var $parent = $(this).parent();
+    var currentState = $parent.attr('class');
+
+    if (currentState === 'done') {
+        $parent.removeClass().addClass('to-do');
+    } else if (currentState === 'to-do') {
+        $parent.removeClass().addClass('ongoing');
+    } else if (currentState === 'ongoing') {
+        $parent.removeClass().addClass('done');
+    }
+
 });
 
 
@@ -128,15 +170,28 @@ function writeToDoList(list){
         }
     });
 
+    console.log('list : ', list);
+    console.log(list.find('ul'));
+    list.find('ul').on('input', 'li', function() {
+        console.log("input todolist");
+        if ($(this).text().trim() === '') {
+            $(this).empty(); // Empty the <li> element
+        }
+    });
+
     list.off('mousedown.drag');
     list.off('copy');
     list.attr("contenteditable", "true");
 
+    //click outside todolist
     $(document).on('click.update_to_do_list', function() {
         if (!list.is(event.target) && !list.has(event.target).length > 0){
 
-            content = note.find('ul').html();
+            content = list.find('ul').html();
+            console.log(content);
             content = content.replace(/<i\s*class="icon"><\/i>/g, '');
+            content = content.replace("<li></li>", "");
+            console.log(content);
             $(document).off('click.update_to_do_list');
             id = list.attr('id')
 
