@@ -4,6 +4,8 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 from flask_login import LoginManager, UserMixin, current_user
+import random
+
 
 #import sys
 
@@ -45,10 +47,27 @@ def create_note(pageID, user_id):
         new_note.set("class", "note")
         etree.SubElement(new_note, "x").text = new_x
         etree.SubElement(new_note, "y").text = new_y
-        etree.SubElement(new_note, "content").text = "new content"
+        etree.SubElement(new_note, "content").text = generate_message()
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
         return "yo"
+
+
+def generate_message():
+    options = [
+        "new content",
+        "you live and you learn",
+        "you become what you think about",
+        "only those who try fail"
+    ]
+
+    # Generate a random number between 0 and 6
+    random_number = random.randint(0, 6)
+
+    if random_number == 0:
+        return random.choice(options[1:])
+    else:
+        return "new content"
