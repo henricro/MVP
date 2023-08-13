@@ -4,7 +4,7 @@ from MVP.models import *
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 from flask_login import LoginManager, UserMixin, current_user
-
+import os
 #import sys
 
 @application.route("/home/<user_id>", methods=['GET', 'POST'])
@@ -13,10 +13,17 @@ def home(user_id):
 
     user_id = int(user_id)
     if not user_id == current_user.id:
-        return redirect(url_for('login'))
+        if os.environ.get('FLASK_ENV') == 'development':
+            return redirect(url_for('login'))
+        else:
+            return redirect(url_for('login', _external=True, _scheme='https'))
+
     else :
         user_id = str(user_id)
-        return redirect(url_for('open_page', user_id=user_id, pageID = "1", y_position= "0"))
+        if os.environ.get('FLASK_ENV') == 'development':
+            return redirect(url_for('open_page', user_id=user_id, pageID = "1", y_position= "0"))
+        else:
+            return redirect(url_for('open_page', user_id=user_id, pageID="1", y_position="0", _external=True, _scheme='https'))
 
 
 

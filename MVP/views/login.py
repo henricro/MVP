@@ -43,10 +43,7 @@ def login():
                 user_id = str(user.id)
                 login_user(user)
                 print(user, type(user))
-                if os.environ.get('FLASK_ENV') == 'development':
-                    return redirect(url_for('home', user_id=user_id))
-                else:
-                    return redirect(url_for('home', user_id=user_id, _external=True, _scheme='https'))
+                return redirect(url_for('home', user_id=user_id))
             else :
                 flash("Wrong password :/", 'danger')
 
