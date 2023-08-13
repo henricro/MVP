@@ -14,44 +14,15 @@ def home(user_id):
     user_id = int(user_id)
     if not user_id == current_user.id:
         return redirect(url_for('login'))
+    else :
+        user_id = str(user_id)
+        return redirect(url_for('open_page', user_id=user_id, pageID = "1", y_position= "0"))
 
-    user_id = str(user_id)
-    user = User.query.filter_by(id=user_id).first()
-    email = user.email
-
-    print("route : open home page", "yoyoyoyo")
-
-    pages = engine.execute("select id, title from Pages where user_id = %(user_id)s", {'user_id':user_id}).fetchall()
-    pages = dict(pages)
-
-    title = Page.query.filter_by(user_id=user_id).first().title
-    print("title")
-    print(title)
-
-    PageID = Page.query.filter_by(user_id=user_id).first().id
-    PageID = str(PageID)
-
-    pageName = 'Page_' + PageID
-
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
-
-    xml_string = etree.tostring(root).decode('utf-8')
-
-    xml_string = xml_string.replace("\n", "")
-
-    return render_template('/page.html', xml_string=xml_string, pageID = PageID, email=email,
-                           pages=pages, title=title, user_id=user_id, lineage=[])
 
 
 
 @application.route("/open_page/<pageID>/<user_id>/<y_position>", methods=['GET', 'POST'])
-@user_required()
 def open_page(pageID, user_id, y_position):
-
-    user_id = int(user_id)
-    if not user_id == current_user.id:
-        return redirect(url_for('login'))
 
     user_id = str(user_id)
     user = User.query.filter_by(id=user_id).first()
@@ -90,7 +61,29 @@ def open_page(pageID, user_id, y_position):
 
     print(lineage)
 
-    return render_template('/page.html', xml_string=xml_string, pageID=pageID,
-                           user_id=user_id, pages=pages, title=title, y_position = y_position,
-                           email = email, lineage=lineage)
+    page_share_status = page.status
+    if page_share_status == None :
+        page_share_status = "private"
 
+    if page_share_status == "public":
+        # Render the page directly without requiring user authentication
+        return render_template('/page.html', xml_string=xml_string, pageID=pageID,
+                               user_id=user_id, pages=pages, title=title, y_position=y_position,
+                               email=email, lineage=lineage, page_share_status=page_share_status)
+
+    # If the page is private, require user authentication using the user_required decorator
+    if page_share_status == "private":
+        @user_required()
+        def render_private_page(user_id):
+            user_id = int(user_id)
+            if not user_id == current_user.id:
+                return redirect(url_for('login'))
+            else:
+                user_id = str(user_id)
+                return render_template('/page.html', xml_string=xml_string, pageID=pageID,
+                                   user_id=user_id, pages=pages, title=title, y_position=y_position,
+                                   email=email, lineage=lineage, page_share_status=page_share_status)
+
+        return render_private_page(user_id)
+
+    return 'yo'

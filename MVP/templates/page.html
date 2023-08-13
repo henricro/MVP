@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/right-click.css">
     <link rel="stylesheet" type="text/css" href="/static/css/select.css">
     <link rel="stylesheet" type="text/css" href="/static/css/modal.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/popup.css">
 
 
     <script type="text/javascript" src="/static/libraries/jspdf.umd.min.js"></script>
@@ -146,11 +147,7 @@
     <div id="y_pos"></div>
 </div>
 
-<!--
-<div class="note" contenteditable="true" style="position:relative; top:300px; left: 300px; border: 1px solid blue; display: inline-block; ">my title
-    <div style="position:absolute; border: 1px solid green; width: 100px; height: 50ps; bottom: 30px; left: 30px;">parent space</div>
-</div>-->
-
+<div class="popup" id="popup">Popup Content</div>
 
 <div id="title">
     <div id="title_title"></div>
@@ -164,8 +161,17 @@
     <div id="tdb_title"></div>
     <div id="tdb_user_email">User : {{email}}</div>
     <div id="tdb_path"></div>
+    <div id="tdb_status">
+        <div>status :</div>
+        <div class="status_button" id="status_private">private</div>
+        <div class="status_button" id="status_public">public</div>
+        <div class="status_button" id="status_password">password</div>
+    </div>
 </div>
 
+<div id="titleRCBox" class="choiceBoxHoriz">
+    <img id="titleRC_1" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
+</div>
 
 <div id="pasteBox">
     <div class="choiceBox">
@@ -199,8 +205,6 @@
 </div>
 -->
 
-
-
 <div id="noteRCBox" class="choiceBoxHoriz">
     <img id="noteRC_1" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
     <img id="noteRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
@@ -212,24 +216,17 @@
     <img id="noteStyleBox_3" class="buttonIcon" src="/static/images/icons/underline-text.png" style="height: 100%;"/>
     <img id="noteStyleBox_4" class="buttonIcon" src="/static/images/icons/line.png" style="height: 100%;"/>
     <img id="noteStyleBox_5" class="buttonIcon" src="/static/images/icons/italic.png" style="height: 100%;"/>
-    <img id="noteStyleBox_6" class="buttonIcon" src="/static/images/icons/css.png" style="height: 100%;"/>
 </div>
-
-
 
 <div id="noteLinkRCBox" class="choiceBoxHoriz">
     <img id="noteLinkRC_1" class="buttonIcon" src="/static/images/icons/copy.png" style="height: 100%;"/>
 </div>
-
-
-
 
 <div id="imageRCBox" class="choiceBoxHoriz">
     <img id="imageRC_1" class="buttonIcon" src="/static/images/icons/link.png" style="height: 100%;"/>
     <img id="imageRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
     <img id="imageRC_3" class="buttonIcon" src="/static/images/icons/download.png" style="height: 100%;"/>
 </div>
-
 
 <div id="imageLinkRCBox">
     <div class="choiceBox">
@@ -272,11 +269,6 @@
 </div>
 
 
-<div id="titleRCBox" class="choiceBoxHoriz">
-    <img id="titleRC_1" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
-</div>
-
-
 <div id="selectionRCBox" class="choiceBoxHoriz">
     <img id="selectionRC_1" class="buttonIcon" src="/static/images/icons/align-top.jpg" style="height: 100%;"/>
     <img id="selectionRC_2" class="buttonIcon" src="/static/images/icons/align-left.jpg" style="height: 100%;"/>
@@ -295,6 +287,7 @@ var xmlDoc = $.parseXML(xml);
 var pageID = '{{pageID|safe}}';
 var user_id = '{{user_id|safe}}';
 var y_position = '{{y_position|safe}}';
+var page_share_status = '{{page_share_status|safe}}';
 
 </script>
 
@@ -327,7 +320,6 @@ var y_position = '{{y_position|safe}}';
     <script type="text/javascript" src="/static/js/resize.js" ></script>
     <script type="text/javascript" src="/static/js/style.js" ></script>
     <script type="text/javascript" src="/static/js/color.js" ></script>
-
 
     <script>
         $(window).scrollTop(y_position);

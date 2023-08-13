@@ -43,6 +43,8 @@ class Page (db.Model):
     title = db.Column(db.String(128))
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
     official_parent_id = db.Column(db.Integer, db.ForeignKey('Pages.global_id'))
+    status = db.Column(db.String(128))
+    password = db.Column(db.String(100))
 
 
     __tablename__ = "Pages"

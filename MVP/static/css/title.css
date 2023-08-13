@@ -5,6 +5,7 @@
     position: absolute;
     z-index: 10;
     cursor: pointer;
+
 }
 
 #title_title{
@@ -16,6 +17,7 @@
     text-decoration: underline;
     font-weight: 800;
     z-index:9;
+    padding: 4px;
 }
 
 
@@ -47,7 +49,7 @@
     height: 200px;
     flex-direction: column;
     align-items: flex-start;
-    z-index: 19;
+    z-index: 9;
     font-size: 17px;
 }
 
@@ -55,5 +57,27 @@
     align-self: center;
     font-size: 22px;
     margin-bottom: 5px;
+}
+
+
+#tdb_status {
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content : flex-start;
+}
+
+.status_button{
+    border-radius : 8px;
+    background-color : rgb(186, 222, 219, 0.15 );
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    cursor: pointer;
+    padding: 3px;
+    margin-left: 4px;
+}
+
+.status_selected {
+    background-color : rgb(186, 222, 219, 0.7 );
 }
 

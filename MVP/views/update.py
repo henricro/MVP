@@ -1,190 +1,227 @@
-from MVP import application, db, engine
+from MVP import application, db, engine, user_required
 from MVP.models import *
 
 from flask import Flask, redirect, url_for, render_template, make_response, request
 from lxml import etree
 #import sys
 
+from flask_login import current_user
+
 
 @application.route("/update_position/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def update_position(pageID, user_id):
 
-    print("update position route")
+    if str(current_user.id) == user_id:
 
-    request_data = request.get_json()
-    _id = str(request_data.get('id'))
-    new_x = str(request_data.get('x'))[:-2]
-    new_y = str(request_data.get('y'))[:-2]
+        print("update position route")
 
-    pageID = str(pageID)
-    print(pageID, "yoyoyoyo")
-    pageName = 'Page_' + pageID
-    print(pageName, "yoyoyoyo")
+        request_data = request.get_json()
+        _id = str(request_data.get('id'))
+        new_x = str(request_data.get('x'))[:-2]
+        new_y = str(request_data.get('y'))[:-2]
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        print(pageID, "yoyoyoyo")
+        pageName = 'Page_' + pageID
+        print(pageName, "yoyoyoyo")
 
-    #print(etree.tostring(root, pretty_print=True))
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    tree.xpath("/canvas/notes/note[@id='" + _id + "']/x")[0].text = new_x
-    tree.xpath("/canvas/notes/note[@id='" + _id + "']/y")[0].text = new_y
+        #print(etree.tostring(root, pretty_print=True))
 
-    #print(etree.tostring(root, pretty_print=True))
+        tree.xpath("/canvas/notes/note[@id='" + _id + "']/x")[0].text = new_x
+        tree.xpath("/canvas/notes/note[@id='" + _id + "']/y")[0].text = new_y
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
-
-    return "yo"
-
-
-@application.route("/update_positions/<pageID>/<user_id>", methods=['POST'])
-def update_positions(pageID, user_id):
-
-    print("route : update positions")
-
-    request_data = request.get_json()
-    positions = request_data.get('positions')
-    print(positions)
-
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
-
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
-
-    #print(etree.tostring(root, pretty_print=True))
-
-    for note in positions:
-
-        id = note[0]
-        x = str(note[1])
-        y = str(note[2])
-
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
+        #print(etree.tostring(root, pretty_print=True))
 
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
         f.write(etree.tostring(root, pretty_print=True))
         f.close()
 
-    return "yo"
+        return "yo"
+
+
+@application.route("/update_positions/<pageID>/<user_id>", methods=['POST'])
+@user_required()
+def update_positions(pageID, user_id):
+
+    if str(current_user.id) == user_id:
+
+        print("route : update positions")
+
+        request_data = request.get_json()
+        positions = request_data.get('positions')
+        print(positions)
+
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
+
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
+
+        #print(etree.tostring(root, pretty_print=True))
+
+        for note in positions:
+
+            id = note[0]
+            x = str(note[1])
+            y = str(note[2])
+
+            tree.xpath("/canvas/notes/note[@id='" + id + "']/x")[0].text = x
+            tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = y
+
+            f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+            f.write(etree.tostring(root, pretty_print=True))
+            f.close()
+
+        return "yo"
 
 
 @application.route("/send_all_down/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def send_all_down(pageID, user_id):
 
-    print("send all down", "yoyoyoyo")
+    if str(current_user.id) == user_id:
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        print("send all down", "yoyoyoyo")
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    #print(etree.tostring(root, pretty_print=True))
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    xpath_expression = '//notes//@id[number(.) = .]'
+        #print(etree.tostring(root, pretty_print=True))
 
-    # Find all matching nodes using XPath
-    ids = root.xpath(xpath_expression)
+        xpath_expression = '//notes//@id[number(.) = .]'
 
-    print("here are the ids")
-    print(ids)
+        # Find all matching nodes using XPath
+        ids = root.xpath(xpath_expression)
 
-    for id in ids :
+        print("here are the ids")
+        print(ids)
 
-        id = str(id)
+        for id in ids :
 
-        xpath_expression = "/canvas/notes/note[@id='" + id + "']/y/text()"
-        text_value = tree.xpath(xpath_expression)
+            id = str(id)
 
-        old_y = int(text_value[0])
-        new_y = str(old_y + 40)
-        print(old_y, new_y)
+            xpath_expression = "/canvas/notes/note[@id='" + id + "']/y/text()"
+            text_value = tree.xpath(xpath_expression)
 
-        tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = new_y
+            old_y = int(text_value[0])
+            new_y = str(old_y + 40)
+            print(old_y, new_y)
 
-    print("finish boucle")
+            tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = new_y
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+        print("finish boucle")
 
-    return "yo"
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return "yo"
 
 
 
 
 @application.route("/update_content/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def update_content(pageID, user_id):
 
-    print("update content")
-    print(pageID)
+    if str(current_user.id) == user_id:
 
-    request_data = request.get_json()
-    _id = str(request_data.get('id'))
-    content = str(request_data.get('content'))
-    content = content.replace("'", "\\'")
+        print("update content")
+        print(pageID)
 
-    print(content, _id)
+        request_data = request.get_json()
+        _id = str(request_data.get('id'))
+        content = str(request_data.get('content'))
+        content = content.replace("'", "\\'")
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
-    print(pageName)
-    user_id = str(user_id)
+        print(content, _id)
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
+        print(pageName)
+        user_id = str(user_id)
 
-    tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+        tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
 
-    return "yo"
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return "yo"
 
 
 
 
 @application.route("/update_content_list/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def update_content_list(pageID, user_id):
 
-    print("update content list")
+    if str(current_user.id) == user_id:
 
-    request_data = request.get_json()
-    _id = str(request_data.get('id'))
-    content = str(request_data.get('content'))
-    content = content.replace("'", "\\'")
+        print("update content list")
 
-    pageID = str(pageID)
-    pageName = 'Page_' + pageID
+        request_data = request.get_json()
+        _id = str(request_data.get('id'))
+        content = str(request_data.get('content'))
+        content = content.replace("'", "\\'")
 
-    tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
-    root = tree.getroot()
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
 
-    tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+        tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
 
-    return "yo"
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return "yo"
 
 
 
 
 @application.route("/edit_title/<pageID>/<user_id>", methods=['POST'])
+@user_required()
 def edit_title(pageID, user_id):
 
-    request_data = request.get_json()
-    value = str(request_data.get('value'))
+    if str(current_user.id) == user_id:
 
-    pageID = str(pageID)
+        request_data = request.get_json()
+        value = str(request_data.get('value'))
 
-    engine.execute("Update Pages set title = %(value)s where id= %(pageID)s ",
-                       {'value': value, 'pageID': pageID})
+        pageID = str(pageID)
 
-    return "yo"
+        engine.execute("Update Pages set title = %(value)s where id= %(pageID)s ",
+                           {'value': value, 'pageID': pageID})
+
+        return "yo"
+
+@application.route("/update_page_status/<pageID>/<user_id>", methods=['POST'])
+@user_required()
+def update_page_status(pageID, user_id):
+
+    if str(current_user.id) == user_id:
+
+        print("route update status")
+
+        request_data = request.get_json()
+        status = str(request_data.get('status'))
+
+        print(status)
+        engine.execute("update Pages set status= %(status)s where user_id= %(user_id)s and id=%(pageID)s",
+                       {'status': status, 'user_id': user_id, 'pageID': pageID})
+
+        return 'yo'
 

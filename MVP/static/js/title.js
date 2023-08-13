@@ -20,77 +20,41 @@ noteTitle.css("left", x.concat("px"));
 
 
 
-
-
-
 ///////////////////////////////////////////////////
 /////////////    SELECT TITLE   ////////////////////
 ///////////////////////////////////////////////////
 
+var titleBoxBool = false;
 
-$('#title').bind('click.selectTitle', function(){
-
-    console.log("clicked on title");
-
-    title = $(this);
-    title_title = $("#title_title");
-    title_parents = $("#title_parents");
-
-    selectTitle(title);
-
-    event.stopPropagation();
-
-    $(document).on('click', function(){
-        console.log("no reason");
-        if (!$("titleDbClick").is(event.target) && $("titleDbClick").has(event.target).length === 0){
-            console.log(event.target);
-            hideTitleBox();
-        }
-    });
-
-    $(document).bind('click', function(){
-
-        console.log("whatever");
-
-        if (!title.is(event.target) && title.has(event.target).length === 0){
-
-            title.css({"border-color":""});
-
-            title.unbind('click.parents');
-
-            title.bind('click.selectTitle', function(){
-                selectTitle($(this));
-            });
-
-            $('#space-down').css("display", "none");
-
-            $('#space-down').unbind("click.down-space");
-
-            title_title.unbind('click.parents');
-
-        }
-
-    });
-
+$('#title').on('click.selectTitle', function(event){
+    selectTitle($(this));
 });
-
 
 function selectTitle(title){
 
-    console.log("selected the title");
-    title.css({"border-color":"green"});
-    title.unbind('click.selectTitle');
+    title.off('click.selectTitle');
+    title_title = $("#title_title");
+    event.stopPropagation();
+    //if click outside of title
+    $(document).on('click.outsideTitle', function(){
+        if (!title.is(event.target) && title.has(event.target).length === 0){
+            console.log("clicked outside title ", "titleBoxBool : ", titleBoxBool);
+            if (!titleBoxBool){
+                $('#space-down').css("display", "none");
+                $('#space-down').off("click.down-space");
+                title.on('click.selectTitle', function(event){
+                    selectTitle($(this));
+                });
+            }
+        }
+    });
 
-
-    // show arrow to add space
+    // show arrow to send all donw
     $('#space-down').css("display", "block");
-
-    $('#space-down').bind("click.down-space", function(){
-
+    $('#space-down').on("click.down-space", function(){
+        // send all down
         sendAllDown();
-
         $.ajax({
-
             url: '/send_all_down/' + pageID + '/' + user_id,
             type: "POST",
             contentType: "application/json",
@@ -100,69 +64,63 @@ function selectTitle(title){
             error: function (error) {
                 console.log("problem");
             }
-
         });
-
     });
-
 
     // SECOND CLICK
-    title_title.bind('click.parents', function(){
-
+    title_title.on('click.', function(event){
+        //console.log("clicked second time on title");
         showTitleBox();
-
     });
-
 
 }
-
-function sendAllDown() {
-
-    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink, .to-do-list, .pdf').each(function(){
-
-        element = $(this);
-        y_pos = element.css("top");
-        console.log(y_pos);
-
-        y_pos = y_pos.slice(0, -2);
-        y_pos = parseInt(y_pos);
-        new_y_pos = y_pos + 40;
-        new_y_pos = new_y_pos.toString();
-        new_y_pos = new_y_pos + "px";
-
-        console.log(new_y_pos);
-
-        element.css("top", new_y_pos);
-
-        //id = element.attr("id");
-        //x = element.css("left");
-        //y = new_y_pos
-
-    });
-
-};
-
 
 
 function showTitleBox(){
 
+    titleBoxBool = true;
+    console.log("titleBoxBool", titleBoxBool);
+    event.stopPropagation();
+
+    $(document).on('click.outsideTitleBox', function(){
+        console.log("click outside titleBox : ", event.target);
+        if (!$("#titleDbClick").is(event.target) && !$("#titleDbClick").has(event.target).length > 0){
+            titleBoxBool = false;
+            hideTitleBox();
+        }
+    });
+
+    // place titleBox
     title_x = noteTitle.offset().left;
     title_y = noteTitle.offset().top;
     width_title = noteTitle.css("width");
-    console.log(title_x, title_y, width_title);
-
     x = (title_x + parseInt(width_title.slice(0,-2)) + 10).toString() + "px";
     y = (title_y + 10).toString() + "px"
-
     $("#titleDbClick").css("left", x);
     $("#titleDbClick").css("top", y);
     $("#titleDbClick").css("display", "flex");
 
 }
 
+// function to send All Down
+function sendAllDown() {
+    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink, .list, .to-do-list, .pdf, .docx, .xlsx').each(function(){
+        element = $(this);
+        y_pos = element.css("top");
+        y_pos = y_pos.slice(0, -2);
+        y_pos = parseInt(y_pos);
+        new_y_pos = y_pos + 40;
+        new_y_pos = new_y_pos.toString();
+        new_y_pos = new_y_pos + "px";
+        element.css("top", new_y_pos);
+    });
+};
+
+
 
 function hideTitleBox(){
     console.log("udhuhe");
+    titleBoxBool = false;
     $("#titleDbClick").css("display", "none");
 }
 
@@ -236,123 +194,19 @@ $("#titleRC_1").on('mouseout', function() {
 });
 
 
-/*
-///////////////////////////////
-/////// SHOW PARENTS  /////////
-///////////////////////////////
-
-
-function showParents(){
-
-    $("#title_parents").show();
-
-    $("#title").unbind('mousedown.drag');
-
-    $("#title_parents").bind('mousedown.drag', function(){
-        note = $(this);
-        mouseX = event.pageX;
-        mouseY = event.pageY;
-        noteX = parseInt(note.css("left").slice(0, -2));
-        noteY = parseInt(note.css("top").slice(0, -2));
-        dragNote(note, noteX, noteY);
-    });
-
-    $("#title_parents").bind('click.resize', function() {
-        resize($(this));
-        $(this).unbind('mousedown.drag');
-        $(this).bind('click.move', function() {
-        move($(this));
-        });
-    });
-
-    function resize(note){
-        note.css("border", "1px solid green");
-        note.addClass('resizable');
-    }
-
-    function move(note){
-        note.removeClass('resizable');
-        note.css("border", "1px dashed green");
-        note.bind('mousedown.drag', function(){
-            mouseX = event.pageX;
-            mouseY = event.pageY;
-            noteX = parseInt(note.css("left").slice(0, -2));
-            noteY = parseInt(note.css("top").slice(0, -2));
-            dragNote(note, noteX, noteY);
-        });
-        note.bind('click.resize', function(){
-            resize(note);
-        });
-    }
-
-    $(document).bind('click.hideParents', function(){
-        $(document).bind('click.hideParents2', function(){
-
-            //console.log(event.target.classList);
-
-            // if click outside of parent space
-            if (!$("#title_parents").is(event.target) && $("#title_parents").has(event.target).length === 0){
-                //console.log(event.target);
-                //console.log("clicked outside of parent space");
-                $("#title_parents").hide();
-
-                $(document).unbind('click.hideParents2');
-                $(document).unbind('click.hideParents');
-
-                $("#title_parents").removeClass('resizable');
-
-                $("#title_title").bind('click.select', function(){
-                    selectTitle($(this));
-                });
-
-                $("#title").bind('mousedown.drag', function(){
-
-                    note= $(this);
-
-                    mouseX = event.pageX;
-                    mouseY = event.pageY;
-
-                    noteX = parseInt(note.css("left").slice(0, -2));
-                    noteY = parseInt(note.css("top").slice(0, -2));
-
-                    dragNote(note, noteX, noteY);
-
-                });
-
-            // if click in parent space
-            } else {
-
-                //console.log("clicked in parent space");
-                //console.log(event.target);
-            }
-        });
-    });
-
-}
-
-*/
 
 /////////////////////////////////
 /////////   title box  /////////////
 /////////////////////////////////
 
 
-noteTitle.on('dblclick', function(){
-    showTitleBox();
-    $(document).on('click', function(){
-        if ($("titleDbClick").is(event.target) && title.has(event.target).length === 0){
-            hideTitleBox();
-        }
-    });
-});
-
 $('#tdb_title').html("Page info");
 
-if (lineage ==[]) {
+    if (lineage ==[]) {
 
-    $("#tdb_path").append("thisi s the home page");
+        $("#tdb_path").append("thisi s the home page");
 
-} else {
+    } else {
 
     $("#tdb_path").append("<span>Path : </span>");
     for (var i = lineage.length-1; i > -1 ; i--){
@@ -364,3 +218,98 @@ if (lineage ==[]) {
 
 console.log(lineage);
 
+////////////////////////////////
+// share status //////
+/////////////////////////
+
+$('.status_button:not(#status_password)').on('click', function(){
+
+    console.log("clicked on status button");
+    $('.status_button').not($(this)).removeClass("status_selected");
+    $(this).addClass("status_selected");
+    status = $(this).html();
+
+    $.ajax({
+        url: '/update_page_status/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            status : status
+        }),
+        contentType: "application/json",
+        success: function (data) {
+            current_y = document.documentElement.scrollTop;
+        },
+        error: function (error) {
+            current_y = document.documentElement.scrollTop;
+        }
+    });
+
+    console.log($(this).attr("id"));
+
+    if ($(this).attr("id") == "status_public"){
+        console.log("uduhduhdu");
+        popup.textContent = "This page is now public and can be viewed by anyone with the link";
+        popup.style.display = "block";
+
+        setTimeout(function() {
+          popup.style.display = "none";
+        }, 5000);
+    }else if ($(this).attr("id") == "status_private"){
+        console.log("uduhduhdu");
+        popup.textContent = "This page is now private and can only be accessed by you";
+        popup.style.display = "block";
+
+        setTimeout(function() {
+          popup.style.display = "none";
+        }, 5000);
+    }
+
+});
+
+console.log("page share status : ", page_share_status);
+
+if (page_share_status == "private") {
+    $("#status_private").addClass("status_selected");
+} else if (page_share_status == "public") {
+    $("#status_public").addClass("status_selected");
+} else if (page_share_status == "password") {
+    $("#status_password").addClass("status_selected");
+}
+
+
+$("#status_private").on('mouseover', function() {
+    follower.html("Page is private and can only be accessed by you");
+    follower.show();
+});
+$("#status_private").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+
+$("#status_public").on('mouseover', function() {
+    follower.html("Page is public and can be viewed by anyone with the link");
+    follower.show();
+});
+$("#status_public").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#status_public").on('mouseover', function() {
+    follower.html("Page is public and can be viewed by anyone with the link");
+    follower.show();
+});
+$("#status_public").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#status_password").on('mouseover', function() {
+    follower.html("coming soon !");
+    follower.show();
+});
+$("#status_password").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
