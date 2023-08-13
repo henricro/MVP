@@ -1,6 +1,13 @@
-.note, .pageLink, noteLink, #title  {
-    font-family: Geneva;
+@font-face {
+  font-family: 'DailyLife'; /* Replace with your desired font name */
+  src: url('/static/fonts/DailyLife.ttf') format('truetype'); /* Replace with the correct path to your TTF file */
 }
+
+@font-face {
+  font-family: 'PWSimpleHandwriting'; /* Replace with your desired font name */
+  src: url('/static/fonts/PWSimpleHandwriting.ttf') format('truetype'); /* Replace with the correct path to your TTF file */
+}
+
 
 
 
