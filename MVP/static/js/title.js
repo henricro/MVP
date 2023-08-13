@@ -313,3 +313,53 @@ $("#status_password").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });
+
+
+$('#btn_background_white').on('click', function(){
+    $('body').removeClass();
+    $.ajax({
+        url: '/update_background/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            background : "white"
+        }),
+        contentType: "application/json",
+        success: function (data) {
+        },
+        error: function (error) {
+        }
+    });
+});
+
+$('#btn_background_dots').on('click', function(){
+    $('body').removeClass().addClass('background_dots');
+    $.ajax({
+        url: '/update_background/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            background : "dots"
+        }),
+        contentType: "application/json",
+        success: function (data) {
+        },
+        error: function (error) {
+        }
+    });
+});
+
+$('#btn_background_grid').on('click', function(){
+    $('body').removeClass().addClass('background_grid');
+    $.ajax({
+        url: '/update_background/' + pageID + '/' + user_id,
+        type: "POST",
+        data: JSON.stringify({
+            background : "grid"
+        }),
+        contentType: "application/json",
+        success: function (data) {
+        },
+        error: function (error) {
+        }
+    });
+});
+

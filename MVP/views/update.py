@@ -85,7 +85,7 @@ def send_all_down(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("send all down", "yoyoyoyo")
+        print("send all down",)
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
@@ -100,8 +100,8 @@ def send_all_down(pageID, user_id):
         # Find all matching nodes using XPath
         ids = root.xpath(xpath_expression)
 
-        print("here are the ids")
-        print(ids)
+        #print("here are the ids")
+        #print(ids)
 
         for id in ids :
 
@@ -110,9 +110,9 @@ def send_all_down(pageID, user_id):
             xpath_expression = "/canvas/notes/note[@id='" + id + "']/y/text()"
             text_value = tree.xpath(xpath_expression)
 
-            old_y = int(text_value[0])
+            old_y = float(text_value[0])
             new_y = str(old_y + 40)
-            print(old_y, new_y)
+            #print(old_y, new_y)
 
             tree.xpath("/canvas/notes/note[@id='" + id + "']/y")[0].text = new_y
 
@@ -225,3 +225,36 @@ def update_page_status(pageID, user_id):
 
         return 'yo'
 
+@application.route("/update_background/<pageID>/<user_id>", methods=['POST'])
+@user_required()
+def update_background(pageID, user_id):
+
+    if str(current_user.id) == user_id:
+
+        request_data = request.get_json()
+        background = str(request_data.get('background'))
+
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
+
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
+
+        background_element = root.find('.//background')
+        print(background_element)
+        if background_element is not None :
+            print("already a background tab")
+            background_element.text = background
+        else :
+            meta_element = root.find(".//meta")
+            if meta_element is not None:
+                # Add a <background> element inside the <meta> element
+                background_element = etree.SubElement(meta_element, "background")
+                background_element.text = background
+
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+
+        return 'yo'
+    return 'yo'

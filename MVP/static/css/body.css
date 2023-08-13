@@ -11,6 +11,30 @@
 }
 
 
+.background_dots {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Adjust the number of columns as needed */
+    grid-template-rows: repeat(10, 1fr); /* Adjust the number of rows as needed */
+    gap: 5px; /* Adjust the gap between grid cells */
+    width: 80%; /* Adjust the width of the grid container */
+    height: 80%; /* Adjust the height of the grid container */
+    background-image: linear-gradient(to right, transparent 1px, white 1px), linear-gradient(to bottom, #64abab 1px, white 1px);
+    background-size: 20px 20px; /* Adjust the size of grid cells */
+    z-index: -20;
+}
+
+
+.background_grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 5px;
+    width: 80%;
+    height: 80%;
+    background-image: linear-gradient(to right, #e6f1f2 1px, transparent 1px), linear-gradient(to bottom, #e6f1f2 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -20;
+}
 
 
 /*

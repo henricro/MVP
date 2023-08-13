@@ -12,7 +12,7 @@ $(document).bind('mousedown.multipleSelect', function(){
     $('body').append(selectBox);
     var selectBox = $('#selectBox');
 
-    if (event.target.nodeName === 'HTML'){
+    if ($(event.target).is("html") || $(event.target).is("body")) {
         createSelect();
     }
 

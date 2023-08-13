@@ -81,3 +81,18 @@
     background-color : rgb(186, 222, 219, 0.7 );
 }
 
+#tdb_background {
+    margin-top: 10px;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content : flex-start;
+}
+
+.background_btn {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+

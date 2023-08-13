@@ -213,7 +213,7 @@ function refreshPage(pageID, user_id, current_y) {
 $(document).bind('contextmenu.newPage', function(event) {
 
     event.preventDefault();
-    if ($(event.target).is("html")) {
+    if ($(event.target).is("html") || $(event.target).is("body")) {
 
         new_x = event.pageX;
         new_y = event.pageY;
@@ -379,3 +379,13 @@ $("#minusZoom").on('mouseout', function() {
     follower.hide();
 });
 
+if (xmlDoc.getElementsByTagName("background")){
+    var background = xmlDoc.getElementsByTagName("background")[0].textContent;
+}
+
+if (background == "grid") {
+    $('body').addClass("background_grid")
+}
+if (background == "dots") {
+    $('body').addClass("background_dots")
+}
