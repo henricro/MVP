@@ -38,11 +38,15 @@ function buildToDoList(tdl_div) {
 
 // add to-do when click on + sign
 $(".plus-to-do").on('click', function() {
+
     li = $('<li>').addClass("to-do").append("do this");
     icon = $("<i>").addClass("icon");
     li.append(icon);
     ul = $(this).parent().find('ul');
     ul.append(li);
+
+    writeToDoList($(this).closest('.to-do-list'));
+
 });
 
 
@@ -67,12 +71,6 @@ $('.ongoing .icon').on('click.done', function() {
     this.parent().dispatchEvent(clickEvent);
 });
 */
-
-$('.to-do-list-list').on('click', '.icon', function() {
-    console.log("ijdjijd");
-});
-
-
 
 
 $('.to-do-list-list').on('click', '.icon', function() {
