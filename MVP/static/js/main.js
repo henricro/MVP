@@ -361,3 +361,21 @@ $("#pageRC_4").on('mouseout', function() {
     follower.hide();
 });
 
+$("#plusZoom").on('mouseover', function() {
+    follower.html("zoom in");
+    follower.show();
+});
+$("#plusZoom").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#minusZoom").on('mouseover', function() {
+    follower.html("zoom out");
+    follower.show();
+});
+$("#minusZoom").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+

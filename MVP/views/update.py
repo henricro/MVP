@@ -137,7 +137,7 @@ def update_content(pageID, user_id):
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
-    tree.xpath("/canvas/notes/note[@id='" + _id + "']")[0].text = content
+    tree.xpath("/canvas/notes/note[@id='" + _id + "']/content")[0].text = content
 
     f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
     f.write(etree.tostring(root, pretty_print=True))

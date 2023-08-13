@@ -124,7 +124,8 @@ function selectNote(note){
 
     // SECOND CLICK
     note.on('click.write', function(){
-        $(document).off('keyup.delete')
+        $(document).off('keyup.delete');
+        event.stopPropagation();
         writeNote($(this));
     });
 
@@ -186,6 +187,7 @@ function writeNote(note){
             content = note.html();
             $(document).off('click.update_content');
             id = note.attr('id')
+            console.log("clicked outside of note ", content);
 
             if (content == "") {
                 current_y = document.documentElement.scrollTop;
