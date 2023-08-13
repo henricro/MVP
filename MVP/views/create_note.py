@@ -60,7 +60,7 @@ def generate_message():
     options = [
         "new content",
         "you live and you learn",
-        "you become what you think about",
+        "boop bidi boop",
         "only those who try fail"
     ]
 
