@@ -1,0 +1,14 @@
+#font-size-container {
+    position: absolute;
+    display: none;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index : 20;
+    background-color: white;
+}
+
+#font-size-range {
+    width: 50px;
+    transform: rotate(-90deg); /* Rotate the slider 180 degrees */
+}
+

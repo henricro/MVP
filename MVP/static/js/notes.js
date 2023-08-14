@@ -284,23 +284,36 @@ $(".note").on('contextmenu', function(event) {
         $("#noteStyleBox").css("top", new_y);
         $("#noteStyleBox").css("display", "flex");
 
+        oldColorValue = note.css("color");
+        oldFontStyleValue = note.css('font-style');
+        oldFontSizeValue = note.css('font-size');
+        oldTextDecorationValue = note.css('text-decoration');
+
         // click outside note StyleBox
         $(document).on('click', function(event){
             console.log("dzuhudzh");
-            if (!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0){
+            if ((!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
+                (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
 
-                console.log("xouxou");
+                colorValue = note.css("color") !== oldColorValue ? note.css('color') : "same";
+                fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
+                textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
+                fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
 
                 // remove the choice Box
                 $("#noteStyleBox").css("display", "none");
+                $("#font-size-container").css("display", "none");
 
                 // send the new css
                 css = note.attr("style");
                 $.ajax({
-                    url: '/add_css/' + pageID + '/' + user_id,
+                    url: '/add_css_note/' + pageID + '/' + user_id,
                     type: "POST",
                     data: JSON.stringify({
-                        css : css,
+                        color : colorValue,
+                        fontSize : fontSizeValue,
+                        fontStyle : fontStyleValue,
+                        textDecoration : textDecorationValue,
                         id : id,
                         type: "regular"
                     }),
@@ -316,66 +329,66 @@ $(".note").on('contextmenu', function(event) {
             }
         });
 
-
+        // update font size
         $('#noteStyleBox_1').on('click', function() {
+
+            console.log("console log");
+            var fontSizeRange = $("#font-size-range");
+            var fontSizeDisplay = $("#font-size-display");
+            console.log(fontSizeRange);
+            console.log(fontSizeDisplay);
+            console.log(new_x);
+            console.log(new_y);
+            //var sampleText = $("#sample-text");
+
+            $('#font-size-container').css("left", new_x - 80 + "px");
+            $('#font-size-container').css("top", new_y + 10 + "px");
+            $('#font-size-container').css("display", "flex");
+
+            fontSizeRange.on("input", updateFontSize);
+
+            function updateFontSize() {
+                var fontSize = fontSizeRange.val();
+                console.log("update fontsize");
+                console.log("ehhe", fontSizeRange);
+                console.log(fontSize);
+                fontSizeDisplay.html(fontSize) ;
+                note.css('font-size', fontSize + "px");
+            }
+
         });
 
+        // update underline
         $('#noteStyleBox_3').on('click', function() {
             underline = (note.css('text-decoration').includes('underline'));
-            if (underline) {
-                console.log("underline already")
-                note.css('text-decoration','none');
-            } else {
-                console.log("not underlined");
-                note.css('text-decoration','underline');
-            }
+            note.css('text-decoration', underline ? 'none' : 'underline');
         });
 
+        // update text-decoration
         $('#noteStyleBox_4').on('click', function() {
             linethrough = (note.css('text-decoration').includes('line-through'));
-            if (linethrough) {
-                console.log("line through already");
-                note.css('text-decoration','none');
-            } else {
-                console.log("not line through");
-                note.css('text-decoration','line-through');
-            }
+            note.css('text-decoration', linethrough ? 'none' : 'line-through');
         });
 
-        $('#noteStyleBox_5').on('click.copyNote', function() {
+        //update italic
+        $('#noteStyleBox_5').on('click', function() {
             italic = (note.css('font-style') === 'italic');
-            console.log(italic);
             note.css('font-style', italic ? 'normal' : 'italic');
         });
 
-        $('#noteStyleBox_6').bind('click', function() {
+
+        /*$('#noteStyleBox_6').bind('click', function() {
 
             css = note.attr("style");
-            if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
+            if (css){var value = prompt("CSS");} else {var value = prompt("CSS", "");}
             if (value == null) {} else {
 
-                $.ajax({
-                    url: '/add_css/' + pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        css : value,
-                        id : id,
-                        type: "regular"
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        current_y = document.documentElement.scrollTop;
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    },
-                    error: function (error) {
-                        current_y = document.documentElement.scrollTop;
-                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                    }
-                });
+                new_css.push(value);
 
             }
 
-        });
+        });*/
+
 
 
 
