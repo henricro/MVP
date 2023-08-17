@@ -45,9 +45,9 @@ function buildNote(note) {
 /////////////    CREATE NEW NOTE   ////////////////////
 ///////////////////////////////////////////////////////
 
-$('*:not("div")').dblclick(function(){
+$(document).dblclick(function(){
 
-    if (event.target.nodeName === 'HTML'){
+    if ($(event.target).is("html") || $(event.target).is("body")) {
         x = event.pageX.toString();
         y = event.pageY.toString();
 
