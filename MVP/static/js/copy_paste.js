@@ -100,11 +100,11 @@ $(document).on('paste', function(e) {
             y = "500";
         }
 
-        //console.log("pasted youtube video");
-        //console.log(data);
+        console.log("pasted youtube video");
+        console.log(data);
 
         $.ajax({
-            url: '/youtube/'+pageID + '/' + user_id,
+            url: '/youtube/' + pageID + '/' + user_id,
             type: "POST",
             data: JSON.stringify({
                 data: data,
@@ -113,15 +113,11 @@ $(document).on('paste', function(e) {
             }),
             contentType: "application/json",
             success: function (data) {
-                //console.log(data);
                 current_y = document.documentElement.scrollTop;
-                console.log("current y :", current_y);
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             },
             error: function (error) {
-                //console.log("problem");
                 current_y = document.documentElement.scrollTop;
-                console.log("current y :", current_y);
                 window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
             }
         });

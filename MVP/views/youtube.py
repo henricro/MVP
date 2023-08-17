@@ -37,13 +37,13 @@ def youtube(pageID, user_id):
             if "&" in youtube_link:
                 youtube_link = youtube_link.split("&", 1)[0]
 
-            print("youtube link : ", youtube_link, "yoyoyoyo")
+            print("youtube link : ", youtube_link)
 
             youtube_id = youtube_link.split("v=",1)[1]
-            print("youtube_id : ", youtube_id, "yoyoyoyo")
+            print("youtube_id : ", youtube_id)
 
             youtube_thumbnail = "http://img.youtube.com/vi/" + youtube_id + "/0.jpg"
-            print("youtube_thumbnail : ", youtube_thumbnail, "yoyoyoyo")
+            print("youtube_thumbnail : ", youtube_thumbnail)
 
         elif "youtu.be" in youtube_link :
 
@@ -61,18 +61,6 @@ def youtube(pageID, user_id):
         output = open(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + youtube_image ,"wb")
         output.write(resource.read())
         output.close()
-
-        ### keep the information that this file is in this page in the 'tags' many to many SQL table
-
-        engine.execute("insert into Images (name, type) VALUES ( %(name)s, %(type)s )",
-                       {'name': youtube_image, 'type': "jpg"})
-
-        image_id = engine.execute("SELECT id FROM Images ORDER BY id DESC LIMIT 1").fetchone()[0]
-        print("image_id", "yoyoyoyo")
-        print(image_id, "yoyoyoyo")
-
-    #    engine.execute("insert into pages_images (page_id, image_id) VALUES ( %(page_id)s, %(image_id)s )",
-    #                   {'page_id': pageID, 'image_id': image_id})
 
         ### add a note in the XML with the x, y positions and the name of the file
 
@@ -100,10 +88,9 @@ def youtube(pageID, user_id):
         new_note.set("class", "imageLink")
         etree.SubElement(new_note, "x").text = x
         etree.SubElement(new_note, "y").text = y
-        etree.SubElement(new_note, "width").text = "300"
-        etree.SubElement(new_note, "height").text = "200"
+        etree.SubElement(new_note, "width").text = "200"
+        etree.SubElement(new_note, "height").text = "132"
         etree.SubElement(new_note, "name").text = str(youtube_image)
-        etree.SubElement(new_note, "image_id").text = str(image_id)
         etree.SubElement(new_note, "link").text = youtube_link
 
 
