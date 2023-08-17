@@ -13,6 +13,20 @@ function styleSelect(note) {
         note.css({"text-decoration" : "underline"});
         note.css({"text-decoration-color" : "green"});
     }
+    if (note_class == "noteLink") {
+        noteLink_link = note.find('.noteLink_link');
+        noteLink_link.show();
+        noteLink_link.css("opacity", 1);
+        noteLink_link.css("font-size", "20px");
+        content = note.find('.noteLink_content');
+        content.css("opacity", 0.15);
+        favicon = note.find('.noteLink_favicon');
+        favicon.css("opacity", 1);
+        favicon.css("width", "40px");
+        favicon.css("height", "40px");
+        favicon.css("bottom", "32px");
+        favicon.css("right", "-32px");
+    }
     if (note_class == "imagePageLink") {
         note.find(".imagePageLink_name").css({"text-decoration" : "underline"});
         note.find(".imagePageLink_name").css({"text-decoration-color" : "green"});
@@ -56,6 +70,17 @@ function styleDefault(note) {
 
     if (note_class == "pageLink") {
         note.css({"text-decoration" : "none"});
+    }
+    if (note_class == "noteLink") {
+        noteLink_link.css("opacity", 0);
+        noteLink_link.css("font-size", "15px");
+        favicon.css("opacity", 0.7);
+        favicon.css("width", "23px");
+        favicon.css("height", "23px");
+        favicon.css("bottom", "-7px");
+        favicon.css("right", "-10px");
+        content.css("opacity", 1);
+        note.css({"cursor":""});
     }
     if (note_class == "pageLink") {
         note.find("pageLink_name").css({"text-decoration" : "none"});

@@ -64,40 +64,26 @@ function buildNoteLink(note) {
 ///////////////////////////////////////////////////////
 
 $('.noteLink').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).bind('click.selectNoteLink', function(){
         selectNoteLink($(this));
     });
 });
 
 function selectNoteLink(note){
 
-    note.css({"border-color":"green"});
-
     link = note.attr("link");
+    styleSelect(note);
 
-    var noteLink_link = note.find('.noteLink_link');
-
-    noteLink_link.show();
-    noteLink_link.css("opacity", 1);
-    noteLink_link.css("font-size", "20px");
-
-    var content = note.find('.noteLink_content');
-    content.css("opacity", 0.15);
-
-    var favicon = note.find('.noteLink_favicon');
-    console.log("favicon : ", favicon);
-    favicon.css("opacity", 1);
-    favicon.css("width", "40px");
-    favicon.css("height", "40px");
-    favicon.css("bottom", "32px");
-    favicon.css("right", "-32px");
+    // COPY THE NOTE
+    $(document).on('copy', function() {
+        copyNote(note);
+    });
 
     // DELETE NOTE
     $(document).bind('keyup.delete', function(){
         if (event.keyCode == 8){
 
             id = note.attr("id");
-
             $.ajax({
                 url: '/delete_note/' + pageID + '/' + user_id,
                 type: "POST",
@@ -115,105 +101,27 @@ function selectNoteLink(note){
                 }
             });
         }
-
     });
 
-    note.unbind('mousedown.drag');
-    note.unbind('click.select');
+    note.off('click.selectNoteLink');
 
     // SECOND CLICK
     note.bind('click.gotolink', function(){
-
         $(document).unbind('keyup.delete');
-        console.log(link);
         window.open(link, '_blank');
-
     });
 
-    $(document).bind('contextmenu', function(event) {
+    $(document).on('click.outsideNoteLink contextmenu.outsideNoteLink', function(){
+        if (!note.is(event.target) && !note.has(event.target).length > 0){
 
-        event.preventDefault();
-
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            noteLink_link.css("opacity", 0);
-            noteLink_link.css("font-size", "15px");
-
-            content.css("opacity", 1);
-
-            note.css({"border-color":""});
-
-            note.css({"cursor":""});
-
-            note.unbind('copy');
-
-            $(document).unbind('keyup.delete');
-
-            note.unbind('click.gotolink');
-
-            note.bind('click.select', function(){
+            styleDefault(note);
+            $(document).off('keyup.delete');
+            $(document).off('copy');
+            note.off('click.gotolink');
+            note.on('click.selectNoteLink', function(){
                 selectNoteLink($(this));
             });
-
-            note.bind('mousedown.drag', function(){
-
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-
-                dragNote(note, noteX, noteY);
-
-            });
-
-        }
-
-    });
-
-    $(document).bind('click.outsideNoteLink', function(){
-
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            noteLink_link.css("opacity", 0);
-            noteLink_link.css("font-size", "15px");
-
-            console.log("what up ?");
-            favicon.css("opacity", 0.7);
-            favicon.css("width", "23px");
-            favicon.css("height", "23px");
-            favicon.css("bottom", "-7px");
-            favicon.css("right", "-10px");
-
-            content.css("opacity", 1);
-
-            note.css({"border-color":""});
-
-            note.css({"cursor":""});
-
-            note.unbind('copy');
-
-            $(document).unbind('keyup.delete');
-
-            note.unbind('click.gotolink');
-
-            note.bind('click.select', function(){
-                selectNoteLink($(this));
-            });
-
-            note.bind('mousedown.drag', function(){
-
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-
-                dragNote(note, noteX, noteY);
-
-            });
-
-            $(document).unbind('click.outsideNoteLink');
+            $(document).off('click.outsideNoteLink contextmenu.oustidNoteLink');
 
         }
     });

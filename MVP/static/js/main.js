@@ -116,9 +116,9 @@ function buildNotes() {
 //////  KEEP INFO OF LAST PLACE USER CLICKED //////////
 ///////////////////////////////////////////////////////
 
-$(document).bind('click', function(){
+$(document).on('click.lastPosition', function(){
 
-    if (event.target.nodeName === 'HTML'){
+    if ($(event.target).is("html") || $(event.target).is("body")) {
 
         x = event.pageX.toString();
         y = event.pageY.toString();

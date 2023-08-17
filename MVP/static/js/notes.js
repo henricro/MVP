@@ -129,10 +129,9 @@ function selectNote(note){
         writeNote($(this));
     });
 
-
     $(document).on('click.outsideNote contextmenu.outsideNote', function(){
         if (!note.is(event.target)){
-            console.log("mumumumi");
+
             styleDefault(note);
             $(document).off('keyup.delete');
             note.off('click.write');
