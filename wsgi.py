@@ -1,5 +1,5 @@
 from MVP import application
 
 if __name__ == "__main__":
-    application.run(debug=True, host='192.168.1.69', port=1234)
+    application.run(debug=True, host='0.0.0.0', port=1234)
 
