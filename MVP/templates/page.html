@@ -7,6 +7,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
+    <link rel="icon" href="/static/images/icons/favicon.png" type="image/png">
+
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/body.css">
     <link rel="stylesheet" type="text/css" href="/static/css/title.css">
@@ -151,7 +153,7 @@
 
 <div id="font-size-container">
     <span id="font-size-display">14px</span>
-    <input type="range" id="font-size-range" class="vertical-range" min="10" max="100" step="0.5" value="14">
+    <input type="range" id="font-size-range" class="vertical-range" min="10" max="100" step="1" value="14">
 </div>
 
 <div class="popup" id="popup">Popup Content</div>
@@ -264,7 +266,13 @@
 <div id="pageLinkRCBox" class="choiceBoxHoriz">
     <img id="pageLinkRC_1" class="buttonIcon" src="/static/images/icons/picture.png" style="height: 100%;"/>
     <img id="pageLinkRC_2" class="buttonIcon" src="/static/images/icons/draw.png" style="height: 100%;"/>
-    <img id="pageLinkRC_3" class="buttonIcon" src="/static/images/icons/canva.png" style="height: 100%;"/>
+</div>
+
+<div id="pageLinkStyleBox" class="choiceBoxHoriz">
+    <img id="pageLinkStyleBox_1" class="buttonIcon" src="/static/images/icons/text-size.png" style="height: 100%;"/>
+    <div id="pageLinkStyleBox_2"></div>
+    <div id="pageLinkStyleBox_3"></div>
+    <img id="pageLinkStyleBox_4" class="buttonIcon" src="/static/images/icons/italic.png" style="height: 100%;"/>
 </div>
 
 <div id="imagePageLinkRCBox" class="choiceBoxHoriz">
@@ -334,6 +342,8 @@ var page_share_status = '{{page_share_status|safe}}';
     <script type="text/javascript" src="/static/js/resize.js" ></script>
     <script type="text/javascript" src="/static/js/style.js" ></script>
     <script type="text/javascript" src="/static/js/color.js" ></script>
+    <script type="text/javascript" src="/static/js/viewport.js" ></script>
+
 
     <script>
         $(window).scrollTop(y_position);

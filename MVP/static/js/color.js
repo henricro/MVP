@@ -1,35 +1,11 @@
-var pickr = Pickr.create({
-
-    el: '#noteStyleBox_2',
-    theme: 'nano', // You can choose different themes
-    comparison: false,
-
-    components: {
-        preview: true,
-        opacity: true,
-        hue: true,
-        interaction: {
-          input: true,
-          clear: true,
-          save: true
-        }
-    }
-
+$("#pickr").on('mouseover', function() {
+    follower.html("color");
+    follower.show();
 });
-
-// Attach event listeners
-pickr.on('change', (color) => {
-
-    const hexColor = color.toHEXA().toString();
-    console.log('Selected color:', hexColor);
-    var css = "color : " + hexColor + ";";
-    console.log(idToColor);
-    console.log(hexColor);
-    note_to_color = $("#" + idToColor).css("color", hexColor);
-
+$("#pickr").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
 });
-
-
 
 $(".pickr").attr("id", "pickr");
 

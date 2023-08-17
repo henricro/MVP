@@ -1,14 +1,19 @@
 #font-size-container {
     position: absolute;
     display: none;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
     z-index : 20;
-    background-color: white;
+    background-color: transparent;
 }
 
 #font-size-range {
-    width: 50px;
+    width: 130px;
     transform: rotate(-90deg); /* Rotate the slider 180 degrees */
 }
 
+#font-size-display {
+    align-self: flex-start;
+    font-size: 20px;
+}

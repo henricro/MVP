@@ -49,21 +49,13 @@ $('.pageLink').each(function(){
         selectPageLink($(this));
     });
 });
-/*
-function styleClickPageLink(note){
-    note.css({"border-color":"rgb(96, 168, 53) rgb(246, 140, 87) rgb(246, 140, 87) rgb(96, 168, 53)"});
-    note.css({"text-decoration": "underline"});
-    note.css({"text-decoration-color": "#F68C57"});
-    note.css({"cursor":"pointer"});
-}
 
-function defaultStylePageLink(note){
-    note.css({"border-color":"rgb(200, 240, 149, 0.3) rgb(246, 140, 87) rgb(246, 140, 87) rgb(200, 240, 149, 0.3)"});
-    note.css({"text-decoration": ""});
-    note.css({"cursor":"default"});
-}
-*/
+
 function selectPageLink(note){
+
+    event.stopPropagation();
+    id = note.attr("id");
+    pageLinkID= note.attr("pageID");
 
     // COPY THE NOTE
     note.on('copy', function() {
@@ -71,8 +63,6 @@ function selectPageLink(note){
     });
 
     styleSelect(note);
-
-    pageLinkID= note.attr("pageID");
 
     // DELETE NOTE
     $(document).on('keyup.delete', function(){
@@ -98,7 +88,7 @@ function selectPageLink(note){
         }
     });
 
-    note.off('click.select');
+    note.off('click.selectPageLink');
 
     // second click : go to page
     note.on('click.gotopage', function(){
@@ -107,18 +97,19 @@ function selectPageLink(note){
     });
 
     // if click outside pageLink
-    $(document).on('click', function(){
-        if (!note.is(event.target) && note.has(event.target).length === 0){
+    $(document).on('click.outsidePageLink contextmenu.outsidePageLink', function(){
+        if (!note.is(event.target) && !note.has(event.target).length > 0){
 
             styleDefault(note);
+            $(document).off('copy');
+            $(document).off('keyup.delete');
+            note.off('click.gotopage');
 
-            note.unbind('copy');
-            $(document).unbind('keyup.delete');
-            note.unbind('click.gotopage');
-
-            note.bind('click.select', function(){
+            note.on('click.selectPageLink', function(){
                 selectPageLink($(this));
             });
+            $(document).off('click.outsidePageLink', 'contextmenu.outsidePageLink');
+
         }
     });
 }
@@ -130,24 +121,22 @@ function selectPageLink(note){
 /////////////////////////////////////////////
 
 
-$(".pageLink").bind('contextmenu', function(event) {
+$(".pageLink").on('contextmenu', function(event) {
 
     event.preventDefault();
-
     new_x = event.pageX;
     new_y = event.pageY;
 
     note = $(this);
     id = note.attr("id");
     link = note.attr("link");
-    css = note.attr("added_css");
 
     $("#pageLinkRCBox").css("left", new_x);
     $("#pageLinkRCBox").css("top", new_y);
     $("#pageLinkRCBox").show();
 
     $(document).click(function(){
-        if (!$("#pageLinkRCBox").is(event.target) && $("#pageLinkRCBox").has(event.target).length === 0){
+        if (!$("#pageLinkRCBox").is(event.target) && !$("#pageLinkRCBox").has(event.target).length > 0){
             $("#pageLinkRCBox").hide();
         }
     });
@@ -169,49 +158,170 @@ $(".pageLink").bind('contextmenu', function(event) {
 
     });
 
-    // Style
-    $('#pageLinkRC_2').bind('click', function() {
+    // style note
+    $('#pageLinkRC_2').on('click', function(event) {
 
-        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
-        if (value != null) {
+        event.stopPropagation();
+        idToColor = id;
 
-            $.ajax({
-                url: '/add_css/'+pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id,
-                    type: "regular"
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    //console.log(data);
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    console.log("problem");
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
+        $("#pageLinkRCBox").css("display", "none");
 
-        }
-    });
+        event.preventDefault();
+        new_x = event.pageX;
+        new_y = event.pageY;
 
-    // Style
-    $('#pageLinkRC_3').bind('click', function() {
-        window.open("https://www.canva.com", '_blank');
+        $("#pageLinkStyleBox").css("left", new_x);
+        $("#pageLinkStyleBox").css("top", new_y);
+        $("#pageLinkStyleBox").css("display", "flex");
+
+        oldColorValue = note.css("color");
+        oldBackgroundColorValue = note.css('background-color');
+        oldFontStyleValue = note.css('font-style');
+        oldFontSizeValue = note.css('font-size');
+
+        // click outside note StyleBox
+        $(document).on('click.sendCss', function(event){
+            event.stopPropagation();
+            if ((!$(event.target).closest('#pageLinkStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
+                (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
+
+                $(document).off('click.sendCss');
+
+                colorValue = note.css("color") !== oldColorValue ? note.css('color') : "same";
+                backgroundColorValue = note.css("background-color") !== oldBackgroundColorValue ? note.css('background-color') : "same";
+                fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
+                fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
+
+                console.log(colorValue, backgroundColorValue, fontSizeValue, fontStyleValue);
+
+                // remove the choice Box
+                $("#pageLinkStyleBox").css("display", "none");
+                $("#font-size-container").css("display", "none");
+
+                // send the new css
+                css = note.attr("style");
+                $.ajax({
+                    url: '/add_css_pageLink/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        color : colorValue,
+                        backgroundColor : backgroundColorValue,
+                        fontSize : fontSizeValue,
+                        fontStyle : fontStyleValue,
+                        id : id,
+                        type: "regular"
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        current_y = document.documentElement.scrollTop;
+                    },
+                    error: function (error) {
+                        current_y = document.documentElement.scrollTop;
+                    }
+                });
+
+            }
+        });
+
+        // update font size
+        $('#pageLinkStyleBox_1').on('click', function() {
+
+            console.log("console log");
+            var fontSizeRange = $("#font-size-range");
+            var fontSizeDisplay = $("#font-size-display");
+            console.log(fontSizeRange);
+            console.log(fontSizeDisplay);
+            console.log(new_x);
+            console.log(new_y);
+            //var sampleText = $("#sample-text");
+
+            $('#font-size-container').css("left", new_x - 80 + "px");
+            $('#font-size-container').css("top", new_y + 10 + "px");
+            $('#font-size-container').css("display", "flex");
+
+            fontSizeRange.on("input", updateFontSize);
+
+            function updateFontSize() {
+                var fontSize = fontSizeRange.val();
+                console.log("update fontsize");
+                console.log("ehhe", fontSizeRange);
+                console.log(fontSize);
+                fontSizeDisplay.html(fontSize) ;
+                note.css('font-size', fontSize + "px");
+            }
+
+        });
+
+        //update italic
+        $('#pageLinkStyleBox_4').on('click', function() {
+            italic = (note.css('font-style') === 'italic');
+            note.css('font-style', italic ? 'normal' : 'italic');
+        });
+
     });
 
 });
 
 
-$("#plusSign").bind("click", function(){
+var pickrPageLink = Pickr.create({
 
-    //console.log("forever young");
+    el: '#pageLinkStyleBox_2',
+    theme: 'nano', // You can choose different themes
+    comparison: false,
+
+    components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+        interaction: {
+          input: true,
+          clear: true,
+          save: true
+        }
+    }
+
+});
+
+// Attach event listeners
+pickrPageLink.on('change', (color) => {
+
+    const hexColor = color.toHEXA().toString();
+    console.log('Selected color:', hexColor);
+    note_to_color = $("#" + idToColor).css("color", hexColor);
+
+});
+
+var pickrPageLink2 = Pickr.create({
+
+    el: '#pageLinkStyleBox_3',
+    theme: 'nano', // You can choose different themes
+    comparison: false,
+
+    components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+        interaction: {
+          input: true,
+          clear: true,
+          save: true
+        }
+    }
+
+});
+
+// Attach event listeners
+pickrPageLink2.on('change', (color) => {
+
+    const hexColor = color.toHEXA().toString();
+    console.log('Selected color:', hexColor);
+    note_to_color = $("#" + idToColor).css("background-color", hexColor);
+
+});
+
+
+
+$("#plusSign").bind("click", function(){
 
     new_x = event.pageX;
     new_y = event.pageY;
@@ -247,7 +357,7 @@ $("#pageLinkRC_1").on('mouseout', function() {
 });
 
 $("#pageLinkRC_2").on('mouseover', function() {
-    follower.html("style title");
+    follower.html("style");
     follower.show();
 });
 $("#pageLinkRC_2").on('mouseout', function() {
@@ -263,3 +373,7 @@ $("#pageLinkRC_3").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });
+
+
+
+

@@ -192,9 +192,122 @@ def add_css_note(pageID, user_id):
         f.close()
         return "yo"
 
-## add css to the text of an imagePageLink
+
+@application.route("/add_css_pageLink/<pageID>/<user_id>", methods=['POST'])
+@user_required()
+def add_css_pageLink(pageID, user_id):
+
+    if str(current_user.id) == user_id:
+
+        print("route : add css to pageLink")
+
+        request_data = request.get_json()
+        id = str(request_data.get('id'))
+        type = str(request_data.get('type'))
+        color = str(request_data.get('color'))
+        backgroundColor = str(request_data.get('backgroundColor'))
+        fontSize = str(request_data.get('fontSize'))
+        fontStyle = str(request_data.get('fontStyle'))
+
+        print(id, type)
+        print(color, backgroundColor, fontStyle, fontSize)
+
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
+
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
+
+        note = root.find("notes").find("note[@id='" + id + "']")
+
+        print(note)
+        existing_css = note.find("css")
+
+        if existing_css is not None :
+            print('css already there ', existing_css.text)
+        else:
+            print('css not already there')
+            etree.SubElement(note, "css")
+            existing_css = note.find("css")
+            existing_css.text = ""
+
+        if not color == "same":
+
+            print("changing the color through Pickr")
+            pattern = r'[^-]color\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            css = " color : " + color + ";"
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already color in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no color already in css")
+                note.find("css").text = existing_css.text + css
+
+        if not backgroundColor == "same":
+
+            print("changing the background color through Pickr")
+            pattern = r'background-color\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            #print(match)
+            #print(bool(match))
+            css = "background-color : " + backgroundColor + ";"
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already background-color in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no background-color already in css")
+                note.find("css").text = existing_css.text + css
+
+        if not fontSize == "same":
+
+            print("changing the font size")
+            pattern = r'font-size\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            print(match)
+            print(bool(match))
+            css = "font-size : " + fontSize + ";"
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already font-size in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no font-size already in css")
+                note.find("css").text = existing_css.text + css
+
+        if not fontStyle == "same":
+
+            print("changing the font style")
+            pattern = r'font-style\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            print(match)
+            print(bool(match))
+            css = "font-style : " + fontStyle + ";"
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already font-style in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no font-style already in css")
+                note.find("css").text = existing_css.text + css
 
 
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
 
 
 

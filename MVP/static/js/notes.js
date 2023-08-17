@@ -129,24 +129,10 @@ function selectNote(note){
         writeNote($(this));
     });
 
-    $(document).on('contextmenu', function(event) {
 
-        event.preventDefault();
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
-            $(document).off('keyup.delete');
-            note.off('click.write');
-            note.on('click.selectNote', function(){
-                selectNote($(this));
-            });
-            $(document).off('copy');
-
-        }
-    });
-
-    $(document).on('click.outsideNote', function(){
-        if (!note.is(event.target) && note.has(event.target).length === 0){
-
+    $(document).on('click.outsideNote contextmenu.outsideNote', function(){
+        if (!note.is(event.target)){
+            console.log("mumumumi");
             styleDefault(note);
             $(document).off('keyup.delete');
             note.off('click.write');
@@ -154,7 +140,7 @@ function selectNote(note){
             note.on('click.selectNote', function(){
                 selectNote($(this));
             });
-            $(document).off('click.outsideNote');
+            $(document).off('click.outsideNote contextmenu.oustidNote');
 
         }
     });
@@ -253,7 +239,7 @@ $(".note").on('contextmenu', function(event) {
 
     // click outside
     $(document).click(function(){
-        if (!$("#noteRCBox").is(event.target) && $("#noteRCBox").has(event.target).length === 0){
+        if (!$("#noteRCBox").is(event.target) && !$("#noteRCBox").has(event.target).length > 0){
             $("#noteRCBox").css("display", "none");
         }
     });
@@ -271,8 +257,6 @@ $(".note").on('contextmenu', function(event) {
 
         event.stopPropagation();
         idToColor = id;
-
-        //styleDefault(note);
 
         $("#noteRCBox").css("display", "none");
 
@@ -295,6 +279,7 @@ $(".note").on('contextmenu', function(event) {
             if ((!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
                 (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
 
+                console.log("heeeyyyyy");
                 colorValue = note.css("color") !== oldColorValue ? note.css('color') : "same";
                 fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
                 textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
@@ -376,23 +361,38 @@ $(".note").on('contextmenu', function(event) {
             note.css('font-style', italic ? 'normal' : 'italic');
         });
 
-
-        /*$('#noteStyleBox_6').bind('click', function() {
-
-            css = note.attr("style");
-            if (css){var value = prompt("CSS");} else {var value = prompt("CSS", "");}
-            if (value == null) {} else {
-
-                new_css.push(value);
-
-            }
-
-        });*/
-
-
-
-
     });
+
+});
+
+var pickrNote = Pickr.create({
+
+    el: '#noteStyleBox_2',
+    theme: 'nano', // You can choose different themes
+    comparison: false,
+
+    components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+        interaction: {
+          input: true,
+          clear: true,
+          save: true
+        }
+    }
+
+});
+
+// Attach event listeners
+pickrNote.on('change', (color) => {
+
+    const hexColor = color.toHEXA().toString();
+    console.log('Selected color:', hexColor);
+    var css = "color : " + hexColor + ";";
+    console.log(idToColor);
+    console.log(hexColor);
+    note_to_color = $("#" + idToColor).css("color", hexColor);
 
 });
 
@@ -420,15 +420,6 @@ $("#noteStyleBox_1").on('mouseover', function() {
     follower.show();
 });
 $("#noteStyleBox_1").on('mouseout', function() {
-    follower.html("");
-    follower.hide();
-});
-
-$("#pickr").on('mouseover', function() {
-    follower.html("color");
-    follower.show();
-});
-$("#pickr").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });
