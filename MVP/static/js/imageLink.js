@@ -262,7 +262,7 @@ $(".imageLink").on('contextmenu', function(event) {
 
 
 $("#imageLinkRC_1").on('mouseover', function() {
-    follower.html("add a link");
+    follower.html("change the link");
     follower.show();
 });
 $("#imageLinkRC_1").on('mouseout', function() {

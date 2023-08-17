@@ -141,7 +141,6 @@ $(window).scrollTop(y_position);
 var follower = $('#follower');
 $("#follower").hide();
 
-
 let lastClickPosition = {};
 
 $(document).on('click', function(event) {
@@ -379,8 +378,8 @@ $("#minusZoom").on('mouseout', function() {
     follower.hide();
 });
 
-if (xmlDoc.getElementsByTagName("background")){
-    var background = xmlDoc.getElementsByTagName("background")[0].textContent;
+if (xmlDoc.getElementsByTagName("background")[0]){
+    var background = xmlDoc.getElementsByTagName("background")[0].nodeValue;
 }
 
 if (background == "grid") {
