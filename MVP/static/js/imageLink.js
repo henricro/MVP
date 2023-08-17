@@ -182,7 +182,7 @@ function selectImageLink(note){
 ////////////////////////////////////////////////////////
 
 
-$(".imageLink").bind('contextmenu', function(event) {
+$(".imageLink").on('contextmenu', function(event) {
 
     event.preventDefault();
 
@@ -208,7 +208,7 @@ $(".imageLink").bind('contextmenu', function(event) {
     });
 
     // Add Link
-    $('#imageLinkRC_1').bind('click', function() {
+    $('#imageLinkRC_1').on('click', function() {
 
         var value = prompt("Link", link);
 
@@ -222,15 +222,11 @@ $(".imageLink").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 },
                 error: function (error) {
-                    console.log("problem");
                     current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
                     window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
                 }
             });
@@ -240,13 +236,13 @@ $(".imageLink").bind('contextmenu', function(event) {
 
 
     //Change Image
-    $('#imageLinkRC_2').bind('click', function() {
+    $('#imageLinkRC_2').on('click', function() {
         modalImageLink.show();
         modalImageLink.find('.drop-area').attr("imageLink_id", id);
 
         // When the user clicks anywhere outside of the modal, close it
-        $(document).bind('click.first' , function() {
-           $(document).bind('click.second' , function() {
+        $(document).on('click.first' , function() {
+           $(document).on('click.second' , function() {
 
                if (event.target.classList.contains('drop-area')) {
                   //console.log('clicked the drop area');
@@ -261,46 +257,38 @@ $(".imageLink").bind('contextmenu', function(event) {
         });
     });
 
-    // Style
-    $('#imageLinkRC_3').bind('click', function() {
-        //console.log($(this));
-        if (css){
-            var value = prompt("CSS", css);
-        } else {
-            var value = prompt("CSS", "");
-        }
-
-        if (value != null) {
-
-            console.log("sending css");
-
-            $.ajax({
-                url: '/add_css/'+pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id,
-                    type : "regular"
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    console.log("problem");
-                    current_y = document.documentElement.scrollTop;
-                    console.log("current y :", current_y);
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-
-        }
-    });
 
 });
+
+
+$("#imageLinkRC_1").on('mouseover', function() {
+    follower.html("add a link");
+    follower.show();
+});
+$("#imageLinkRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#imageLinkRC_2").on('mouseover', function() {
+    follower.html("change image");
+    follower.show();
+});
+$("#imageLinkRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#imageLinkRC_3").on('mouseover', function() {
+    follower.html("download");
+    follower.show();
+});
+$("#imageLinkRC_3").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+
 
 /*
 

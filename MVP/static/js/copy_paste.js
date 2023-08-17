@@ -71,6 +71,47 @@ $(document).on('paste', function(e) {
         }
     }
 
+    if (e.originalEvent.clipboardData.files.length > 0) {
+        console.log("pasted a file");
+        pastedFile = e.originalEvent.clipboardData.files[0];
+        if (pastedFile.type.startsWith("image/")) {
+            console.log("file is an image");
+
+            var form_data = new FormData();
+            form_data.append('file', pastedFile);
+            form_data.append('x', x);
+            form_data.append('y', y);
+
+            if( $('#mouse_position').find('#x_pos').html() ){
+                x = $('#mouse_position').find('#x_pos').html();
+                y = $('#mouse_position').find('#y_pos').html();
+            } else {
+                x = "300";
+                y = "300";
+            }
+
+            $.ajax({
+                type: 'POST',
+                url:  '/upload_image/' + pageID + '/' + user_id,
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href= '/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                }
+            });
+
+        } else {
+
+        }
+    }
+
     if (data.includes("paste_note")) {
 
         data = data.split(", ")
@@ -159,7 +200,6 @@ $(document).on('paste', function(e) {
     }
 
 });
-
 
 
 function pasteNote(note_id, noteClass, originPageID, pageID) {

@@ -64,11 +64,12 @@ $('.image').each(function(){
 
 function selectImage(note){
 
+    note.off('click.selectImage');
+
     id = note.attr("id");
     orWidth = note.css("width");
     orHeight = note.css("height");
-    console.log(id, orWidth, orHeight);
-
+    //console.log(id, orWidth, orHeight);
 
     // COPY THE IMAGE
     $(document).on('copy', function() {
@@ -77,11 +78,8 @@ function selectImage(note){
 
     // change style after click
     styleSelect(note);
-    var image_img = note.find('.image_img');
     note.addClass("resizable");
-
     note.off('mousedown.drag');
-    note.off('click.selectImage');
 
     // DELETE NOTE
     $(document).on('keyup.delete', function(){
@@ -106,11 +104,9 @@ function selectImage(note){
         }
     });
 
-    console.log("id", id);
-
     // if click outside
     $(document).on('click.outsideImage', function(){
-        if (!note.is(event.target) && note.has(event.target).length === 0){
+        if (!note.is(event.target) && !note.has(event.target).length > 0){
 
             id = note.attr("id");
             width = note.css("width");
@@ -120,22 +116,18 @@ function selectImage(note){
                 saveSizes(id, width.slice(0,-2), height.slice(0,-2));
             }
 
-            styleDefault(note);
-
-            $(document).off('copy');
             note.removeClass("resizable");
+            styleDefault(note);
+            $(document).off('copy');
             $(document).off('keyup.delete');
             note.on('click.selectImage', function(){
                 selectImage($(this));
             });
-            note.on('mousedown.drag', function(){
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-                dragNote(note, noteX, noteY);
-            });
             $(document).off('click.outsideImage');
+
+            note.on('mousedown.drag', function(event){
+                dragNote($(this));
+            });
 
         }
     });
@@ -158,7 +150,7 @@ $(".image").on('contextmenu', function(event) {
     var note = $(this);
 
     id = note.attr("id");
-    css = $(this).attr("added_css");
+    src = $(this).find(".image_img").attr("src");
 
     $("#imageRCBox").css("left", new_x);
     $("#imageRCBox").css("top", new_y);
@@ -196,37 +188,26 @@ $(".image").on('contextmenu', function(event) {
 
     });
 
-    //Style
-    $('#imageRC_2').on('click.style', function() {
-
-        if (css){var value = prompt("CSS", css);} else {var value = prompt("CSS", "");}
-        if (value == null){} else {
-            console.log("added css");
-            $.ajax({
-                url: '/add_css/' + pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id,
-                    type: "regular"
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-        }
-    });
-
-    // Copy Image
+    //Change Image
     $('#imageRC_2').on('click', function() {
-        copyNote(note);
+        console.log("iejijeijeij");
+        $.ajax({
+            url: '/download_image',
+            type: "POST",
+            data: JSON.stringify({
+                src : src
+            }),
+            contentType: "application/json",
+            success: function (data) {
+                current_y = document.documentElement.scrollTop;
+            },
+            error: function (error) {
+                current_y = document.documentElement.scrollTop;
+            }
+        });
+
     });
+
 
 });
 
@@ -241,19 +222,10 @@ $("#imageRC_1").on('mouseout', function() {
 });
 
 $("#imageRC_2").on('mouseover', function() {
-    follower.html("style image");
-    follower.show();
-});
-$("#imageRC_2").on('mouseout', function() {
-    follower.html("");
-    follower.hide();
-});
-
-$("#imageRC_3").on('mouseover', function() {
     follower.html("download image");
     follower.show();
 });
-$("#imageRC_3").on('mouseout', function() {
+$("#imageRC_2").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });

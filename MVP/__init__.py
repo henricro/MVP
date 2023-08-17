@@ -125,5 +125,5 @@ def user_required():
 
 from MVP.views import create_note, delete_note, links, new_page, open_page, unload, update, upload_image, upload, login, celery_view, login, passwords, \
     add_image_to_pageLink, change_image_imagePageLink, change_image_imageLink, \
-    youtube, move_note, paste_note, add_css, lines, categories, sign_up, lists, to_do_lists, save_sizes
+    youtube, move_note, paste_note, add_css, lines, categories, sign_up, lists, to_do_lists, save_sizes, download
 

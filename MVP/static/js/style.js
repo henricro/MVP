@@ -67,6 +67,7 @@ function styleDefault(note) {
 
     note.css({"border-color" : "rgb(0, 0, 0, 0)"});
     note_class = note.attr("class");
+    console.log(note_class);
 
     if (note_class == "pageLink") {
         note.css({"text-decoration" : "none"});
@@ -86,6 +87,7 @@ function styleDefault(note) {
         note.find("pageLink_name").css({"text-decoration" : "none"});
     }
     if (note_class == "image") {
+        console.log("back to ;style default image")
         note.css({"border-width" : "0px"});
         note.find(".image_img").css({"opacity": "1"});
     }
