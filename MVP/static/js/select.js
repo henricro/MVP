@@ -110,6 +110,7 @@ function stopSelect() {
     // if selected no element
     if (selection.length == 0){
         $('#selectBox').remove();
+    // else
     } else {
 
         // if cmd + c --> copy selection
@@ -324,8 +325,8 @@ $(document).on("keydown", function(event) {
 
             });
 
-            // if drag selection
-            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.drag', function(event){
+            // drag all
+            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.dragAll', function(event){
                 if (event.which == 3) { console.log("right click"); } else {
 
                     $(document).unbind('keyup.delete');
@@ -342,10 +343,12 @@ $(document).on("keydown", function(event) {
 
             });
 
-            // if you click outside the box
+            // if you click outside of all
             $(document).bind('mousedown.outsideSelect1', function(){
 
-                if (!$("#selectBox").is(event.target) && $("#selectBox").has(event.target).length === 0){
+                $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").off('mousedown.dragAll');
+
+                if (!$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").is(event.target) && !$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").has(event.target).length > 0){
 
                     $("#selectBox").hide();
                     unSelect(selection);
