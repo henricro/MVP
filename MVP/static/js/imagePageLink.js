@@ -191,14 +191,17 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     link = $(this).attr("link");
     css_title = $(this).find(".imagePageLink_name").attr("style");
     css_image = $(this).find(".imagePageLink_img").attr("style");
+    iPl = $(this);
+    iPl_img = iPl.find('.imagePageLink_img');
+    iPl_name = iPl.find('.imagePageLink_name');
 
     $("#imagePageLinkRCBox").css("left", new_x);
     $("#imagePageLinkRCBox").css("top", new_y);
     $("#imagePageLinkRCBox").show();
 
-    // hide if click outside
-    $(document).click(function(){
-        if (!$("#imagePageLinkRCBox").is(event.target) && $("#imagePageLinkRCBox").has(event.target).length === 0){
+    // hide if clionck outside
+    $(document).on('click', function(event){
+        if (!$("#imagePageLinkRCBox").is(event.target) && !$("#imagePageLinkRCBox").has(event.target).length > 0){
             $("#imagePageLinkRCBox").hide();
         }
     });
@@ -223,57 +226,21 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     // Style title
     $('#imagePageLinkRC_3').bind('click', function() {
 
-        if (css_title){var value = prompt("CSS", css_title);} else {var value = prompt("CSS", "");}
-        if (value != null) {
-
-            $.ajax({
-                url: '/add_css_title_ipl/' + pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id,
-                    type: "regular"
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href= '/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href= '/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-
+        if (iPl.hasClass('style2_iPl')) {
+            console.log("there");
+            iPl.removeClass('style2_iPl');
+            iPl_name.removeClass('style2_iPl_name');
+            iPl_img.find('.imagePageLink_img').removeClass('style2_iPl_img');
+        } else {
+            console.log("here");
+            iPl.addClass('style2_iPl');
+            console.log(iPl_img, iPl_name);
+            iPl_name.addClass('style2_iPl_name');
+            iPl_img.addClass('style2_iPl_img');
         }
+
     });
 
-    $('#imagePageLinkRC_4').bind('click', function() {
-
-        if (css_image){var value = prompt("CSS", css_image);} else {var value = prompt("CSS", "");}
-        if (value != null) {
-
-            $.ajax({
-                url: '/add_css_image_ipl/'+pageID + '/' + user_id,
-                type: "POST",
-                data: JSON.stringify({
-                    css : value,
-                    id : id,
-                    type: "regular"
-                }),
-                contentType: "application/json",
-                success: function (data) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                },
-                error: function (error) {
-                    current_y = document.documentElement.scrollTop;
-                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                }
-            });
-
-        }
-    });
 });
 
 
@@ -291,6 +258,18 @@ $("#imagePageLinkRC_2").on('mouseover', function() {
 });
 
 $("#imagePageLinkRC_2").on('mouseout', function() {
+    console.log("out");
+    follower.html("");
+    follower.hide();
+});
+
+$("#imagePageLinkRC_3").on('mouseover', function() {
+    console.log("over");
+    follower.html("switch style");
+    follower.show();
+});
+
+$("#imagePageLinkRC_3").on('mouseout', function() {
     console.log("out");
     follower.html("");
     follower.hide();
