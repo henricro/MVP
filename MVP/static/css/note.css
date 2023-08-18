@@ -7,9 +7,9 @@
   border-color : rgb(0, 0, 0, 0);
   border-radius : 5px;
   text-align: left;
-  box-shadow: 0 0 5px rgb(0, 0, 0, 0.03);
   white-space: nowrap;
   background-color: white;
+  cursor: pointer;
 
 }
 
