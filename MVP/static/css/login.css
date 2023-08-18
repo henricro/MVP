@@ -78,8 +78,10 @@
 }
 
 #v1 {
-    width: 80%;
-    margin-top: 77px;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 300px;
     border: 1px solid rgb(170,170,170);
     padding: 10px;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.1);
