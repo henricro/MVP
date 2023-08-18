@@ -89,6 +89,7 @@ def add_css_note(pageID, user_id):
         fontSize = str(request_data.get('fontSize'))
         fontStyle = str(request_data.get('fontStyle'))
         textDecoration = str(request_data.get('textDecoration'))
+        textAlign = str(request_data.get('textAlign'))
 
         print(id, type)
         print(color, fontStyle, fontSize, textDecoration)
@@ -185,6 +186,23 @@ def add_css_note(pageID, user_id):
                 print("no text-decoration already in css")
                 note.find("css").text = existing_css.text + css
 
+        if not textAlign == "same":
+
+            print("changing the text-align")
+            pattern = r'text-align\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            print(match)
+            print(bool(match))
+            css = "text-align : " + textAlign + ";"
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already text-align in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no text-align already in css")
+                note.find("css").text = existing_css.text + css
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

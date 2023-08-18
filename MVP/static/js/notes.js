@@ -271,6 +271,7 @@ $(".note").on('contextmenu', function(event) {
         oldFontStyleValue = note.css('font-style');
         oldFontSizeValue = note.css('font-size');
         oldTextDecorationValue = note.css('text-decoration');
+        oldTextAlignValue = note.css('text-align');
 
         // click outside note StyleBox
         $(document).on('click', function(event){
@@ -283,6 +284,7 @@ $(".note").on('contextmenu', function(event) {
                 fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
                 textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
                 fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
+                textAlignValue = note.css("text-align") !== oldTextAlignValue ? note.css("text-align") : "same";
 
                 // remove the choice Box
                 $("#noteStyleBox").css("display", "none");
@@ -298,6 +300,7 @@ $(".note").on('contextmenu', function(event) {
                         fontSize : fontSizeValue,
                         fontStyle : fontStyleValue,
                         textDecoration : textDecorationValue,
+                        textAlign : textAlignValue,
                         id : id,
                         type: "regular"
                     }),
@@ -358,6 +361,12 @@ $(".note").on('contextmenu', function(event) {
         $('#noteStyleBox_5').on('click', function() {
             italic = (note.css('font-style') === 'italic');
             note.css('font-style', italic ? 'normal' : 'italic');
+        });
+
+        //update text-align
+        $('#noteStyleBox_6').on('click', function() {
+            align_center = (note.css('text-align') === 'center');
+            note.css('text-align', align_center ? 'left' : 'center');
         });
 
     });
@@ -451,7 +460,7 @@ $("#noteStyleBox_5").on('mouseout', function() {
 });
 
 $("#noteStyleBox_6").on('mouseover', function() {
-    follower.html("CSS");
+    follower.html("align text");
     follower.show();
 });
 $("#noteStyleBox_6").on('mouseout', function() {
