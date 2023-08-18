@@ -1,6 +1,6 @@
 
 function saveSizes(id, width, height){
-
+    console.log("save sizes");
     $.ajax({
         url: '/save_sizes/' + pageID + '/' + user_id,
         type: "POST",

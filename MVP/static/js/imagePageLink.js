@@ -25,7 +25,7 @@ function buildImagePageLink(note) {
 
     var src = "/static/user_data/users/" + user_id + "/uploads/" + image
     var img_div = "<img class='imagePageLink_img' draggable='false' src=" + src + " />";
-    var title_div = "<div class='imagePageLink_name'><div>" + pageTitle + "</div></div>"
+    var title_div = "<div class='imagePageLink_name'>" + pageTitle + "</div>"
 
     note.attr("title", "go to page ".concat(pageTitle));
     note.css("top", y.concat("px"));
@@ -70,12 +70,15 @@ function buildImagePageLink(note) {
 //////////////////////////////////////////////////////////////////
 
 $('.imagePageLink').each(function(){
-    $(this).bind('click.select', function(){
+    $(this).on('click.selectImagePageLink', function(){
         selectImagePageLink($(this));
     });
 });
 
 function selectImagePageLink(note){
+
+    event.stopPropagation();
+    note.off('click.selectImagePageLink');
 
     id = note.attr("id");
     orWidth = note.css("width");
@@ -119,12 +122,11 @@ function selectImagePageLink(note){
     });
 
     // SECOND CLICK
-    note.bind('mousedown.gotopage', function(){
+    note.on('mousedown.gotopage', function(event){
 
         var left  = event.pageX;
         var top   = event.pageY;
-
-        $(this).bind('mouseup.gotopage', function(){
+        $(this).on('mouseup.gotopage', function(event){
             if (!(left != event.pageX || top != event.pageY)) {
                 window.open('/open_page/'+ imagePageLink_id + '/' + user_id + '/0', '_blank');
             }
@@ -133,13 +135,16 @@ function selectImagePageLink(note){
     });
 
     note.addClass("resizable");
-    note.unbind('mousedown.drag');
-    note.unbind('click.select');
+    note.off('mousedown.drag');
+    note.off('click.selectImagePageLink');
 
+    $(document).on('click.outsideImagePageLink', function(){
+        if (!note.is(event.target) && !note.has(event.target).length > 0){
 
-    $(document).on('click.oustide', function(){
-        if (!note.is(event.target) && note.has(event.target).length === 0){
+            console.log("clicked oustide imagePageLink");
 
+            event.stopPropagation();
+            $(document).off('click.outsideImagePageLink');
             id = note.attr("id");
             width = note.css("width");
             height = note.css("height");
@@ -150,27 +155,18 @@ function selectImagePageLink(note){
                 saveSizes(id, width.slice(0,-2), height.slice(0,-2));
             }
 
-            styleDefault(note);
-
-            note.unbind('mousedown.gotopage');
-            note.unbind('mouseup.gotopage');
-            $(document).unbind('copy');
             note.removeClass("resizable");
-            $(document).unbind('keyup.delete');
+            styleDefault(note);
+            note.off('mousedown.gotopage');
+            note.off('mouseup.gotopage');
+            $(document).off('copy');
+            $(document).off('keyup.delete');
 
-            note.bind('click.select', function(){
+            note.on('click.selectImagePageLink', function(){
                 selectImagePageLink($(this));
             });
-
-            note.bind('mousedown.drag', function(){
-
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-                noteX = parseInt(note.css("left").slice(0, -2));
-                noteY = parseInt(note.css("top").slice(0, -2));
-
-                dragNote(note, noteX, noteY);
-
+            note.bind('mousedown.drag', function(event){
+                dragNote(note);
             });
 
         }

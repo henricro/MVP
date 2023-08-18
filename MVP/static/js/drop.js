@@ -67,7 +67,7 @@ $('*:not("div")').on(
                 x = e.pageX;
                 y = e.pageY;
 
-                //console.log(file);
+                console.log(file);
                 var type = file['name'].slice(-4);
                 console.log("type" + type);
 
