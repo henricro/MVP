@@ -45,7 +45,6 @@
     display:flex;
     flex-direction: row;
     align-items:flex-start;
-    margin-top: 100px;
     width: 100%;
     justify-content: flex-start;
 }
@@ -56,15 +55,17 @@
     width: 50%;
     align-items: center;
     font-family: 'Quicksand', sans-serif;
+    margin-top: 168px;
 }
 
 
 #versions {
     width: 25%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
 }
 
 
@@ -73,42 +74,78 @@
     width: 10%;
   }
   #form{
+    margin-top: 35px;
     width: 80%;
   }
 }
 
 #v1 {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 300px;
-    border: 1px solid rgb(170,170,170);
+    width: 90%;
+    border-top: 1px solid rgb(170,170,170);
     padding: 10px;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.1);
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+#v2 {
+    width: 90%;
+    border-top: 1px solid rgb(170,170,170);
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items:flex-start;
 }
 
 @media (max-width: 576px) {
-  #v1{
+  #v1, #v2, #patreon{
     display: none;
   }
 }
 
 #v1phone {
-    width: 80%;
+    width: 90%;
     margin-top: 77px;
     border-top: 1px solid rgb(170,170,170);
     display: none;
+    padding-top: 10px;
     flex-direction: column;
-    align-items:flex-start;
-    margin-bottom: 80px;
+    align-items: flex-start;
+    font-family: Geneva;
+}
+
+#v2phone {
+    width: 90%;
+    border-top: 1px solid rgb(170,170,170);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: Geneva;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    margin-top: 16px;
+}
+
+
+#patreonPhone {
+    width:145px;
+    aspect-ratio: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    padding:8px ;
+    display: none;
+    margin-bottom: 19px;
 }
 
 @media (max-width: 576px) {
   #v1phone{
+    display: flex;
+  }
+  #v2phone{
+    display: flex;
+  }
+  #patreonPhone {
     display: flex;
   }
 }

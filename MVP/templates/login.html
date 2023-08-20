@@ -27,7 +27,6 @@ form{
 
 <body>
 
-<div style="width:300px; margin-top: 50px;">
   {% with messages = get_flashed_messages(with_categories=true) %}
    {% if messages %}
      {% for category, message in messages %}
@@ -38,25 +37,35 @@ form{
    {% endif  %}
   {% endwith %}
   {% block content %}{% endblock %}
-</div>
 
 <img src="/static/images/icons/patreon.png" id="patreon" />
 
-<div id="v1">
-    <div style="font-size: 36px; font-weight: 900;">V1  <span style="font-size: 22px; font-weight: 500;">19/08/23</span></div>
-    <ul>
-        <li>create pages, notes, lists</li>
-        <li>drop images, links, documents</li>
-        <li>align, resize</li>
-        <li>copy-paste anything</li>
-        <li>secure and protected</li>
-        <li>no feed yet</li>
-    </ul>
-</div>
+
 
 <div id="main_block">
 
     <div id="versions">
+
+        <div id="v1">
+            <div style="font-size: 36px; font-weight: 900;">V1  <span style="font-size: 20px; font-weight: 500;">19/08/23 - current</span></div>
+            <ul>
+                <li>create pages, notes, lists</li>
+                <li>drop images, links, documents</li>
+                <li>align, resize</li>
+                <li>copy-paste anything</li>
+                <li>secure and protected</li>
+                <li>no feed yet</li>
+            </ul>
+        </div>
+
+        <div id="v2">
+            <div style="font-size: 36px; font-weight: 900;">V2  <span style="font-size: 20px; font-weight: 500;">coming Sept 2023</span></div>
+            <ul>
+                <li>mobile app</li>
+                <li>explore in list or map mode</li>
+                <li>build your feed : send content from anywhere</li>
+            </ul>
+        </div>
 
     </div>
 
@@ -123,15 +132,28 @@ form{
         </form>
 
         <div id="v1phone">
-            <h1>V1</h1>
+            <div style="font-size: 36px; font-weight: 900;">V1  <span style="font-size: 20px; font-weight: 500;">19/08/23 - current</span></div>
             <ul>
                 <li>create pages, notes, lists</li>
                 <li>drop images, links, documents</li>
-                <li>align and resize</li>
+                <li>align, resize</li>
+                <li>copy-paste anything</li>
                 <li>secure and protected</li>
                 <li>no feed yet</li>
             </ul>
         </div>
+
+        <div id="v2phone">
+            <div style="font-size: 36px; font-weight: 900;">V2  <span style="font-size: 20px; font-weight: 500;">coming Sept 2023</span></div>
+            <ul>
+                <li>mobile app</li>
+                <li>explore in list or map mode</li>
+                <li>build your feed : send content from anywhere</li>
+            </ul>
+        </div>
+
+        <img src="/static/images/icons/patreon.png" id="patreonPhone" />
+
 
     </div>
 
