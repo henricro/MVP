@@ -123,8 +123,9 @@ function selectImagePageLink(note){
 
     // second click : go to page
     note.on('click.gotopage', function(){
+        console.log("hehe");
         $(document).off('keyup.delete');
-        window.open('/open_page/'+ pageLinkID + '/' + user_id + "/0" , '_blank');
+        window.open('/open_page/'+ imagePageLink_id + '/' + user_id + "/0" , '_blank');
     });
 
     note.addClass("resizable");
