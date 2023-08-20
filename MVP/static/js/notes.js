@@ -232,16 +232,8 @@ $(".note").on('contextmenu', function(event) {
     var note = $(this);
     var id = note.attr("id");
 
-    $("#noteRCBox").css("left", new_x);
-    $("#noteRCBox").css("top", new_y);
-    $("#noteRCBox").css("display", "flex");
-
-    // click outside
-    $(document).click(function(){
-        if (!$("#noteRCBox").is(event.target) && !$("#noteRCBox").has(event.target).length > 0){
-            $("#noteRCBox").css("display", "none");
-        }
-    });
+    event.stopPropagation();
+    idToColor = id;
 
     // copy Note
     $('#noteRC_1').on('click.copyNote', function() {
@@ -251,124 +243,110 @@ $(".note").on('contextmenu', function(event) {
 
     console.log("id of note selected/ to color : ", idToColor);
 
-    // style note
-    $('#noteRC_2').on('click', function(event) {
+    $("#noteStyleBox").css("left", new_x);
+    $("#noteStyleBox").css("top", new_y);
+    $("#noteStyleBox").css("display", "flex");
 
-        event.stopPropagation();
-        idToColor = id;
+    oldColorValue = note.css("color");
+    oldFontStyleValue = note.css('font-style');
+    oldFontSizeValue = note.css('font-size');
+    oldTextDecorationValue = note.css('text-decoration');
+    oldTextAlignValue = note.css('text-align');
 
-        $("#noteRCBox").css("display", "none");
+    // click outside note StyleBox
+    $(document).on('click', function(event){
+        console.log("dzuhudzh");
+        if ((!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
+            (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
 
-        event.preventDefault();
-        new_x = event.pageX;
-        new_y = event.pageY;
+            console.log("heeeyyyyy");
+            colorValue = note.css("color") !== oldColorValue ? note.css('color') : "same";
+            fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
+            textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
+            fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
+            textAlignValue = note.css("text-align") !== oldTextAlignValue ? note.css("text-align") : "same";
 
-        $("#noteStyleBox").css("left", new_x);
-        $("#noteStyleBox").css("top", new_y);
-        $("#noteStyleBox").css("display", "flex");
+            // remove the choice Box
+            $("#noteStyleBox").css("display", "none");
+            $("#font-size-container").css("display", "none");
 
-        oldColorValue = note.css("color");
-        oldFontStyleValue = note.css('font-style');
-        oldFontSizeValue = note.css('font-size');
-        oldTextDecorationValue = note.css('text-decoration');
-        oldTextAlignValue = note.css('text-align');
+            // send the new css
+            css = note.attr("style");
+            $.ajax({
+                url: '/add_css_note/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    color : colorValue,
+                    fontSize : fontSizeValue,
+                    fontStyle : fontStyleValue,
+                    textDecoration : textDecorationValue,
+                    textAlign : textAlignValue,
+                    id : id,
+                    type: "regular"
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                }
+            });
 
-        // click outside note StyleBox
-        $(document).on('click', function(event){
-            console.log("dzuhudzh");
-            if ((!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
-                (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
+        }
+    });
 
-                console.log("heeeyyyyy");
-                colorValue = note.css("color") !== oldColorValue ? note.css('color') : "same";
-                fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
-                textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
-                fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
-                textAlignValue = note.css("text-align") !== oldTextAlignValue ? note.css("text-align") : "same";
+    // update font size
+    $('#noteStyleBox_1').on('click', function() {
 
-                // remove the choice Box
-                $("#noteStyleBox").css("display", "none");
-                $("#font-size-container").css("display", "none");
+        console.log("console log");
+        var fontSizeRange = $("#font-size-range");
+        var fontSizeDisplay = $("#font-size-display");
+        console.log(fontSizeRange);
+        console.log(fontSizeDisplay);
+        console.log(new_x);
+        console.log(new_y);
+        //var sampleText = $("#sample-text");
 
-                // send the new css
-                css = note.attr("style");
-                $.ajax({
-                    url: '/add_css_note/' + pageID + '/' + user_id,
-                    type: "POST",
-                    data: JSON.stringify({
-                        color : colorValue,
-                        fontSize : fontSizeValue,
-                        fontStyle : fontStyleValue,
-                        textDecoration : textDecorationValue,
-                        textAlign : textAlignValue,
-                        id : id,
-                        type: "regular"
-                    }),
-                    contentType: "application/json",
-                    success: function (data) {
-                        current_y = document.documentElement.scrollTop;
-                    },
-                    error: function (error) {
-                        current_y = document.documentElement.scrollTop;
-                    }
-                });
+        $('#font-size-container').css("left", new_x - 80 + "px");
+        $('#font-size-container').css("top", new_y + 10 + "px");
+        $('#font-size-container').css("display", "flex");
 
-            }
-        });
+        fontSizeRange.on("input", updateFontSize);
 
-        // update font size
-        $('#noteStyleBox_1').on('click', function() {
+        function updateFontSize() {
+            var fontSize = fontSizeRange.val();
+            console.log("update fontsize");
+            console.log("ehhe", fontSizeRange);
+            console.log(fontSize);
+            fontSizeDisplay.html(fontSize) ;
+            note.css('font-size', fontSize + "px");
+        }
 
-            console.log("console log");
-            var fontSizeRange = $("#font-size-range");
-            var fontSizeDisplay = $("#font-size-display");
-            console.log(fontSizeRange);
-            console.log(fontSizeDisplay);
-            console.log(new_x);
-            console.log(new_y);
-            //var sampleText = $("#sample-text");
+    });
 
-            $('#font-size-container').css("left", new_x - 80 + "px");
-            $('#font-size-container').css("top", new_y + 10 + "px");
-            $('#font-size-container').css("display", "flex");
+    // update underline
+    $('#noteStyleBox_3').on('click', function() {
+        underline = (note.css('text-decoration').includes('underline'));
+        note.css('text-decoration', underline ? 'none' : 'underline');
+    });
 
-            fontSizeRange.on("input", updateFontSize);
+    // update text-decoration
+    $('#noteStyleBox_4').on('click', function() {
+        linethrough = (note.css('text-decoration').includes('line-through'));
+        note.css('text-decoration', linethrough ? 'none' : 'line-through');
+    });
 
-            function updateFontSize() {
-                var fontSize = fontSizeRange.val();
-                console.log("update fontsize");
-                console.log("ehhe", fontSizeRange);
-                console.log(fontSize);
-                fontSizeDisplay.html(fontSize) ;
-                note.css('font-size', fontSize + "px");
-            }
+    //update italic
+    $('#noteStyleBox_5').on('click', function() {
+        italic = (note.css('font-style') === 'italic');
+        note.css('font-style', italic ? 'normal' : 'italic');
+    });
 
-        });
-
-        // update underline
-        $('#noteStyleBox_3').on('click', function() {
-            underline = (note.css('text-decoration').includes('underline'));
-            note.css('text-decoration', underline ? 'none' : 'underline');
-        });
-
-        // update text-decoration
-        $('#noteStyleBox_4').on('click', function() {
-            linethrough = (note.css('text-decoration').includes('line-through'));
-            note.css('text-decoration', linethrough ? 'none' : 'line-through');
-        });
-
-        //update italic
-        $('#noteStyleBox_5').on('click', function() {
-            italic = (note.css('font-style') === 'italic');
-            note.css('font-style', italic ? 'normal' : 'italic');
-        });
-
-        //update text-align
-        $('#noteStyleBox_6').on('click', function() {
-            align_center = (note.css('text-align') === 'center');
-            note.css('text-align', align_center ? 'left' : 'center');
-        });
-
+    //update text-align
+    $('#noteStyleBox_6').on('click', function() {
+        align_center = (note.css('text-align') === 'center');
+        note.css('text-align', align_center ? 'left' : 'center');
     });
 
 });
