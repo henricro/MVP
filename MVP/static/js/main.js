@@ -84,13 +84,18 @@ function buildNotes() {
         }
 
         // build the imagePageLink divs
-        else if (clasis === "imagePageLink"){
+        else if (note.classList.contains("imagePageLink")){
 
             var type = note.getAttribute("type");
             var pageID = note.getAttribute("pageID");
             var title = pages[pageID];
 
-            elem = '<div class="imagePageLink" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '"></div>';
+            if (note.classList.contains("style2_iPl")) {
+                elem = '<div class="imagePageLink style2_iPl" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '"></div>';
+            } else {
+                elem = '<div class="imagePageLink" ' + ' id="' + id + '" pageID='+ pageID + ' pageTitle="'+ title + '"></div>';
+            }
+
             $('body').append(elem);
         }
 

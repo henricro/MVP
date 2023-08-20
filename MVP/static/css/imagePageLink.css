@@ -87,7 +87,7 @@
 }
 
 
-.style2_iPl_name {
+.style2_iPl .imagePageLink_name {
 
     position: absolute;
     top:0;
@@ -107,25 +107,25 @@
 
 }
 
-.style2_iPl_img{
+.style2_iPl .imagePageLink_img{
     opacity :1;
     width:100%;
     height:100%;
 }
 
 .style2_iPl:hover{
-    background-color : rgb(200, 240, 149, 0.5);
+    background-color : rgb(200, 240, 149, 0.3);
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.3);
     cursor : pointer;
 }
 
-.style2_iPl:hover .style2_iPl_name {
-  opacity: 1;
-  font-size:23px;
+.style2_iPl:hover .imagePageLink_name {
+    opacity: 1;
+    font-size:23px;
 }
 
-.style2_iPl:hover .style2_iPl_img {
-  opacity: 0.3;
+.style2_iPl:hover .imagePageLink_img {
+    opacity: 0.2;
 }
 
 

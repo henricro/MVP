@@ -212,6 +212,8 @@ function pasteNote(note_id, noteClass, originPageID, pageID) {
         y = "300";
     }
 
+    console.log("paste note")
+
     $.ajax({
 
         url: '/paste_note/' + pageID + '/' + user_id,

@@ -230,3 +230,34 @@ def update_background(pageID, user_id):
 
         return 'yo'
     return 'yo'
+
+
+
+@application.route("/change_IPL_style/<pageID>/<user_id>", methods=['POST'])
+@user_required()
+def change_IPL_style(pageID, user_id):
+
+    if str(current_user.id) == user_id:
+
+        print("route : add css")
+
+        request_data = request.get_json()
+        id = str(request_data.get('id'))
+        styleIPL = str(request_data.get('styleIPL'))
+
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
+
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
+
+        note = root.find("notes").find("note[@id='" + id + "']")
+        note.set("class", styleIPL)
+
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
+
