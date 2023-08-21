@@ -78,7 +78,7 @@ def open_page(pageID, user_id, y_position):
                                         {'page_global_id': page_global_id}
                                         ).fetchall()
     if not parents :
-        parents = []
+        parents = ["bloup"]
     else :
         parents = [[item[0], item[1]] for item in parents]
 
