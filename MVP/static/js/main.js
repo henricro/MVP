@@ -384,7 +384,10 @@ $("#minusZoom").on('mouseout', function() {
 });
 
 if (xmlDoc.getElementsByTagName("background")[0]){
-    var background = xmlDoc.getElementsByTagName("background")[0].nodeValue;
+    console.log("we have background info");
+    console.log(background);
+    var background = xmlDoc.getElementsByTagName("background")[0].childNodes[0].nodeValue;
+    console.log(background);
 }
 
 if (background == "grid") {
