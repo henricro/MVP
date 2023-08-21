@@ -63,16 +63,18 @@ function mouseUp(note) {
             if ( event.target.classList.contains('pageLink')  ||
                  $(event.target).parent().hasClass('imagePageLink')) {
 
+                console.log("target is pageLink or imagePagelInk");
                 note_id = note.attr("id");
-                console.log(note.attr)
                 if (event.target.classList.contains('pageLink')){
                     //console.log("sending to pageLink")
                     page_id = $(event.target).attr("pageid");
+                    note_class="pageLink";
                 } else {
                     //console.log("sending to imagePageLink");
                     //console.log($(event.target));
                     //console.log($(event.target).parent());
                     page_id = $(event.target).parent().attr("pageid");
+                    note_class = "imagePageLink";
                 }
                 console.log("move note");
                 console.log(page_id);
@@ -83,20 +85,21 @@ function mouseUp(note) {
                     type: "POST",
                     data: JSON.stringify({
                         note_id: note_id,
-                        page_id: page_id
+                        page_id: page_id,
+                        note_class : note_class
                     }),
                     contentType: "application/json",
                     success: function (data) {
                         //console.log(data);
                         current_y = document.documentElement.scrollTop;
                         //console.log("current y :", current_y);
-                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                        //window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
                         //console.log("problem");
                         current_y = document.documentElement.scrollTop;
                         //console.log("current y :", current_y);
-                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                        //window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     }
 
                 });
