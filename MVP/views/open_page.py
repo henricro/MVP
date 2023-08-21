@@ -78,6 +78,8 @@ def open_page(pageID, user_id, y_position):
                                         {'page_global_id': page_global_id}
                                         ).fetchall()
     parents = [[item[0], item[1]] for item in parents]
+    if parents == None :
+        parents = []
 
     print("parents ids and titles :",  parents)
 
