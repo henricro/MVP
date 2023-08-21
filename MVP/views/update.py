@@ -175,8 +175,8 @@ def edit_title(pageID, user_id):
 
         pageID = str(pageID)
 
-        engine.execute("Update Pages set title = %(value)s where id= %(pageID)s ",
-                           {'value': value, 'pageID': pageID})
+        engine.execute("Update Pages set title = %(value)s where id= %(pageID)s and user_id=%(user_id)s",
+                           {'value': value, 'pageID': pageID, 'user_id':user_id})
 
         return "yo"
 
