@@ -52,7 +52,7 @@ def download_image(url, save_path):
         with open(save_path, 'wb') as file:
             for chunk in response.iter_content(chunk_size=8192):
                 file.write(chunk)
-        print("Image downloaded successfully.")
+        #print("Image downloaded successfully.")
     except (requests.RequestException, IOError) as e:
         print("Error occurred while downloading the image:", str(e))
 
@@ -68,7 +68,7 @@ def add_link_to_note(pageID, user_id):
         id = str(request_data.get('id'))
         link = str(request_data.get('link'))
 
-        #print(id, link, "yoyoyoyo")
+        ##print(id, link, "yoyoyoyo")
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
@@ -80,11 +80,11 @@ def add_link_to_note(pageID, user_id):
         note = root.find("notes").find("note[@id='" + id + "']")
         note.set("class", "noteLink")
 
-        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        ##print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         etree.SubElement(note, "link").text = link
 
-        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        ##print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -99,7 +99,7 @@ def paste_note_link(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("paste note link")
+        #print("paste note link")
 
         request_data = request.get_json()
         x = str(request_data.get('x'))
@@ -113,7 +113,7 @@ def paste_note_link(pageID, user_id):
         favicon = requests.get(favicon_url, verify=False)
 
         favicon_name = 'favicon_' + root_url.replace("https://", "") + ".jpg"
-        print(favicon_name)
+        #print(favicon_name)
 
         favicon_path = application.config['USER_DATA_PATH'] + user_id + '/uploads/' + favicon_name
 
@@ -122,12 +122,12 @@ def paste_note_link(pageID, user_id):
             # Save the image to a file
             with open(favicon_path, "wb") as file:
                 file.write(favicon.content)
-            print("Image downloaded successfully.")
+            #print("Image downloaded successfully.")
         else:
             print("Failed to download the image:", favicon.status_code)
 
 
-        #print(id, link, "yoyoyoyo")
+        ##print(id, link, "yoyoyoyo")
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
@@ -160,7 +160,7 @@ def paste_note_link(pageID, user_id):
         etree.SubElement(new_note, "link").text = link
         etree.SubElement(new_note, "favicon").text = favicon_name
 
-        # print(etree.tostring(root, pretty_print=True))
+        # #print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -177,13 +177,13 @@ def add_link_image(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("route : add link to image")
+        #print("route : add link to image")
 
         request_data = request.get_json()
         id = str(request_data.get('id'))
         link = str(request_data.get('link'))
 
-        print(id, link, "yoyoyoyo")
+        #print(id, link, "yoyoyoyo")
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
@@ -194,9 +194,9 @@ def add_link_image(pageID, user_id):
         note = root.find("notes").find("note[@id='" + id + "']")
         note.set("class", "imageLink")
 
-        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
         etree.SubElement(note, "link").text = link
-        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -214,7 +214,7 @@ def change_link(pageID, user_id):
         id = str(request_data.get('id'))
         link = str(request_data.get('link'))
 
-        print(id, link, "yoyoyoyo")
+        #print(id, link, "yoyoyoyo")
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
@@ -226,11 +226,11 @@ def change_link(pageID, user_id):
 
         note.find("link").text = link
 
-        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         # etree.SubElement(note, "link").text = link
 
-        print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         # save the changes in the xml
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')

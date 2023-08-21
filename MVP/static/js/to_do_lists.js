@@ -76,7 +76,7 @@ $('.ongoing .icon').on('click.done', function() {
 $('.to-do-list-list').on('click', '.icon', function() {
 
     writeToDoList($(this).closest('.to-do-list'));
-    console.log("clicked icon");
+    //console.log("clicked icon");
     var $parent = $(this).parent();
     var currentState = $parent.attr('class');
 
@@ -168,10 +168,10 @@ function writeToDoList(list){
         }
     });
 
-    console.log('list : ', list);
-    console.log(list.find('ul'));
+    //console.log('list : ', list);
+    //console.log(list.find('ul'));
     list.find('ul').on('input', 'li', function() {
-        console.log("input todolist");
+        //console.log("input todolist");
         if ($(this).text().trim() === '') {
             $(this).empty(); // Empty the <li> element
         }
@@ -186,10 +186,10 @@ function writeToDoList(list){
         if (!list.is(event.target) && !list.has(event.target).length > 0){
 
             content = list.find('ul').html();
-            console.log(content);
+            //console.log(content);
             content = content.replace(/<i\s*class="icon"><\/i>/g, '');
             content = content.replace("<li></li>", "");
-            console.log(content);
+            //console.log(content);
             $(document).off('click.update_to_do_list');
             id = list.attr('id')
 
@@ -206,10 +206,10 @@ function writeToDoList(list){
                     }),
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                     },
                     error: function (error) {
-                        console.log("problem");
+                        //console.log("problem");
                     }
                 });
             }

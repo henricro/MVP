@@ -43,7 +43,7 @@ function selectTitle(title){
     $(document).on('click.outsideTitle', function(){
         if (!title.is(event.target) && title.has(event.target).length === 0){
 
-            //console.log("clicked outside title ", "titleBoxBool : ", titleBoxBool);
+            ////console.log("clicked outside title ", "titleBoxBool : ", titleBoxBool);
             if (!titleBoxBool){
                 $('#space-down').css("display", "none");
                 $('#space-down').off("click.down-space");
@@ -64,17 +64,17 @@ function selectTitle(title){
             type: "POST",
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
+                //console.log(data);
             },
             error: function (error) {
-                console.log("problem");
+                //console.log("problem");
             }
         });
     });
 
     // SECOND CLICK
     title_title.on('click', function(event){
-        //console.log("clicked second time on title");
+        ////console.log("clicked second time on title");
         event.preventDefault();
         showTitleBox();
     });
@@ -85,11 +85,11 @@ function selectTitle(title){
 function showTitleBox(){
 
     titleBoxBool = true;
-    console.log("titleBoxBool", titleBoxBool);
+    //console.log("titleBoxBool", titleBoxBool);
     event.stopPropagation();
 
     $(document).on('click.outsideTitleBox', function(){
-        console.log("click outside titleBox : ", event.target);
+        //console.log("click outside titleBox : ", event.target);
         if (!$("#titleDbClick").is(event.target) && !$("#titleDbClick").has(event.target).length > 0){
             titleBoxBool = false;
             hideTitleBox();
@@ -125,7 +125,7 @@ function sendAllDown() {
 
 
 function hideTitleBox(){
-    console.log("udhuhe");
+    //console.log("udhuhe");
     titleBoxBool = false;
     $("#titleDbClick").css("display", "none");
 }
@@ -220,19 +220,19 @@ $('#tdb_title').html("Page info");
         $("#tdb_path").append(page);
     }
     if (parents.length > 1){
-        console.log("more than one parent");
+        //console.log("more than one parent");
         $("#tdb_path").append("<img id='btn_show_parents' src='/static/images/icons/add.png'>")
     }
 
 }
 
-console.log("parents : " , parents, parents.length, typeof(parents));
+//console.log("parents : " , parents, parents.length, typeof(parents));
 
 for (parent of parents){
-    console.log('parent : ', parent)
+    //console.log('parent : ', parent)
     id = parent[0];
     title = parent[1];
-    console.log(id, parent);
+    //console.log(id, parent);
     $("#show_parents").append("<a class='parent' href = /open_page/" + id + "/" + user_id + "/0 target='_blank'>" + title + "</a>")
 }
 
@@ -254,7 +254,7 @@ $("#btn_show_parents").on('click', function(event) {
     });
 });
 
-console.log(lineage);
+//console.log(lineage);
 
 ////////////////////////////////
 // share status //////
@@ -262,7 +262,7 @@ console.log(lineage);
 
 $('.status_button:not(#status_password)').on('click', function(){
 
-    console.log("clicked on status button");
+    //console.log("clicked on status button");
     $('.status_button').not($(this)).removeClass("status_selected");
     $(this).addClass("status_selected");
     status = $(this).html();
@@ -282,7 +282,7 @@ $('.status_button:not(#status_password)').on('click', function(){
         }
     });
 
-    console.log($(this).attr("id"));
+    //console.log($(this).attr("id"));
 
     if ($(this).attr("id") == "status_public"){
         console.log("uduhduhdu");

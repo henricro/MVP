@@ -17,19 +17,19 @@ def change_image_imagePageLink(pageID, user_id):
         pageID = str(pageID)
         pageName = 'Page_' + pageID
 
-        print("change image in imagePageLink", "yoyoyoyo")
+        #print("change image in imagePageLink", "yoyoyoyo")
 
         ### add the image to uploads
 
         Request = request.form
-        print(Request, "yoyoyoyo")
+        #print(Request, "yoyoyoyo")
 
         imagePageLink_id = Request.get('imagePageLink_id')
         file = request.files.get('file')
-        print("printing the file", "yoyoyoyo")
-        print(imagePageLink_id, file, "yoyoyoyo")
-        # print(type(file))
-        # print(dict(file))
+        #print("printing the file", "yoyoyoyo")
+        #print(imagePageLink_id, file, "yoyoyoyo")
+        # #print(type(file))
+        # #print(dict(file))
 
         ### save the image
 
@@ -52,13 +52,13 @@ def change_image_imagePageLink(pageID, user_id):
 
         # set the note's x, y and content = "title" (for now)
         image = note.find('image')
-        print(image, "yoyoyoyo")
+        #print(image, "yoyoyoyo")
         image.text = str(filename)
-        print(image, "yoyoyoyo")
+        #print(image, "yoyoyoyo")
         etree.SubElement(note, "width").text = "300"
         etree.SubElement(note, "height").text = "200"
 
-        #print(etree.tostring(root, pretty_print=True))
+        ##print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
 

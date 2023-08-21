@@ -29,10 +29,10 @@ $('.title').on(
 
                 x = e.pageX;
                 y = e.pageY;
-                console.log("hehehehehehehehehhehe");
-                console.log(file);
+                //console.log("hehehehehehehehehhehe");
+                //console.log(file);
                 var type = file['name'].slice(-4);
-                console.log(type);
+                //console.log(type);
 
                 var form_data = new FormData();
                 form_data.append('file', file);
@@ -41,7 +41,7 @@ $('.title').on(
 
                 if (type ==".png" || type ==".jpg") {
 
-                    console.log("upload image ajax")
+                    //console.log("upload image ajax")
 
                     $.ajax({
                         type: 'POST',
@@ -51,11 +51,11 @@ $('.title').on(
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            console.log("success");
+                            //console.log("success");
                             window.location.href='/open_page/'+pageID;
                         },
                         error: function (error) {
-                            console.log("problem");
+                            //console.log("problem");
                             window.location.href='/open_page/'+pageID;
                         }
                     });
@@ -64,7 +64,7 @@ $('.title').on(
 
                 if (type ==".pdf") {
 
-                    console.log("upload pdf ajax")
+                    //console.log("upload pdf ajax")
 
                     $.ajax({
                         type: 'POST',
@@ -74,11 +74,11 @@ $('.title').on(
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            console.log("success");
+                            //console.log("success");
                             //window.location.href='/open_page/'+pageID;
                         },
                         error: function (error) {
-                            console.log("problem");
+                            //console.log("problem");
                             //window.location.href='/open_page/'+pageID;
                         }
                     });

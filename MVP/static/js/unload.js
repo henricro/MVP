@@ -5,7 +5,7 @@ $(document).on("keydown", function(event) {
 
         event.preventDefault();
         current_y = document.documentElement.scrollTop;
-        console.log(current_y);
+        //console.log(current_y);
         window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
 
     }
@@ -18,7 +18,7 @@ $(document).on("keydown", function(event) {
 
         event.preventDefault();
         current_y = document.documentElement.scrollTop;
-        console.log(current_y);
+        //console.log(current_y);
         window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
 
     }

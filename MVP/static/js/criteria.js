@@ -10,10 +10,10 @@ function createCriteria(note) {
 
     id = note.attr("id");
 
-    console.log(id);
+    //console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var height = XMLnote.getElementsByTagName("height")[0].childNodes[0].nodeValue;
@@ -27,8 +27,8 @@ function createCriteria(note) {
 
     var categoriesSpace = "<div class='categories'></div>"
 
-    //console.log("print elmnt");
-    //console.log(elmnt);
+    ////console.log("print elmnt");
+    ////console.log(elmnt);
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
 
@@ -101,11 +101,11 @@ $(".criteria_categories").bind('contextmenu', function(event) {
                 }),
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     window.location.href='/open_page/'+ pageID + '/' + user_id;
                 },
                 error: function (error) {
-                    console.log("problem");
+                    //console.log("problem");
                     window.location.href='/open_page/'+ pageID + '/' + user_id;
                 }
             });
@@ -129,7 +129,7 @@ $('.criteria').bind('click.select', function(){
 
 function selectCriteria(note){
 
-    console.log("selected a criteria");
+    //console.log("selected a criteria");
 
     note.css({"border-color":"green"});
 
@@ -166,9 +166,9 @@ function showCategories(note){
 
     criteria_id = note.attr("id");
 
-    console.log("show categories");
+    //console.log("show categories");
 
-    console.log(note);
+    //console.log(note);
 
     note.find('.criteria_categories').show();
 
@@ -210,11 +210,11 @@ function showCategories(note){
                     }),
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         window.location.href='/open_page/'+pageID;
                     },
                     error: function (error) {
-                        console.log("problem");
+                        //console.log("problem");
                         window.location.href='/open_page/'+pageID;
                     }
                 });
@@ -227,13 +227,13 @@ function showCategories(note){
     $(document).bind('click.hideCategories', function(){
         $(document).bind('click.hideCategories2', function(){
 
-            console.log(event.target.classList);
+            //console.log(event.target.classList);
 
             // if click outside of categories space
             if (!$(".criteria_categories").is(event.target) && $(".criteria_categories").has(event.target).length === 0){
 
-                console.log(event.target);
-                console.log("clicked outside of categories space");
+                //console.log(event.target);
+                //console.log("clicked outside of categories space");
 
                 note.find(".criteria_categories").hide();
 
@@ -257,8 +257,8 @@ function showCategories(note){
             // if click in parent space
             } else {
 
-                console.log("clicked in Categories space");
-                console.log(event.target);
+                //console.log("clicked in Categories space");
+                //console.log(event.target);
 
             }
         });

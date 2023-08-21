@@ -16,7 +16,7 @@ function buildList(note) {
     var list = XMLnote.childNodes[0].nodeValue;
 
 
-    //console.log("list", list);
+    ////console.log("list", list);
 
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
@@ -57,7 +57,7 @@ function selectList(list){
 
     $(document).on('click.outsideList', function(){
         if (!list.is(event.target) && !list.has(event.target).length > 0){
-            console.log("iejijeije")
+            //console.log("iejijeije")
             styleDefault(list);
             $(document).off('keyup.delete');
             list.off('click.write');
@@ -139,10 +139,10 @@ function writeList(list){
                     }),
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                     },
                     error: function (error) {
-                        console.log("problem");
+                        //console.log("problem");
                     }
                 });
             }
@@ -171,7 +171,7 @@ $(".list").on('contextmenu', function(event) {
 
     event.stopPropagation();
 
-    console.log("id of note selected/ to color : ", idToColor);
+    //console.log("id of note selected/ to color : ", idToColor);
 
     $("#listStyleBox").css("left", new_x);
     $("#listStyleBox").css("top", new_y);
@@ -181,11 +181,11 @@ $(".list").on('contextmenu', function(event) {
 
     // click outside note StyleBox
     $(document).on('click', function(event){
-        console.log("dzuhudzh");
+        //console.log("dzuhudzh");
         if ((!$(event.target).closest('#listStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
             (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
 
-            console.log("heeeyyyyy");
+            //console.log("heeeyyyyy");
             fontSizeValue = note.css("font-style") !== oldFontSizeValue ? note.css("font-size") : "same";
 
             // remove the choice Box
@@ -216,7 +216,7 @@ $(".list").on('contextmenu', function(event) {
     // update font size
     $('#listStyleBox_1').on('click', function() {
 
-        console.log("console log");
+        //console.log("console log");
         var fontSizeRange = $("#font-size-range");
         var fontSizeDisplay = $("#font-size-display");
         //var sampleText = $("#sample-text");
@@ -229,9 +229,9 @@ $(".list").on('contextmenu', function(event) {
 
         function updateFontSize() {
             var fontSize = fontSizeRange.val();
-            console.log("update fontsize");
-            console.log("ehhe", fontSizeRange);
-            console.log(fontSize);
+            //console.log("update fontsize");
+            //console.log("ehhe", fontSizeRange);
+            //console.log(fontSize);
             fontSizeDisplay.html(fontSize) ;
             note.css('font-size', fontSize + "px");
         }

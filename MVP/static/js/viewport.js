@@ -3,4 +3,4 @@ window.addEventListener('load', () => {
     window.scrollTo(0, desiredScrollPosition);
 });
 
-console.log("viewport");
+//console.log("viewport");

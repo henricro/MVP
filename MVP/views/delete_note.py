@@ -14,14 +14,14 @@ def delete_note(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print( "route : delete note", "yoyoyoyo")
+        #print( "route : delete note", "yoyoyoyo")
 
         # get the data for new note
         request_data = request.get_json()
         id = str(request_data.get('id'))
 
         pageID = str(pageID)
-        print(pageID, "yoyoyoyo")
+        #print(pageID, "yoyoyoyo")
         pageName = 'Page_' + pageID
 
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -31,7 +31,7 @@ def delete_note(pageID, user_id):
 
         noteClass = note.get("class")
 
-        #print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
+        ##print(etree.tostring(note, pretty_print=True), "yoyoyoyo")
 
         note.getparent().remove(note)
         f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
@@ -45,8 +45,8 @@ def delete_note(pageID, user_id):
             test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id + "' ] ")
             test2 = tree.xpath("/canvas/connexions/connexion[ @id_2='" + id + "' ] ")
 
-            print("test1, test2", "yoyoyoyo")
-            print(test1, test2, "yoyoyoyo")
+            #print("test1, test2", "yoyoyoyo")
+            #print(test1, test2, "yoyoyoyo")
 
             if test1:
                 line = test1[0]
@@ -75,17 +75,17 @@ def delete_notes(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("route : delete notes", "yoyoyoyo")
+        #print("route : delete notes", "yoyoyoyo")
 
         # get the data for new note
         request_data = request.get_json()
         selection = request_data.get('selection')
         selection = selection.split(",")
 
-        print(selection, "yoyoyoyo")
+        #print(selection, "yoyoyoyo")
 
         pageID = str(pageID)
-        print(pageID, "yoyoyoyo")
+        #print(pageID, "yoyoyoyo")
         pageName = 'Page_' + pageID
 
         tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
@@ -111,8 +111,8 @@ def delete_notes(pageID, user_id):
                 test1 = tree.xpath("/canvas/connexions/connexion[ @id_1='" + id + "' ] ")
                 test2 = tree.xpath("/canvas/connexions/connexion[ @id_2='" + id + "' ] ")
 
-                print("test1, test2", "yoyoyoyo")
-                print(test1, test2, "yoyoyoyo")
+                #print("test1, test2", "yoyoyoyo")
+                #print(test1, test2, "yoyoyoyo")
 
                 if test1:
                     line = test1[0]

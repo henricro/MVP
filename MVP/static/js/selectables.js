@@ -6,7 +6,7 @@
  *   https://github.com/p34eu/Selectables.git
  */
 /*
-console.log("UYDGUDZYUYVDZUYDZVUDYZVUDZYVDZUYVDZ");
+//console.log("UYDGUDZYUYVDZUYDZVUDYZVUDZYVDZUYVDZ");
 
 function Selectables(opts) {
     'use strict';
@@ -157,7 +157,7 @@ new Selectables({
     zone: 'body'
 });
 
-console.log("new attempt !!!!!!!!!!!!!!!!!!");
+//console.log("new attempt !!!!!!!!!!!!!!!!!!");
 
 const selection = Selection.create({
 

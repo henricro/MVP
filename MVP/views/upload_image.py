@@ -14,7 +14,7 @@ def upload_image(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("upload image route")
+        #print("upload image route")
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
@@ -28,8 +28,8 @@ def upload_image(pageID, user_id):
 
         storage_name = '{}.{}'.format(str(uuid.uuid4()), filename.split('.')[-1])
 
-        print(filename)
-        print(storage_name)
+        #print(filename)
+        #print(storage_name)
 
         type = file.filename[-4:]
 
@@ -70,7 +70,7 @@ def upload_image(pageID, user_id):
         etree.SubElement(new_note, "name").text = str(storage_name)
 
 
-        #print(etree.tostring(root, pretty_print=True))
+        ##print(etree.tostring(root, pretty_print=True))
 
         # save the changes in the xml
 

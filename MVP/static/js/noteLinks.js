@@ -8,7 +8,7 @@ $('.noteLink').each(function(){
 
 function buildNoteLink(note) {
 
-    console.log("function build notelink");
+    //console.log("function build notelink");
 
     id = note.attr("id");
 
@@ -19,7 +19,7 @@ function buildNoteLink(note) {
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
     var link = XMLnote.getElementsByTagName("link")[0].childNodes[0].nodeValue;
     var link_length = link.length
-    console.log(link_length);
+    //console.log(link_length);
     if (link_length > 40) {
         var content_div = "<div class='noteLink_content' contenteditable='false'>" + link.slice(0,40) + "..." + "</div>";
     } else {

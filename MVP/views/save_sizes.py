@@ -12,14 +12,14 @@ def save_sizes(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("route : save sizes")
+        #print("route : save sizes")
 
         request_data = request.get_json()
         id = str(request_data.get('id'))
         width = str(request_data.get('width'))
         height = str(request_data.get('height'))
 
-        print(id, width, height)
+        #print(id, width, height)
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID

@@ -85,14 +85,14 @@ function selectImagePageLink(note){
     orHeight = note.css("height");
     imagePageLink_id= note.attr("pageID");
 
-    //console.log(id, orWidth, orHeight);
+    ////console.log(id, orWidth, orHeight);
 
     // COPY THE NOTE
     $(document).bind('copy', function() {
         copyNote(note);
     });
 
-    //console.log("select image page link");
+    ////console.log("select image page link");
 
     // style the element when clicked on
     styleSelect(note);
@@ -143,7 +143,7 @@ function selectImagePageLink(note){
     $(document).on('click.outsideImagePageLink', function(){
         if (!note.is(event.target) && !note.has(event.target).length > 0){
 
-            //console.log("clicked oustide imagePageLink");
+            ////console.log("clicked oustide imagePageLink");
 
             event.stopPropagation();
             $(document).off('click.outsideImagePageLink');
@@ -151,7 +151,7 @@ function selectImagePageLink(note){
             width = note.css("width");
             height = note.css("height");
 
-            //console.log(id, width, height, orWidth, orHeight)
+            ////console.log(id, width, height, orWidth, orHeight)
 
             if (orHeight!=height || orWidth!=width) {
                 saveSizes(id, width.slice(0,-2), height.slice(0,-2));
@@ -197,8 +197,8 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     iPl = $(this);
     iPl_img = iPl.find('.imagePageLink_img');
     iPl_name = iPl.find('.imagePageLink_name');
-    console.log(id);
-    console.log(iPl);
+    //console.log(id);
+    //console.log(iPl);
 
     $("#imagePageLinkRCBox").css("left", new_x);
     $("#imagePageLinkRCBox").css("top", new_y);
@@ -236,7 +236,7 @@ $(".imagePageLink").bind('contextmenu', function(event) {
 
     // Change Image
     $('#imagePageLinkRC_2').bind('click', function(event) {
-        //console.log("uehue");
+        ////console.log("uehue");
         event.stopPropagation();
 
         modalImagePageLink.show();
@@ -254,18 +254,18 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     // Style title
     $('#imagePageLinkRC_3').on('click', function() {
 
-        console.log(iPl, iPl.attr("id"));
+        //console.log(iPl, iPl.attr("id"));
 
         if (iPl.hasClass('style2_iPl')) {
-            //console.log("there");
+            ////console.log("there");
             iPl.removeClass('style2_iPl');
             iPl_name.removeClass('style2_iPl_name');
             iPl_img.find('.imagePageLink_img').removeClass('style2_iPl_img');
 
         } else {
-            //console.log("here");
+            ////console.log("here");
             iPl.addClass('style2_iPl');
-            //console.log(iPl_img, iPl_name);
+            ////console.log(iPl_img, iPl_name);
             iPl_name.addClass('style2_iPl_name');
             iPl_img.addClass('style2_iPl_img');
         }
@@ -283,25 +283,25 @@ $(document).on('mousemove', function() {
 });
 
 $("#imagePageLinkRC_2").on('mouseover', function() {
-    //console.log("over");
+    ////console.log("over");
     follower.html("change image");
     follower.show();
 });
 
 $("#imagePageLinkRC_2").on('mouseout', function() {
-    //console.log("out");
+    ////console.log("out");
     follower.html("");
     follower.hide();
 });
 
 $("#imagePageLinkRC_3").on('mouseover', function() {
-    //console.log("over");
+    ////console.log("over");
     follower.html("switch style");
     follower.show();
 });
 
 $("#imagePageLinkRC_3").on('mouseout', function() {
-    //console.log("out");
+    ////console.log("out");
     follower.html("");
     follower.hide();
 });

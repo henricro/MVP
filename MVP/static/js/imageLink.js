@@ -10,10 +10,10 @@ function createImageLink(note) {
 
     id = note.attr("id");
 
-    //console.log(id);
+    ////console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
-    //console.log(XMLnote);
+    ////console.log(XMLnote);
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
 
@@ -22,10 +22,10 @@ function createImageLink(note) {
     var name = XMLnote.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 
     if (note.hasClass('global')) {
-        console.log("is global");
+        //console.log("is global");
         var src = "/static/images/welcome_page/" + name;
     } else {
-        console.log("is not global");
+        //console.log("is not global");
         var src = "/static/user_data/users/" + user_id + "/uploads/" + name;
     }
 
@@ -36,8 +36,8 @@ function createImageLink(note) {
     var link_div = "<div class='imageLink_link'><div>" + link + "</div></div>"
 
 
-    //console.log("print elmnt");
-    //console.log(elmnt);
+    ////console.log("print elmnt");
+    ////console.log(elmnt);
     note.css("top",y.concat("px"));
     note.css("left",x.concat("px"));
     note.attr("link", link);
@@ -77,7 +77,7 @@ function createImageLink(note) {
 
 $('.imageLink').each(function(){
     $(this).bind('click.selectImageLink', function(){
-        //console.log("hobo");
+        ////console.log("hobo");
         selectImageLink($(this));
     });
 });
@@ -87,7 +87,7 @@ function selectImageLink(note){
     id = note.attr("id");
     orWidth = note.css("width");
     orHeight = note.css("height");
-    console.log(id, orWidth, orHeight);
+    //console.log(id, orWidth, orHeight);
 
     // COPY THE NOTE
     note.bind('copy', function() {
@@ -245,7 +245,7 @@ $(".imageLink").on('contextmenu', function(event) {
            $(document).on('click.second' , function() {
 
                if (event.target.classList.contains('drop-area')) {
-                  //console.log('clicked the drop area');
+                  ////console.log('clicked the drop area');
                }
                else {
                     modalImageLink.hide();
@@ -303,10 +303,10 @@ $(function() {
 
           if (key === 'link') {
 
-            console.log("right click imageLink");
+            //console.log("right click imageLink");
 
-            console.log($(this));
-            console.log($(this).attr("id"));
+            //console.log($(this));
+            //console.log($(this).attr("id"));
             id = $(this).attr("id");
             console.log(id);
 

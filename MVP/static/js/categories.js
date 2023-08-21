@@ -10,10 +10,10 @@ function createCategory(note) {
 
     id = note.attr("id");
 
-    console.log(id);
+    //console.log(id);
 
     var XMLnote = xmlDoc.getElementById(id);
-    console.log(XMLnote);
+    //console.log(XMLnote);
 
     var x = XMLnote.getElementsByTagName("x")[0].childNodes[0].nodeValue;
     var y = XMLnote.getElementsByTagName("y")[0].childNodes[0].nodeValue;
@@ -57,7 +57,7 @@ function createCategory(note) {
 
 $('.criteria_categories').bind('click.editCat', function() {
 
-    console.log("clicked on catgory space");
+    //console.log("clicked on catgory space");
 
     $(this).parent().unbind('mousedown.drag');
 
@@ -106,12 +106,12 @@ $('.criteria_categories').bind('click.editCat', function() {
     $(document).bind('click.hideParents', function(){
         $(document).bind('click.hideParents2', function(){
 
-            console.log(event.target.classList);
+            //console.log(event.target.classList);
 
             // if click outside of parent space
             if (!$("#title_parents").is(event.target) && $("#title_parents").has(event.target).length === 0){
-                console.log(event.target);
-                console.log("clicked outside of parent space");
+                //console.log(event.target);
+                //console.log("clicked outside of parent space");
                 $("#title_parents").hide();
 
                 $(document).unbind('click.hideParents2');
@@ -140,8 +140,8 @@ $('.criteria_categories').bind('click.editCat', function() {
             // if click in parent space
             } else {
 
-                console.log("clicked in parent space");
-                console.log(event.target);
+                //console.log("clicked in parent space");
+                //console.log(event.target);
             }
         });
     });
