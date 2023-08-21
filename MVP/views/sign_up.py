@@ -105,7 +105,7 @@ def confirm(verification_token):
 
     # create new HOME page in DB
     engine.execute("insert into Pages (user_id, title, id) VALUES (%s, %s, %s)",
-                   (user_id, 'GYST', 1))
+                   (user_id, 'home', 1))
 
     tree = etree.parse(application.config['TEMPLATES_PATH'] + 'startPage.xml')
     root = tree.getroot()

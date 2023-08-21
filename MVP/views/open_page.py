@@ -77,6 +77,7 @@ def open_page(pageID, user_id, y_position):
                                         "WHERE pl.child_id = %(page_global_id)s;",
                                         {'page_global_id': page_global_id}
                                         ).fetchall()
+
     if not parents :
         parents = []
     else :
