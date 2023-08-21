@@ -77,9 +77,11 @@ def open_page(pageID, user_id, y_position):
                                         "WHERE pl.child_id = %(page_global_id)s;",
                                         {'page_global_id': page_global_id}
                                         ).fetchall()
-    parents = [[item[0], item[1]] for item in parents]
     if not parents :
         parents = []
+    else :
+        parents = [[item[0], item[1]] for item in parents]
+
 
     print("parents ids and titles :",  parents)
 
