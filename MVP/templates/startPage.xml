@@ -15,17 +15,17 @@
     </note>
 
     <note id="2" class="note"><x>627</x><y>178</y><content>Hi !&lt;div&gt;&lt;br&gt;&lt;div&gt;welcome to GYST :)&lt;/div&gt;&lt;/div&gt;</content><css>font-size: 20px; text-align: center; </css></note>
-    <note id="3" class="image"><x>222</x><y>627</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>
-    <note id="6" class="image"><x>665</x><y>1898</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
+    <note id="3" class="image global"><x>222</x><y>627</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>
+    <note id="6" class="image global"><x>665</x><y>1898</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
     <note id="9" class="note"><x>435</x><y>346</y><content>Here, you can do anything.&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Build and design your space&amp;nbsp;&lt;span style="font-family: &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif;"&gt;however you want, for any purpose.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</content><css>font-size : 19px;text-align : center;</css></note>
     <note id="10" class="note"><x>156</x><y>544</y><content>here\'s a little video going through&amp;nbsp;&lt;div&gt;the main features&lt;/div&gt;</content><css>font-size: 20px; text-align : center; </css></note>
     <note id="13" class="note"><x>451</x><y>1221</y><content>feel free to delete all the stuff on this page to get started&lt;div&gt;(or put it in a seperate page)&lt;/div&gt;</content><css>font-size : 19px;text-align : center;</css></note>
     <note id="16" class="list">&lt;li&gt;double-click on page to add a note&lt;/li&gt;&lt;li&gt;right-click to create a new page&lt;/li&gt;&lt;li&gt;drag &amp;amp; drop images, documents, ...&lt;/li&gt;&lt;li&gt;copy/paste anything anywhere&lt;/li&gt;&lt;li&gt;right-click on elements for design options&lt;/li&gt;&lt;li&gt;double-click on title for more&lt;/li&gt;<x>898</x><y>709</y><css>font-size : 19px;</css></note>
     <note id="17" class="note"><x>865</x><y>638</y><content>a little summary :</content><css>font-size : 26px; text-align : center; text-decoration : underline solid rgb(51, 51, 51);</css></note>
-    <note id="18" class="imageLink"><x>408</x><y>667</y><width>262</width><height>176</height><name>youtube-pVJb6BLOjrM.jpg</name><link>https://youtu.be/pVJb6BLOjrM</link></note>
+    <note id="18" class="imageLink global"><x>408</x><y>667</y><width>262</width><height>176</height><name>youtube-pVJb6BLOjrM.jpg</name><link>https://youtu.be/pVJb6BLOjrM</link></note>
     <note id="19" class="note"><x>623</x><y>1045</y><content>There you go :)</content><css>font-size : 25px;text-align : center;color : rgb(99, 6, 110);text-decoration : none solid rgb(99, 6, 110);</css></note>
     <note id="20" class="note"><x>681</x><y>1439</y><content>Enjoy !</content><css>font-size : 19px;text-align : center;</css></note>
-    <note id="21" class="image"><x>643</x><y>1646</y><width>149</width><height>153</height><file_name>Screenshot_2023-08-21_at_19.52.02.png</file_name><name>a6a4fe8f-07ec-4b04-843f-08d71fe718b7.png</name></note>
+    <note id="21" class="image global"><x>643</x><y>1646</y><width>149</width><height>153</height><file_name>Screenshot_2023-08-21_at_19.52.02.png</file_name><name>a6a4fe8f-07ec-4b04-843f-08d71fe718b7.png</name></note>
 
 </notes>
 
