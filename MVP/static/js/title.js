@@ -219,8 +219,40 @@ $('#tdb_title').html("Page info");
         page = "<a href = /open_page/" + lineage[i][0] + "/" + user_id + "/0 target='_blank'>" + lineage[i][1] + " / " + "</a>";
         $("#tdb_path").append(page);
     }
+    if (parents.length > 1){
+        console.log("more than one parent");
+        $("#tdb_path").append("<img id='btn_show_parents' src='/static/images/icons/add.png'>")
+    }
 
 }
+
+console.log("parents : " , parents, parents.length, typeof(parents));
+
+for (parent of parents){
+    console.log('parent : ', parent)
+    id = parent[0];
+    title = parent[1];
+    console.log(id, parent);
+    $("#show_parents").append("<a class='parent' href = /open_page/" + id + "/" + user_id + "/0 target='_blank'>" + title + "</a>")
+}
+
+
+$("#btn_show_parents").on('click', function(event) {
+
+    event.stopPropagation();
+    new_x = event.pageX;
+    new_y = event.pageY
+
+    $("#show_parents").css("top", new_y+"px");
+    $("#show_parents").css("left", new_x+25+"px");
+    $("#show_parents").css('display', 'flex');
+
+    $(document).on('click', function(){
+        if(!$("#show_parents").is(event.target) && !$("#parents").has(event.target).length > 0){
+            $("#show_parents").css('display', 'none');
+        }
+    });
+});
 
 console.log(lineage);
 
@@ -316,6 +348,15 @@ $("#status_password").on('mouseover', function() {
     follower.show();
 });
 $("#status_password").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#btn_show_parents").on('mouseover', function() {
+    follower.html("this page has other parents");
+    follower.show();
+});
+$("#btn_show_parents").on('mouseout', function() {
     follower.html("");
     follower.hide();
 });

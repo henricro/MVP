@@ -39,7 +39,7 @@
 
 #titleDbClick {
     border-radius: 5px;
-    background-color : rgb(252, 252, 252);
+    background-color : rgb(252, 255, 255);
     padding : 14px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     display: none;
@@ -64,6 +64,7 @@
     flex-direction: row;
     align-items: center;
     justify-content : flex-start;
+    margin-top: 3px;
 }
 
 .status_button{
@@ -95,3 +96,22 @@
     cursor: pointer;
 }
 
+#btn_show_parents {
+    height: 15px;
+    width : 15px;
+    cursor: pointer;
+}
+
+#show_parents {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    z-index: 30;
+    background-color: white;
+    padding: 15px;
+
+}
+
+.parent {
+    font-size: 14px;
+}
