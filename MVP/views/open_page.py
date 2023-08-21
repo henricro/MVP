@@ -71,16 +71,7 @@ def open_page(pageID, user_id, y_position):
     print(lineage)
 
     page_global_id = Page.query.filter_by(user_id = user_id, id = pageID).first().global_id
-    parents = engine.execute("SELECT p.id, p.title " 
-                                        "FROM Pages p "
-                                        "JOIN page_links pl ON p.global_id = pl.parent_id "
-                                        "WHERE pl.child_id = %(page_global_id)s;",
-                                        {'page_global_id': page_global_id}
-                                        ).fetchall()
-    if not parents :
-        parents = ["bloup"]
-    else :
-        parents = [[item[0], item[1]] for item in parents]
+    parents = ["iuehuehueh"]
 
 
     print("parents ids and titles :",  parents)
