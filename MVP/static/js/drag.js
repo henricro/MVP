@@ -271,41 +271,20 @@ function dragNotes(selection) {
 
             if ( !( selection.includes($(event.target).attr("id"))  || selection.includes($(event.target).parent().attr("id")) || selection.includes($(event.target).parent().parent().attr("id")) ) ){
 
-                if ( event.target.classList.contains('pageLink') ){
+                if ( event.target.classList.contains('pageLink')  ||
+                 $(event.target).parent().hasClass('imagePageLink')) {
 
-                    //console.log("moved a selection into another page");
-
-                    page_id = $(event.target).attr("pageid");
-
-                    $.ajax({
-
-                        url: '/move_notes/'+pageID + '/' + user_id,
-                        type: "POST",
-                        data: JSON.stringify({
-                            selection: selection,
-                            page_id: page_id
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            console.log(data);
-                            current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                        },
-                        error: function (error) {
-                            console.log("problem");
-                            current_y = document.documentElement.scrollTop;
-                            console.log("current y :", current_y);
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                        }
-
-                    });
-
-                } else if ( $(event.target).parent().hasClass('imagePageLink_name') ){
-
-                    //console.log("moved a selection into another page");
-
-                    page_id = $(event.target).parent().parent().attr("pageid");
+                    console.log("target is pageLink or imagePagelInk");
+                    note_id = note.attr("id");
+                    if (event.target.classList.contains('pageLink')){
+                        //console.log("sending to pageLink")
+                        page_id = $(event.target).attr("pageid");
+                    } else {
+                        //console.log("sending to imagePageLink");
+                        //console.log($(event.target));
+                        //console.log($(event.target).parent());
+                        page_id = $(event.target).parent().attr("pageid");
+                    }
 
                     $.ajax({
 
@@ -331,8 +310,7 @@ function dragNotes(selection) {
 
                     });
 
-                } //else if ( event.target.classList.contains('note') ){
-
+                }
                 else {
 
                     //console.log("moved a selection");

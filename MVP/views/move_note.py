@@ -172,6 +172,48 @@ def move_notes(pageID, user_id):
 
             notes = root.find("notes")
             notes.append(copied_note)
+            note_class = note_to_move.get("class")
+
+            if "pageLink" in note_class or "imagePageLink" in note_class:
+
+                print("note class is pageLink or imagePageLink")
+                # destPage_id = page id de la pageLink qu'on bouge
+                destPage_id = note_to_move.get('pageID')
+
+                # pageID = page_id de la page sur laquelle on était : on veut qu'elle ne soit plus parent
+                pageID = pageID
+
+                # page_id = page_id de la page dans laquelle on la bouge
+                page_id = page_id
+
+                print("note_to_move's id : ", destPage_id)
+                print("previos page's id : ", pageID)
+                print("new page's id : ", page_id)
+
+                prev_parent_id = Page.query.filter_by(id=pageID, user_id=user_id).first().global_id
+                child_id = Page.query.filter_by(id=destPage_id, user_id=user_id).first().global_id
+                new_parent_id = Page.query.filter_by(id=page_id, user_id=user_id).first().global_id
+
+                # in any case : change the parent of destPage_id to page_id (it used to be pageID)
+                # make the change in page_links
+
+                engine.execute(
+                    "update page_links set "
+                    "parent_id = %(new_parent_id)s where "
+                    "parent_id = %(prev_parent_id)s and child_id = %(child_id)s",
+                    {'prev_parent_id': prev_parent_id, 'child_id': child_id, 'new_parent_id': new_parent_id}
+                )
+
+                # if destPage_id's official parent_id == pageID
+                # then change the official parent_id to page_id
+
+                official_parent_id = Page.query.filter_by(id=destPage_id, user_id=user_id).first().official_parent_id
+                if official_parent_id == prev_parent_id:
+                    engine.execute(
+                        "update Pages set official_parent_id = %(new_parent_id)s "
+                        "where global_id=%(child_id)s",
+                        {'child_id': child_id, 'new_parent_id': new_parent_id}
+                    )
 
             # save the changes in the xml
             f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + destPageName + ".xml", 'wb')
