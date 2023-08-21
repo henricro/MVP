@@ -121,11 +121,19 @@ function selectImagePageLink(note){
         }
     });
 
-    // second click : go to page
-    note.on('click.gotopage', function(){
-        console.log("hehe");
-        $(document).off('keyup.delete');
-        window.open('/open_page/'+ imagePageLink_id + '/' + user_id + "/0" , '_blank');
+   // SECOND CLICK
+    note.on('mousedown.gotopage', function(){
+        if (event.which !== 3 && event.button !== 2) {
+            // Your code here (excluding right-click)
+            var left  = event.pageX;
+            var top   = event.pageY;
+
+            $(this).bind('mouseup.gotopage', function(){
+                if (!(left != event.pageX || top != event.pageY)) {
+                    window.open('/open_page/'+ imagePageLink_id + '/' + user_id + '/0', '_blank');
+                }
+            });
+          }
     });
 
     note.addClass("resizable");
@@ -151,7 +159,8 @@ function selectImagePageLink(note){
 
             note.removeClass("resizable");
             styleDefault(note);
-            note.off('click.gotopage');
+            note.off('mousedown.gotopage');
+            note.off('mouseup.gotopage');
             $(document).off('copy');
             $(document).off('keyup.delete');
 
@@ -188,6 +197,8 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     iPl = $(this);
     iPl_img = iPl.find('.imagePageLink_img');
     iPl_name = iPl.find('.imagePageLink_name');
+    console.log(id);
+    console.log(iPl);
 
     $("#imagePageLinkRCBox").css("left", new_x);
     $("#imagePageLinkRCBox").css("top", new_y);
@@ -199,9 +210,9 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     $(document).on('click', function(event){
         if (!$("#imagePageLinkRCBox").is(event.target) && !$("#imagePageLinkRCBox").has(event.target).length > 0){
             $("#imagePageLinkRCBox").hide();
-            //console.log(iPl.attr("class"));
+
+            id = iPl.attr('id');
             styleIPL = iPl.attr("class") !== oldStyleIPL ? iPl.attr("class") : "same";
-            //console.log(styleIPL);
 
             if (styleIPL != "same"){
                 $.ajax({
@@ -241,7 +252,9 @@ $(".imagePageLink").bind('contextmenu', function(event) {
     });
 
     // Style title
-    $('#imagePageLinkRC_3').bind('click', function() {
+    $('#imagePageLinkRC_3').on('click', function() {
+
+        console.log(iPl, iPl.attr("id"));
 
         if (iPl.hasClass('style2_iPl')) {
             //console.log("there");

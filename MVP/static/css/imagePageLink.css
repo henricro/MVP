@@ -13,10 +13,7 @@
     border-radius : 5px;
     background-color : rgb(200, 240, 149, 0.2);
     box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+
 
 }
 
@@ -24,8 +21,16 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
+.imagePageLink_img{
+    opacity :1;
+    width:100%;
+    height: 92%;
+}
+
+
 .imagePageLink_name {
 
+    top: 100%;
     height: 8%;
     align-items: center;
     justify-content:center;
@@ -33,17 +38,14 @@
     text-align: center;
     padding-bottom: 4px;
     font-family : PWSimpleHandwriting, Geneva !important;
+    width: 100%;
+    overflow: visible;
 
     /* transition effect. not necessary */
     transition: opacity .2s, font-size .2s, color .2s;
 
 }
 
-.imagePageLink_img{
-    opacity :1;
-    width:100%;
-    height: 92%;
-}
 
 .imagePageLink:hover{
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.3);
