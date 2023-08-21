@@ -1,4 +1,3 @@
-
 <canvas>
 
 <notes>
@@ -8,20 +7,28 @@
         <y>49</y>
     </note>
 
-    <note id="2" class="note"><x>636</x><y>147</y><content>Hi there :)&lt;div&gt;&lt;br&gt;&lt;div&gt;welcome to GYST&lt;/div&gt;&lt;/div&gt;</content><css>font-size: 20px; text-align: center; </css></note>
-    <note id="3" class="image global"><x>537</x><y>281</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>
-    <note id="4" class="imageLink global" global="1"><x>739</x><y>333</y><width>238</width><height>161</height><name>youtube-NMX_MoZ1ljM.jpg</name><image_id>6220</image_id><link>https://www.youtube.com/watch?v=NMX_MoZ1ljM</link></note>
-    <note id="5" class="note"><x>424</x><y>459</y><content>here\'s a little video showing&amp;nbsp;&lt;div&gt;what the main features are&lt;/div&gt;</content><css>font-size: 17px; transform:rotate(12deg); </css></note>
-    <note id="6" class="image global"><x>687</x><y>1196</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
-    <note id="7" class="note"><x>587</x><y>610</y><content>but basically :&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- double click anywhere to write&lt;/div&gt;&lt;div&gt;- write click anywhere to create a new page&lt;/div&gt;&lt;div&gt;- drop an image anywhere&lt;/div&gt;&lt;div&gt;- right-click an image to add a link&lt;/div&gt;&lt;div&gt;- right-click a link to page to add an image&lt;/div&gt;&lt;div&gt;- copy-paste anything anywhere&lt;/div&gt;&lt;div&gt;- move and resize anything&lt;/div&gt;&lt;div&gt;- right click on text to add CSS style (ex : font-size:23px; color:blue;)&lt;/div&gt;</content><css>font-size: 17px;</css></note>
-    <note id="8" class="note"><x>654</x><y>977</y><content>hope you like it !</content><css>font-size: 17px;</css></note>
+    <note id="parents">
+        <x>-150</x>
+        <y>-100</y>
+        <width>300</width>
+        <height>200</height>
+    </note>
 
-</notes>
+<note id="2" class="note"><x>626</x><y>141</y><content>Hi !&lt;div&gt;&lt;br&gt;&lt;div&gt;welcome to GYST :)&lt;/div&gt;&lt;/div&gt;</content><css>font-size: 20px; text-align: center; </css></note>
+    <note id="3" class="image"><x>222</x><y>627</y><width>169</width><height>186</height><name>272c8f41-c3b7-48d2-8b24-5c6e4694dc6a.png</name><image_id>6219</image_id></note>
+    <note id="6" class="image"><x>665</x><y>1898</y><width>81</width><height>48</height><name>aba1f9de-bbf1-49bd-a75c-fb52ef98902c.png</name><image_id>2288</image_id><css>font-size: 17px; </css></note>
+    <note id="9" class="note"><x>502</x><y>347</y><content>Here, you can do anything.&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Build and design your space&amp;nbsp;&lt;span style="font-family: &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif;"&gt;however you want.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</content><css>font-size : 19px;text-align : center;</css></note>
+    <note id="10" class="note"><x>156</x><y>544</y><content>here\'s a little video going through&amp;nbsp;&lt;div&gt;the main features&lt;/div&gt;</content><css>font-size: 20px; text-align : center; </css></note>
+    <note id="13" class="note"><x>618</x><y>1347</y><content>Hope you enjoy it :)&lt;div&gt;&lt;br&gt;&lt;div&gt;let me know !&lt;/div&gt;&lt;/div&gt;</content><css>font-size : 19px;text-align : center;</css></note>
+    <note id="14" class="note"><x>220</x><y>989</y><content>to design simple graphics to use on GYST, &lt;br&gt;take a look at Canva :)&lt;br&gt;it has a really good free version</content><css>font-size : 19px;text-align : left;</css></note>
+    <note id="15" class="imageLink"><x>587</x><y>1058</y><width>137</width><height>124</height><file_name>Screenshot_2023-08-21_at_14.00.12.png</file_name><name>84afb1c1-3c42-4795-acb3-8e9967078f3b.png</name><link>https://www.canva.com/</link></note>
+    <note id="16" class="list">&lt;li&gt;double-click on page to add a note&lt;/li&gt;&lt;li&gt;right-click to create a new page&lt;/li&gt;&lt;li&gt;drag &amp;amp; drop images, documents, ...&lt;/li&gt;&lt;li&gt;copy/paste anything anywhere&lt;/li&gt;&lt;li&gt;right-click on elements for design options&lt;/li&gt;&lt;li&gt;double-click on title for more&lt;/li&gt;<x>898</x><y>709</y><css>font-size : 19px;</css></note>
+    <note id="17" class="note"><x>865</x><y>638</y><content>a little summary :</content><css>font-size : 26px; text-align : center; text-decoration : underline solid rgb(51, 51, 51);</css></note>
+    <note id="18" class="imageLink global"><x>432</x><y>704</y><width>200</width><height>132</height><name>youtube-FnQvu54Eei4.jpg</name><link>https://youtu.be/FnQvu54Eei4</link></note></notes>
 
 <meta>
     <biggest_id>8</biggest_id>
     <type/>
-    <background>white</background>
 </meta>
 
 </canvas>
