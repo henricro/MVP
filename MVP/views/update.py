@@ -239,8 +239,6 @@ def change_IPL_style(pageID, user_id):
 
     if str(current_user.id) == user_id:
 
-        print("route : add css")
-
         request_data = request.get_json()
         id = str(request_data.get('id'))
         styleIPL = str(request_data.get('styleIPL'))
@@ -253,6 +251,7 @@ def change_IPL_style(pageID, user_id):
 
         note = root.find("notes").find("note[@id='" + id + "']")
         note.set("class", styleIPL)
+        print(id, styleIPL)
 
 
         # save the changes in the xml

@@ -106,9 +106,6 @@ function styleDefault(note) {
         note.css({"border-width" : "Opx"});
         note.find(".docx_img").css({"opacity": "1"});
     }
-    if (note_class == "imagePageLink") {
-        note.find("imagePageLink_name").css({"text-decoration" : "none"});
-    }
     if (note_class == "imageLink") {
         note.css({"border-width" : "0px"});
         note.find(".imageLink_img").css({"opacity": "1"});
