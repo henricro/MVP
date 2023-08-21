@@ -403,3 +403,65 @@ def add_css_image_ipl(pageID, user_id):
         return "yo"
 
 
+
+
+@application.route("/add_css_list/<pageID>/<user_id>", methods=['POST'])
+@user_required()
+def add_css_list(pageID, user_id):
+
+    if str(current_user.id) == user_id:
+
+        print("route : add css list")
+
+        request_data = request.get_json()
+        id = str(request_data.get('id'))
+        fontSize = str(request_data.get('fontSize'))
+
+        print(id, type)
+
+        pageID = str(pageID)
+        pageName = 'Page_' + pageID
+
+        tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
+        root = tree.getroot()
+
+        note = root.find("notes").find("note[@id='" + id + "']")
+
+        print(note)
+        existing_css = note.find("css")
+        print("existing css : ", existing_css)
+
+        if existing_css is not None :
+            print('css already there ', existing_css.text)
+        else:
+            print('css not already there')
+            etree.SubElement(note, "css")
+            existing_css = note.find("css")
+            existing_css.text = ""
+
+
+        if not fontSize == "same":
+
+            print("changing the font size")
+            pattern = r'font-size\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            print(match)
+            print(bool(match))
+            css = "font-size : " + fontSize + ";"
+
+            # if there is already color in the css
+            if bool(match) :
+                print("already font-size in css")
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already color in css
+            else :
+                print("no font-size already in css")
+                note.find("css").text = existing_css.text + css
+
+
+        # save the changes in the xml
+        f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml", 'wb')
+        f.write(etree.tostring(root, pretty_print=True))
+        f.close()
+        return "yo"
+
