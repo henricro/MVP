@@ -54,16 +54,28 @@ function mouseUp(note) {
 
     // if the mouse has moved
     if (!(mouseX == event.pageX && mouseY == event.pageY)){
-
+        console.log("moving");
         // if it's dropped on smthg with other id
         if ( !( $(event.target).attr("id") == id || $(event.target).parent().attr("id") == id || $(event.target).parent().parent().attr("id") == id ) ){
 
             // if you drop in pageLink
+            //console.log("target  ", event.target);
             if ( event.target.classList.contains('pageLink')  ||
-                 $(event.target).parent().hasClass('imagePageLink_name')) {
+                 $(event.target).parent().hasClass('imagePageLink')) {
 
                 note_id = note.attr("id");
-                page_id = $(event.target).attr("pageid");
+                console.log(note.attr)
+                if (event.target.classList.contains('pageLink')){
+                    //console.log("sending to pageLink")
+                    page_id = $(event.target).attr("pageid");
+                } else {
+                    //console.log("sending to imagePageLink");
+                    //console.log($(event.target));
+                    //console.log($(event.target).parent());
+                    page_id = $(event.target).parent().attr("pageid");
+                }
+                console.log("move note");
+                console.log(page_id);
 
                 $.ajax({
 

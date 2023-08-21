@@ -18,6 +18,7 @@ def move_note(pageID, user_id):
         request_data = request.get_json()
         note_id = str(request_data.get('note_id'))
         page_id = str(request_data.get('page_id'))
+        print(page_id)
 
         pageID = str(pageID)
         pageName = 'Page_' + pageID
