@@ -44,7 +44,7 @@ def open_page(pageID, user_id, y_position):
     pageID = str(pageID)
     pageName = 'Page_' + pageID
 
-    title = Page.query.filter_by(id=pageID).first().title
+    title = Page.query.filter_by(id=pageID, user_id = user_id).first().title
     tree = etree.parse(application.config['USER_DATA_PATH'] + user_id + '/pages/' + pageName + ".xml")
     root = tree.getroot()
 
