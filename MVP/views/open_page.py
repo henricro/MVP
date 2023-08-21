@@ -93,7 +93,7 @@ def open_page(pageID, user_id, y_position):
         # Render the page directly without requiring user authentication
         return render_template('/page.html', xml_string=xml_string, pageID=pageID,
                                user_id=user_id, pages=pages, title=title, y_position=y_position,
-                               email=email, lineage=lineage, page_share_status=page_share_status)
+                               email=email, lineage=lineage, page_share_status=page_share_status, parents = parents)
 
     # If the page is private, require user authentication using the user_required decorator
     if page_share_status == "private":
