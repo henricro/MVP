@@ -28,6 +28,9 @@ body  {
   overflow: auto;
  }
 
+#myClipboard {
+    display: none;
+}
 
 .selected {
     background-color: red;

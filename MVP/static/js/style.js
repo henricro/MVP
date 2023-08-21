@@ -52,7 +52,7 @@ function styleSelect(note) {
         note.css({"border-width" : "1px"});
         note.find(".xlsx_img").css({"opacity": "0.7"});
     }
-    if (note_class == "imageLink") {
+    if (note_class.includes("imageLink")) {
         note.css({"border-style" : "solid"});
         note.css({"border-width" : "1px"});
         note.find(".imageLink_img").css({"opacity": "0.5"});
