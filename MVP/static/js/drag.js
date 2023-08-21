@@ -65,16 +65,16 @@ function mouseUp(note) {
 
                 console.log("target is pageLink or imagePagelInk");
                 note_id = note.attr("id");
+                note_class = note.attr("class");
+
                 if (event.target.classList.contains('pageLink')){
                     //console.log("sending to pageLink")
                     page_id = $(event.target).attr("pageid");
-                    note_class="pageLink";
                 } else {
                     //console.log("sending to imagePageLink");
                     //console.log($(event.target));
                     //console.log($(event.target).parent());
                     page_id = $(event.target).parent().attr("pageid");
-                    note_class = "imagePageLink";
                 }
                 console.log("move note");
                 console.log(page_id);
@@ -93,13 +93,13 @@ function mouseUp(note) {
                         //console.log(data);
                         current_y = document.documentElement.scrollTop;
                         //console.log("current y :", current_y);
-                        //window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     },
                     error: function (error) {
                         //console.log("problem");
                         current_y = document.documentElement.scrollTop;
                         //console.log("current y :", current_y);
-                        //window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
+                        window.location.href='/open_page/' + pageID + '/' + user_id + '/' + current_y;
                     }
 
                 });
