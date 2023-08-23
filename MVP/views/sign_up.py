@@ -97,7 +97,7 @@ def confirm(verification_token):
                            {'verification_token': verification_token})
 
     user_id = str(user.id)
-    user_welcome_id = "1"
+    user_welcome_id = "114"
 
     db.session.commit()
 
