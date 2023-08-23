@@ -14,7 +14,7 @@
   background-color : rgb(240, 255, 220);
   box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
   font-size: 18px;
-
+  white-space: nowrap;
 }
 
 .pageLink:hover {
