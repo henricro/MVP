@@ -25,4 +25,17 @@ $(document).on("keydown", function(event) {
 
 });
 
+$(document).on("keydown", function(event) {
+
+    if (event.key === "F5") {
+
+        event.preventDefault();
+        current_y = document.documentElement.scrollTop;
+        //console.log(current_y);
+        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+
+    }
+
+});
+
 

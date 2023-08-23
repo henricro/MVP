@@ -18,6 +18,7 @@ from MVP import application, db, login_manager, engine, user_required
 from flask_login import login_user, logout_user, current_user
 
 import os
+import shutil
 
 from lxml import etree
 #import sys
@@ -96,23 +97,67 @@ def confirm(verification_token):
                            {'verification_token': verification_token})
 
     user_id = str(user.id)
+    user_welcome_id = "1"
 
     db.session.commit()
 
-    os.mkdir(application.config['USER_DATA_PATH'] + user_id)
-    os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/pages/')
-    os.mkdir(application.config['USER_DATA_PATH'] + user_id + '/uploads/')
+    source_folder = application.config['USER_DATA_PATH'] + user_welcome_id + "/"
+    destination_folder = application.config['USER_DATA_PATH'] + user_id + '/'
 
-    # create new HOME page in DB
-    engine.execute("insert into Pages (user_id, title, id) VALUES (%s, %s, %s)",
-                   (user_id, 'home', 1))
+    # Create the destination folder if it doesn't exist
+    os.makedirs(destination_folder, exist_ok=True)
 
-    tree = etree.parse(application.config['TEMPLATES_PATH'] + 'startPage.xml')
-    root = tree.getroot()
+    # Copy all contents from the user_data of 'welcome_page' to this user
+    for item in os.listdir(source_folder):
+        source_item = os.path.join(source_folder, item)
+        destination_item = os.path.join(destination_folder, item)
 
-    f = open(application.config['USER_DATA_PATH'] + user_id + '/pages/Page_1.xml', 'wb')
-    f.write(etree.tostring(root, pretty_print=True))
-    f.close()
+        if os.path.isdir(source_item):
+            shutil.copytree(source_item, destination_item)
+        else:
+            shutil.copy2(source_item, destination_item)
+
+    # Copy all the pages and page_links in DB from user 'welcome_page' to this user
+
+    user_id = int(user.id)
+    user_welcome_id = 114
+
+    # Step 1: Add duplicates of rows and switch user_id in the table Pages
+    engine.execute("CREATE TEMPORARY TABLE temp_duplicate AS "
+                   "SELECT id, user_id, official_parent_id, title FROM Pages WHERE user_id = %(user_welcome_id)s; ",
+                   {'user_welcome_id': user_welcome_id})
+
+    engine.execute("INSERT INTO Pages (id, user_id, official_parent_id, title) "
+                   "SELECT id, %(user_id)s, official_parent_id, title FROM temp_duplicate;",
+                   {'user_id': user_id})
+
+    # Step 2: Update official_parent_id in the newly duplicated rows
+    step2_query = """
+    UPDATE Pages p 
+    JOIN Pages parent_of_original ON p.official_parent_id = parent_of_original.global_id 
+    JOIN Pages parent_of_duplicate ON parent_of_original.id = parent_of_duplicate.id and parent_of_duplicate.user_id = %(user_id)s  
+    SET p.official_parent_id = parent_of_duplicate.global_id 
+    WHERE p.user_id = %(user_id)s;
+    """
+
+    engine.execute(step2_query, {'user_welcome_id': user_welcome_id, 'user_id': user_id})
+
+    # Step 3: Create duplicates in the table page_links
+    step3_query = """
+        
+        -- Step 3: Create duplicates in the table page_links
+        INSERT INTO page_links (child_id, parent_id)
+        SELECT new_child.global_id, new_parent.global_id
+        FROM page_links AS tpl
+        JOIN Pages old_child ON tpl.child_id = old_child.global_id
+        JOIN Pages old_parent ON tpl.parent_id = old_parent.global_id
+        JOIN Pages new_child ON old_child.id = new_child.id AND old_child.user_id = %(user_welcome_id)s 
+        JOIN Pages new_parent ON old_parent.id = new_parent.id AND old_parent.user_id = %(user_welcome_id)s
+        WHERE new_child.user_id = %(user_id)s AND new_parent.user_id = %(user_id)s;
+
+    """
+
+    engine.execute(step3_query, {'user_welcome_id': user_welcome_id, 'user_id': user_id})
 
     print("login user")
 
