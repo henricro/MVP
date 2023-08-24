@@ -123,15 +123,12 @@ def confirm(verification_token):
     user_welcome_id = 114
 
     # Step 1: Add duplicates of rows and switch user_id in the table Pages
-    engine.execute("CREATE TEMPORARY TABLE temp_duplicate AS "
-                   "SELECT id, user_id, official_parent_id, title FROM Pages WHERE user_id = %(user_welcome_id)s; ",
-                   {'user_welcome_id': user_welcome_id})
 
     engine.execute("INSERT INTO Pages (id, user_id, official_parent_id, title) "
-                   "SELECT id, %(user_id)s, official_parent_id, title FROM temp_duplicate; ",
-                   {'user_id': user_id})
+                   "SELECT id, %(user_id)s, official_parent_id, title "
+                   "FROM Pages WHERE user_id = %(user_welcome_id)s;",
+                   {'user_id': user_id, 'user_welcome_id': user_welcome_id})
 
-    engine.execute("drop temporary table temp_duplicate;")
 
     # Step 2: Update official_parent_id in the newly duplicated rows
     step2_query = """
