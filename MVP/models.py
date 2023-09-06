@@ -1,5 +1,6 @@
 from MVP import db, application
 from sqlalchemy import UniqueConstraint
+from sqlalchemy import JSON
 
 
 
@@ -14,6 +15,11 @@ class User(db.Model):
     is_active = db.Column(db.Boolean, default=True)
     verification_token = db.Column(db.String(128))
     verification_token_expiry = db.Column(db.DateTime, nullable=True)
+    gender = db.Column(db.String(128))
+    age_group = db.Column(db.String(128))
+    location = db.Column(db.String(128))
+    interests = db.Column(JSON)
+
 
     @property
     def is_authenticated(self):

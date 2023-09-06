@@ -11,6 +11,8 @@ from MVP.views.celery_view import send_email2
 from MVP.views.passwords import get_hashed_password
 
 import uuid
+import json
+
 
 from MVP.models import *
 
@@ -47,6 +49,10 @@ def sign_up():
 
         email = form.email.data
         password = form.password.data
+        gender = form.gender.data
+        age_group = form.age_group.data
+        location = form.location.data
+        interests = request.form.getlist('interests[]')  # Retrieve selected interests as a list
         encrypted_password = get_hashed_password(password)
         form.email.data = None
 
@@ -56,6 +62,7 @@ def sign_up():
 
         result.close()
 
+        print(interests)
 
         if not allemails:
 
@@ -63,8 +70,11 @@ def sign_up():
             verification_token_expiry = datetime.now() + timedelta(hours=72)
             today=datetime.now()
             engine.execute("INSERT INTO Users(email, verification_token, "
-                           "verification_token_expiry, password, is_active) VALUES (%s, %s, %s, %s, %s)",
-                           (email, verification_token, verification_token_expiry, encrypted_password, 0))
+                           "verification_token_expiry, password, is_active, "
+                           "gender, age_group, location, interests) "
+                           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                           (email, verification_token, verification_token_expiry, encrypted_password, 0,
+                            gender, age_group, location, json.dumps(interests)))
             flash(f"Thanks ! 🙏 Just click on the link in the confirmation email we sent you and you'll be good to go ☺️", 'success')
 
             link = "{}{}{}".format(application.config['SERVER_DOMAIN'], '/confirm/', verification_token)

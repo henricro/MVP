@@ -36,7 +36,7 @@ form{
 
 
 
-<div style="display:flex; flex-direction:column; align-items:center; margin-top: 100px; font-family: 'Quicksand', sans-serif; ">
+<div style="display:flex; flex-direction:column; align-items:center; margin-top: 100px; font-family: 'Quicksand', sans-serif; margin-bottom: 100px;">
 
     <div style="width:300px; margin-top: 50px;">
       {% with messages = get_flashed_messages(with_categories=true) %}
@@ -75,6 +75,37 @@ form{
                 {% else %}
                     {{ form.email(class="form-control form-control-lg") }}
                 {% endif %}
+            </div>
+
+            <!-- Gender -->
+            <div style="margin-bottom: 10px;">
+                {{ form.gender.label(class="form-control-label") }}
+                {{ form.gender(class="form-control form-control-lg") }}
+            </div>
+
+            <!-- Age Group -->
+            <div style="margin-bottom: 10px;">
+                {{ form.age_group.label(class="form-control-label") }}
+                {{ form.age_group(class="form-control form-control-lg") }}
+            </div>
+
+            <!-- Location -->
+            <div style="margin-bottom: 10px;">
+                {{ form.location.label(class="form-control-label") }}
+                {{ form.location(class="form-control form-control-lg") }}
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                {{ form.interests.label(class="form-control-label") }}
+                <div>
+                    {% for value, label in form.interests.choices %}
+                        <label>
+                            <input type="checkbox" name="interests[]" value="{{ value }}">
+                            {{ label }}
+                        </label>
+                        <br>
+                    {% endfor %}
+                </div>
             </div>
 
             <div >
