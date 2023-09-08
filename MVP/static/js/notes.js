@@ -84,7 +84,7 @@ $('.note').each(function(){
     });
 });
 
-
+// select mode
 function selectNote(note){
 
     event.stopPropagation();
@@ -122,6 +122,8 @@ function selectNote(note){
 
     note.off('click.selectNote');
 
+    note.attr("contenteditable", "true");
+
     // SECOND CLICK
     note.on('click.write', function(){
         $(document).off('keyup.delete');
@@ -152,22 +154,24 @@ function selectNote(note){
 /////////////////////////////////////////////////////
 
 
-$('.note').each(function(){
-    $(this).on('dblclick.write', function(){
-        writeNote($(this));
-    });
-});
 
 function writeNote(note){
 
-    note.off('click.selectNote');
-    note.off('dblclick.write');
     note.off('mousedown.drag');
-    note.off('copy');
-    note.attr("contenteditable", "true");
+    $(document).off('copy');
+    $(document).off("keydown.selectAll");
 
     $(document).on('click.update_content', function() {
         if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            $(document).on("keydown.selectAll", function(event) {
+                if ((event.metaKey || event.ctrlKey) && event.key === "a") {
+                    event.preventDefault();
+                    selectAll();
+                }
+            });
+
+            $(document).off('copy');
 
             content = note.html();
             $(document).off('click.update_content');
@@ -200,10 +204,6 @@ function writeNote(note){
 
             note.on('click.selectNote', function() {
                 selectNote($(this));
-            });
-
-            note.on('dblclick.write', function(){
-                writeNote($(this));
             });
 
             note.on('mousedown.drag', function(){

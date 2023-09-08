@@ -224,146 +224,147 @@ function stopSelect() {
 }
 
 
-$(document).on("keydown", function(event) {
-
+$(document).on("keydown.selectAll", function(event) {
     if ((event.metaKey || event.ctrlKey) && event.key === "a") {
-
         event.preventDefault();
+        selectAll();
+    }
+});
 
-        var selection = [];
-        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").each(function(){
 
-            // feed the selection
-            note = $(this);
-            id = note.attr("id");
-            noteY = parseInt(note.css("top").slice(0, -2));
-            noteX = parseInt(note.css("left").slice(0, -2));
+function selectAll(){
 
-            selection.push([id, noteY, noteX]);
+    var selection = [];
+    $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").each(function(){
+
+        // feed the selection
+        note = $(this);
+        id = note.attr("id");
+        noteY = parseInt(note.css("top").slice(0, -2));
+        noteX = parseInt(note.css("left").slice(0, -2));
+
+        selection.push([id, noteY, noteX]);
+
+    });
+
+    selectionY = selection.sort((a, b) => a[1] - b[1]).map(arr => arr[0]);
+    selectionX = selection.sort((a, b) => a[2] - b[2]).map(arr => arr[0]);
+    selection = selection.map(arr => arr[0]);
+
+    // color selected elements with blue border
+    for (i in selection){
+        id = selection[i]
+        note = $("#" + id);
+        styleSelect(note);
+    }
+
+    // if selected no element
+    if (selection.length == 0){
+        $('#selectBox').remove();
+
+    } else {
+
+        console.log("selected bunch of stuff with cmd a");
+
+        // if cmd + c --> copy selection
+        $(document).bind('copy.copySelection', function() {
+            copySelection(selection);
+            $(document).unbind('copy.copySelection');
+        });
+
+        // if key:delete --> delete all elements in selection
+        $(document).on('keyup.delete', function(event){
+            if (event.keyCode == 8){
+                console.log("delete all");
+                selectionString = selection.toString();
+                $.ajax({
+                    url: '/delete_notes/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        selection: selectionString
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    },
+                    error: function (error) {
+                        current_y = document.documentElement.scrollTop;
+                        window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                    }
+                });
+            }
+        });
+
+        // if right click on any of the selected elements
+        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('contextmenu', function(event){
+
+            event.preventDefault();
+            $("#selectionRCBox").css("left", event.pageX);
+            $("#selectionRCBox").css("top", event.pageY);
+            $("#selectionRCBox").show();
+
+            // if you click outside of the box
+            $(document).click(function(){
+                if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0 && !$("#selectBox").is(event.target)){
+                     $("#selectionRCBox").hide();
+                }
+            });
+
+            $('#selectionRC_1').bind('click', function() {
+                console.log("clicked on align items top down");
+                event.stopPropagation();
+                alignTopDown(selectionY);
+            });
+
+            $('#selectionRC_2').bind('click', function() {
+                event.stopPropagation();
+                alignLeftRight(selectionX);
+            });
+
+            $('#selectionRC_3').bind('click', function() {
+                $("#selectionRCBox").hide();
+                copySelection(selection);
+            });
 
         });
 
-        selectionY = selection.sort((a, b) => a[1] - b[1]).map(arr => arr[0]);
-        selectionX = selection.sort((a, b) => a[2] - b[2]).map(arr => arr[0]);
-        selection = selection.map(arr => arr[0]);
+        // drag all
+        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.dragAll', function(event){
+            if (event.which == 3) { console.log("right click"); } else {
 
-        // color selected elements with blue border
-        for (i in selection){
-            id = selection[i]
-            note = $("#" + id);
-            styleSelect(note);
-        }
+                $(document).unbind('keyup.delete');
 
-        // if selected no element
-        if (selection.length == 0){
-            $('#selectBox').remove();
+                console.log(selection);
+                console.log(event);
 
-        } else {
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+                console.log("drag notes", mouseX, mouseY);
+                dragNotes(selection);
 
-            console.log("selected bunch of stuff with cmd a");
+            }
 
-            // if cmd + c --> copy selection
-            $(document).bind('copy.copySelection', function() {
-                copySelection(selection);
-                $(document).unbind('copy.copySelection');
-            });
+        });
 
-            // if key:delete --> delete all elements in selection
-            $(document).on('keyup.delete', function(event){
-                if (event.keyCode == 8){
-                    console.log("delete all");
-                    selectionString = selection.toString();
-                    $.ajax({
-                        url: '/delete_notes/' + pageID + '/' + user_id,
-                        type: "POST",
-                        data: JSON.stringify({
-                            selection: selectionString
-                        }),
-                        contentType: "application/json",
-                        success: function (data) {
-                            current_y = document.documentElement.scrollTop;
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                        },
-                        error: function (error) {
-                            current_y = document.documentElement.scrollTop;
-                            window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
-                        }
-                    });
-                }
-            });
+        // if you click outside of all
+        $(document).bind('mousedown.outsideSelect1', function(){
 
-            // if right click on any of the selected elements
-            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('contextmenu', function(event){
+            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").off('mousedown.dragAll');
 
-                event.preventDefault();
-                $("#selectionRCBox").css("left", event.pageX);
-                $("#selectionRCBox").css("top", event.pageY);
-                $("#selectionRCBox").show();
+            if (!$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").is(event.target) && !$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").has(event.target).length > 0){
 
-                // if you click outside of the box
-                $(document).click(function(){
-                    if (!$("#selectionRCBox").is(event.target) && $("#selectionRCBox").has(event.target).length === 0 && !$("#selectBox").is(event.target)){
-                         $("#selectionRCBox").hide();
-                    }
-                });
+                $("#selectBox").hide();
+                unSelect(selection);
+                $(document).unbind("mousedown.outsideSelect1");
 
-                $('#selectionRC_1').bind('click', function() {
-                    console.log("clicked on align items top down");
-                    event.stopPropagation();
-                    alignTopDown(selectionY);
-                });
+            }
 
-                $('#selectionRC_2').bind('click', function() {
-                    event.stopPropagation();
-                    alignLeftRight(selectionX);
-                });
-
-                $('#selectionRC_3').bind('click', function() {
-                    $("#selectionRCBox").hide();
-                    copySelection(selection);
-                });
-
-            });
-
-            // drag all
-            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.dragAll', function(event){
-                if (event.which == 3) { console.log("right click"); } else {
-
-                    $(document).unbind('keyup.delete');
-
-                    console.log(selection);
-                    console.log(event);
-
-                    mouseX = event.pageX;
-                    mouseY = event.pageY;
-                    console.log("drag notes", mouseX, mouseY);
-                    dragNotes(selection);
-
-                }
-
-            });
-
-            // if you click outside of all
-            $(document).bind('mousedown.outsideSelect1', function(){
-
-                $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").off('mousedown.dragAll');
-
-                if (!$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").is(event.target) && !$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").has(event.target).length > 0){
-
-                    $("#selectBox").hide();
-                    unSelect(selection);
-                    $(document).unbind("mousedown.outsideSelect1");
-
-                }
-
-            });
-
-        }
+        });
 
     }
 
-});
-
+}
 
 
 function unSelect(selection) {
