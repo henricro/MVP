@@ -9,39 +9,35 @@
     border-radius : 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    overflow: hidden;
 }
-
-
-.xlsx_name{
-    position: absolute;
-    top:0;
-    right: 0;
-    width:100%;
-    height:100%;
-    display:flex;
-    opacity: 0.8;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    text-align:center;
-
-    /* transition effect. not necessary */
-    transition: opacity .5s, font-size .5s, color .5s;
-}
-
-.xlsx_img{
-    opacity :1;
-    width:100%;
-    height:100%;
-}
-
 
 .xlsx:hover {
     opacity: 1;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-    overflow: visible;
 }
+
+.xlsx_img{
+    opacity: 1;
+    width: 100%;
+    height: 95%;
+}
+
+.xlsx_name{
+
+    top: 100%;
+    height: 8%;
+    align-items: center;
+    justify-content:center;
+    text-align: center;
+    padding-bottom: 4px;
+    font-family : PWSimpleHandwriting, Geneva !important;
+    width: 100%;
+    overflow: visible;
+
+    /* transition effect. not necessary */
+    transition: opacity .2s, font-size .2s, color .2s;
+}
+
 
 .xlsx:hover .xlsx_name {
     opacity: 1;

@@ -54,10 +54,10 @@ def upload_pdf(pageID, user_id):
 
         ### get the first page of the pdf as an image
 
-        pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name, 500)
-        first_page = pages[0]
-        first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name + ".first_page.jpg",
-                        'JPEG')
+        #pages = convert_from_path(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name, 500)
+        #first_page = pages[0]
+        #first_page.save(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + storage_name + ".first_page.jpg",
+        #                'JPEG')
 
         # save the first page as jpeg in DB
 
@@ -98,7 +98,7 @@ def upload_pdf(pageID, user_id):
         etree.SubElement(new_note, "storage_name").text = str(storage_name)
         etree.SubElement(new_note, "image").text = str(storage_name + ".first_page.jpg")
         etree.SubElement(new_note, "width").text = "100"
-        etree.SubElement(new_note, "height").text = "150"
+        etree.SubElement(new_note, "height").text = "110"
 
         #print(etree.tostring(root, pretty_print=True))
 

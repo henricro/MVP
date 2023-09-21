@@ -36,8 +36,8 @@ function buildXlsx(note) {
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
 
-    note.append(name_div);
     note.append(img);
+    note.append(name_div);
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){

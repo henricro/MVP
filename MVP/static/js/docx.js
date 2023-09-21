@@ -27,7 +27,7 @@ function buildDocx(note) {
 
     var img_src = "/static/images/icons/docx.png"
     var img = "<img class='docx_img' draggable='false' src=" + img_src + " />";
-    var name_div = "<div class='docx_name'><div>" + name + "</div></div>"
+    var name_div = "<div class='docx_name'>" + name + "</div>"
 
     docx_src = "/static/user_data/users/" + user_id + "/uploads/" + storage_name;
     note.attr("docx", docx_src );
@@ -35,8 +35,8 @@ function buildDocx(note) {
     note.css("top", y.concat("px"));
     note.css("left", x.concat("px"));
 
-    note.append(name_div);
     note.append(img);
+    note.append(name_div);
 
     if ( XMLnote.getElementsByTagName("css")[0] ){
         if ( XMLnote.getElementsByTagName("css")[0].childNodes[0] ){
