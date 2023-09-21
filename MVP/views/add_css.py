@@ -90,6 +90,7 @@ def add_css_note(pageID, user_id):
         fontStyle = str(request_data.get('fontStyle'))
         textDecoration = str(request_data.get('textDecoration'))
         textAlign = str(request_data.get('textAlign'))
+        borderColor = str(request_data.get('borderColor'))
 
         #print(id, type)
         #print(color, fontStyle, fontSize, textDecoration)
@@ -202,6 +203,22 @@ def add_css_note(pageID, user_id):
             # if there isn't already color in css
             else :
                 #print("no text-align already in css")
+                note.find("css").text = existing_css.text + css
+
+        print("border-color", borderColor)
+        if not borderColor == "same":
+
+            pattern = r'border-color\s*:\s*[^;]*\s*;'
+            match = re.search(pattern, existing_css.text, re.IGNORECASE)
+            #print(match)
+            #print(bool(match))
+            css = "border-color : " + borderColor + ";"
+
+            # if there is already border color in the css
+            if bool(match) :
+                note.find("css").text = re.sub(pattern, css, existing_css.text, flags=re.IGNORECASE)
+            # if there isn't already border-color in css
+            else :
                 note.find("css").text = existing_css.text + css
 
         # save the changes in the xml

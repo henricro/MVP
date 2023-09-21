@@ -58,7 +58,7 @@ def create_note(pageID, user_id):
 
 def generate_message():
     options = [
-        "new content",
+        "new note",
         "you live and you learn",
         "boop bidi boop",
         "only those who try fail"
@@ -70,4 +70,4 @@ def generate_message():
     if random_number == 0:
         return random.choice(options[1:])
     else:
-        return "new content"
+        return "new note"

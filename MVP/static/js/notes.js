@@ -243,8 +243,8 @@ $(".note").on('contextmenu', function(event) {
 
     console.log("id of note selected/ to color : ", idToColor);
 
-    $("#noteStyleBox").css("left", new_x);
-    $("#noteStyleBox").css("top", new_y);
+    $("#noteStyleBox").css("left", new_x + 30 + "px");
+    $("#noteStyleBox").css("top", new_y + 30 + "px");
     $("#noteStyleBox").css("display", "flex");
 
     oldColorValue = note.css("color");
@@ -252,6 +252,7 @@ $(".note").on('contextmenu', function(event) {
     oldFontSizeValue = note.css('font-size');
     oldTextDecorationValue = note.css('text-decoration');
     oldTextAlignValue = note.css('text-align');
+    oldBorderColorValue = note.css('border-color');
 
     // click outside note StyleBox
     $(document).on('click', function(event){
@@ -265,6 +266,8 @@ $(".note").on('contextmenu', function(event) {
             textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
             fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
             textAlignValue = note.css("text-align") !== oldTextAlignValue ? note.css("text-align") : "same";
+            borderColorValue = note.css("border-color") !== oldBorderColorValue ? note.css("border-color") : "same";
+
 
             // remove the choice Box
             $("#noteStyleBox").css("display", "none");
@@ -281,6 +284,7 @@ $(".note").on('contextmenu', function(event) {
                     fontStyle : fontStyleValue,
                     textDecoration : textDecorationValue,
                     textAlign : textAlignValue,
+                    borderColor: borderColorValue,
                     id : id,
                     type: "regular"
                 }),
@@ -347,6 +351,12 @@ $(".note").on('contextmenu', function(event) {
     $('#noteStyleBox_6').on('click', function() {
         align_center = (note.css('text-align') === 'center');
         note.css('text-align', align_center ? 'left' : 'center');
+    });
+
+    //update text-align
+    $('#noteStyleBox_7').on('click', function() {
+        border_color = (note.css('border-color') === 'black');
+        note.css('border-color', border_color ? 'rgb(0,0,0,0)' : 'black');
     });
 
 });
