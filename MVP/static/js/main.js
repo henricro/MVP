@@ -83,6 +83,12 @@ function buildNotes() {
             $('body').append(elem);
         }
 
+        // build the youtube divs
+        else if (clasis === "youtube"){
+            elem = "<div class='youtube' id='" + id + "'><div class='youtube-overlay'></div><iframe allowfullscreen></iframe></div>"
+            $('body').append(elem);
+        }
+
         // build the imagePageLink divs
         else if (note.classList.contains("imagePageLink")){
 

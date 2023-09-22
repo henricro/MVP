@@ -34,6 +34,10 @@ function styleSelect(note) {
         note.css({"border-width" : "1px"});
         note.find(".image_img").css({"opacity": "0.5"});
     }
+    if (note_class == "youtube") {
+        console.log("style youtube");
+        note.css({"border-width" : "1px"});
+    }
     if (note_class == "pdf") {
         console.log("style pdf");
         note.css({"border-width" : "1px"});
@@ -84,6 +88,10 @@ function styleDefault(note) {
         console.log("back to ;style default image")
         note.css({"border-width" : "0px"});
         note.find(".image_img").css({"opacity": "1"});
+    }
+    if (note_class.includes("youtube")) {
+        console.log("style youtube");
+        note.css({"border-width" : "Opx"});
     }
     if (note_class.includes("pdf")) {
         console.log("style pdf");

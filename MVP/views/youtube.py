@@ -8,6 +8,8 @@ from flask_login import LoginManager, UserMixin, current_user
 import urllib.request
 
 
+
+
 @application.route("/youtube/<pageID>/<user_id>", methods=['POST'])
 @user_required()
 def youtube(pageID, user_id):
@@ -56,11 +58,8 @@ def youtube(pageID, user_id):
 
         print(basedir)
 
-        resource = urllib.request.urlopen(youtube_thumbnail)
-        youtube_image = "youtube-" + youtube_id + ".jpg"
-        output = open(application.config['USER_DATA_PATH'] + user_id + '/uploads/' + youtube_image ,"wb")
-        output.write(resource.read())
-        output.close()
+        youtube_embed_link = youtube_link.replace("watch?v=", "embed/")
+        print(youtube_embed_link)
 
         ### add a note in the XML with the x, y positions and the name of the file
 
@@ -85,13 +84,12 @@ def youtube(pageID, user_id):
 
         # set the note's x, y and content = "title" (for now)
         new_note.set("id", id)
-        new_note.set("class", "imageLink")
+        new_note.set("class", "youtube")
         etree.SubElement(new_note, "x").text = x
         etree.SubElement(new_note, "y").text = y
         etree.SubElement(new_note, "width").text = "200"
         etree.SubElement(new_note, "height").text = "132"
-        etree.SubElement(new_note, "name").text = str(youtube_image)
-        etree.SubElement(new_note, "link").text = youtube_link
+        etree.SubElement(new_note, "link").text = youtube_embed_link
 
 
         #print(etree.tostring(root, pretty_print=True))
