@@ -78,7 +78,7 @@ function stopSelect() {
 
     // collect all the elements in the selection
     var selection = [];
-    $(".note, .pageLink, .noteLink, .image, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
+    $(".note, .pageLink, .noteLink, .image, .pdf, .docx, .xlsx, .youtube, .imagePageLink, .imageLink, .to-do-list, .list").each(function(){
 
         // feed the selection
         note = $(this);
@@ -235,7 +235,7 @@ $(document).on("keydown.selectAll", function(event) {
 function selectAll(){
 
     var selection = [];
-    $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").each(function(){
+    $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .youtube, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").each(function(){
 
         // feed the selection
         note = $(this);
@@ -297,7 +297,7 @@ function selectAll(){
         });
 
         // if right click on any of the selected elements
-        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('contextmenu', function(event){
+        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .youtube, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('contextmenu', function(event){
 
             event.preventDefault();
             $("#selectionRCBox").css("left", event.pageX);
@@ -330,7 +330,7 @@ function selectAll(){
         });
 
         // drag all
-        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.dragAll', function(event){
+        $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .youtube, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").bind('mousedown.dragAll', function(event){
             if (event.which == 3) { console.log("right click"); } else {
 
                 $(document).unbind('keyup.delete');
@@ -350,9 +350,9 @@ function selectAll(){
         // if you click outside of all
         $(document).bind('mousedown.outsideSelect1', function(){
 
-            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").off('mousedown.dragAll');
+            $(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .youtube, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").off('mousedown.dragAll');
 
-            if (!$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").is(event.target) && !$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").has(event.target).length > 0){
+            if (!$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .youtube, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").is(event.target) && !$(".note, .pageLink, .noteLink, .pdf, .docx, .xlsx, .imagePageLink, .imageLink, .to-do-list, .list, .image:not(.global)").has(event.target).length > 0){
 
                 $("#selectBox").hide();
                 unSelect(selection);
