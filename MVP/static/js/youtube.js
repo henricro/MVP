@@ -68,16 +68,59 @@ $('.youtube-overlay').on('click', function() {
     $youtubeDiv.off('mousedown.drag');
     styleSelect($youtubeDiv);
 
+    id = $youtubeDiv.attr("id");
+    orWidth = $youtubeDiv.css("width");
+    orHeight = $youtubeDiv.css("height");
+
+    $(document).on('copy', function() {
+        console.log("fefefefefe");
+        copyNote($youtubeDiv);
+    });
+
+    // delete the pdf
+    $(document).on('keyup.delete', function(){
+        if (event.keyCode == 8){
+
+            $.ajax({
+                url: '/delete_note/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    id: id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                }
+            });
+        }
+    });
+
     $(document).on('click.outsideYoutube', function(e){
-        console.log(e.target);
         if (!($youtubeDiv.is(e.target) || $youtubeDiv.has(e.target).length > 0)){
-            console.log("clicked outsiiiide");
+
+            id = $youtubeDiv.attr("id");
+            width = $youtubeDiv.css("width");
+            height = $youtubeDiv.css("height");
+
+            if (orHeight!=height || orWidth!=width) {
+                saveSizes(id, width.slice(0,-2), height.slice(0, -2));
+            }
+
             $overlay.show();
             $youtubeDiv.removeClass('resizable');
             styleDefault($youtubeDiv);
             $youtubeDiv.on('mousedown.drag', function(event){
                 dragNote($(this));
             });
+
+            $(document).off('copy');
+            $(document).off('keyup.delete');
+
         }
     });
 
