@@ -1,7 +1,7 @@
 
 
 createLines();
-
+/*
 function createLines() {
 
     //console.log("create the bloody lines");
@@ -144,4 +144,43 @@ function createLines() {
     }
 
 }
+*/
+
+function createLines() {
+
+    var lines = xmlDoc.getElementsByTagName("connexion");
+
+    for (i = 0; i < lines.length; i++) {
+
+        var line = lines[i];
+        var id_1 = line.getAttribute("id_1");
+        var id_2 = line.getAttribute("id_2");
+
+        start = document.getElementById(id_1);
+        end = document.getElementById(id_2);
+
+        console.log(start, end);
+
+        var line = new LeaderLine(start, end);
+
+        line.color = 'black';
+        line.size = 1;
+        line.path = 'straight';
+        line.startPlug = 'behind';
+        line.endPlug = 'behind';
+        line.dash = 'true';
+
+        console.log("line : ", line);
+
+    }
+
+}
+
+$(".leader-line").each(function(){
+    $(this).css({"pointer-events" : 'auto'});
+    $(this).on("click", function(){
+        console.log("mama");
+    });
+});
+
 

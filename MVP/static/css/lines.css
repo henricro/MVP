@@ -1,0 +1,13 @@
+.leader-line {
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: auto!important;
+}
+
+g {
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+

@@ -110,7 +110,7 @@ function showTitleBox(){
 
 // function to send All Down
 function sendAllDown() {
-    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink, .list, .to-do-list, .pdf, .docx, .xlsx').each(function(){
+    $('.note, .noteLink, .pageLink, .image, .imageLink, .imagePageLink, .list, .to-do-list, .pdf, .docx, .xlsx, .youtube').each(function(){
         element = $(this);
         y_pos = element.css("top");
         y_pos = y_pos.slice(0, -2);
