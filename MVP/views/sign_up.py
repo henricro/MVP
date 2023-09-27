@@ -130,7 +130,7 @@ def confirm(verification_token):
     # Copy all the pages and page_links in DB from user 'welcome_page' to this user
 
     user_id = int(user.id)
-    user_welcome_id = 114
+    user_welcome_id = 178
 
     # Step 1: Add duplicates of rows and switch user_id in the table Pages
 
