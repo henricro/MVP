@@ -88,9 +88,15 @@
   #versions {
     width: 10%;
   }
+  #whitecolumn1 {
+    width: 0%;
+  }
   #form{
     margin-top: 35px;
     width: 80%;
+  }
+  #more{
+    width: 0%;
   }
 }
 
@@ -145,6 +151,11 @@
     margin-top: 16px;
 }
 
+#notion_baseline_phone{
+    display: none;
+    margin-top: 60px;
+    width: 100%;
+}
 
 #patreonPhone {
     width:145px;
@@ -155,6 +166,7 @@
     padding:8px ;
     display: none;
     margin-bottom: 19px;
+    margin-top: 30px;
 }
 
 @media (max-width: 576px) {
@@ -165,6 +177,9 @@
     display: flex;
   }
   #patreonPhone {
+    display: flex;
+  }
+  #notion_baseline_phone{
     display: flex;
   }
 }
