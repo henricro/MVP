@@ -58,11 +58,13 @@ def create_note(pageID, user_id):
 
 def generate_message():
     options = [
-        "new note",
-        "you live and you learn",
-        "boop bidi boop",
-        "only those who try fail"
+        "new note"
     ]
+
+    # "you live and you learn",
+    # "boop bidi boop",
+    # "only those who try fail"
+
 
     # Generate a random number between 0 and 6
     random_number = random.randint(0, 6)

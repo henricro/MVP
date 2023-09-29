@@ -60,7 +60,7 @@
 
 
 #versions {
-    width: 25%;
+    width: 20%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -82,7 +82,9 @@
 #v1 {
     width: 90%;
     border-top: 1px solid rgb(170,170,170);
-    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 2px;
     display: flex;
     flex-direction: column;
     align-items:flex-start;
@@ -91,7 +93,9 @@
 #v2 {
     width: 90%;
     border-top: 1px solid rgb(170,170,170);
-    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 2px;
     display: flex;
     flex-direction: column;
     align-items:flex-start;
