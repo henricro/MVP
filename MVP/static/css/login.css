@@ -49,16 +49,6 @@
     justify-content: flex-start;
 }
 
-#form {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-    font-family: 'Quicksand', sans-serif;
-    margin-top: 100px;
-}
-
-
 #versions {
     width: 20%;
     height: 100vh;
@@ -67,6 +57,31 @@
     align-items: center;
     justify-content: flex-end;
 }
+
+#whitecolumn1 {
+    width: 15%;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 100px;
+}
+
+
+#more {
+    width: 35%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
 
 
 @media (max-width: 576px) {
