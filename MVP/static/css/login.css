@@ -71,6 +71,10 @@
     margin-top: 100px;
 }
 
+@font-face {
+  font-family: 'PWSimpleHandwriting'; /* Replace with your desired font name */
+  src: url('/static/fonts/PWSimpleHandwriting.ttf') format('truetype'); /* Replace with the correct path to your TTF file */
+}
 
 #more {
     width: 35%;
@@ -79,6 +83,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    font-family : PWSimpleHandwriting, Geneva !important;
+    padding-left: 15px;
+}
+
+#more div {
+    width: 100%;
 }
 
 
@@ -96,7 +106,7 @@
     width: 80%;
   }
   #more{
-    width: 0%;
+    display: none;
   }
 }
 
@@ -153,8 +163,11 @@
 
 #notion_baseline_phone{
     display: none;
-    margin-top: 60px;
-    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 95%;
+    font-family: PWSimpleHandWriting;
 }
 
 #patreonPhone {
