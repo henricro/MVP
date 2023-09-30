@@ -81,10 +81,10 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     font-family : PWSimpleHandwriting, Geneva !important;
-    padding-left: 15px;
+    padding-left: 85px;
 }
 
 #more div {
@@ -110,11 +110,28 @@
   }
 }
 
+#v1 li {
+    font-size:13px;
+}
+#v2 li {
+    font-size:13px;
+}
+
+#v1 ul {
+    padding-inline-start: 25px;
+    margin-top: 5px;
+}
+#v2 ul {
+    padding-inline-start: 25px;
+    margin-top: 5px;
+}
+
+
 #v1 {
     width: 90%;
     border-top: 1px solid rgb(170,170,170);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2px;
     display: flex;
     flex-direction: column;
@@ -124,8 +141,8 @@
 #v2 {
     width: 90%;
     border-top: 1px solid rgb(170,170,170);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2px;
     display: flex;
     flex-direction: column;
