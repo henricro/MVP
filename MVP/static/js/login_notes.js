@@ -1,0 +1,394 @@
+
+
+///////////////////////////////////////////////////////
+/////////////    CREATE NEW NOTE   ////////////////////
+///////////////////////////////////////////////////////
+
+$(document).dblclick(function(){
+
+    if ($(event.target).is("html") || $(event.target).is("body")) {
+        x = event.pageX.toString();
+        y = event.pageY.toString();
+
+        elem = '<div class="note"' + '" contenteditable="true" style="top: ' + y.concat("px") + '; left: ' + x.concat("px") +';">new note</div>';
+        $('body').append(elem);
+
+    }
+
+});
+
+///////////////////////////////////////////////////
+/////////////    SELECT NOTE   ////////////////////
+///////////////////////////////////////////////////
+
+$('.note').each(function(){
+    $(this).on('click.selectNote', function(){
+        selectNote($(this));
+    });
+});
+
+// select mode
+function selectNote(note){
+
+    event.stopPropagation();
+
+    styleSelect(note);
+
+    // DELETE NOTE
+    $(document).on('keyup.delete', function(){
+        if (event.keyCode == 8){
+
+            $.ajax({
+                url: '/delete_note/'+pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    id: id
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                    window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+                }
+            });
+        }
+    });
+
+    note.off('click.selectNote');
+
+    note.attr("contenteditable", "true");
+
+    // SECOND CLICK
+    note.on('click.write', function(){
+        $(document).off('keyup.delete');
+        event.stopPropagation();
+        writeNote($(this));
+    });
+
+    $(document).on('click.outsideNote contextmenu.outsideNote', function(){
+        if (!note.is(event.target)){
+
+            styleDefault(note);
+            $(document).off('keyup.delete');
+            note.off('click.write');
+            $(document).off('copy');
+            note.on('click.selectNote', function(){
+                selectNote($(this));
+            });
+            $(document).off('click.outsideNote contextmenu.oustidNote');
+
+        }
+    });
+}
+
+
+
+/////////////////////////////////////////////////////
+/////////////    WRITE IN NOTE   ////////////////////
+/////////////////////////////////////////////////////
+
+
+
+function writeNote(note){
+
+    note.off('mousedown.drag');
+    $(document).off('copy');
+    $(document).off("keydown.selectAll");
+
+    $(document).on('click.update_content', function() {
+        if (!note.is(event.target) && note.has(event.target).length === 0){
+
+            $(document).on("keydown.selectAll", function(event) {
+                if ((event.metaKey || event.ctrlKey) && event.key === "a") {
+                    event.preventDefault();
+                    selectAll();
+                }
+            });
+
+            $(document).off('copy');
+
+            content = note.html();
+            $(document).off('click.update_content');
+            id = note.attr('id')
+            console.log("clicked outside of note ", content);
+
+            if (content == "") {
+                current_y = document.documentElement.scrollTop;
+                window.location.href='/open_page/'+ pageID + '/' + user_id + '/' + current_y;
+            } else {
+
+                $.ajax({
+                    url: '/update_content/' + pageID + '/' + user_id,
+                    type: "POST",
+                    data: JSON.stringify({
+                        id: id,
+                        content: content
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.log("problem");
+                    }
+                });
+            }
+
+            note.attr("contenteditable", "false");
+
+            note.on('click.selectNote', function() {
+                selectNote($(this));
+            });
+
+            note.on('mousedown.drag', function(){
+                dragNote(note);
+            });
+
+        }
+
+    });
+
+}
+
+
+//////////////////////////////////////////////////
+///////////////// RIGHT CLICK NOTE ///////////////
+//////////////////////////////////////////////////
+
+var idToColor = "hher"
+
+$(".note").on('contextmenu', function(event) {
+
+    event.preventDefault();
+    new_x = event.pageX;
+    new_y = event.pageY;
+
+    var note = $(this);
+    var id = note.attr("id");
+
+    event.stopPropagation();
+    idToColor = id;
+
+    // copy Note
+    $('#noteRC_1').on('click.copyNote', function() {
+        console.log("copy note");
+        copyNote(note);
+    });
+
+    console.log("id of note selected/ to color : ", idToColor);
+
+    $("#noteStyleBox").css("left", new_x + 30 + "px");
+    $("#noteStyleBox").css("top", new_y + 30 + "px");
+    $("#noteStyleBox").css("display", "flex");
+
+    oldColorValue = note.css("color");
+    oldFontStyleValue = note.css('font-style');
+    oldFontSizeValue = note.css('font-size');
+    oldTextDecorationValue = note.css('text-decoration');
+    oldTextAlignValue = note.css('text-align');
+    oldBorderColorValue = note.css('border-color');
+
+    // click outside note StyleBox
+    $(document).on('click', function(event){
+        console.log("dzuhudzh");
+        if ((!$(event.target).closest('#noteStyleBox').length > 0 && !$(event.target).closest('.pcr-app').length > 0) &&
+            (!$(event.target).closest('#font-size-container').length > 0 && !$(event.target).closest('#font-size-container').length > 0)) {
+
+            console.log("heeeyyyyy");
+            colorValue = note.css("color") !== oldColorValue ? note.css('color') : "same";
+            fontSizeValue = note.css("font-size") !== oldFontSizeValue ? note.css("font-size") : "same";
+            textDecorationValue = note.css("text-decoration") !== oldTextDecorationValue ? note.css('text-decoration') : "same";
+            fontStyleValue = note.css("font-style") !== oldFontStyleValue ? note.css("font-style") : "same";
+            textAlignValue = note.css("text-align") !== oldTextAlignValue ? note.css("text-align") : "same";
+            borderColorValue = note.css("border-color") !== oldBorderColorValue ? note.css("border-color") : "same";
+
+
+            // remove the choice Box
+            $("#noteStyleBox").css("display", "none");
+            $("#font-size-container").css("display", "none");
+
+            // send the new css
+            css = note.attr("style");
+            $.ajax({
+                url: '/add_css_note/' + pageID + '/' + user_id,
+                type: "POST",
+                data: JSON.stringify({
+                    color : colorValue,
+                    fontSize : fontSizeValue,
+                    fontStyle : fontStyleValue,
+                    textDecoration : textDecorationValue,
+                    textAlign : textAlignValue,
+                    borderColor: borderColorValue,
+                    id : id,
+                    type: "regular"
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    current_y = document.documentElement.scrollTop;
+                },
+                error: function (error) {
+                    current_y = document.documentElement.scrollTop;
+                }
+            });
+
+        }
+    });
+
+    // update font size
+    $('#noteStyleBox_1').on('click', function() {
+
+        console.log("console log");
+        var fontSizeRange = $("#font-size-range");
+        var fontSizeDisplay = $("#font-size-display");
+        console.log(fontSizeRange);
+        console.log(fontSizeDisplay);
+        console.log(new_x);
+        console.log(new_y);
+        //var sampleText = $("#sample-text");
+
+        $('#font-size-container').css("left", new_x - 80 + "px");
+        $('#font-size-container').css("top", new_y + 10 + "px");
+        $('#font-size-container').css("display", "flex");
+
+        fontSizeRange.on("input", updateFontSize);
+
+        function updateFontSize() {
+            var fontSize = fontSizeRange.val();
+            console.log("update fontsize");
+            console.log("ehhe", fontSizeRange);
+            console.log(fontSize);
+            fontSizeDisplay.html(fontSize) ;
+            note.css('font-size', fontSize + "px");
+        }
+
+    });
+
+    // update underline
+    $('#noteStyleBox_3').on('click', function() {
+        underline = (note.css('text-decoration').includes('underline'));
+        note.css('text-decoration', underline ? 'none' : 'underline');
+    });
+
+    // update text-decoration
+    $('#noteStyleBox_4').on('click', function() {
+        linethrough = (note.css('text-decoration').includes('line-through'));
+        note.css('text-decoration', linethrough ? 'none' : 'line-through');
+    });
+
+    //update italic
+    $('#noteStyleBox_5').on('click', function() {
+        italic = (note.css('font-style') === 'italic');
+        note.css('font-style', italic ? 'normal' : 'italic');
+    });
+
+    //update text-align
+    $('#noteStyleBox_6').on('click', function() {
+        align_center = (note.css('text-align') === 'center');
+        note.css('text-align', align_center ? 'left' : 'center');
+    });
+
+    //update text-align
+    $('#noteStyleBox_7').on('click', function() {
+        border_color = (note.css('border-color') === 'black');
+        note.css('border-color', border_color ? 'rgb(0,0,0,0)' : 'black');
+    });
+
+});
+
+var pickrNote = Pickr.create({
+
+    el: '#noteStyleBox_2',
+    theme: 'nano', // You can choose different themes
+    comparison: false,
+
+    components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+        interaction: {
+          input: true,
+          clear: true,
+          save: true
+        }
+    }
+
+});
+
+// Attach event listeners
+pickrNote.on('change', (color) => {
+
+    const hexColor = color.toHEXA().toString();
+    console.log('Selected color:', hexColor);
+    var css = "color : " + hexColor + ";";
+    console.log(idToColor);
+    console.log(hexColor);
+    note_to_color = $("#" + idToColor).css("color", hexColor);
+
+});
+
+
+$("#noteRC_1").on('mouseover', function() {
+    follower.html("copy note");
+    follower.show();
+});
+$("#noteRC_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteRC_2").on('mouseover', function() {
+    follower.html("style note");
+    follower.show();
+});
+$("#noteRC_2").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_1").on('mouseover', function() {
+    follower.html("size");
+    follower.show();
+});
+$("#noteStyleBox_1").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_3").on('mouseover', function() {
+    follower.html("underline");
+    follower.show();
+});
+$("#noteStyleBox_3").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_4").on('mouseover', function() {
+    follower.html("cross");
+    follower.show();
+});
+$("#noteStyleBox_4").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_5").on('mouseover', function() {
+    follower.html("italic");
+    follower.show();
+});
+$("#noteStyleBox_5").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});
+
+$("#noteStyleBox_6").on('mouseover', function() {
+    follower.html("align text");
+    follower.show();
+});
+$("#noteStyleBox_6").on('mouseout', function() {
+    follower.html("");
+    follower.hide();
+});

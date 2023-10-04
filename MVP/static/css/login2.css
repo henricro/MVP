@@ -242,6 +242,15 @@ body {
   opacity: 0.3;
 }
 
+.resizable {
+  resize: both;
+  overflow: auto;
+ }
+
+
+
+
+
 
 #more {
     width: 35%;
@@ -305,6 +314,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items:flex-start;
+    margin-top: 30px;
 }
 
 #v2 {
