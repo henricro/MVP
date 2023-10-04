@@ -27,9 +27,6 @@ function styleSelect(note) {
         favicon.css("bottom", "32px");
         favicon.css("right", "-32px");
     }
-    if (note_class == "imagePageLink") {
-        note.find(".imagePageLink_name").css({"text-decoration" : "underline"});
-    }
     if (note_class == "image") {
         note.css({"border-width" : "1px"});
         note.find(".image_img").css({"opacity": "0.5"});

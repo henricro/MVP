@@ -52,4 +52,4 @@ def login():
             flash("we don't recognize your email 🧐", 'danger')
             pass
 
-    return render_template('/login.html', form=form)
+    return render_template('/login2.html', form=form)
