@@ -76,7 +76,7 @@ $('*:not("div")').on(
                 form_data.append('x', x);
                 form_data.append('y', y);
 
-                if (type ==".png" || type ==".jpg" || type =="jpeg" || type==".gif" ) {
+                if (type ==".png" || type ==".jpg" || type =="jpeg" || type==".gif" || type=="webp" ) {
 
                     //console.log("upload image ajax")
 
