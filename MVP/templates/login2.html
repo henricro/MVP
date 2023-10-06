@@ -76,6 +76,10 @@ form{
 
 </div>
 
+
+<img class="image" src="/static/images/icons/login_gif.gif" style="top:33%; left: 3%; width: 26%; height: 33%;"/>
+
+<!--
 <div class="imagePageLink" style="top:10%; left: 2%; width: 7%; height: 16%;">
     <img class="imagePageLink_img" src="/static/images/icons/knowledge_base.png" />
     <div class="imagePageLink_name">knowledge base</div>
@@ -95,18 +99,35 @@ form{
     <img class="imagePageLink_img" src="/static/images/icons/projects.png" />
     <div class="imagePageLink_name">projects</div>
 </div>
+-->
 
-<div class="note" style="left: 24%; top: 5%; font-size: 16px;">* move things around.</div>
+<!--
+<div class="note" style="left: 14%; top: 53%; font-size: 16px;">* move things around.</div>
+<div class="note" style="left: 14%; top: 58%; font-size: 16px;">* resize.</div>
+<div class="note" style="left: 14%; top: 63%; font-size: 16px;">* double-click  anywhere <br> &nbsp to write.</div>
+<div class="note" style="left: 14%; top: 68%; font-size: 16px;">* drop files, images, ...</div>
+<div class="note" style="left: 14%; top: 73%; font-size: 17px;">* and much more</div>
+-->
 
-<div class="note" style="left: 20%; top: 42%; font-size: 16px;">* resize.</div>
-
-<div class="note" style="left: 78%; top: 10%; font-size: 16px;">* double-click  anywhere <br> &nbsp to write.</div>
-
-<div class="note" style="left: 16%; top: 67%; font-size: 16px;">* drop files, images, ...</div>
-
-
-<div class="note" style="left: 71%; top: 88%; font-size: 17px;">* and much more</div>
-
+<!--
+<div class="to-do-list" style="top:10%; left: 75%;">
+    <ul class="to-do-list-list">
+        <li class="done">
+            release an alpha version
+            <i class="icon"></i>
+        </li>
+        <li class="done">
+            get first users on reddit
+            <i class="icon"></i>
+        </li>
+        <li class="ongoing">
+            get help to builb a better product
+            <i class="icon"></i>
+        </li>
+        <i class="plus-to-do"></i>
+    </ul>
+</div>
+-->
 
 <div class="note" style="left: 70%; top: 37%; font-size: 30px;">Get organized visually.</div>
 <div class="note" style="left: 70%; top: 48%; font-size: 23px;">Store. Design. Publish.</div>
@@ -114,17 +135,17 @@ form{
 <div class="note" style="left: 70%; top: 57%; font-size: 20px;">Simple.</div>
 <div class="note" style="left: 70%; top: 62%; font-size: 20px;">Powerful.</div>
 
-
+<!--
 <div class="pdf" pdf="/static/docs/gyst_pitch_deck.pdf" style="top: 60%; left: 6%; width: 6%; height: 13%;">
     <img class="pdf_img" src="/static/images/icons/pdf.png">
     <div class="pdf_name">GYST pitch deck</div>
 </div>
-
+-->
 
 <!-- Logo and login form -->
     <div id="login_form">
 
-        <img src="static/images/icons/logo_baseline.png" style="width: 300px; margin-bottom: 30px;"/>
+        <img src="static/images/icons/logo_baseline.png" style="width: 50%; margin-bottom: 30px;"/>
 
         <div id="notion_baseline_phone">
 
@@ -173,15 +194,12 @@ form{
                     {% endif %}
                 </div>
                 <div style="display:flex; flex-direction:row; justify-content:space-between;">
-                    <div style=" margin-top:10px; text-decoration: underline;">
+                    <div style=" margin-top:18px; text-decoration: underline;">
                         <a href="/forgot_password" >Forgot password ?</a>
                     </div>
                     <div>
                         {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
                     </div>
-                </div>
-                <div style="text-decoration: underline;">
-                <a href="/reset_password"  >Change password</a>
                 </div>
 
                 <div style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 40px;">
