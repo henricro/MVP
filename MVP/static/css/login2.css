@@ -110,6 +110,10 @@ body {
     margin-top: 100px;
 }
 
+#logo {
+    width: 50%;
+    margin-bottom: 30px;
+}
 
 #login_gif{
     top:33%;
@@ -154,25 +158,25 @@ body {
   }
   #logo{
     width:60%;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
   }
   #branding1{
     left: 0%;
-    top: 485px;
+    top: 505px;
     font-size: 22px;
     text-align: center;
     width: 100%;
   }
   #branding2{
     left: 0%;
-    top: 800px;
+    top: 820px;
     font-size: 20px;
     text-align: center;
     width: 100%;
   }
   #branding3{
     left: 0%;
-    top: 860px;
+    top: 880px;
     font-size: 18px;
     text-align: center;
     width: 100%;
@@ -181,12 +185,12 @@ body {
     left: 10%;
     width: 80%;
     height: 200px;
-    top: 555px;
+    top: 575px;
     margin-bottom: 50px;
   }
   #patreon {
     position: absolute;
-    top: 1050px;
+    top: 1070px;
     width: 30%;
     left: 35%;
     margin-bottom: 20px;
@@ -194,7 +198,7 @@ body {
   }
   #version_history_button {
     position: absolute;
-    top: 980px;
+    top: 1000px;
     left: 29%;
     width: 42%;
     height: 50px;
