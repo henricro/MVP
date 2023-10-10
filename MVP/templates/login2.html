@@ -48,36 +48,9 @@ form{
   {% endwith %}
   {% block content %}{% endblock %}
 
-<img src="/static/images/icons/patreon.png" id="patreon" />
-
-<div id="version_history_button">version history</div>
-
-<div id="version_history">
-
-    <div id="v1">
-        <div style="font-size: 23px; font-weight: 900;">V1   <span style="font-size: 17px; font-weight: 500;">released 19.08.23</span></div>
-        <ul>
-            <li>create pages, notes, lists</li>
-            <li>drop images, links, documents</li>
-            <li>align, resize</li>
-            <li>copy-paste anything</li>
-            <li>secure</li>
-        </ul>
-    </div>
-
-    <div id="v2">
-        <div style="font-size: 23px; font-weight: 900;">V2   <span style="font-size: 17px; font-weight: 500;">coming soon</span></div>
-        <ul>
-            <li>mobile app</li>
-            <li>explore in list or map mode</li>
-            <li>build your feed : send content from anywhere</li>
-        </ul>
-    </div>
-
-</div>
 
 
-<img class="image" src="/static/images/icons/login_gif.gif" style="top:33%; left: 3%; width: 26%; height: 33%;"/>
+<img id="login_gif" class="image" src="/static/images/icons/login_gif.gif"/>
 
 <!--
 <div class="imagePageLink" style="top:10%; left: 2%; width: 7%; height: 16%;">
@@ -129,12 +102,6 @@ form{
 </div>
 -->
 
-<div class="note" style="left: 70%; top: 37%; font-size: 30px;">Get organized visually.</div>
-<div class="note" style="left: 70%; top: 48%; font-size: 23px;">Store. Design. Publish.</div>
-
-<div class="note" style="left: 70%; top: 57%; font-size: 20px;">Simple.</div>
-<div class="note" style="left: 70%; top: 62%; font-size: 20px;">Powerful.</div>
-
 <!--
 <div class="pdf" pdf="/static/docs/gyst_pitch_deck.pdf" style="top: 60%; left: 6%; width: 6%; height: 13%;">
     <img class="pdf_img" src="/static/images/icons/pdf.png">
@@ -143,75 +110,112 @@ form{
 -->
 
 <!-- Logo and login form -->
-    <div id="login_form">
 
-        <img src="static/images/icons/logo_baseline.png" style="width: 50%; margin-bottom: 30px;"/>
+<div id="login_form">
 
-        <div id="notion_baseline_phone">
+    <img id="logo" src="static/images/icons/logo_baseline.png" style="width: 50%; margin-bottom: 30px;"/>
 
-            <div style="margin-top: 20px; font-size: 25px;">A whiteboard</div>
-            <div style="font-size: 23px; margin-top: 5px;">to get organized visually.</div>
+    <form method="POST" action="" >
+        {{ form.hidden_tag() }}
 
-            <div style="margin-top: 20px; font-size: 18px;">Store.</div>
-            <div style="font-size: 18px;">Work.</div>
-            <div style="font-size: 18px;">Present.</div>
-            <div style="font-size: 18px;">Publish.</div>
+            <div style="margin-bottom:10px;">
+                {{ form.email.label(class="form-control-label") }}
 
-            <div style="font-size: 18px; margin-top: 20px; margin-bottom: 40px;">Simple. Powerful.</div>
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
 
-        </div>
+            <div>
+                {{ form.password.label(class="form-control-label") }}
 
-        <form method="POST" action="" >
-            {{ form.hidden_tag() }}
-
-                <div style="margin-bottom:10px;">
-                    {{ form.email.label(class="form-control-label") }}
-
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                <div style=" margin-top:18px; text-decoration: underline;">
+                    <a href="/forgot_password" >Forgot password ?</a>
                 </div>
-
                 <div>
-                    {{ form.password.label(class="form-control-label") }}
-
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                        {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
-                    {% endif %}
+                    {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
                 </div>
-                <div style="display:flex; flex-direction:row; justify-content:space-between;">
-                    <div style=" margin-top:18px; text-decoration: underline;">
-                        <a href="/forgot_password" >Forgot password ?</a>
-                    </div>
-                    <div>
-                        {{ form.submit(class="btn btn-outline-info", style="margin-top:10px") }}
-                    </div>
-                </div>
+            </div>
 
-                <div style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 40px;">
-                    <div>
-                        Don't have an account ?
-                    </div>
-                    <div>
-                        <a href="/sign_up"   style=" margin-top:10px;">Sign up</a>
-                    </div>
+            <div style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 40px;">
+                <div>
+                    Don't have an account ?
                 </div>
+                <div>
+                    <a href="/sign_up"   style=" margin-top:10px;">Sign up</a>
+                </div>
+            </div>
 
-        </form>
+    </form>
+
+</div>
+
+<!-- -->
+
+
+
+<!--  baanding  -->
+
+<div id="branding1" class="note">Digital organization made simple.</div>
+
+<div id="branding2" class="note">Store. Design. Share.</div>
+
+<div id="branding3" class="note">Simple, visual, elegant.</div>
+
+<!--  -->
+
+
+
+<!-- patreon and version history  -->
+
+<img src="/static/images/icons/patreon.png" id="patreon" />
+
+<div id="version_history_button">version history</div>
+
+<div id="version_history">
+
+    <div id="v1">
+        <div style="font-size: 23px; font-weight: 900;">V1   <span style="font-size: 17px; font-weight: 500;">released 19.08.23</span></div>
+        <ul>
+            <li>create pages, notes, lists</li>
+            <li>drop images, links, documents</li>
+            <li>align, resize</li>
+            <li>copy-paste anything</li>
+            <li>secure</li>
+        </ul>
+    </div>
+
+    <div id="v2">
+        <div style="font-size: 23px; font-weight: 900;">V2   <span style="font-size: 17px; font-weight: 500;">coming soon</span></div>
+        <ul>
+            <li>mobile app</li>
+            <li>explore in list or map mode</li>
+            <li>build your feed : send content from anywhere</li>
+        </ul>
+    </div>
+
+</div>
+
+<!--  -->
 
 </body>
 
