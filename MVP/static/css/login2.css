@@ -198,6 +198,8 @@ body {
     left: 30%;
     width: 40%;
     height: 50px;
+    font-size: 3vh;
+    text-align: center;
   }
   #version_history {
     width: 70%;
