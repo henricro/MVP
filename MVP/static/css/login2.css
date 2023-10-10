@@ -186,7 +186,7 @@ body {
   }
   #patreon {
     position: absolute;
-    top: 1040px;
+    top: 1050px;
     width: 30%;
     left: 35%;
     margin-bottom: 20px;
@@ -195,8 +195,8 @@ body {
   #version_history_button {
     position: absolute;
     top: 980px;
-    left: 30%;
-    width: 40%;
+    left: 29%;
+    width: 42%;
     height: 50px;
     font-size: 3vh;
     text-align: center;
