@@ -116,10 +116,17 @@ body {
 }
 
 #login_gif{
-    top:33%;
-    left: 5%;
-    width: 26%;
-    height: 33%;
+    top:48%;
+    left: 9%;
+    width: 24%;
+    height: 30%;
+}
+
+#home_screenshot{
+    top:13%;
+    left: 3%;
+    width: 28%;
+    height: 28%;
 }
 
 #branding1{
