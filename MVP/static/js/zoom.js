@@ -1,3 +1,14 @@
+/* default phone zoom level */
+
+if (window.innerWidth <= 600) {
+  // Your code for small screens (e.g., mobile devices) goes here
+    $('body').css("zoom", 0.4);
+}
+
+
+
+/* plus and minus zoom */
+
 $("#plusZoom").bind("click.zoomIn", function() {
 
     //console.log("zoom in");
@@ -21,6 +32,8 @@ $("#plusZoom").bind("click.zoomIn", function() {
     }
 
 });
+
+
 
 $("#minusZoom").bind("click.zoomOut", function() {
 
