@@ -131,7 +131,7 @@ $(document).on('paste', function(e) {
 
         pasteSelection(selection, originPageID, pageID);
 
-    } else if ((data.includes("youtube.com/") || data.includes("youtu.be")) && !data.includes("youtube.com/shorts")) {
+    } else if ((data.includes("youtube.com/") || data.includes("youtu.be")) && !(data.includes("youtube.com/shorts") || data.includes("youtube.com/playlist")) {
 
         if( $('#mouse_position').find('#x_pos').html() ){
             x = $('#mouse_position').find('#x_pos').html();
