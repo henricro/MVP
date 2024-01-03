@@ -78,7 +78,7 @@ $('*:not("div")').on(
 
                 if (type ==".png" || type ==".jpg" || type =="jpeg" || type==".gif" || type=="webp" ) {
 
-                    //console.log("upload image ajax")
+                    console.log("upload image ajax")
 
                     $.ajax({
                         type: 'POST',
