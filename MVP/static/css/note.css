@@ -10,9 +10,10 @@
   white-space: nowrap;
   background-color: white;
   cursor: pointer;
-  /*font-size: 4vh;*/
+  font-size: 14px;
 
 }
+
 
 [contenteditable="true"] {
     outline: none; /* Remove the outline */

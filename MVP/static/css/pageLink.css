@@ -13,7 +13,7 @@
   text-align: center;
   background-color : rgb(240, 255, 220);
   box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
-  font-size: 4vh;
+  font-size: 20px;
   white-space: nowrap;
 }
 
@@ -32,13 +32,6 @@
     position: absolute;
     top: 300px;
     left: 300px;
-}
-
-
-@media (max-width: 576px) {
-    .pageLink {
-        font-size : 5vh;
-    }
 }
 
 
