@@ -10,6 +10,10 @@ $("#patreon").on('click', function(){
     window.open("https://www.patreon.com/gyst", '_blank');
 })
 
+$("#youtube").on('click', function(){
+    window.open("https://www.youtube.com/channel/UCvCvw1x4w9WOn_5f9R9QoYQ", '_blank');
+})
+
 $(document).click(function(){
     if (!$("#version_history").is(event.target) && $("#version_history").has(event.target).length === 0 && !$("#version_history_button").is(event.target)){
         $("#version_history").hide();

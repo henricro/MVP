@@ -101,6 +101,19 @@ body {
     padding:8px;
 }
 
+#youtube {
+    z-index: 20;
+    position: fixed;
+    bottom: 20px;
+    right: 185px;
+    width:145px;
+    aspect-ratio: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    padding:8px;
+}
+
 #login_form {
     display: flex;
     flex-direction: column;
@@ -122,10 +135,10 @@ body {
     height: 30%;
 }
 
-#home_screenshot{
+#login_gif_2{
     top:13%;
     left: 3%;
-    width: 28%;
+    width: 23%;
     height: 28%;
 }
 
@@ -138,13 +151,13 @@ body {
 #branding2{
     left: 65%;
     top: 47%;
-    font-size: 23px;
+    font-size: 27px;
 }
 
 #branding3{
     left: 65%;
     top: 57%;
-    font-size: 19px;
+    font-size: 23px;
 }
 
 
@@ -170,7 +183,7 @@ body {
   #branding1{
     left: 0%;
     top: 505px;
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
     width: 100%;
   }
@@ -188,7 +201,7 @@ body {
     text-align: center;
     width: 100%;
   }
-  #home_screenshot {
+  #login_gif_2{
     left: 10%;
     width: 80%;
     height: 160px;
